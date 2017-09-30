@@ -1,0 +1,35 @@
+.fe-panel {
+  padding: 0;
+  margin-bottom: 14px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+
+  > .fe-panel-header,
+  > .fe-panel-body {
+    border-bottom: 1px solid #ccc;
+  }
+
+  > .fe-panel-body:last-child {
+    border: 0;
+  }
+
+  .ant-form-item-control > button {
+    margin-right: 8px;
+  }
+  .ant-form-item-control > button:last-child {
+    margin-right: 0;
+  }
+}
+
+.fe-panel-header,
+.fe-panel-body {
+  padding: 14px;
+}
+
+.fe-panel-header:after,
+.fe-panel-body:after {
+  display: block;
+  content: "";
+  clear: both;
+}

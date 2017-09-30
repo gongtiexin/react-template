@@ -1,0 +1,23 @@
+@fe_margin: 20px;
+
+.fe-margin {
+  margin: @fe_margin;
+}
+
+.fe-pull-left {
+  float: left;
+}
+
+.fe-pull-right {
+  float: right;
+}
+
+//清除浮动
+.fe-clear:before, .fe-clear:after {
+  clear: both;
+}
+
+.fe-clear:after {
+  display: block;
+  content: "";
+}
