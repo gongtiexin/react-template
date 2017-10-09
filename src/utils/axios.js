@@ -1,18 +1,15 @@
 import axios from 'axios';
-import {notification} from 'antd';
-import {createBrowserHistory} from 'history';
+import { notification } from 'antd';
+import { createBrowserHistory } from 'history';
 
 const history = createBrowserHistory();
 
 axios.default.timeout = 5000;
 
 axios.interceptors.response.use(
-  response => {
-    return response
-  },
-  error => {
+  response => response,
+  (error) => {
     if (error.response) {
-      console.log('error.response', error.response);
       switch (error.response.status) {
         case 401: {
           if (error.response.config.url !== '/api/user') {
@@ -20,42 +17,42 @@ axios.interceptors.response.use(
           }
           break;
         }
+        default:
+          break;
       }
     }
-    return Promise.reject(error)
-  }
+    return Promise.reject(error);
+  },
 );
 
-export function request(config, success, error) {
+export default function request(config, success, error) {
   return axios(config)
-    .then(function (response) {
-      const data = response.data;
+    .then((response) => {
+      const { data } = response;
       if (data.errCode && data.errCode !== 0) {
         if (data.errCode >= 401000 && data.errCode <= 401999) {
-          console.error(response);
           return;
         }
-        const error = new Error();
-        error.errCode = data.errCode;
-        error.errMsg = data.errMsg;
-        error.data = data.data;
-        return Promise.reject(error);
+        const newError = new Error();
+        newError.errCode = data.errCode;
+        newError.errMsg = data.errMsg;
+        newError.data = data.data;
+        Promise.reject(newError);
       }
       if (success && success.message) {
-        notification.success({message: success.message})
+        notification.success({ message: success.message });
       }
-      return Promise.resolve(response)
+      Promise.resolve(response);
     })
-    .catch(e => {
-      const config = {};
+    .catch((e) => {
+      const newConfig = {};
       if (e.response.data.errMsg) {
-        config.description = e.response.data.errMsg;
+        newConfig.description = e.response.data.errMsg;
       }
       if (error && error.message) {
-        config.message = error.message;
-        notification.error(config);
+        newConfig.message = error.message;
+        notification.error(newConfig);
       }
-      return Promise.reject(e)
+      Promise.reject(e);
     });
-
 }

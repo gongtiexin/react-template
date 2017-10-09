@@ -25,7 +25,11 @@ module.exports = {
         include: path.join(__dirname, "src"),
         loader: "babel-loader",
         query: {
-          presets: ["env", "react"],
+          presets: [
+            ["es2015", {"modules": false}],
+            "stage-0",
+            "react",
+          ],
           plugins: [
             "transform-async-to-generator",
             "transform-decorators-legacy",

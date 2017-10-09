@@ -18,7 +18,6 @@ module.exports = {
     "webpack-dev-server/client?http://0.0.0.0:3000",
     "webpack/hot/only-dev-server",
     "babel-polyfill",
-    "whatwg-fetch",
     "./src/index"
   ],
   devServer: {
@@ -57,12 +56,16 @@ module.exports = {
         exclude: /node_modules/,
         loader: "babel-loader",
         options: {
-          presets: ["env", "react"],
+          presets: [
+            ["es2015", {"modules": false}],
+            "stage-0",
+            "react",
+          ],
           plugins: [
             "transform-async-to-generator",
             "transform-decorators-legacy",
             ["import", {"libraryName": "antd", "style": true}],
-            "react-hot-loader/babel"
+            "react-hot-loader/babel",
           ]
         }
       },

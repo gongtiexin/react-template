@@ -1,27 +1,27 @@
 /**
  * Created by yangbajing(yangbajing@gmail.com) on 2017-06-28.
  */
-import React from "react";
+import React from 'react';
 
-export default function Panel({children, className}) {
+export default function Panel({ children, className }) {
   return (
-    <div className={"fe-panel " + (className || '')}>
+    <div className={`fe-panel ${className || ''}`}>
       {children}
     </div>
   );
 }
 
-export function PanelHeader({children, className}) {
+export function PanelHeader({ children, className }) {
   return (
-    <div className={"fe-panel-header " + (className || '')}>
+    <div className={`fe-panel-header ${className || ''}`}>
       {children}
     </div>
   );
 }
 
-export function PanelBody({children, className}) {
+export function PanelBody({ children, className }) {
   return (
-    <div className={"fe-panel-body " + (className || '')}>
+    <div className={`fe-panel-body ${className || ''}`}>
       {children}
     </div>
   );
