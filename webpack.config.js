@@ -6,7 +6,7 @@ const packageJson = require('package')(module);
 let proxy = '192.168.32.104';
 // let proxy = "localhost";
 process.argv.forEach((item) => {
-  if (item.indexOf('proxy') !== -1) {
+  if (item.indexOf('proxy=') !== -1) {
     [, proxy] = item.split('=');
   }
 });
@@ -56,14 +56,14 @@ module.exports = {
         loader: 'babel-loader',
         options: {
           presets: [
-            ['es2015', { modules: false }],
+            ['es2015', {modules: false}],
             'stage-0',
             'react',
           ],
           plugins: [
             'transform-async-to-generator',
             'transform-decorators-legacy',
-            ['import', { libraryName: 'antd', style: true }],
+            ['import', {libraryName: 'antd', style: true}],
             'react-hot-loader/babel',
           ],
         },
@@ -112,7 +112,7 @@ module.exports = {
   plugins: [
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({ hash: false, template: './index.hbs' }),
+    new HtmlWebpackPlugin({hash: false, template: './index.hbs'}),
     // new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /zh-cn/)
   ],
 };
