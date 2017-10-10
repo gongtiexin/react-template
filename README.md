@@ -9,3 +9,10 @@
 //不报错再提交代码
 npm run eslint
 ```
+
+## 运行代码
+```
+//分别运行
+npm run dev
+npm run watch
+```
