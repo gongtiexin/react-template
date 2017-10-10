@@ -8,6 +8,7 @@ import moment from 'moment';
 import 'moment/locale/zh-cn';
 import { isProduction } from './utils/constants';
 import App from './components/App';
+import './stores/stores';
 import './styles/main.less';
 
 moment.locale('zh-cn');

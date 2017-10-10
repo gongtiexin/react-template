@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Front end project template",
   "scripts": {
-    "dev": "eslint \"src/**\" webpack.config.js webpack.config.production.js --fix && webpack-dev-server --config webpack.config.js",
+    "eslint": "eslint \"src/**\" -f table --fix",
+    "dev": "webpack-dev-server --config webpack.config.js",
     "build": "rimraf ./dist && webpack --config webpack.config.production.js"
   },
   "keywords": [

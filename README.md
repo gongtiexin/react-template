@@ -2,4 +2,10 @@
 
 ## 配置webpack-devserver的代理地址
 - 默认dn4
-- `npm run dev -- proxy = [yourProxy]`
+- `npm run dev -- proxy = yourProxy`
+
+## 代码检查eslint
+```
+//不报错再提交代码
+npm run eslint
+```
