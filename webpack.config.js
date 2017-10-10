@@ -6,7 +6,7 @@ const packageJson = require('package')(module);
 let proxy = '192.168.32.104';
 // let proxy = "localhost";
 process.argv.forEach((item) => {
-  if (item.indexOf('proxy=') !== -1) {
+  if (item.indexOf('proxy=') === 0) {
     [, proxy] = item.split('=');
   }
 });
