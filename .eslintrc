@@ -4,9 +4,15 @@
   },
   "extends": "eslint-config-airbnb",
   "parser": "babel-eslint",
+  "plugins": [
+    "flowtype",
+    "import",
+    "jsx-a11y",
+    "react"
+  ],
   "rules": {
     "react/jsx-filename-extension": [
-      1,
+      0,
       {
         "extensions": [
           ".js",
