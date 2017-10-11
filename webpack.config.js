@@ -3,8 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const packageJson = require('package')(module);
 
-let proxy = '192.168.32.104';
-// let proxy = "localhost";
+let proxy = 'localhost';
 process.argv.forEach((item) => {
   if (item.indexOf('proxy=') === 0) {
     [, proxy] = item.split('=');
@@ -56,14 +55,14 @@ module.exports = {
         loader: 'babel-loader',
         options: {
           presets: [
-            ['es2015', {modules: false}],
+            ['es2015', { modules: false }],
             'stage-0',
             'react',
           ],
           plugins: [
             'transform-async-to-generator',
             'transform-decorators-legacy',
-            ['import', {libraryName: 'antd', style: true}],
+            ['import', { libraryName: 'antd', style: true }],
             'react-hot-loader/babel',
           ],
         },
@@ -71,14 +70,14 @@ module.exports = {
       {
         test: /\.less|css$/,
         use: [{
-          loader: 'style-loader', // creates style nodes from JS strings
+          loader: 'style-loader',
         }, {
-          loader: 'css-loader', // translates CSS into CommonJS
+          loader: 'css-loader',
         }, {
           loader: 'less-loader',
           options: {
             modifyVars: packageJson.modifyVars,
-          }, // compiles Less to CSS
+          },
         }],
       },
       {
@@ -112,7 +111,6 @@ module.exports = {
   plugins: [
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({hash: false, template: './index.hbs'}),
-    // new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /zh-cn/)
+    new HtmlWebpackPlugin({ hash: false, template: './index.hbs' }),
   ],
 };

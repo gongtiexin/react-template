@@ -9,7 +9,6 @@ module.exports = {
   entry: {
     vendor: ['react', 'react-dom', 'react-router', 'mobx', 'mobx-react', 'antd', 'echarts'],
     app: ['babel-polyfill', './src/index'],
-    // app: "./src/index"
   },
   output: {
     path: path.join(__dirname, 'dist'),
@@ -40,14 +39,14 @@ module.exports = {
       {
         test: /\.less|css$/,
         use: [{
-          loader: 'style-loader', // creates style nodes from JS strings
+          loader: 'style-loader',
         }, {
-          loader: 'css-loader', // translates CSS into CommonJS
+          loader: 'css-loader',
         }, {
           loader: 'less-loader',
           options: {
             modifyVars: packageJson.modifyVars,
-          }, // compiles Less to CSS
+          },
         }],
       },
       {
