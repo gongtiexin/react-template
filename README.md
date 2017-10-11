@@ -6,7 +6,6 @@
 
 ## 代码检查eslint
 ```
-//不报错再提交代码
 npm run eslint
 ```
 
@@ -14,5 +13,5 @@ npm run eslint
 ```
 //分别运行
 npm run dev
-npm run watch
+npm run check
 ```
