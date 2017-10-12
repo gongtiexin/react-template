@@ -36,6 +36,10 @@
           "preferButton"
         ]
       }
+    ],
+    "max-len": [
+      "error",
+      150
     ]
   }
 }

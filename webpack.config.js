@@ -3,12 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const packageJson = require('package')(module);
 
-let proxy = 'localhost';
-process.argv.forEach((item) => {
-  if (item.indexOf('proxy=') === 0) {
-    [, proxy] = item.split('=');
-  }
-});
+const proxy = 'localhost';
 
 module.exports = {
   entry: [
