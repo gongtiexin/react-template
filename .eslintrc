@@ -40,6 +40,9 @@
     "max-len": [
       "error",
       150
-    ]
+    ],
+    "react/jsx-indent": 0,
+    "jsx-a11y/click-events-have-key-events": 1,
+    "no-shadow": 1
   }
 }

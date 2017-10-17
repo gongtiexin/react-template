@@ -2,17 +2,7 @@
   "name": "fe-template",
   "version": "1.0.0",
   "description": "Front end project template",
-  "watch": {
-    "eslint": {
-      "patterns": "src",
-      "extensions": "js",
-      "quiet": true,
-      "legacyWatch": true,
-      "delay": 300
-    }
-  },
   "scripts": {
-    "check": "npm-watch eslint",
     "dev": "webpack-dev-server --config webpack.config.js",
     "eslint": "eslint \"src/**\" -f table --fix",
     "build": "rimraf ./dist && webpack --config webpack.config.production.js"
@@ -76,7 +66,6 @@
     "mobx-react": "^4.2.2",
     "mobx-react-devtools": "^4.2.15",
     "moment": "^2.18.1",
-    "npm-watch": "^0.3.0",
     "package": "^1.0.1",
     "postcss-cssnext": "^3.0.2",
     "query-string": "^5.0.0",
@@ -84,7 +73,8 @@
     "react-dom": "^15.6.1",
     "react-hot-loader": "next",
     "react-router-dom": "^4.1.2",
-    "rfx-core": "^1.5.3"
+    "rfx-core": "^1.5.3",
+    "uuid": "^3.1.0"
   },
   "modifyVars": {}
 }
