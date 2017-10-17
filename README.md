@@ -2,12 +2,15 @@
 
 ## 代码检查eslint
 ```
-npm run eslint
+npm run eslint//检查一次
 ```
+或者配置IDE的eslint
 
 ## 运行代码
 ```
-//分别运行
 npm run dev
-npm run check
+```
+## 打包代码
+```
+npm run build
 ```
