@@ -965,7 +965,7 @@ babel-plugin-transform-strict-mode@^6.24.1:
     babel-runtime "^6.22.0"
     babel-types "^6.24.1"
 
-babel-polyfill@^6.23.0:
+babel-polyfill@^6.23.0, babel-polyfill@^6.26.0:
   version "6.26.0"
   resolved "http://registry.npm.taobao.org/babel-polyfill/download/babel-polyfill-6.26.0.tgz#379937abc67d7895970adc621f284cd966cf2153"
   dependencies:
@@ -3570,10 +3570,13 @@ history@^4.6.3, history@^4.7.2:
     value-equal "^0.4.0"
     warning "^3.0.0"
 
-hl-utils@1.1.7:
-  version "1.1.7"
-  resolved "http://registry.npm.taobao.org/hl-utils/download/hl-utils-1.1.7.tgz#c1fe4d18853bd7d94750cc0f4a8ded64cceef5df"
+hl-utils@^1.2.8:
+  version "1.2.8"
+  resolved "http://registry.npm.taobao.org/hl-utils/download/hl-utils-1.2.8.tgz#665a35cd9e64fe435935b190a1249fb047388bcf"
   dependencies:
+    axios "^0.16.2"
+    babel-polyfill "^6.26.0"
+    history "^4.7.2"
     lodash "^4.17.4"
 
 hmac-drbg@^1.0.0:

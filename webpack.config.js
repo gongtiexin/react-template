@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const packageJson = require('package')(module);
 
-const proxy = 'localhost';
+const proxy = '10.2.11.242';
 
 module.exports = {
   entry: [
@@ -23,11 +23,11 @@ module.exports = {
     disableHostCheck: true,
     proxy: {
       '/sign': {
-        target: `http://${proxy}:20030`,
+        target: `http://${proxy}:20011`,
         changeOrigin: true,
       },
       '/api': {
-        target: `http://${proxy}:20030`,
+        target: `http://${proxy}:20011`,
         changeOrigin: true,
       },
       '/geoesb': {

@@ -52,13 +52,12 @@
   },
   "dependencies": {
     "antd": "^2.13.2",
-    "axios": "^0.16.2",
     "css-declaration-sorter": "^2.0.1",
     "css-mqpacker": "^6.0.1",
     "echarts": "^3.6.2",
     "faker": "^4.1.0",
     "history": "^4.6.3",
-    "hl-utils": "1.1.7",
+    "hl-utils": "^1.2.8",
     "http-server": "^0.10.0",
     "lazy-route": "^1.0.7",
     "lodash": "^4.17.4",
@@ -76,6 +75,5 @@
     "rfx-core": "^1.5.3",
     "uuid": "^3.1.0"
   },
-  "modifyVars": {
-  }
+  "modifyVars": {}
 }
