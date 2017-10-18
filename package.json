@@ -76,5 +76,6 @@
     "rfx-core": "^1.5.3",
     "uuid": "^3.1.0"
   },
-  "modifyVars": {}
+  "modifyVars": {
+  }
 }

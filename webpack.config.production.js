@@ -5,9 +5,13 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const packageJson = require('package')(module);
 
+// Create multiple instances
+const extractCSS = new ExtractTextPlugin('stylesheets/[name]-one.css');
+const extractLESS = new ExtractTextPlugin('stylesheets/[name]-two.css');
+
 module.exports = {
   entry: {
-    vendor: ['react', 'react-dom', 'react-router', 'mobx', 'mobx-react', 'antd', 'echarts'],
+    vendor: ['react', 'react-dom', 'react-router-dom', 'mobx', 'mobx-react', 'antd', 'echarts'],
     app: ['babel-polyfill', './src/index'],
   },
   output: {
@@ -16,7 +20,6 @@ module.exports = {
     filename: 'assets/[name].[hash].js',
     chunkFilename: 'assets/[name].[chunkhash].js',
   },
-  devtool: 'cheap-module-source-map',
   module: {
     rules: [
       {
@@ -37,18 +40,35 @@ module.exports = {
         },
       },
       {
-        test: /\.less|css$/,
-        use: [{
-          loader: 'style-loader',
-        }, {
+        test: /\.css$/,
+        use: extractCSS.extract(['css-loader', 'postcss-loader']),
+      },
+      {
+        test: /\.less$/i,
+        use: extractLESS.extract([{
           loader: 'css-loader',
         }, {
           loader: 'less-loader',
           options: {
+            // 覆盖antd样式的全局变量
             modifyVars: packageJson.modifyVars,
           },
-        }],
+        },
+        ]),
       },
+      // {
+      //   test: /\.less|css$/,
+      //   use: [{
+      //     loader: 'style-loader',
+      //   }, {
+      //     loader: 'css-loader',
+      //   }, {
+      //     loader: 'less-loader',
+      //     options: {
+      //       modifyVars: packageJson.modifyVars,
+      //     },
+      //   }],
+      // },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
         use: [
@@ -101,7 +121,8 @@ module.exports = {
         comments: false,
       },
     }),
-    new ExtractTextPlugin('assets/styles.css'),
+    extractCSS,
+    extractLESS,
     new HtmlWebpackPlugin({
       hash: false,
       template: './index.hbs',
