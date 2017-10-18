@@ -1,3 +1,7 @@
+/**
+ * React Echarts Component
+ * Created by yangbajing(yangbajing@gmail.com) on 2016-09-18.
+ */
 import React, { Component } from 'react';
 import echarts from 'echarts';
 import lodashIsEqual from 'lodash/isEqual';
@@ -13,8 +17,11 @@ export default class ReactEchart extends Component {
 
   componentDidMount() {
     this.myChart = echarts.init(this.eCharts);
-    if (this.props.onClick) {
-      this.myChart.on('click', this.props.onClick);
+    if (this.props.config) {
+      const { option } = this.props.config;
+      if (option) {
+        this.myChart.setOption(option);
+      }
     }
   }
 
@@ -31,18 +38,15 @@ export default class ReactEchart extends Component {
   }
 
   render() {
-    if (this.props.option && this.myChart) {
-      const { option } = this.props.option;
-      if (option) {
-        this.myChart.setOption(option);
-      }
-    }
     return (
       <div
         ref={(node) => {
           this.eCharts = node;
         }}
-        style={this.props.option.style}
+        style={this.props.config.style || {
+          width: '100%',
+          height: '600px',
+        }}
       />
     );
   }
