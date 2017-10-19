@@ -119,4 +119,6 @@ typings/
 
 .vscode/
 
+dist/
+
 
