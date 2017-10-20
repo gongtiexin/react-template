@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const packageJson = require('package')(module);
 
 // Create multiple instances
@@ -11,7 +12,7 @@ const extractLESS = new ExtractTextPlugin('stylesheets/[name]-two.css');
 
 module.exports = {
   entry: {
-    vendor: ['react', 'react-dom', 'react-router-dom', 'mobx', 'mobx-react', 'antd', 'echarts'],
+    vendor: ['antd', 'echarts', 'history', 'lodash', 'react', 'mobx', 'mobx-react', 'react-dom', 'react-router-dom'],
     app: ['babel-polyfill', './src/index'],
   },
   output: {
@@ -26,18 +27,6 @@ module.exports = {
         test: /\.js$/,
         include: path.join(__dirname, 'src'),
         loader: 'babel-loader',
-        query: {
-          presets: [
-            ['es2015', { modules: false }],
-            'stage-0',
-            'react',
-          ],
-          plugins: [
-            'transform-async-to-generator',
-            'transform-decorators-legacy',
-            ['import', { libraryName: 'antd', style: true }],
-          ],
-        },
       },
       {
         test: /\.css$/,
@@ -98,6 +87,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new BundleAnalyzerPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
@@ -106,19 +96,43 @@ module.exports = {
     new webpack.NamedModulesPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(true),
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
+      name: ['vendor', 'runtime'],
       minChunks: Infinity,
     }),
+    // 多入口
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   // ( 公共chunk(commnons chunk)的名称)
+    //   name: 'commons',
+    //   // ( 公共chunk的文件名)
+    //   filename: 'commons.[chunkhash:4].js',
+    //   // (模块必须被3个入口chunk共享)
+    //   minChunks: 3,
+    // }),
+    new webpack.optimize.CommonsChunkPlugin({
+      // (选择所有被选chunks的子chunks)
+      children: true,
+      // (异步加载)
+      async: true,
+      // (在提取之前需要至少三个子chunk共享这个模块)
+      minChunks: 3,
+    }),
     new webpack.optimize.UglifyJsPlugin({
-      minimize: true,
-      compress: {
-        warnings: false,
-        drop_console: true,
-        drop_debugger: true,
-        // screw_ie8: true,
-      },
-      output: {
-        comments: false,
+      uglifyOptions: {
+        minimize: true,
+        ie8: false,
+        output: {
+          comments: false,
+          beautify: false,
+        },
+        mangle: {
+          keep_fnames: true,
+        },
+        compress: {
+          warnings: false,
+          drop_console: true,
+          drop_debugger: true,
+          unused: true,
+        },
       },
     }),
     extractCSS,
@@ -134,6 +148,6 @@ module.exports = {
         // ignore: ['*.js']
       },
     ]),
-    // new webpack.optimize.ModuleConcatenationPlugin()
+    new webpack.optimize.ModuleConcatenationPlugin(),
   ],
 };
