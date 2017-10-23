@@ -12,7 +12,7 @@ const extractLESS = new ExtractTextPlugin('stylesheets/[name]-two.css');
 
 module.exports = {
   entry: {
-    vendor: ['antd', 'echarts', 'history', 'lodash', 'react', 'mobx', 'mobx-react', 'react-dom', 'react-router-dom'],
+    vendor: ['antd', 'axios', 'echarts', 'history', 'lodash', 'react', 'mobx', 'mobx-react', 'react-dom', 'react-router-dom'],
     app: ['babel-polyfill', './src/index'],
   },
   output: {

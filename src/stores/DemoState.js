@@ -1,6 +1,5 @@
 import { observable, action, computed } from 'mobx';
-import { request } from 'hl-utils/lib/index';
-import { notification } from 'antd';
+import request from '../utils/axios';
 
 export default class DemoState {
   @observable data;
@@ -21,7 +20,6 @@ export default class DemoState {
       { method: 'GET', url: '/api/xxx' },
       { message: '获取数据成功' },
       { message: '获取数据失败' },
-      notification,
     );
     this.setData = data;
     return data;

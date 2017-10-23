@@ -54,11 +54,12 @@
   },
   "dependencies": {
     "antd": "^2.13.2",
+    "axios": "^0.17.0",
     "css-declaration-sorter": "^2.0.1",
     "css-mqpacker": "^6.0.1",
     "echarts": "^3.6.2",
     "history": "^4.6.3",
-    "hl-utils": "^1.3.13",
+    "hl-utils": "^1.4.13",
     "lazy-route": "^1.0.7",
     "lodash": "^4.17.4",
     "mobx": "^3.2.2",
