@@ -3613,7 +3613,7 @@ history@^4.6.3, history@^4.7.2:
     value-equal "^0.4.0"
     warning "^3.0.0"
 
-hl-utils@1.4.13:
+hl-utils@^1.4.13:
   version "1.3.13"
   resolved "http://registry.npm.taobao.org/hl-utils/download/hl-utils-1.3.13.tgz#859d74856210644a1d39b9135a2f94b31f6eaf82"
   dependencies:
