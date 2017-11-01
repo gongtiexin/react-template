@@ -28,12 +28,12 @@ axios.interceptors.response.use(
 export default function request(config, success, error) {
   return axios(config)
     .then((response) => {
-      const { data } = response;
-      if (data.errCode && data.errCode !== 0) {
+      const { data: { errCode, errMsg = 'error' } } = response;
+      if (errCode && errCode !== 0) {
         const newError = new Error();
-        newError.errCode = data.errCode;
-        newError.errMsg = data.errMsg;
-        newError.data = data.data;
+        newError.errCode = errCode;
+        newError.errMsg = errMsg;
+        newError.data = response;
         Promise.reject(newError);
       }
       if (notification !== null && success && success.message) {
@@ -42,13 +42,13 @@ export default function request(config, success, error) {
       return response;
     })
     .catch((e) => {
-      const newConfig = {};
-      if (e.response.data.errMsg) {
-        newConfig.description = e.response.data.errMsg;
-      }
+      // const newConfig = {};
+      // if (e.response.data.errMsg) {
+      //   newConfig.description = e.response.data.errMsg;
+      // }
       if (notification !== null && error && error.message) {
-        newConfig.message = error.message;
-        notification.error(newConfig);
+        // newConfig.message = error.message;
+        notification.error(error.message);
       }
       Promise.reject(e);
     });
