@@ -12,9 +12,15 @@ axios.interceptors.response.use(
     if (error.response) {
       switch (error.response.status) {
         case 401: {
-          if (error.response.config.url !== '/api/user') {
-            history.push('/login');
+          if (!history.location.pathname.startsWith('/signon')) {
+            const { location: { search } } = history;
+            // history.push(`/signon${search}`);
+            window.location.href = `/signon${search}`;
           }
+          break;
+        }
+        case 403: {
+          notification.warn({ message: '您没有权限这样做!' });
           break;
         }
         default:
@@ -42,14 +48,16 @@ export default function request(config, success, error) {
       return response;
     })
     .catch((e) => {
-      // const newConfig = {};
-      // if (e.response.data.errMsg) {
-      //   newConfig.description = e.response.data.errMsg;
-      // }
+      const { response } = e;
+      const newConfig = {};
+      if (response && response.data && response.data.errMsg) {
+        newConfig.description = e.response.data.errMsg;
+      }
       if (notification !== null && error && error.message) {
-        // newConfig.message = error.message;
-        notification.error(error.message);
+        newConfig.message = error.message;
+        notification.error(newConfig);
       }
       Promise.reject(e);
+      return response;
     });
 }

@@ -1,4 +1,5 @@
 import { observable, action, computed } from 'mobx';
+import * as Rx from 'rxjs-es';
 import request from '../utils/axios';
 
 export default class DemoState {
@@ -16,13 +17,8 @@ export default class DemoState {
    * 获取数据
    * */
   async getData() {
-    const { data } = await request(
-      { method: 'GET', url: '/api/xxx' },
-      { message: '获取数据成功' },
-      { message: '获取数据失败' },
-    );
-    this.setData = data;
-    return data;
+    Rx.ajax('/pubapi/org/list', { type: 'get' })
+      .subscribe(value => console.log(value));
   }
 
   /**

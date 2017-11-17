@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const packageJson = require('package')(module);
+const config = require('./config');
 
 // Create multiple instances
 const extractCSS = new ExtractTextPlugin('stylesheets/[name]-one.css');
@@ -12,7 +12,19 @@ const extractLESS = new ExtractTextPlugin('stylesheets/[name]-two.css');
 
 module.exports = {
   entry: {
-    vendor: ['antd', 'axios', 'echarts', 'history', 'lodash', 'react', 'mobx', 'mobx-react', 'react-dom', 'react-router-dom'],
+    vendor: [
+      'babel-polyfill',
+      'antd',
+      'axios',
+      'echarts',
+      'history',
+      'lodash',
+      'react',
+      'mobx',
+      'mobx-react',
+      'react-dom',
+      'react-router-dom',
+    ],
     app: ['babel-polyfill', './src/index'],
   },
   output: {
@@ -40,7 +52,7 @@ module.exports = {
           loader: 'less-loader',
           options: {
             // 覆盖antd样式的全局变量
-            modifyVars: packageJson.modifyVars,
+            modifyVars: config.modifyVars,
           },
         },
         ]),

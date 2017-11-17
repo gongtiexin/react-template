@@ -1,9 +1,9 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const packageJson = require('package')(module);
+const config = require('./config');
 
-const proxy = '10.2.11.242';
+const proxy = 'dn6';
 
 module.exports = {
   entry: [
@@ -30,8 +30,8 @@ module.exports = {
         target: `http://${proxy}:20011`,
         changeOrigin: true,
       },
-      '/geoesb': {
-        target: 'http://183.230.17.27:8081',
+      '/pubapi': {
+        target: `http://${proxy}:38081`,
         changeOrigin: true,
       },
     },
@@ -58,7 +58,7 @@ module.exports = {
         }, {
           loader: 'less-loader',
           options: {
-            modifyVars: packageJson.modifyVars,
+            modifyVars: config.modifyVars,
           },
         }],
       },
