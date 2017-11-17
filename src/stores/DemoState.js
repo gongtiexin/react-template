@@ -1,6 +1,6 @@
 import { observable, action, computed } from 'mobx';
-import * as Rx from 'rxjs-es';
-import request from '../utils/axios';
+import { notification } from 'antd';
+import { request } from '../utils/axios';
 
 export default class DemoState {
   @observable data;
@@ -17,8 +17,14 @@ export default class DemoState {
    * 获取数据
    * */
   async getData() {
-    Rx.ajax('/pubapi/org/list', { type: 'get' })
-      .subscribe(value => console.log(value));
+    const { data } = await request(
+      { method: 'GET', url: '/api/xxx' },
+      { message: '获取数据成功' },
+      { message: '获取数据失败' },
+      notification,
+    );
+    this.setData(data);
+    return data;
   }
 
   /**
