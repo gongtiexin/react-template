@@ -31,33 +31,60 @@ axios.interceptors.response.use(
   },
 );
 
-export default function request(config, success, error) {
-  return axios(config)
-    .then((response) => {
-      const { data: { errCode, errMsg = 'error' } } = response;
-      if (errCode && errCode !== 0) {
-        const newError = new Error();
-        newError.errCode = errCode;
-        newError.errMsg = errMsg;
-        newError.data = response;
-        Promise.reject(newError);
-      }
-      if (notification !== null && success && success.message) {
-        notification.success({ message: success.message });
-      }
-      return response;
-    })
-    .catch((e) => {
-      const { response } = e;
-      const newConfig = {};
-      if (response && response.data && response.data.errMsg) {
-        newConfig.description = e.response.data.errMsg;
-      }
-      if (notification !== null && error && error.message) {
-        newConfig.message = error.message;
-        notification.error(newConfig);
-      }
-      Promise.reject(e);
-      return response;
-    });
-}
+const request = (config, success, error) => axios(config)
+  .then((response) => {
+    const { data: { errCode, errMsg = 'error' } } = response;
+    if (errCode && errCode !== 0) {
+      const newError = new Error();
+      newError.errCode = errCode;
+      newError.errMsg = errMsg;
+      newError.data = response;
+      Promise.reject(newError);
+    }
+    if (notification !== null && success && success.message) {
+      notification.success({ message: success.message });
+    }
+    return Promise.resolve(response);
+  })
+  .catch((e) => {
+    const { response } = e;
+    const newConfig = {};
+    if (response && response.data && response.data.errMsg) {
+      newConfig.description = e.response.data.errMsg;
+    }
+    if (notification !== null && error && error.message) {
+      newConfig.message = error.message;
+      notification.error(newConfig);
+    }
+    return Promise.reject(response);
+  });
+
+const rxjsRequest = (config, success, error) => axios(config)
+  .then((response) => {
+    const { data: { errCode, errMsg = 'error' } } = response;
+    if (errCode && errCode !== 0) {
+      const newError = new Error();
+      newError.errCode = errCode;
+      newError.errMsg = errMsg;
+      newError.data = response;
+      Promise.reject(newError);
+    }
+    if (notification !== null && success && success.message) {
+      notification.success({ message: success.message });
+    }
+    return Promise.resolve(response);
+  })
+  .catch((e) => {
+    const { response } = e;
+    const newConfig = {};
+    if (response && response.data && response.data.errMsg) {
+      newConfig.description = e.response.data.errMsg;
+    }
+    if (notification !== null && error && error.message) {
+      newConfig.message = error.message;
+      notification.error(newConfig);
+    }
+    return Promise.reject(response);
+  });
+
+export { request, rxjsRequest };

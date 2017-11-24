@@ -1,6 +1,6 @@
 import { observable, action, computed } from 'mobx';
-import { notification } from 'antd';
-import { request } from '../utils/axios';
+import Rx from 'rxjs/Rx';
+import { rxjsRequest } from '../utils/axios';
 
 export default class DemoState {
   @observable data;
@@ -16,15 +16,15 @@ export default class DemoState {
   /**
    * 获取数据
    * */
-  async getData() {
-    const { data } = await request(
-      { method: 'GET', url: '/api/xxx' },
-      { message: '获取数据成功' },
-      { message: '获取数据失败' },
-      notification,
-    );
-    this.setData(data);
-    return data;
+  getData() {
+    const orgList$ = Rx.Observable.fromPromise(rxjsRequest({ method: 'GET', url: '/pubapi/org/list' }));
+    const orgPage$ = Rx.Observable.fromPromise(rxjsRequest({ method: 'GET', url: '/pubapi/org/page' }));
+    const merge = Rx.Observable.merge(orgList$, orgPage$);
+    merge
+      .subscribe(
+        resp => console.log('got value ', resp),
+        err => console.error('something wrong occurred: ', err),
+      );
   }
 
   /**

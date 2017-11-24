@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter, Route } from 'react-router-dom';
 import { inject, observer } from 'mobx-react';
-import uuid from 'uuid/v4';
-// import LazyRoute from 'lazy-route';
+import DevTools from 'mobx-react-devtools'
 import routes from '../routes';
 
 @inject('store')
@@ -12,16 +11,14 @@ export default class App extends Component {
   render() {
     return (
       <div>
+        <DevTools />
         前端项目模板
-        {routes.map(({ path, component, componentUrl }) => (
+        {routes.map(({ path, component }) => (
           <Route
-            key={uuid()}
+            key={path}
             path={path}
             component={component}
             exact
-            // render={props => (
-            //   <LazyRoute {...props} component={import(componentUrl)} />
-            // )}
           />
         ))}
       </div>
