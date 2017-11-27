@@ -1,8 +1,5 @@
 import axios from 'axios';
-import { createBrowserHistory } from 'history';
 import { notification } from 'antd';
-
-const history = createBrowserHistory();
 
 axios.default.timeout = 5000;
 
@@ -12,11 +9,11 @@ axios.interceptors.response.use(
     if (error.response) {
       switch (error.response.status) {
         case 401: {
-          if (!history.location.pathname.startsWith('/signon')) {
-            const { location: { search } } = history;
-            // history.push(`/signon${search}`);
-            window.location.href = `/signon${search}`;
-          }
+          // if (!history.location.pathname.startsWith('/signon')) {
+          //   const { location: { search } } = history;
+          //   // history.push(`/signon${search}`);
+          //   window.location.href = `/signon${search}`;
+          // }
           break;
         }
         case 403: {

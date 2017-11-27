@@ -4,8 +4,10 @@ import { rxjsRequest } from '../utils/axios';
 
 export default class DemoState {
   @observable data;
+  @observable test;
 
   constructor() {
+    this.test = 1;
     this.data = []; // 初始化值,这里演示数组
   }
 

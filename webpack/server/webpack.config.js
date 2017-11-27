@@ -1,45 +1,18 @@
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const config = require('./config');
-
-const proxy = 'dn6';
+const config = require('../../config');
 
 module.exports = {
   entry: [
-    'react-hot-loader/patch',
-    'webpack-dev-server/client?http://0.0.0.0:3000',
-    'webpack/hot/only-dev-server',
+    'webpack-hot-middleware/client?reload=true',
     'babel-polyfill',
-    './src/index',
+    './src/client',
   ],
-  devServer: {
-    hot: true,
-    contentBase: path.resolve(__dirname),
-    port: 3000,
-    host: '0.0.0.0',
-    publicPath: '/',
-    historyApiFallback: true,
-    disableHostCheck: true,
-    proxy: {
-      '/sign': {
-        target: `http://${proxy}:20011`,
-        changeOrigin: true,
-      },
-      '/api': {
-        target: `http://${proxy}:20011`,
-        changeOrigin: true,
-      },
-      '/pubapi': {
-        target: `http://${proxy}:38081`,
-        changeOrigin: true,
-      },
-    },
-  },
   output: {
     path: path.join(__dirname, 'dist'),
     publicPath: '/',
-    filename: 'app.[hash].js',
+    filename: 'bundle.js',
+    // filename: 'app.[hash].js',
   },
   devtool: 'cheap-module-source-map',
   module: {
@@ -93,6 +66,10 @@ module.exports = {
   plugins: [
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({ hash: false, template: './index.hbs' }),
+    new webpack.DefinePlugin({
+      'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV) },
+      __CLIENT__: JSON.stringify(true),
+      __SERVER__: JSON.stringify(false),
+    }),
   ],
 };

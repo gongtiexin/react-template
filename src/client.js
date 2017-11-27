@@ -25,9 +25,9 @@ const renderApp = () => {
 };
 
 function run() {
-  renderApp(App);
+  renderApp();
   if (module.hot) {
-    module.hot.accept(() => renderApp(App));
+    module.hot.accept(() => renderApp());
   }
 }
 

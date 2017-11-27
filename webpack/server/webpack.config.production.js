@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const config = require('./config');
+const config = require('../../config');
 
 // Create multiple instances
 const extractCSS = new ExtractTextPlugin('stylesheets/[name]-one.css');
@@ -25,7 +25,7 @@ module.exports = {
       'react-dom',
       'react-router-dom',
     ],
-    app: ['babel-polyfill', './src/index'],
+    app: ['babel-polyfill', './src/client'],
   },
   output: {
     path: path.join(__dirname, 'dist'),
@@ -66,7 +66,7 @@ module.exports = {
       //   }, {
       //     loader: 'less-loader',
       //     options: {
-      //       modifyVars: packageJson.modifyVars,
+      //       modifyVars: config.modifyVars,
       //     },
       //   }],
       // },
@@ -149,10 +149,10 @@ module.exports = {
     }),
     extractCSS,
     extractLESS,
-    new HtmlWebpackPlugin({
-      hash: false,
-      template: './index.hbs',
-    }),
+    // new HtmlWebpackPlugin({
+    //   hash: false,
+    //   template: './index.hbs',
+    // }),
     new CopyWebpackPlugin([
       {
         from: path.resolve(__dirname, 'static'),
