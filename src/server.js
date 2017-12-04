@@ -12,11 +12,11 @@ import developConfig from '../webpack/server/webpack.config';
 import productionConfig from '../webpack/server/webpack.config.production';
 import { isProduction } from './utils/constants';
 import App from './components/App';
-import './stores/stores';
+import store from './stores/stores';
 
 const config = isProduction ? productionConfig : developConfig;
 const compiler = webpack(config);
-const store = dehydrate();
+const initStore = store.inject(dehydrate());
 
 const app = express();
 app.use('/node_modules', express.static(path.join(__dirname, '../node_modules')));
@@ -40,9 +40,6 @@ const initHtml = html => `
   <head>
     <meta charset="utf-8">
     <title>前端项目模板</title>
-    <script>
-      window.__INITIAL_STATE__ = ${store}
-    </script>
   </head>
   <body>
   <div id="root">${html}</div>
@@ -53,7 +50,7 @@ const initHtml = html => `
 
 app.get('*', (req, res) => {
   const initView = renderToString((
-    <Provider store={store}>
+    <Provider store={initStore}>
       <Router location={req.url} context={{}}>
         <App />
       </Router>

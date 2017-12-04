@@ -6,7 +6,7 @@ export default class DemoState {
   @observable data;
 
   constructor() {
-    this.data = { page: 1 };
+    this.data = 'hello, world';
   }
 
   /**

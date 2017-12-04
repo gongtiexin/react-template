@@ -1,7 +1,7 @@
 import Test from './components/Test';
 
 const routes = [{
-  path: '/',
+  path: '/ssr',
   component: Test,
 }];
 export default routes;

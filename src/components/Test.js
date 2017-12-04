@@ -11,7 +11,7 @@ export default class Test extends Component {
   render() {
     return (
       <div>
-        ...
+        {this.props.store.demoState.data}
       </div>
     );
   }
