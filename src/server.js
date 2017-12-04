@@ -16,7 +16,7 @@ import './stores/stores';
 
 const config = isProduction ? productionConfig : developConfig;
 const compiler = webpack(config);
-const initialStore = dehydrate();
+const store = dehydrate();
 
 const app = express();
 app.use('/node_modules', express.static(path.join(__dirname, '../node_modules')));
@@ -40,6 +40,9 @@ const initHtml = html => `
   <head>
     <meta charset="utf-8">
     <title>前端项目模板</title>
+    <script>
+      window.__INITIAL_STATE__ = ${store}
+    </script>
   </head>
   <body>
   <div id="root">${html}</div>
@@ -50,7 +53,7 @@ const initHtml = html => `
 
 app.get('*', (req, res) => {
   const initView = renderToString((
-    <Provider store={initialStore}>
+    <Provider store={store}>
       <Router location={req.url} context={{}}>
         <App />
       </Router>
