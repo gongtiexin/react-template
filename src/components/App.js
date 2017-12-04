@@ -12,7 +12,6 @@ export default class App extends Component {
     return (
       <div>
         <DevTools />
-        前端项目模板
         {routes.map(({ path, component }) => (
           <Route
             key={path}

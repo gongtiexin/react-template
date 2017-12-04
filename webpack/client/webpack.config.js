@@ -3,6 +3,9 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const config = require('../../config');
 
+// 项目根目录
+const PROJECT_ADDRESS = path.resolve(__dirname, '../../');
+// webpack-dev-server代理地址
 const proxy = 'dn6';
 
 module.exports = {
@@ -10,11 +13,11 @@ module.exports = {
     'webpack-dev-server/client?http://0.0.0.0:3000',
     'webpack/hot/only-dev-server',
     'babel-polyfill',
-    './src/index',
+    `${PROJECT_ADDRESS}/src/client`,
   ],
   devServer: {
     hot: true,
-    contentBase: path.resolve(__dirname),
+    contentBase: PROJECT_ADDRESS,
     port: 3000,
     host: '0.0.0.0',
     publicPath: '/',
@@ -36,7 +39,7 @@ module.exports = {
     },
   },
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: `${PROJECT_ADDRESS}/dist`,
     publicPath: '/',
     filename: 'app.[hash].js',
   },
@@ -92,6 +95,6 @@ module.exports = {
   plugins: [
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({ hash: false, template: './index.hbs' }),
+    new HtmlWebpackPlugin({ hash: false, template: `${PROJECT_ADDRESS}/index.hbs` }),
   ],
 };

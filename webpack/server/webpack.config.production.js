@@ -10,11 +10,12 @@ const config = require('../../config');
 const extractCSS = new ExtractTextPlugin('stylesheets/[name]-one.css');
 const extractLESS = new ExtractTextPlugin('stylesheets/[name]-two.css');
 
+const PROJECT_ADDRESS = path.resolve(__dirname, '../../');
+
 module.exports = {
   entry: {
     vendor: [
       'babel-polyfill',
-      'antd',
       'axios',
       'echarts',
       'history',
@@ -25,19 +26,20 @@ module.exports = {
       'react-dom',
       'react-router-dom',
     ],
-    app: ['babel-polyfill', './src/client'],
+    app: ['babel-polyfill', `${PROJECT_ADDRESS}/src/client`],
   },
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: `${PROJECT_ADDRESS}/dist`,
     publicPath: '/',
-    filename: 'assets/[name].[hash].js',
-    chunkFilename: 'assets/[name].[chunkhash].js',
+    filename: 'assets/[name].js',
+    // filename: 'assets/[name].[hash].js',
+    // chunkFilename: 'assets/[name].[chunkhash].js',
   },
   module: {
     rules: [
       {
         test: /\.js$/,
-        include: path.join(__dirname, 'src'),
+        include: `${PROJECT_ADDRESS}/src`,
         loader: 'babel-loader',
       },
       {
@@ -103,6 +105,8 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
+        __CLIENT__: JSON.stringify(true),
+        __SERVER__: JSON.stringify(false),
       },
     }),
     new webpack.NamedModulesPlugin(),
@@ -155,8 +159,8 @@ module.exports = {
     // }),
     new CopyWebpackPlugin([
       {
-        from: path.resolve(__dirname, 'static'),
-        to: path.resolve(__dirname, 'dist/static'),
+        from: `${PROJECT_ADDRESS}/static`,
+        to: `${PROJECT_ADDRESS}/dist/static`,
         // ignore: ['*.js']
       },
     ]),

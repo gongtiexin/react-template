@@ -31,6 +31,4 @@ function run() {
   }
 }
 
-store.demoState.getData();
-
 run();

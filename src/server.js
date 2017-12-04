@@ -23,19 +23,27 @@ app.use('/node_modules', express.static(path.join(__dirname, '../node_modules'))
 app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }));
 app.use(webpackHotMiddleware(compiler));
 
+const initScript = () => {
+  if (isProduction) {
+    return `
+    <script src="/assets/bundle.js"></script>
+    <script src="/assets/vendor.js"></script>
+    <script src="/assets/runtime.js"></script>
+    `;
+  }
+  return '<script src="bundle.js"></script>';
+};
+
 const initHtml = html => `
   <!doctype html>
   <html lang="en">
   <head>
     <meta charset="utf-8">
     <title>前端项目模板</title>
-    <script>
-      window.__INITIAL_STATE__ = ${initialStore}
-    </script>
   </head>
   <body>
   <div id="root">${html}</div>
-  <script src="/bundle.js"></script>
+  ${initScript()}
   </body>
   </html>
 `;

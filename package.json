@@ -4,7 +4,7 @@
   "description": "Front end project template",
   "scripts": {
     "dev-ssr": "node bin/server.js",
-    "build-ssr": "rimraf ./dist && webpack --config webpack/client/webpack.config.production.js",
+    "build-ssr": "rimraf ./dist && webpack --config webpack/server/webpack.config.production.js",
     "dev": "webpack-dev-server --config webpack/client/webpack.config.js",
     "build": "rimraf ./dist && webpack --config webpack/client/webpack.config.production.js",
     "eslint": "eslint \"src/**\" -f table --fix"

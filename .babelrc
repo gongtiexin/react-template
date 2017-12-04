@@ -8,3 +8,28 @@
     "transform-decorators-legacy"
   ]
 }
+
+//{
+//  "presets": [
+//    [
+//      "latest",
+//      {
+//        "es2015": {
+//          "modules": false
+//        }
+//      }
+//    ],
+//    "react",
+//    "stage-2"
+//  ],
+//  "plugins": [
+//    "transform-decorators-legacy",
+//    [
+//      "import",
+//      {
+//        "libraryName": "antd",
+//        "style": true
+//      }
+//    ]
+//  ]
+//}

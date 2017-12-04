@@ -4,17 +4,17 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const config = require('../../config');
 
-// Create multiple instances
 const extractCSS = new ExtractTextPlugin('stylesheets/[name]-one.css');
 const extractLESS = new ExtractTextPlugin('stylesheets/[name]-two.css');
+const config = require('../../config');
+// 项目根目录
+const PROJECT_ADDRESS = path.resolve(__dirname, '../../');
 
 module.exports = {
   entry: {
     vendor: [
       'babel-polyfill',
-      'antd',
       'axios',
       'echarts',
       'history',
@@ -25,10 +25,10 @@ module.exports = {
       'react-dom',
       'react-router-dom',
     ],
-    app: ['babel-polyfill', './src/index'],
+    app: ['babel-polyfill', `${PROJECT_ADDRESS}/src/client`],
   },
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: `${PROJECT_ADDRESS}/dist`,
     publicPath: '/',
     filename: 'assets/[name].[hash].js',
     chunkFilename: 'assets/[name].[chunkhash].js',
@@ -37,7 +37,7 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        include: path.join(__dirname, 'src'),
+        include: `${PROJECT_ADDRESS}/src`,
         loader: 'babel-loader',
       },
       {
@@ -151,12 +151,12 @@ module.exports = {
     extractLESS,
     new HtmlWebpackPlugin({
       hash: false,
-      template: './index.hbs',
+      template: `${PROJECT_ADDRESS}/index.hbs`,
     }),
     new CopyWebpackPlugin([
       {
-        from: path.resolve(__dirname, 'static'),
-        to: path.resolve(__dirname, 'dist/static'),
+        from: `${PROJECT_ADDRESS}/static`,
+        to: `${PROJECT_ADDRESS}/dist/static`,
         // ignore: ['*.js']
       },
     ]),

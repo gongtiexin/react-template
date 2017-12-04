@@ -36,6 +36,6 @@
     "prefer-destructuring": 1,
     "no-class-assign": 0,
     "import/no-extraneous-dependencies": 0,
-    "linebreak-style": 0
+    "no-return-assign": 0
   }
 }

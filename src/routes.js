@@ -1,6 +1,7 @@
+import Test from './components/Test';
+
 const routes = [{
-  path: '/simulator',
-  component: 'component',
-  componentUrl: 'componentUrl',
+  path: '/',
+  component: Test,
 }];
 export default routes;

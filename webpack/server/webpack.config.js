@@ -2,14 +2,16 @@ const path = require('path');
 const webpack = require('webpack');
 const config = require('../../config');
 
+const PROJECT_ADDRESS = path.resolve(__dirname, '../../');
+
 module.exports = {
   entry: [
     'webpack-hot-middleware/client?reload=true',
     'babel-polyfill',
-    './src/client',
+    `${PROJECT_ADDRESS}/src/client`,
   ],
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: `${PROJECT_ADDRESS}/dist`,
     publicPath: '/',
     filename: 'bundle.js',
     // filename: 'app.[hash].js',
