@@ -72,6 +72,7 @@
     "mobx-react-devtools": "^4.2.15",
     "moment": "^2.18.1",
     "number-precision": "^1.1.7",
+    "pdfjs-dist": "^2.0.185",
     "postcss-cssnext": "^3.0.2",
     "query-string": "^5.0.0",
     "react": "^16.1.0",
