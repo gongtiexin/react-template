@@ -9,7 +9,7 @@ module.exports = {
     },
     entry: {
       app: path.resolve(__dirname, './src/client'),
-      html: path.resolve(__dirname, './index.hbs'),
+      html: path.resolve(__dirname, './index.html'),
       srcRoot: path.resolve(__dirname, './src'),
       staticRoot: path.resolve(__dirname, './static'),
     },
@@ -30,7 +30,7 @@ module.exports = {
     },
     entry: {
       app: path.resolve(__dirname, './src/client'),
-      html: path.resolve(__dirname, './index.hbs'),
+      html: path.resolve(__dirname, './index.html'),
     },
     output: {
       path: path.resolve(__dirname, './dist'),

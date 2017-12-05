@@ -14,4 +14,3 @@ npm run dev
 ```
 npm run build
 ```
-yarn add rc-tween-one rc-animate rc-queue-anim rc-scroll-anim rc-banner-anim
