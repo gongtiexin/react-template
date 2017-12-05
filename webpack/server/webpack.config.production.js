@@ -1,16 +1,10 @@
-const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const config = require('../../config');
-
-// Create multiple instances
 const extractCSS = new ExtractTextPlugin('stylesheets/[name]-one.css');
 const extractLESS = new ExtractTextPlugin('stylesheets/[name]-two.css');
-
-const PROJECT_ADDRESS = path.resolve(__dirname, '../../');
+const config = require('../../config');
 
 module.exports = {
   entry: {
@@ -26,20 +20,18 @@ module.exports = {
       'react-dom',
       'react-router-dom',
     ],
-    app: ['babel-polyfill', `${PROJECT_ADDRESS}/src/client`],
+    app: ['babel-polyfill', config.build.entry.app],
   },
   output: {
-    path: `${PROJECT_ADDRESS}/dist`,
-    publicPath: '/',
+    path: config.build.output.path,
+    publicPath: config.build.output.publicPath,
     filename: 'assets/[name].js',
-    // filename: 'assets/[name].[hash].js',
-    // chunkFilename: 'assets/[name].[chunkhash].js',
   },
   module: {
     rules: [
       {
         test: /\.js$/,
-        include: `${PROJECT_ADDRESS}/src`,
+        include: config.build.entry.srcRoot,
         loader: 'babel-loader',
       },
       {
@@ -104,9 +96,9 @@ module.exports = {
     // new BundleAnalyzerPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('production'),
-        __CLIENT__: JSON.stringify(true),
-        __SERVER__: JSON.stringify(false),
+        NODE_ENV: JSON.stringify(config.build.env.NODE_ENV),
+        __CLIENT__: JSON.stringify(config.build.env.CLIENT),
+        __SERVER__: JSON.stringify(config.build.env.SERVER),
       },
     }),
     new webpack.NamedModulesPlugin(),
@@ -153,14 +145,10 @@ module.exports = {
     }),
     extractCSS,
     extractLESS,
-    // new HtmlWebpackPlugin({
-    //   hash: false,
-    //   template: './index.hbs',
-    // }),
     new CopyWebpackPlugin([
       {
-        from: `${PROJECT_ADDRESS}/static`,
-        to: `${PROJECT_ADDRESS}/dist/static`,
+        from: config.build.entry.staticRoot,
+        to: config.build.output.staticRoot,
         // ignore: ['*.js']
       },
     ]),

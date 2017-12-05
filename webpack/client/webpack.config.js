@@ -1,24 +1,20 @@
-const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const config = require('../../config');
 
-// 项目根目录
-const PROJECT_ADDRESS = path.resolve(__dirname, '../../');
-// webpack-dev-server代理地址
-const proxy = 'dn6';
+const proxy = 'localhost';
 
 module.exports = {
   entry: [
-    'webpack-dev-server/client?http://0.0.0.0:3000',
+    `webpack-dev-server/client?http://0.0.0.0:${config.dev.devServer.port}`,
     'webpack/hot/only-dev-server',
     'babel-polyfill',
-    `${PROJECT_ADDRESS}/src/client`,
+    config.dev.entry.app,
   ],
   devServer: {
     hot: true,
-    contentBase: PROJECT_ADDRESS,
-    port: 3000,
+    contentBase: config.root,
+    port: config.dev.devServer.port,
     host: '0.0.0.0',
     publicPath: '/',
     historyApiFallback: true,
@@ -39,8 +35,8 @@ module.exports = {
     },
   },
   output: {
-    path: `${PROJECT_ADDRESS}/dist`,
-    publicPath: '/',
+    path: config.dev.output.path,
+    publicPath: config.dev.output.publicPath,
     filename: 'app.[hash].js',
   },
   devtool: 'cheap-module-source-map',
@@ -93,8 +89,13 @@ module.exports = {
     ],
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(config.dev.env.NODE_ENV),
+      },
+    }),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({ hash: false, template: `${PROJECT_ADDRESS}/index.hbs` }),
+    new HtmlWebpackPlugin({ hash: false, template: config.dev.entry.html }),
   ],
 };

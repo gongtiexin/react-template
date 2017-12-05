@@ -4,7 +4,6 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter as Router } from 'react-router-dom';
 import { Provider } from 'mobx-react';
-import { dehydrate } from 'rfx-core';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
@@ -16,7 +15,7 @@ import store from './stores/stores';
 
 const config = isProduction ? productionConfig : developConfig;
 const compiler = webpack(config);
-const initStore = store.inject(dehydrate());
+const initStore = store.inject();
 
 const app = express();
 app.use('/node_modules', express.static(path.join(__dirname, '../node_modules')));
@@ -26,12 +25,22 @@ app.use(webpackHotMiddleware(compiler));
 const initScript = () => {
   if (isProduction) {
     return `
-    <script src="/assets/bundle.js"></script>
+    <script src="/assets/app.js"></script>
     <script src="/assets/vendor.js"></script>
     <script src="/assets/runtime.js"></script>
     `;
   }
   return '<script src="bundle.js"></script>';
+};
+
+const initStylesheet = () => {
+  if (isProduction) {
+    return `
+    <link href="/stylesheets/app-one.css" rel="stylesheet">
+    <link href="/stylesheets/app-two.css" rel="stylesheet">
+    `;
+  }
+  return '';
 };
 
 const initHtml = html => `
@@ -40,6 +49,7 @@ const initHtml = html => `
   <head>
     <meta charset="utf-8">
     <title>前端项目模板</title>
+    ${initStylesheet()}
   </head>
   <body>
   <div id="root">${html}</div>

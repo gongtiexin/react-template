@@ -1,15 +1,11 @@
-const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-
 const extractCSS = new ExtractTextPlugin('stylesheets/[name]-one.css');
 const extractLESS = new ExtractTextPlugin('stylesheets/[name]-two.css');
 const config = require('../../config');
-// 项目根目录
-const PROJECT_ADDRESS = path.resolve(__dirname, '../../');
 
 module.exports = {
   entry: {
@@ -25,11 +21,11 @@ module.exports = {
       'react-dom',
       'react-router-dom',
     ],
-    app: ['babel-polyfill', `${PROJECT_ADDRESS}/src/client`],
+    app: ['babel-polyfill', config.build.entry.app],
   },
   output: {
-    path: `${PROJECT_ADDRESS}/dist`,
-    publicPath: '/',
+    path: config.build.output.path,
+    publicPath: config.build.output.publicPath,
     filename: 'assets/[name].[hash].js',
     chunkFilename: 'assets/[name].[chunkhash].js',
   },
@@ -37,7 +33,7 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        include: `${PROJECT_ADDRESS}/src`,
+        include: config.build.entry.srcRoot,
         loader: 'babel-loader',
       },
       {
@@ -102,7 +98,7 @@ module.exports = {
     // new BundleAnalyzerPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('production'),
+        NODE_ENV: JSON.stringify(config.build.env.NODE_ENV),
       },
     }),
     new webpack.NamedModulesPlugin(),
@@ -151,12 +147,12 @@ module.exports = {
     extractLESS,
     new HtmlWebpackPlugin({
       hash: false,
-      template: `${PROJECT_ADDRESS}/index.hbs`,
+      template: config.build.entry.html,
     }),
     new CopyWebpackPlugin([
       {
-        from: `${PROJECT_ADDRESS}/static`,
-        to: `${PROJECT_ADDRESS}/dist/static`,
+        from: config.build.entry.staticRoot,
+        to: config.build.output.staticRoot,
         // ignore: ['*.js']
       },
     ]),

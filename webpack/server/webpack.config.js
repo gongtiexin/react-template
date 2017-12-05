@@ -1,20 +1,16 @@
-const path = require('path');
 const webpack = require('webpack');
 const config = require('../../config');
-
-const PROJECT_ADDRESS = path.resolve(__dirname, '../../');
 
 module.exports = {
   entry: [
     'webpack-hot-middleware/client?reload=true',
     'babel-polyfill',
-    `${PROJECT_ADDRESS}/src/client`,
+    config.dev.entry.app,
   ],
   output: {
-    path: `${PROJECT_ADDRESS}/dist`,
-    publicPath: '/',
+    path: config.dev.output.path,
+    publicPath: config.dev.output.publicPath,
     filename: 'bundle.js',
-    // filename: 'app.[hash].js',
   },
   devtool: 'cheap-module-source-map',
   module: {
@@ -66,12 +62,14 @@ module.exports = {
     ],
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(config.dev.env.NODE_ENV),
+        __CLIENT__: JSON.stringify(config.dev.env.CLIENT),
+        __SERVER__: JSON.stringify(config.dev.env.SERVER),
+      },
+    }),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV) },
-      __CLIENT__: JSON.stringify(true),
-      __SERVER__: JSON.stringify(false),
-    }),
   ],
 };
