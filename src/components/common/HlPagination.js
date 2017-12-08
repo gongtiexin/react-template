@@ -16,13 +16,11 @@ export default class HlPagination extends Component {
   showTotal = total => `共 ${total || 0} 条`;
 
   render() {
-    const {
-      pageSize, currentPage, totalElements, showSizeChanger,
-    } = this.props.paginationProps;
+    const { pageSize, currentPage, totalElements, showSizeChanger } = this.props.paginationProps;
 
     return (
       <Pagination
-        current={currentPage + 1}
+        current={currentPage}
         pageSize={pageSize}
         className="fe-pull-right fe-margin fe-clear"
         showSizeChanger={showSizeChanger}

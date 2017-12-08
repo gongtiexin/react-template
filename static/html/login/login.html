@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>后台登录</title>
+    <link href="login.css" type="text/css" rel="stylesheet">
+    <link href="particles.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<div id="particles-js">
+    <div class="login">
+        <div class="message">单点登陆</div>
+        <div id="darkbannerwrap"></div>
+        <form id="login">
+            <input id="account" placeholder="用户名" required="" type="text" autocomplete="off">
+            <hr class="hr15">
+            <input id="password" placeholder="密码" required="" type="password" autocomplete="off">
+            <hr class="hr15">
+            <input id="submit" value="登录" style="width:100%;" type="submit">
+            <hr class="hr20">
+            或者 <a onClick="alert('请联系管理员')">忘记密码</a>
+        </form>
+    </div>
+</div>
+<script type="text/javascript" src="login.js"></script>
+<script src="particles.js"></script>
+</body>
+</html>

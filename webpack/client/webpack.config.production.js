@@ -153,7 +153,7 @@ module.exports = {
       {
         from: config.build.entry.staticRoot,
         to: config.build.output.staticRoot,
-        // ignore: ['*.js']
+        ignore: ['/html/loading', '/html/login'],
       },
     ]),
     new webpack.optimize.ModuleConcatenationPlugin(),
