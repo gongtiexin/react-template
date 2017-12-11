@@ -38,5 +38,7 @@ module.exports = {
     },
   },
   root: path.resolve(__dirname),
-  modifyVars: {},
+  modifyVars: {
+    'icon-url': '\'/static/iconfont/iconfont\'',
+  },
 };

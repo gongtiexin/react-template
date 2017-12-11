@@ -4,6 +4,8 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'mobx-react';
 import { hotRehydrate, rehydrate } from 'rfx-core';
 import { Settings } from 'luxon';
+import { LocaleProvider } from 'antd';
+import zhCN from 'antd/lib/locale-provider/zh_CN';
 import { isProduction } from './utils/constants';
 import App from './components/App';
 import './stores/stores';
@@ -16,7 +18,9 @@ const renderApp = () => {
   render(
     <Provider store={isProduction ? store : hotRehydrate()}>
       <Router>
-        <App />
+        <LocaleProvider locale={zhCN}>
+          <App />
+        </LocaleProvider>
       </Router>
     </Provider>,
     document.getElementById('root'),
