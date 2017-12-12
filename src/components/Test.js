@@ -5,7 +5,7 @@ import { inject, observer } from 'mobx-react';
 @observer
 export default class Test extends Component {
   componentDidMount() {
-    // this.props.store.demoState.getData();
+    this.props.store.demoState.getData();
   }
 
   render() {
