@@ -3,6 +3,9 @@ import { notification } from 'antd';
 
 axios.default.timeout = 5000;
 
+/**
+ * axios拦截器,处理401,403等等状态码
+ */
 axios.interceptors.response.use(
   response => Promise.resolve(response),
   (error) => {
@@ -24,6 +27,9 @@ axios.interceptors.response.use(
   },
 );
 
+/**
+ * axios请求方法的封装,包括请求返回状态的全局提示
+ */
 const request = (config, success, error) => axios(config)
   .then(
     (response) => {

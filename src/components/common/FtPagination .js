@@ -1,10 +1,20 @@
+/**
+ * 分页组件
+ * @params  paginationProps = {
+ *      pageSize: number,
+ *      currentPage: number,
+ *      totalElements: number,
+ *      showSizeChanger: boole,
+ *      onChange: (page, size) => {},
+ *    };
+ */
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
 import { Pagination } from 'antd';
 
 @inject('store')
 @observer
-export default class HlPagination extends Component {
+export default class FtPagination extends Component {
   onShowSizeChange = (current, pageSize) => {
     this.props.paginationProps.onChange(current, pageSize);
   };

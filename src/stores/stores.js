@@ -1,3 +1,7 @@
+/**
+ * state的集合
+ */
+
 import { store } from 'rfx-core';
 
 import DemoState from './DemoState';

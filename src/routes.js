@@ -1,7 +1,15 @@
+/**
+ * 配置路由
+ */
 import Test from './components/Test';
 
 const routes = [{
   path: '/ssr',
   component: Test,
 }];
-export default routes;
+
+const breadcrumbNameMap = {
+  '/route': 'label',
+};
+
+export { routes, breadcrumbNameMap };

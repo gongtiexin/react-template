@@ -1,6 +1,5 @@
 /**
  * React Echarts Component
- * Created by yangbajing(yangbajing@gmail.com) on 2016-09-18.
  */
 import React, { Component } from 'react';
 import echarts from 'echarts';

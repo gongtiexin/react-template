@@ -11,7 +11,11 @@ import App from './components/App';
 import './stores/stores';
 import './styles/main.less';
 
+/**
+ * luxon时区设置为中国
+ */
 Settings.defaultLocale = 'zh-CN';
+
 const store = rehydrate();
 
 const renderApp = () => {
