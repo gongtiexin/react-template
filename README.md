@@ -29,6 +29,9 @@ server {
     gzip_types application/javascript text/html text/css;
     client_max_body_size  250m;
     #access_log  /var/log/nginx/log/host.access.log  main;
+    #add_header Cache-Control no-cache;
+    #add_header Pragma: no-cache;
+    #add_header Expires: -1;
 
     root  /home/hldev/hldata/frontend/fe-template/dist;
     location / {
@@ -45,3 +48,6 @@ server {
 
 ## iconfont
 本模板中有2个字体包:ant-design,material-design,用法参考官网([antd](https://ant.design/components/icon-cn/),[md](https://material.io/icons/))
+
+## ie
+若要兼容ie,在webpack配置entry -> vendor首处加入babel-polyfill
