@@ -42,3 +42,6 @@ server {
     error_page  404  /static/html/404/404.html;
 }
 ```
+
+## iconfont
+本模板中有2个字体包:ant-design,material-design,用法参考官网([antd](https://ant.design/components/icon-cn/),[md](https://material.io/icons/))

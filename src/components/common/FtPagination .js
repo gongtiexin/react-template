@@ -32,7 +32,7 @@ export default class FtPagination extends Component {
       <Pagination
         current={currentPage}
         pageSize={pageSize}
-        className="fe-pull-right fe-margin fe-clear"
+        className="fe-float-right fe-margin-nomal fe-clear"
         showSizeChanger={showSizeChanger}
         onShowSizeChange={this.onShowSizeChange}
         showQuickJumper

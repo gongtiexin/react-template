@@ -39,6 +39,6 @@ module.exports = {
   },
   root: path.resolve(__dirname),
   modifyVars: {
-    'icon-url': '\'/static/iconfont/iconfont\'',
+    'icon-url': '\'/static/antdIconfont/iconfont\'',
   },
 };

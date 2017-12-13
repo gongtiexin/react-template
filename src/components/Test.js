@@ -11,6 +11,7 @@ export default class Test extends Component {
   render() {
     return (
       <div>
+        <i className="material-icons md-48">gif</i>
         {this.props.store.demoState.data}
       </div>
     );
