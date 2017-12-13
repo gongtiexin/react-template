@@ -9,6 +9,7 @@ module.exports = {
     },
     entry: {
       app: path.resolve(__dirname, './src/client'),
+      vendor: ['echarts', 'lodash', 'react', 'react-dom', 'react-router-dom', 'mobx', 'mobx-react'],
       html: path.resolve(__dirname, './index.html'),
       srcRoot: path.resolve(__dirname, './src'),
       staticRoot: path.resolve(__dirname, './static'),

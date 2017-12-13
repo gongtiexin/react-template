@@ -8,15 +8,7 @@ const config = require('../../config');
 
 module.exports = {
   entry: {
-    vendor: [
-      'echarts',
-      'lodash',
-      'react',
-      'react-dom',
-      'react-router-dom',
-      'mobx',
-      'mobx-react',
-    ],
+    vendor: config.build.entry.vendor,
     app: ['babel-polyfill', config.build.entry.app],
   },
   output: {
