@@ -9,16 +9,13 @@ const config = require('../../config');
 module.exports = {
   entry: {
     vendor: [
-      'babel-polyfill',
-      'axios',
       'echarts',
-      'history',
       'lodash',
       'react',
-      'mobx',
-      'mobx-react',
       'react-dom',
       'react-router-dom',
+      'mobx',
+      'mobx-react',
     ],
     app: ['babel-polyfill', config.build.entry.app],
   },
