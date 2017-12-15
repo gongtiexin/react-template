@@ -11,10 +11,15 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
 import { Pagination } from 'antd';
+import PropTypes from 'prop-types';
 
 @inject('store')
 @observer
 export default class FtPagination extends Component {
+  static propTypes = {
+    paginationProps: PropTypes.object.isRequired,
+  };
+
   onShowSizeChange = (current, pageSize) => {
     this.props.paginationProps.onChange(current, pageSize);
   };
