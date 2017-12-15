@@ -19,6 +19,15 @@ module.exports = {
       staticRoot: path.resolve(__dirname, './dist/static'),
       publicPath: '/',
     },
+    plugins: {
+      CopyWebpackPlugin: [
+        {
+          from: path.resolve(__dirname, './static'),
+          to: path.resolve(__dirname, './dist/static'),
+          ignore: ['html/loading/*.*', 'html/login/*.*'],
+        },
+      ],
+    },
   },
   dev: {
     env: {

@@ -134,13 +134,7 @@ module.exports = {
     }),
     extractCSS,
     extractLESS,
-    new CopyWebpackPlugin([
-      {
-        from: config.build.entry.staticRoot,
-        to: config.build.output.staticRoot,
-        ignore: ['/html/loading', '/html/login'],
-      },
-    ]),
+    new CopyWebpackPlugin(config.build.plugins.CopyWebpackPlugin),
     new webpack.optimize.ModuleConcatenationPlugin(),
   ],
 };
