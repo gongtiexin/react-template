@@ -3,25 +3,25 @@
  */
 import React from 'react';
 
-export default function Panel({ children, className }) {
+export default function Panel({ children, className, id, style }) {
   return (
-    <div className={`fe-panel ${className || ''}`}>
+    <div id={id} style={style} className={`fe-panel ${className || ''}`}>
       {children}
     </div>
   );
 }
 
-export function PanelHeader({ children, className }) {
+export function PanelHeader({ children, className, id, style }) {
   return (
-    <div className={`fe-panel-header ${className || ''}`}>
+    <div id={id} style={style} className={`fe-panel-header ${className || ''}`}>
       {children}
     </div>
   );
 }
 
-export function PanelBody({ children, className }) {
+export function PanelBody({ children, className, id, style }) {
   return (
-    <div className={`fe-panel-body ${className || ''}`}>
+    <div id={id} style={style} className={`fe-panel-body ${className || ''}`}>
       {children}
     </div>
   );
