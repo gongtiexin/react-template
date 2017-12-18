@@ -5,6 +5,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const extractCSS = new ExtractTextPlugin('stylesheets/[name]-one.css');
 const extractLESS = new ExtractTextPlugin('stylesheets/[name]-two.css');
+const LessPluginAutoPrefix = require('less-plugin-autoprefix');
+const LessPluginCleanCSS = require('less-plugin-clean-css');
 const config = require('../../config');
 
 module.exports = {
@@ -24,12 +26,10 @@ module.exports = {
         test: /\.js$/,
         include: config.build.entry.srcRoot,
         loader: 'babel-loader',
-      },
-      {
+      }, {
         test: /\.css$/,
         use: extractCSS.extract(['css-loader', 'postcss-loader']),
-      },
-      {
+      }, {
         test: /\.less$/i,
         use: extractLESS.extract([{
           loader: 'css-loader',
@@ -38,24 +38,14 @@ module.exports = {
           options: {
             // 覆盖antd样式的全局变量
             modifyVars: config.modifyVars,
+            plugins: [
+              new LessPluginAutoPrefix({ browsers: ['last 2 versions'] }),
+              new LessPluginCleanCSS({ advanced: true }),
+            ],
           },
         },
         ]),
-      },
-      // {
-      //   test: /\.less|css$/,
-      //   use: [{
-      //     loader: 'style-loader',
-      //   }, {
-      //     loader: 'css-loader',
-      //   }, {
-      //     loader: 'less-loader',
-      //     options: {
-      //       modifyVars: packageJson.modifyVars,
-      //     },
-      //   }],
-      // },
-      {
+      }, {
         test: /\.(jpe?g|png|gif|svg)$/i,
         use: [
           'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
@@ -72,12 +62,10 @@ module.exports = {
             },
           },
         ],
-      },
-      {
+      }, {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         use: 'url-loader?limit=10000&mimetype=application/font-woff',
-      },
-      {
+      }, {
         test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         use: 'file-loader',
       },

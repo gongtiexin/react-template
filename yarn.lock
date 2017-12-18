@@ -329,7 +329,7 @@ attr-accept@^1.1.0:
   version "1.1.0"
   resolved "http://registry.npm.taobao.org/attr-accept/download/attr-accept-1.1.0.tgz#b5cd35227f163935a8f1de10ed3eba16941f6be6"
 
-autoprefixer@^6.3.1:
+autoprefixer@^6.0.0, autoprefixer@^6.3.1:
   version "6.7.7"
   resolved "http://registry.npm.taobao.org/autoprefixer/download/autoprefixer-6.7.7.tgz#1dbd1c835658e35ce3f9984099db00585c782014"
   dependencies:
@@ -1553,6 +1553,13 @@ clean-css@4.1.x:
   dependencies:
     source-map "0.5.x"
 
+clean-css@^3.0.1:
+  version "3.4.28"
+  resolved "http://registry.npm.taobao.org/clean-css/download/clean-css-3.4.28.tgz#bf1945e82fc808f55695e6ddeaec01400efd03ff"
+  dependencies:
+    commander "2.8.x"
+    source-map "0.4.x"
+
 cli-cursor@^2.1.0:
   version "2.1.0"
   resolved "http://registry.npm.taobao.org/cli-cursor/download/cli-cursor-2.1.0.tgz#b35dac376479facc3e94747d41d0d0f5238ffcb5"
@@ -1673,7 +1680,7 @@ commander@2.11.x, commander@^2.9.0, commander@~2.11.0:
   version "2.11.0"
   resolved "http://registry.npm.taobao.org/commander/download/commander-2.11.0.tgz#157152fd1e7a6c8d98a5b715cf376df928004563"
 
-commander@~2.8.1:
+commander@2.8.x, commander@~2.8.1:
   version "2.8.1"
   resolved "http://registry.npm.taobao.org/commander/download/commander-2.8.1.tgz#06be367febfda0c330aa1e2a072d3dc9762425d4"
   dependencies:
@@ -4321,6 +4328,19 @@ less-loader@^4.0.5:
     loader-utils "^1.1.0"
     pify "^2.3.0"
 
+less-plugin-autoprefix@^1.5.1:
+  version "1.5.1"
+  resolved "http://registry.npm.taobao.org/less-plugin-autoprefix/download/less-plugin-autoprefix-1.5.1.tgz#bca4e5b2e48cac6965a1783142e3b32c3c00ce07"
+  dependencies:
+    autoprefixer "^6.0.0"
+    postcss "^5.0.0"
+
+less-plugin-clean-css@^1.5.1:
+  version "1.5.1"
+  resolved "http://registry.npm.taobao.org/less-plugin-clean-css/download/less-plugin-clean-css-1.5.1.tgz#cc57af7aa3398957e56decebe63cb60c23429703"
+  dependencies:
+    clean-css "^3.0.1"
+
 less@^2.7.2:
   version "2.7.2"
   resolved "http://registry.npm.taobao.org/less/download/less-2.7.2.tgz#368d6cc73e1fb03981183280918743c5dcf9b3df"
@@ -5908,7 +5928,7 @@ postcss-zindex@^2.0.1:
     postcss "^5.0.4"
     uniqs "^2.0.0"
 
-postcss@^5.0.10, postcss@^5.0.11, postcss@^5.0.12, postcss@^5.0.13, postcss@^5.0.14, postcss@^5.0.16, postcss@^5.0.2, postcss@^5.0.4, postcss@^5.0.5, postcss@^5.0.6, postcss@^5.0.8, postcss@^5.2.16:
+postcss@^5.0.0, postcss@^5.0.10, postcss@^5.0.11, postcss@^5.0.12, postcss@^5.0.13, postcss@^5.0.14, postcss@^5.0.16, postcss@^5.0.2, postcss@^5.0.4, postcss@^5.0.5, postcss@^5.0.6, postcss@^5.0.8, postcss@^5.2.16:
   version "5.2.18"
   resolved "http://registry.npm.taobao.org/postcss/download/postcss-5.2.18.tgz#badfa1497d46244f6390f58b319830d9107853c5"
   dependencies:
@@ -7096,6 +7116,12 @@ source-map-support@^0.4.15:
 source-map-url@~0.3.0:
   version "0.3.0"
   resolved "http://registry.npm.taobao.org/source-map-url/download/source-map-url-0.3.0.tgz#7ecaf13b57bcd09da8a40c5d269db33799d4aaf9"
+
+source-map@0.4.x:
+  version "0.4.4"
+  resolved "http://registry.npm.taobao.org/source-map/download/source-map-0.4.4.tgz#eba4f5da9c0dc999de68032d8b4f76173652036b"
+  dependencies:
+    amdefine ">=0.0.4"
 
 source-map@0.5.x, source-map@^0.5.3, source-map@^0.5.6, source-map@~0.5.1, source-map@~0.5.3:
   version "0.5.7"
