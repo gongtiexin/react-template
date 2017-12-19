@@ -9,11 +9,10 @@ import zhCN from 'antd/lib/locale-provider/zh_CN';
 import { isProduction } from './utils/constants';
 import './stores/stores';
 import './styles/main.less';
-
 import Loadable from './components/common/Loadable';
 
 const asyncApp = Loadable({
-  loader: () => import(/* webpackChunkName: "App" */ './components/App'),
+  loader: () => import(/* webpackChunkName: "app" */ './components/App'),
 });
 
 /**
