@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { inject, observer } from 'mobx-react';
-import { Breadcrumb } from 'antd';
+import { Breadcrumb as AntdBreadcrumb } from 'antd';
 import { breadcrumbNameMap, routes } from '../../routes';
 
 @inject('store')
@@ -20,30 +20,30 @@ export default class FtBreadcrumb extends Component {
 
       if (!routes.find(({ path }) => path === url)) {
         return (
-          <Breadcrumb.Item key={url}>
+          <AntdBreadcrumb.Item key={url}>
             {breadcrumbNameMap[url]}
-          </Breadcrumb.Item>
+          </AntdBreadcrumb.Item>
         );
       }
       return (
-        <Breadcrumb.Item key={url}>
+        <AntdBreadcrumb.Item key={url}>
           <Link to={url}>
             {breadcrumbNameMap[url]}
           </Link>
-        </Breadcrumb.Item>
+        </AntdBreadcrumb.Item>
       );
     });
 
     const breadcrumbItems = [(
-      <Breadcrumb.Item key="app">
+      <AntdBreadcrumb.Item key="app">
         <Link to="/">首页</Link>
-      </Breadcrumb.Item>
+      </AntdBreadcrumb.Item>
     )].concat(extraBreadcrumbItems);
 
     return (
-      <Breadcrumb style={{ margin: '16px 0' }}>
+      <AntdBreadcrumb style={{ margin: '16px 0' }}>
         {breadcrumbItems}
-      </Breadcrumb>
+      </AntdBreadcrumb>
     );
   }
 }

@@ -12,7 +12,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        {/*建议不写内链样式,这里偷懒*/}
+        {/* 建议不写内链样式,这里偷懒 */}
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '350px' }}>
           <PanelBody id="test" style={{ padding: '24px' }}>
             <h2>前段项目模板</h2>

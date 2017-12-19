@@ -17,8 +17,8 @@ module.exports = {
   output: {
     path: config.build.output.path,
     publicPath: config.build.output.publicPath,
-    filename: 'assets/[name].[hash].js',
-    chunkFilename: 'assets/[name].[chunkhash].js',
+    filename: 'assets/[name].[chunkhash:4].js',
+    chunkFilename: 'assets/[name].[chunkhash:4].child.js',
   },
   module: {
     rules: [
@@ -89,7 +89,7 @@ module.exports = {
     //   // ( 公共chunk(commnons chunk)的名称)
     //   name: 'commons',
     //   // ( 公共chunk的文件名)
-    //   filename: 'commons.[chunkhash:4].js',
+    //   filename: 'assets/commons.[chunkhash:4].js',
     //   // (模块必须被3个入口chunk共享)
     //   minChunks: 3,
     // }),

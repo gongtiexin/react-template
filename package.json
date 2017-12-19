@@ -4,9 +4,9 @@
   "description": "Front end project template",
   "scripts": {
     "dev-ssr": "node bin/server.js",
-    "build-ssr": "rimraf ./dist && webpack --config webpack/server/webpack.config.production.js",
+    "build-ssr": "rimraf ./dist && webpack --progress --config webpack/server/webpack.config.production.js",
     "dev": "webpack-dev-server --config webpack/client/webpack.config.js",
-    "build": "rimraf ./dist && webpack --config webpack/client/webpack.config.production.js",
+    "build": "rimraf ./dist && webpack --progress --config webpack/client/webpack.config.production.js",
     "loading": "rimraf ./dist/static/html/loading && webpack --config static/html/loading/webpack.config.loading.js",
     "login": "rimraf ./dist/static/html/login && webpack --config static/html/login/webpack.config.login.js",
     "eslint": "eslint \"src/**\" -f table --fix"
@@ -81,6 +81,7 @@
     "query-string": "^5.0.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-loadable": "^5.3.1",
     "react-router-dom": "^4.2.2",
     "rfx-core": "^1.5.3",
     "rxjs": "^5.5.2",

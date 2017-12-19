@@ -4,7 +4,7 @@ import lodash from 'lodash';
 
 @inject('store')
 @observer
-export default class Test extends Component {
+export default class Test1 extends Component {
   componentDidMount() {
   }
 

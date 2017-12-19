@@ -15,7 +15,7 @@ import PropTypes from 'prop-types';
 
 @inject('store')
 @observer
-export default class FtPagination extends Component {
+export default class Pagination extends Component {
   static propTypes = {
     paginationProps: PropTypes.object.isRequired,
   };

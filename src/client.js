@@ -1,15 +1,20 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Provider } from 'mobx-react';
 import { hotRehydrate, rehydrate } from 'rfx-core';
 import { Settings } from 'luxon';
 import { LocaleProvider } from 'antd';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 import { isProduction } from './utils/constants';
-import App from './components/App';
 import './stores/stores';
 import './styles/main.less';
+
+import Loadable from './components/common/Loadable';
+
+const asyncApp = Loadable({
+  loader: () => import(/* webpackChunkName: "App" */ './components/App'),
+});
 
 /**
  * luxon时区设置为中国
@@ -23,7 +28,7 @@ const renderApp = () => {
     <Provider store={isProduction ? store : hotRehydrate()}>
       <Router>
         <LocaleProvider locale={zhCN}>
-          <App />
+          <Route path="/" component={asyncApp} />
         </LocaleProvider>
       </Router>
     </Provider>,

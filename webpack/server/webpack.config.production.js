@@ -89,18 +89,18 @@ module.exports = {
     //   // ( 公共chunk(commnons chunk)的名称)
     //   name: 'commons',
     //   // ( 公共chunk的文件名)
-    //   filename: 'commons.[chunkhash:4].js',
+    //   filename: 'assets/commons.[chunkhash:4].js',
     //   // (模块必须被3个入口chunk共享)
     //   minChunks: 3,
     // }),
-    new webpack.optimize.CommonsChunkPlugin({
-      // (选择所有被选chunks的子chunks)
-      children: true,
-      // (异步加载)
-      async: true,
-      // (在提取之前需要至少三个子chunk共享这个模块)
-      minChunks: 3,
-    }),
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   // (选择所有被选chunks的子chunks)
+    //   children: true,
+    //   // (异步加载)
+    //   async: true,
+    //   // (在提取之前需要至少三个子chunk共享这个模块)
+    //   minChunks: 3,
+    // }),
     new webpack.optimize.UglifyJsPlugin({
       uglifyOptions: {
         minimize: true,
