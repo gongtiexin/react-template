@@ -1,7 +1,8 @@
 import React from 'react';
-import { render } from 'react-dom';
+import { render, hydrate } from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Provider } from 'mobx-react';
+import ReactLoadable from 'react-loadable';
 import { hotRehydrate, rehydrate } from 'rfx-core';
 import { Settings } from 'luxon';
 import { LocaleProvider } from 'antd';
@@ -41,5 +42,12 @@ function run() {
     module.hot.accept(() => renderApp());
   }
 }
+
+window.main = () => {
+  ReactLoadable.preloadReady()
+    .then(() => {
+      hydrate(renderApp(), document.getElementById('root'));
+    });
+};
 
 run();

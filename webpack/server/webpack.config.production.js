@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { ReactLoadablePlugin } = require('react-loadable/webpack');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const extractCSS = new ExtractTextPlugin('stylesheets/[name]-one.css');
 const extractLESS = new ExtractTextPlugin('stylesheets/[name]-two.css');
@@ -16,7 +17,8 @@ module.exports = {
   output: {
     path: config.build.output.path,
     publicPath: config.build.output.publicPath,
-    filename: 'assets/[name].js',
+    filename: 'assets/[name].[chunkhash:4].js',
+    chunkFilename: 'assets/[name].[chunkhash:4].child.js',
   },
   module: {
     rules: [
@@ -93,14 +95,14 @@ module.exports = {
     //   // (模块必须被3个入口chunk共享)
     //   minChunks: 3,
     // }),
-    // new webpack.optimize.CommonsChunkPlugin({
-    //   // (选择所有被选chunks的子chunks)
-    //   children: true,
-    //   // (异步加载)
-    //   async: true,
-    //   // (在提取之前需要至少三个子chunk共享这个模块)
-    //   minChunks: 3,
-    // }),
+    new webpack.optimize.CommonsChunkPlugin({
+      // (选择所有被选chunks的子chunks)
+      children: true,
+      // (异步加载)
+      async: true,
+      // (在提取之前需要至少三个子chunk共享这个模块)
+      minChunks: 3,
+    }),
     new webpack.optimize.UglifyJsPlugin({
       uglifyOptions: {
         minimize: true,
@@ -124,5 +126,8 @@ module.exports = {
     extractLESS,
     new CopyWebpackPlugin(config.build.plugins.CopyWebpackPlugin),
     new webpack.optimize.ModuleConcatenationPlugin(),
+    new ReactLoadablePlugin({
+      filename: config.build.plugins.ReactLoadablePlugin.filename,
+    }),
   ],
 };

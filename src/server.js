@@ -4,6 +4,8 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter as Router } from 'react-router-dom';
 import { Provider } from 'mobx-react';
+import ReactLoadable from 'react-loadable';
+import { getBundles } from 'react-loadable/webpack';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
@@ -12,6 +14,7 @@ import productionConfig from '../webpack/server/webpack.config.production';
 import { isProduction } from './utils/constants';
 import App from './components/App';
 import store from './stores/stores';
+import stats from '../dist/react-loadable.json';
 
 const config = isProduction ? productionConfig : developConfig;
 const compiler = webpack(config);
@@ -43,32 +46,38 @@ const initStylesheet = () => {
   return '';
 };
 
-const initHtml = html => `
+const initHtml = (html, styles, scripts) => `
   <!doctype html>
   <html lang="en">
   <head>
     <meta charset="utf-8">
     <title>前端项目模板</title>
-    ${initStylesheet()}
+    ${styles.map(style => `<link href="/${style.file}" rel="stylesheet"/>`).join('\n')}
   </head>
   <body>
   <div id="root">${html}</div>
-  ${initScript()}
+  ${scripts.map(bundle => `<script src="/${bundle.file}"></script>`).join('\n')}
+  <script>window.main();</script>
   </body>
   </html>
-`;
+  `;
 
 app.get('*', (req, res) => {
+  const modules = [];
   const initView = renderToString((
     <Provider store={initStore}>
       <Router location={req.url} context={{}}>
-        <App />
+        <ReactLoadable.Capture report={moduleName => modules.push(moduleName)}>
+          <App />
+        </ReactLoadable.Capture>
       </Router>
     </Provider>
   ));
-
+  const bundles = getBundles(stats, modules);
+  const styles = bundles.filter(bundle => bundle.file.endsWith('.css'));
+  const scripts = bundles.filter(bundle => bundle.file.endsWith('.js'));
   res.status(200)
-    .send(initHtml(initView));
+    .send(initHtml(initView, styles, scripts));
 });
 
 app.get('*', (req, res) => {
@@ -87,6 +96,14 @@ process.on('uncaughtException', (evt) => {
   console.log('uncaughtException: ', evt);
 });
 
-app.listen(3000, () => {
-  console.log('Listening on port 3000');
-});
+
+ReactLoadable.preloadAll()
+  .then(() => {
+    app.listen(3000, () => {
+      console.log('Listening on port 3000');
+    });
+  });
+
+// app.listen(3000, () => {
+//   console.log('Listening on port 3000');
+// });

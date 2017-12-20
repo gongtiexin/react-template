@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const { ReactLoadablePlugin } = require('react-loadable/webpack');
 const config = require('../../config');
 
 module.exports = {
@@ -10,7 +11,8 @@ module.exports = {
   output: {
     path: config.dev.output.path,
     publicPath: config.dev.output.publicPath,
-    filename: 'bundle.js',
+    filename: '[name].[chunkhash:4].js',
+    chunkFilename: '[name].[chunkhash:4].child.js',
   },
   devtool: 'cheap-module-source-map',
   module: {
@@ -71,5 +73,16 @@ module.exports = {
     }),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+      // (选择所有被选chunks的子chunks)
+      children: true,
+      // (异步加载)
+      async: true,
+      // (在提取之前需要至少三个子chunk共享这个模块)
+      minChunks: 3,
+    }),
+    new ReactLoadablePlugin({
+      filename: config.build.plugins.ReactLoadablePlugin.filename,
+    }),
   ],
 };

@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "Front end project template",
   "scripts": {
-    "dev-ssr": "node bin/server.js",
-    "build-ssr": "rimraf ./dist && webpack --progress --config webpack/server/webpack.config.production.js",
+    "ssr": "node bin/server.js",
     "dev": "webpack-dev-server --config webpack/client/webpack.config.js",
     "build": "rimraf ./dist && webpack --progress --config webpack/client/webpack.config.production.js",
     "loading": "rimraf ./dist/static/html/loading && webpack --config static/html/loading/webpack.config.loading.js",
@@ -22,7 +21,7 @@
   "author": "gongtiexin",
   "license": "ISC",
   "devDependencies": {
-    "babel-core": "^6.25.0",
+    "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.1",
     "babel-loader": "^7.1.1",
     "babel-plugin-import": "^1.2.1",

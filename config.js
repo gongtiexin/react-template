@@ -27,6 +27,9 @@ module.exports = {
           ignore: ['html/loading/*.*', 'html/login/*.*'],
         },
       ],
+      ReactLoadablePlugin: {
+        filename: path.resolve(__dirname, './dist/react-loadable.json'),
+      },
     },
   },
   dev: {
