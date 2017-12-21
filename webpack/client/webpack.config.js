@@ -89,11 +89,13 @@ module.exports = {
     ],
   },
   plugins: [
+    // 配置的全局常量
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(config.dev.env.NODE_ENV),
       },
     }),
+    // 显示模块的相对路径
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({ hash: false, template: config.dev.entry.html }),

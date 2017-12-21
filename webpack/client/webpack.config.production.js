@@ -3,8 +3,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const extractCSS = new ExtractTextPlugin('stylesheets/[name]-one.css');
-const extractLESS = new ExtractTextPlugin('stylesheets/[name]-two.css');
+const extractCSS = new ExtractTextPlugin({ filename: 'stylesheets/[name].[contenthash]-one.css', allChunks: true });
+const extractLESS = new ExtractTextPlugin({ filename: 'stylesheets/[name].[contenthash]-two.css', allChunks: true });
 const LessPluginAutoPrefix = require('less-plugin-autoprefix');
 const LessPluginCleanCSS = require('less-plugin-clean-css');
 const config = require('../../config');
@@ -17,8 +17,8 @@ module.exports = {
   output: {
     path: config.build.output.path,
     publicPath: config.build.output.publicPath,
-    filename: 'assets/[name].[chunkhash:4].js',
-    chunkFilename: 'assets/[name].[chunkhash:4].child.js',
+    filename: 'assets/[name].[chunkhash].js',
+    chunkFilename: 'assets/[name].[chunkhash].child.js',
   },
   module: {
     rules: [
@@ -72,14 +72,16 @@ module.exports = {
     ],
   },
   plugins: [
+    // 分析打包的结构
     // new BundleAnalyzerPlugin(),
+    // 根据模块的相对路径生成一个四位数的hash作为模块id
+    new webpack.HashedModuleIdsPlugin(),
+    // 配置的全局常量
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(config.build.env.NODE_ENV),
       },
     }),
-    new webpack.NamedModulesPlugin(),
-    new webpack.optimize.OccurrenceOrderPlugin(true),
     new webpack.optimize.CommonsChunkPlugin({
       name: ['vendor', 'runtime'],
       minChunks: Infinity,
@@ -89,7 +91,7 @@ module.exports = {
     //   // ( 公共chunk(commnons chunk)的名称)
     //   name: 'commons',
     //   // ( 公共chunk的文件名)
-    //   filename: 'assets/commons.[chunkhash:4].js',
+    //   filename: 'assets/commons.[chunkhash].js',
     //   // (模块必须被3个入口chunk共享)
     //   minChunks: 3,
     // }),
@@ -101,6 +103,7 @@ module.exports = {
       // (在提取之前需要至少三个子chunk共享这个模块)
       minChunks: 3,
     }),
+    // 压缩代码
     new webpack.optimize.UglifyJsPlugin({
       uglifyOptions: {
         minimize: true,
@@ -127,6 +130,7 @@ module.exports = {
       template: config.build.entry.html,
     }),
     new CopyWebpackPlugin(config.build.plugins.CopyWebpackPlugin),
+    // 作用域提升
     new webpack.optimize.ModuleConcatenationPlugin(),
   ],
 };

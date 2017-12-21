@@ -10,7 +10,7 @@
  */
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
-import { Pagination } from 'antd';
+import { Pagination as AntdPagination } from 'antd';
 import PropTypes from 'prop-types';
 
 @inject('store')
@@ -34,11 +34,11 @@ export default class Pagination extends Component {
     const { pageSize, currentPage, totalElements, showSizeChanger } = this.props.paginationProps;
 
     return (
-      <Pagination
+      <AntdPagination
         current={currentPage}
         pageSize={pageSize}
         className="fe-float-right fe-margin-nomal fe-clear"
-        showSizeChanger={showSizeChanger}
+        showSizeChanger={showSizeChanger || false}
         onShowSizeChange={this.onShowSizeChange}
         showQuickJumper
         onChange={this.onChange}

@@ -2,8 +2,8 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const extractCSS = new ExtractTextPlugin('stylesheets/[name]-one.css');
-const extractLESS = new ExtractTextPlugin('stylesheets/[name]-two.css');
+const extractCSS = new ExtractTextPlugin({ filename: 'stylesheets/[name].[contenthash]-css.css', allChunks: true });
+const extractLESS = new ExtractTextPlugin({ filename: 'stylesheets/[name].[contenthash]-less.css', allChunks: true });
 const LessPluginAutoPrefix = require('less-plugin-autoprefix');
 const LessPluginCleanCSS = require('less-plugin-clean-css');
 const config = require('../../config');
@@ -71,6 +71,8 @@ module.exports = {
   },
   plugins: [
     // new BundleAnalyzerPlugin(),
+    // 根据模块的相对路径生成一个四位数的hash作为模块id
+    new webpack.HashedModuleIdsPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(config.build.env.NODE_ENV),
@@ -78,8 +80,6 @@ module.exports = {
         __SERVER__: JSON.stringify(config.build.env.SERVER),
       },
     }),
-    new webpack.NamedModulesPlugin(),
-    new webpack.optimize.OccurrenceOrderPlugin(true),
     new webpack.optimize.CommonsChunkPlugin({
       name: ['vendor', 'runtime'],
       minChunks: Infinity,
