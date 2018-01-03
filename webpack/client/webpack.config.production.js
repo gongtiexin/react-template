@@ -1,75 +1,94 @@
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const extractCSS = new ExtractTextPlugin({ filename: 'stylesheets/[name].[contenthash]-one.css', allChunks: true });
-const extractLESS = new ExtractTextPlugin({ filename: 'stylesheets/[name].[contenthash]-two.css', allChunks: true });
-const LessPluginAutoPrefix = require('less-plugin-autoprefix');
-const LessPluginCleanCSS = require('less-plugin-clean-css');
-const config = require('../../config');
+const webpack = require("webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+// const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+
+const extractCSS = new ExtractTextPlugin({
+  filename: "stylesheets/[name].[contenthash]-css.css",
+  allChunks: true
+});
+const extractLESS = new ExtractTextPlugin({
+  filename: "stylesheets/[name].[contenthash]-less.css",
+  allChunks: true
+});
+const LessPluginAutoPrefix = require("less-plugin-autoprefix");
+const LessPluginCleanCSS = require("less-plugin-clean-css");
+const config = require("../../config");
 
 module.exports = {
+  resolve: {
+    alias: {
+      proptypes: "proptypes/disabled"
+    }
+  },
   entry: {
     vendor: config.build.entry.vendor,
-    app: ['babel-polyfill', config.build.entry.app],
+    app: ["babel-polyfill", config.build.entry.app]
   },
   output: {
     path: config.build.output.path,
     publicPath: config.build.output.publicPath,
-    filename: 'assets/[name].[chunkhash].js',
-    chunkFilename: 'assets/[name].[chunkhash].child.js',
+    filename: "assets/[name].[chunkhash].js",
+    chunkFilename: "assets/[name].[chunkhash].child.js"
   },
   module: {
     rules: [
       {
         test: /\.js$/,
         include: config.build.entry.srcRoot,
-        loader: 'babel-loader',
-      }, {
+        loader: "babel-loader"
+      },
+      {
         test: /\.css$/,
-        use: extractCSS.extract(['css-loader', 'postcss-loader']),
-      }, {
+        use: extractCSS.extract(["css-loader", "postcss-loader"])
+      },
+      {
         test: /\.less$/i,
-        use: extractLESS.extract([{
-          loader: 'css-loader',
-        }, {
-          loader: 'less-loader',
-          options: {
-            // 覆盖antd样式的全局变量
-            modifyVars: config.modifyVars,
-            plugins: [
-              new LessPluginAutoPrefix({ browsers: ['last 2 versions'] }),
-              new LessPluginCleanCSS({ advanced: true }),
-            ],
+        use: extractLESS.extract([
+          {
+            loader: "css-loader"
           },
-        },
-        ]),
-      }, {
+          {
+            loader: "less-loader",
+            options: {
+              // 覆盖antd样式的全局变量
+              modifyVars: config.modifyVars,
+              plugins: [
+                new LessPluginAutoPrefix({ browsers: ["last 2 versions"] }),
+                new LessPluginCleanCSS({ advanced: true })
+              ]
+            }
+          }
+        ])
+      },
+      {
         test: /\.(jpe?g|png|gif|svg)$/i,
         use: [
-          'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
+          "file-loader?hash=sha512&digest=hex&name=[hash].[ext]",
           {
-            loader: 'image-webpack-loader',
+            loader: "image-webpack-loader",
             options: {
               progressive: true,
               optimizationLevel: 7,
               interlaced: false,
               pngquant: {
-                quality: '65-90',
-                speed: 4,
-              },
-            },
-          },
-        ],
-      }, {
-        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        use: 'url-loader?limit=10000&mimetype=application/font-woff',
-      }, {
-        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        use: 'file-loader',
+                quality: "65-90",
+                speed: 4
+              }
+            }
+          }
+        ]
       },
-    ],
+      {
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: "url-loader?limit=10000&mimetype=application/font-woff"
+      },
+      {
+        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: "file-loader"
+      }
+    ]
   },
   plugins: [
     // 分析打包的结构
@@ -78,13 +97,13 @@ module.exports = {
     new webpack.HashedModuleIdsPlugin(),
     // 配置的全局常量
     new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify(config.build.env.NODE_ENV),
-      },
+      "process.env": {
+        NODE_ENV: JSON.stringify(config.build.env.NODE_ENV)
+      }
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      name: ['vendor', 'runtime'],
-      minChunks: Infinity,
+      name: ["vendor", "runtime"],
+      minChunks: Infinity
     }),
     // 多入口
     // new webpack.optimize.CommonsChunkPlugin({
@@ -101,7 +120,7 @@ module.exports = {
       // (异步加载)
       async: true,
       // (在提取之前需要至少三个子chunk共享这个模块)
-      minChunks: 3,
+      minChunks: 3
     }),
     // 压缩代码
     new webpack.optimize.UglifyJsPlugin({
@@ -110,27 +129,27 @@ module.exports = {
         ie8: false,
         output: {
           comments: false,
-          beautify: false,
+          beautify: false
         },
         mangle: {
-          keep_fnames: true,
+          keep_fnames: true
         },
         compress: {
           warnings: false,
           drop_console: true,
           drop_debugger: true,
-          unused: true,
-        },
-      },
+          unused: true
+        }
+      }
     }),
     extractCSS,
     extractLESS,
     new HtmlWebpackPlugin({
       hash: false,
-      template: config.build.entry.html,
+      template: config.build.entry.html
     }),
     new CopyWebpackPlugin(config.build.plugins.CopyWebpackPlugin),
     // 作用域提升
-    new webpack.optimize.ModuleConcatenationPlugin(),
-  ],
+    new webpack.optimize.ModuleConcatenationPlugin()
+  ]
 };

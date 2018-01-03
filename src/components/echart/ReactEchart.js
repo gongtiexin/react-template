@@ -1,25 +1,25 @@
 /**
  * React Echarts Component
  */
-import React, { Component } from 'react';
-import echarts from 'echarts';
-import lodashIsEqual from 'lodash/isEqual';
-import { inject, observer } from 'mobx-react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import echarts from "echarts";
+import lodashIsEqual from "lodash/isEqual";
+import { inject, observer } from "mobx-react";
+import PropTypes from "prop-types";
 
-@inject('store')
+@inject("store")
 @observer
 export default class ReactEchart extends Component {
   static propTypes = {
     config: PropTypes.object.isRequired,
-    style: PropTypes.object,
+    style: PropTypes.object
   };
 
   static defaultProps = {
     style: {
-      width: '100%',
-      height: '600px',
-    },
+      width: "100%",
+      height: "600px"
+    }
   };
 
   constructor(props) {
@@ -38,7 +38,10 @@ export default class ReactEchart extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return !lodashIsEqual(nextProps, this.props) || !lodashIsEqual(nextState, this.state);
+    return (
+      !lodashIsEqual(nextProps, this.props) ||
+      !lodashIsEqual(nextState, this.state)
+    );
   }
 
   componentWillUpdate() {
@@ -52,7 +55,7 @@ export default class ReactEchart extends Component {
   render() {
     return (
       <div
-        ref={(node) => {
+        ref={node => {
           this.eCharts = node;
         }}
         style={this.props.style}

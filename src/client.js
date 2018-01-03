@@ -1,24 +1,24 @@
-import React from 'react';
-import { render } from 'react-dom';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { Provider } from 'mobx-react';
-import { hotRehydrate, rehydrate } from 'rfx-core';
-import { Settings } from 'luxon';
-import { LocaleProvider } from 'antd';
-import zhCN from 'antd/lib/locale-provider/zh_CN';
-import { isProduction } from './utils/constants';
-import './stores/stores';
-import './styles/main.less';
-import Loadable from './components/common/Loadable';
+import React from "react";
+import { render } from "react-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Provider } from "mobx-react";
+import { hotRehydrate, rehydrate } from "rfx-core";
+import { Settings } from "luxon";
+import { LocaleProvider } from "antd";
+import zhCN from "antd/lib/locale-provider/zh_CN";
+import { isProduction } from "./utils/constants";
+import "./stores/stores";
+import "./styles/main.less";
+import Loadable from "./components/common/Loadable";
 
 const asyncApp = Loadable({
-  loader: () => import(/* webpackChunkName: "app" */ './components/App'),
+  loader: () => import(/* webpackChunkName: "app" */ "./components/App")
 });
 
 /**
  * luxon时区设置为中国
  */
-Settings.defaultLocale = 'zh-CN';
+Settings.defaultLocale = "zh-CN";
 
 const store = rehydrate();
 
@@ -31,7 +31,7 @@ const renderApp = () => {
         </LocaleProvider>
       </Router>
     </Provider>,
-    document.getElementById('root'),
+    document.getElementById("root")
   );
 };
 

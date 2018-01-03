@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { notification } from 'antd';
+import axios from "axios";
+import { notification } from "antd";
 
 axios.default.timeout = 5000;
 
@@ -8,7 +8,7 @@ axios.default.timeout = 5000;
  */
 axios.interceptors.response.use(
   response => Promise.resolve(response),
-  (error) => {
+  error => {
     if (error.response) {
       switch (error.response.status) {
         case 401: {
@@ -16,7 +16,7 @@ axios.interceptors.response.use(
           break;
         }
         case 403: {
-          notification.warn({ message: '您没有权限这样做!' });
+          notification.warn({ message: "您没有权限这样做!" });
           break;
         }
         default:
@@ -24,16 +24,16 @@ axios.interceptors.response.use(
       }
     }
     return Promise.reject(error);
-  },
+  }
 );
 
 /**
  * axios请求方法的封装,包括请求返回状态的全局提示
  */
-const request = (config, success, error) => axios(config)
-  .then(
-    (response) => {
-      const { data: { errCode, errMsg = 'error' } } = response;
+const request = (config, success, error) =>
+  axios(config).then(
+    response => {
+      const { data: { errCode, errMsg = "error" } } = response;
       if (errCode && errCode !== 0) {
         const newError = new Error();
         newError.errCode = errCode;
@@ -56,7 +56,7 @@ const request = (config, success, error) => axios(config)
         notification.error(newConfig);
       }
       return response;
-    },
+    }
   );
 
 export default request;

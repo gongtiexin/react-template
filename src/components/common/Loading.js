@@ -1,6 +1,7 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 
-const Loading = (props) => {
+const Loading = props => {
   if (props.error) {
     return <h2 className="loadable-loading">Error!</h2>;
   } else if (props.timedOut) {
@@ -9,6 +10,12 @@ const Loading = (props) => {
     return <h2 className="loadable-loading">Loading...</h2>;
   }
   return null;
+};
+
+Loading.propTypes = {
+  error: PropTypes.object,
+  timedOut: PropTypes.bool,
+  pastDelay: PropTypes.bool
 };
 
 export default Loading;

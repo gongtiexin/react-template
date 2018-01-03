@@ -20,6 +20,15 @@
         "libraryName": "antd",
         "style": true
       }
+    ],
+    [
+      "transform-react-remove-prop-types",
+      {
+        "mode": "wrap",
+        "ignoreFilenames": [
+          "node_modules"
+        ]
+      }
     ]
   ]
 }

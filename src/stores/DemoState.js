@@ -1,11 +1,13 @@
-import { action, computed, observable } from 'mobx';
-import request from '../utils/axios';
+import { action, computed, observable } from "mobx";
+import request from "../utils/axios";
+
+/* eslint class-methods-use-this: ["error", { "exceptMethods": ["test"] }] */
 
 export default class DemoState {
   @observable data;
 
   constructor() {
-    this.data = 'hello, world';
+    this.data = "hello, world";
   }
 
   /**
@@ -25,12 +27,27 @@ export default class DemoState {
     //     err => console.error('something wrong occurred: ', err),
     //   );
     const { data, status } = await request(
-      { method: 'GET', url: '/pubapi/org/page' },
-      { message: '成功' },
-      { message: '失败' },
+      { method: "GET", url: "/pubapi/org/page" },
+      { message: "成功" },
+      { message: "失败" }
     );
     if (status === 200 || status === 201) {
       this.setData(data);
+      return Promise.resolve(data);
+    }
+    return Promise.reject(data);
+  }
+
+  /**
+   * 获取数据
+   * */
+  async test() {
+    const { data, status } = await request(
+      { method: "GET", url: "/pubapi/org/page" },
+      { message: "成功" },
+      { message: "失败" }
+    );
+    if (status === 200 || status === 201) {
       return Promise.resolve(data);
     }
     return Promise.reject(data);
@@ -50,9 +67,9 @@ export default class DemoState {
    * */
   @computed
   get computedData() {
-    // if (this.data.length > 0) {
-    //   return this.data.map(() => 'computed');
-    // }
+    if (this.data.length > 0) {
+      return "computed";
+    }
     return [];
   }
 }

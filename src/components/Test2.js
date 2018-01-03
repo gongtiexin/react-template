@@ -1,18 +1,13 @@
-import React, { Component } from 'react';
-import { inject, observer } from 'mobx-react';
-import lodash from 'lodash';
+import React, { Component } from "react";
+import { inject, observer } from "mobx-react";
+import lodash from "lodash";
 
-@inject('store')
+@inject("store")
 @observer
 export default class Test2 extends Component {
-  componentDidMount() {
-  }
+  componentDidMount() {}
 
   render() {
-    return (
-      <div>
-        {lodash.join(['a', 'b', 'c'], '~')}
-      </div>
-    );
+    return <div>{lodash.join(["a", "b", "c"], "~")}</div>;
   }
 }

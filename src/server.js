@@ -1,25 +1,33 @@
-import express from 'express';
-import path from 'path';
-import React from 'react';
-import { renderToString } from 'react-dom/server';
-import { StaticRouter as Router } from 'react-router-dom';
-import { Provider } from 'mobx-react';
-import webpack from 'webpack';
-import webpackDevMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
-import developConfig from '../webpack/server/webpack.config';
-import productionConfig from '../webpack/server/webpack.config.production';
-import { isProduction } from './utils/constants';
-import App from './components/App';
-import store from './stores/stores';
+import express from "express";
+import path from "path";
+import React from "react";
+import { renderToString } from "react-dom/server";
+import { StaticRouter as Router } from "react-router-dom";
+import { Provider } from "mobx-react";
+import webpack from "webpack";
+import webpackDevMiddleware from "webpack-dev-middleware";
+import webpackHotMiddleware from "webpack-hot-middleware";
+import developConfig from "../webpack/server/webpack.config";
+import productionConfig from "../webpack/server/webpack.config.production";
+import { isProduction } from "./utils/constants";
+import App from "./components/App";
+import store from "./stores/stores";
 
 const config = isProduction ? productionConfig : developConfig;
 const compiler = webpack(config);
 const initStore = store.inject();
 
 const app = express();
-app.use('/node_modules', express.static(path.join(__dirname, '../node_modules')));
-app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }));
+app.use(
+  "/node_modules",
+  express.static(path.join(__dirname, "../node_modules"))
+);
+app.use(
+  webpackDevMiddleware(compiler, {
+    noInfo: true,
+    publicPath: config.output.publicPath
+  })
+);
 app.use(webpackHotMiddleware(compiler));
 
 const initScript = () => {
@@ -40,7 +48,7 @@ const initStylesheet = () => {
     <link href="/stylesheets/app-two.css" rel="stylesheet">
     `;
   }
-  return '';
+  return "";
 };
 
 const initHtml = html => `
@@ -58,35 +66,32 @@ const initHtml = html => `
   </html>
 `;
 
-app.get('*', (req, res) => {
-  const initView = renderToString((
+app.get("*", (req, res) => {
+  const initView = renderToString(
     <Provider store={initStore}>
       <Router location={req.url} context={{}}>
         <App />
       </Router>
     </Provider>
-  ));
+  );
 
-  res.status(200)
-    .send(initHtml(initView));
+  res.status(200).send(initHtml(initView));
 });
 
-app.get('*', (req, res) => {
-  res.status(404)
-    .send('Server.js > 404 - Page Not Found');
+app.get("*", (req, res) => {
+  res.status(404).send("Server.js > 404 - Page Not Found");
 });
 
 app.use((err, req, res, next) => {
-  console.error('Error on request %s %s', req.method, req.url, next);
+  console.error("Error on request %s %s", req.method, req.url, next);
   console.error(err.stack);
-  res.status(500)
-    .send('Server error');
+  res.status(500).send("Server error");
 });
 
-process.on('uncaughtException', (evt) => {
-  console.log('uncaughtException: ', evt);
+process.on("uncaughtException", evt => {
+  console.log("uncaughtException: ", evt);
 });
 
 app.listen(3000, () => {
-  console.log('Listening on port 3000');
+  console.log("Listening on port 3000");
 });
