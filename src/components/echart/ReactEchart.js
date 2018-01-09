@@ -11,7 +11,7 @@ import PropTypes from "prop-types";
 @observer
 export default class ReactEchart extends Component {
   static propTypes = {
-    config: PropTypes.object.isRequired,
+    option: PropTypes.object.isRequired,
     style: PropTypes.object
   };
 
@@ -25,15 +25,18 @@ export default class ReactEchart extends Component {
   constructor(props) {
     super(props);
     this.myChart = null;
+    this.eCharts = null;
   }
+
+  state = {
+    isReset: false
+  };
 
   componentDidMount() {
     this.myChart = echarts.init(this.eCharts);
-    if (this.props.config) {
-      const { option } = this.props.config;
-      if (option) {
-        this.myChart.setOption(option);
-      }
+    window.addEventListener("resize", this.onWindowResize);
+    if (!this.state.isReset) {
+      this.reset();
     }
   }
 
@@ -44,15 +47,32 @@ export default class ReactEchart extends Component {
     );
   }
 
+  // shouldComponentUpdate(nextProps) {
+  //   const option = this.myChart.getOption();
+  //   return option === undefined || !lodashIsEqual(option.series.map(i => i.data), nextProps.option.series.map(i => i.data));
+  // }
+
   componentWillUpdate() {
     this.myChart.clear();
   }
 
   componentWillUnmount() {
     this.myChart.dispose();
+    window.removeEventListener("resize", this.onWindowResize);
   }
 
+  onWindowResize = () => {
+    this.myChart.resize();
+  };
+
+  reset = () => this.setState({ isReset: true });
+
   render() {
+    const { option } = this.props;
+    if (option) {
+      this.myChart.setOption(option);
+    }
+
     return (
       <div
         ref={node => {

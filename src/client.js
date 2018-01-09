@@ -12,7 +12,7 @@ import "./styles/main.less";
 import Loadable from "./components/common/Loadable";
 
 const asyncApp = Loadable({
-  loader: () => import(/* webpackChunkName: "app" */ "./components/App")
+  loader: () => import(/* webpackChunkName: "root-app" */ "./components/App")
 });
 
 /**
