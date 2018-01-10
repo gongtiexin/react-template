@@ -1,11 +1,7 @@
-@base-size-small: 18px;
-@base-size-nomal: 24px;
-@base-size-large: 36px;
-@base-size-xl: 48px;
-@base-background-color: #ebebeb;
-
 body {
   background: @base-background-color;
+  padding: 0;
+  margin: 0;
 }
 
 .fe-margin-nomal {
@@ -20,7 +16,7 @@ body {
   float: right;
 }
 
-//清除浮动
+/*清除浮动*/
 .fe-clear:before, .fe-clear:after {
   clear: both;
 }
@@ -30,6 +26,7 @@ body {
   content: '';
 }
 
+/*a标签的按钮*/
 .link-btn {
   color: #000000a6;
   background-color: #fff;
@@ -44,20 +41,40 @@ body {
   line-height: 1.5;
   border-radius: 4px;
   transition: background-color .15s ease-in-out, border-color .15s ease-in-out;
-}
-
-.link-btn:hover {
-  color: #007bff;
+  &:hover {
+    color: #007bff;
+  }
 }
 
 .link-btn-primary {
   color: #fff;
   background-color: #007bff;
+  &:hover {
+    color: #fff;
+    background-color: #0069d9;
+  }
 }
 
-.link-btn-primary:hover {
-  color: #fff;
-  background-color: #0069d9;
+.btn-link {
+  color: @btn-link-color;
+  &:hover {
+    color: @btn-link-color-hover;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  &:focus {
+    text-decoration: none;
+    outline: 0;
+  }
+}
+
+.btn {
+  background: transparent;
+  display: inline-block;
+  text-align: center;
+  user-select: none;
+  border: 0;
+  line-height: 1.5;
 }
 
 .loadable-loading {

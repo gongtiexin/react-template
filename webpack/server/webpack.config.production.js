@@ -10,9 +10,14 @@ const LessPluginCleanCSS = require('less-plugin-clean-css');
 const config = require('../../config');
 
 module.exports = {
+  resolve: {
+    alias: {
+      proptypes: "proptypes/disabled"
+    }
+  },
   entry: {
     vendor: config.build.entry.vendor,
-    app: ['babel-polyfill', config.build.entry.app],
+    app: ["babel-polyfill", config.build.entry.app]
   },
   output: {
     path: config.build.output.path,
@@ -95,14 +100,14 @@ module.exports = {
     //   // (模块必须被3个入口chunk共享)
     //   minChunks: 3,
     // }),
-    new webpack.optimize.CommonsChunkPlugin({
-      // (选择所有被选chunks的子chunks)
-      children: true,
-      // (异步加载)
-      async: true,
-      // (在提取之前需要至少三个子chunk共享这个模块)
-      minChunks: 3,
-    }),
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   // (选择所有被选chunks的子chunks)
+    //   children: true,
+    //   // (异步加载)
+    //   async: true,
+    //   // (在提取之前需要至少三个子chunk共享这个模块)
+    //   minChunks: 3,
+    // }),
     new webpack.optimize.UglifyJsPlugin({
       uglifyOptions: {
         minimize: true,

@@ -3,8 +3,8 @@
     [
       "env",
       {
-        "targets": {
-          "node": "current",
+        "modules": false,
+        "target": {
           "uglify": true
         }
       }
@@ -21,6 +21,14 @@
         "style": true
       }
     ],
-    "react-loadable/babel"
+    [
+      "transform-react-remove-prop-types",
+      {
+        "mode": "wrap",
+        "ignoreFilenames": [
+          "node_modules"
+        ]
+      }
+    ]
   ]
 }

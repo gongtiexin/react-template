@@ -3,15 +3,20 @@
     "browser": true,
     "node": true
   },
-  "extends": "eslint-config-airbnb",
+  "extends": [
+    "airbnb",
+    "prettier"
+  ],
   "parser": "babel-eslint",
   "plugins": [
+    "prettier",
     "flowtype",
     "import",
     "jsx-a11y",
     "react"
   ],
   "rules": {
+    "prettier/prettier": "error",
     "react/jsx-filename-extension": [
       0,
       {
@@ -21,21 +26,19 @@
         ]
       }
     ],
-    "react/prop-types": 0,
-    "jsx-a11y/anchor-is-valid": 0,
-    "max-len": [
+    "react/prop-types": 1,
+    "react/require-default-props": 0,
+    "react/forbid-prop-types": 0,
+    "jsx-a11y/anchor-is-valid": [
       "error",
-      150
-    ],
-    "react/jsx-indent": 0,
-    "jsx-a11y/click-events-have-key-events": 0,
-    "jsx-a11y/no-noninteractive-element-interactions": 0,
-    "jsx-a11y/no-static-element-interactions": 0,
-    "object-curly-newline": 0,
-    "class-methods-use-this": 0,
-    "no-class-assign": 0,
-    "import/no-extraneous-dependencies": 0,
-    "no-return-assign": 0,
-    "react/forbid-prop-types": 0
+      {
+        "components": [
+          "Link"
+        ],
+        "specialLink": [
+          "to"
+        ]
+      }
+    ]
   }
 }

@@ -1,17 +1,54 @@
-import React, { Component } from 'react';
-import { inject, observer } from 'mobx-react';
-import lodash from 'lodash';
+import React, { Component } from "react";
+import { inject, observer } from "mobx-react";
 
-@inject('store')
+@inject("store")
 @observer
 export default class Test extends Component {
-  componentDidMount() {
-  }
+  componentDidMount() {}
 
   render() {
     return (
-      <div>
-        {lodash.join(['a', 'b', 'c'], '~')}
+      <div style={{ display: "flex" }}>
+        <div
+          style={{
+            width: 200,
+            height: 100,
+            backgroundColor: "#F00",
+            transform: "rotateY(60deg)"
+          }}
+        />
+        <div
+          style={{
+            width: 200,
+            height: 100,
+            backgroundColor: "#F00",
+            transform: "rotateY(45deg)"
+          }}
+        />
+        <div
+          style={{
+            width: 200,
+            height: 100,
+            backgroundColor: "#F00",
+            transform: "rotateY(0deg)"
+          }}
+        />
+        <div
+          style={{
+            width: 200,
+            height: 100,
+            backgroundColor: "#F00",
+            transform: "rotateY(-45deg)"
+          }}
+        />
+        <div
+          style={{
+            width: 200,
+            height: 100,
+            backgroundColor: "#F00",
+            transform: "rotateY(-60deg)"
+          }}
+        />
       </div>
     );
   }

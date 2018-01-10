@@ -1,22 +1,25 @@
 /**
  * 面包屑导航,根据route.js生成
  */
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { inject, observer } from 'mobx-react';
-import { Breadcrumb as AntdBreadcrumb } from 'antd';
-import { breadcrumbNameMap, routes } from '../../routes';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { inject, observer } from "mobx-react";
+import { Breadcrumb as AntdBreadcrumb } from "antd";
+import PropTypes from "prop-types";
+import { breadcrumbNameMap, routes } from "../../routes";
 
-@inject('store')
+@inject("store")
 @observer
 export default class FtBreadcrumb extends Component {
+  static propTypes = {
+    location: PropTypes.object.isRequired
+  };
+
   render() {
     const { location: { pathname } } = this.props;
-    const pathSnippets = pathname.split('/')
-      .filter(i => i);
+    const pathSnippets = pathname.split("/").filter(i => i);
     const extraBreadcrumbItems = pathSnippets.map((_, index) => {
-      const url = `/${pathSnippets.slice(0, index + 1)
-        .join('/')}`;
+      const url = `/${pathSnippets.slice(0, index + 1).join("/")}`;
 
       if (!routes.find(({ path }) => path === url)) {
         return (
@@ -27,21 +30,19 @@ export default class FtBreadcrumb extends Component {
       }
       return (
         <AntdBreadcrumb.Item key={url}>
-          <Link to={url}>
-            {breadcrumbNameMap[url]}
-          </Link>
+          <Link to={url}>{breadcrumbNameMap[url]}</Link>
         </AntdBreadcrumb.Item>
       );
     });
 
-    const breadcrumbItems = [(
+    const breadcrumbItems = [
       <AntdBreadcrumb.Item key="app">
         <Link to="/">首页</Link>
       </AntdBreadcrumb.Item>
-    )].concat(extraBreadcrumbItems);
+    ].concat(extraBreadcrumbItems);
 
     return (
-      <AntdBreadcrumb style={{ margin: '16px 0' }}>
+      <AntdBreadcrumb style={{ margin: "16px 0" }}>
         {breadcrumbItems}
       </AntdBreadcrumb>
     );

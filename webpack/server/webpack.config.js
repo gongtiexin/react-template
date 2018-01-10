@@ -4,9 +4,9 @@ const config = require('../../config');
 
 module.exports = {
   entry: [
-    'webpack-hot-middleware/client?reload=true',
-    'babel-polyfill',
-    config.dev.entry.app,
+    "webpack-hot-middleware/client?reload=true",
+    "babel-polyfill",
+    config.dev.entry.app
   ],
   output: {
     path: config.dev.output.path,
