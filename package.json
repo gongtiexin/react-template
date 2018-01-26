@@ -61,7 +61,7 @@
     "webpack-dev-server": "^2.6.1"
   },
   "dependencies": {
-    "antd": "^3.0.0",
+    "antd": "^3.1.4",
     "axios": "^0.17.0",
     "babel-polyfill": "^6.26.0",
     "css-declaration-sorter": "^2.0.1",
@@ -71,7 +71,6 @@
     "express": "^4.16.2",
     "faker": "^4.1.0",
     "up-utils": "2.0.0",
-    "less-plugin-autoprefix": "^1.5.1",
     "less-plugin-clean-css": "^1.5.1",
     "lodash": "^4.17.4",
     "luxon": "^0.2.7",

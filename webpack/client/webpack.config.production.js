@@ -12,7 +12,6 @@ const extractLESS = new ExtractTextPlugin({
   filename: "stylesheets/[name].[contenthash]-less.css",
   allChunks: true
 });
-const LessPluginAutoPrefix = require("less-plugin-autoprefix");
 const LessPluginCleanCSS = require("less-plugin-clean-css");
 const config = require("../../config");
 
@@ -50,14 +49,14 @@ module.exports = {
             loader: "css-loader"
           },
           {
+            loader: "postcss-loader"
+          },
+          {
             loader: "less-loader",
             options: {
               // 覆盖antd样式的全局变量
               modifyVars: config.modifyVars,
-              plugins: [
-                new LessPluginAutoPrefix({ browsers: ["last 2 versions"] }),
-                new LessPluginCleanCSS({ advanced: true })
-              ]
+              plugins: [new LessPluginCleanCSS({ advanced: true })]
             }
           }
         ])
