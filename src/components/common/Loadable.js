@@ -1,5 +1,5 @@
-import ReactLoadable from 'react-loadable';
-import Loading from './Loading';
+import ReactLoadable from "react-loadable";
+import Loading from "./Loading";
 
 const Loadable = opts =>
   ReactLoadable({

@@ -2,7 +2,7 @@ const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const config = require("../../config");
 
-const proxy = "localhost";
+const proxy = process.env.DEV_PROXY || "localhost";
 
 module.exports = {
   entry: [

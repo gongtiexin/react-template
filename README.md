@@ -9,6 +9,7 @@ npm run eslint//检查一次
 ## 运行代码
 ```
 npm run dev
+//DEV_PROXY=localhost yarn run dev_recommend-system
 ```
 ## 打包代码
 ```
