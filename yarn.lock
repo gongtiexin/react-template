@@ -2432,11 +2432,11 @@ ecc-jsbn@~0.1.1:
   dependencies:
     jsbn "~0.1.0"
 
-echarts@^3.8.0:
-  version "3.8.5"
-  resolved "http://registry.npm.taobao.org/echarts/download/echarts-3.8.5.tgz#58e4a51d2743c6fb75257b0dc0a9cf9f5378ac0e"
+echarts@^4.0.2:
+  version "4.0.2"
+  resolved "http://registry.npm.taobao.org/echarts/download/echarts-4.0.2.tgz#c405e9e479af982383c8ae2b5946e52d058c6220"
   dependencies:
-    zrender "3.7.4"
+    zrender "4.0.1"
 
 ee-first@1.1.1:
   version "1.1.1"
@@ -7724,9 +7724,9 @@ unzip-response@^1.0.2:
   version "1.0.2"
   resolved "http://registry.npm.taobao.org/unzip-response/download/unzip-response-1.0.2.tgz#b984f0877fc0a89c2c773cc1ef7b5b232b5b06fe"
 
-up-utils@2.0.0:
-  version "2.0.0"
-  resolved "http://registry.npm.taobao.org/up-utils/download/up-utils-2.0.0.tgz#2ab521011b608de16c3c045fca84ec7aaba76096"
+up-utils@3.0.0:
+  version "3.0.0"
+  resolved "http://registry.npm.taobao.org/up-utils/download/up-utils-3.0.0.tgz#8a71cc32cb4ff0e8efd992a99506e3d5fe008fed"
   dependencies:
     babel-runtime "^6.26.0"
     lodash "^4.17.4"
@@ -8207,6 +8207,6 @@ yauzl@^2.2.1:
     buffer-crc32 "~0.2.3"
     fd-slicer "~1.0.1"
 
-zrender@3.7.4:
-  version "3.7.4"
-  resolved "http://registry.npm.taobao.org/zrender/download/zrender-3.7.4.tgz#f847d53948481ef6d42906d1ea9aeec7acbefdf2"
+zrender@4.0.1:
+  version "4.0.1"
+  resolved "http://registry.npm.taobao.org/zrender/download/zrender-4.0.1.tgz#961e77abc5042eaa624b5230f8d673bf648298e9"

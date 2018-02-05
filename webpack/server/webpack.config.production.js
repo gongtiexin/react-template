@@ -67,9 +67,7 @@ module.exports = {
             options: {
               // 覆盖antd样式的全局变量
               modifyVars: config.modifyVars,
-              plugins: [
-                new LessPluginCleanCSS({ advanced: true })
-              ]
+              plugins: [new LessPluginCleanCSS({ advanced: true })]
             }
           }
         ])

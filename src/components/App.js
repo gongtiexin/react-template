@@ -22,7 +22,7 @@ export default class App extends Component {
           }}
         >
           <PanelBody id="test" style={{ padding: "24px" }}>
-            <h2>前段项目模板</h2>
+            <h2>前端项目模板</h2>
           </PanelBody>
         </div>
         <DevTools />

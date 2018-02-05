@@ -5,9 +5,11 @@ import request from "../utils/axios";
 
 export default class DemoState {
   @observable data;
+  @observable echarts;
 
   constructor() {
     this.data = "hello, world";
+    this.echarts = [{ x: "重庆", y: "2018", value: "666", seriesType: "bar" }];
   }
 
   /**
@@ -60,6 +62,11 @@ export default class DemoState {
   @action
   setData(data) {
     this.data = data;
+  }
+
+  @action
+  setEcharts(data = []) {
+    this.echarts = data;
   }
 
   /**

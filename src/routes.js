@@ -11,10 +11,10 @@ const routes = [
     })
   },
   {
-    path: "/test1",
+    path: "/echarts",
     component: Loadable({
       loader: () =>
-        import(/* webpackChunkName: "test-1" */ "./components/Test1")
+        import(/* webpackChunkName: "test-echarts" */ "./components/TestEcharts")
     })
   },
   {

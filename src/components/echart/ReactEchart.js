@@ -1,18 +1,28 @@
 /**
  * React Echarts Component
+ * option: {
+ *   option: 基础配置项,
+ *   data: 数据源,
+ *   row: 横坐标上的属性(对于data里面的key),
+ *   column: 纵坐标上的属性(对于data里面的key),
+ *   value: 图上的属性(对于data里面的key),
+ *   seriesTempletes: 每个series的配置
+ *   }
  */
 import React, { Component } from "react";
+import { observer } from "mobx-react";
 import echarts from "echarts";
+import { computedEchartsOption } from "up-utils";
 import lodashIsEqual from "lodash/isEqual";
-import { inject, observer } from "mobx-react";
 import PropTypes from "prop-types";
 
-@inject("store")
 @observer
 export default class ReactEchart extends Component {
   static propTypes = {
     option: PropTypes.object.isRequired,
-    style: PropTypes.object
+    style: PropTypes.object,
+    action: PropTypes.string,
+    onClick: PropTypes.func
   };
 
   static defaultProps = {
@@ -40,17 +50,13 @@ export default class ReactEchart extends Component {
     }
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate(nextProps) {
+    const option = this.myChart.getOption();
     return (
-      !lodashIsEqual(nextProps, this.props) ||
-      !lodashIsEqual(nextState, this.state)
+      option === undefined ||
+      !lodashIsEqual(option.dataset, nextProps.option.dataset)
     );
   }
-
-  // shouldComponentUpdate(nextProps) {
-  //   const option = this.myChart.getOption();
-  //   return option === undefined || !lodashIsEqual(option.series.map(i => i.data), nextProps.option.series.map(i => i.data));
-  // }
 
   componentWillUpdate() {
     this.myChart.clear();
@@ -68,9 +74,19 @@ export default class ReactEchart extends Component {
   reset = () => this.setState({ isReset: true });
 
   render() {
-    const { option } = this.props;
-    if (option) {
-      this.myChart.setOption(option);
+    const { option, action, onClick } = this.props;
+    if (this.myChart) {
+      if (option) {
+        this.myChart.setOption(computedEchartsOption(option));
+      }
+      if (action) {
+        this.myChart.dispatchAction(action);
+      }
+      if (onClick && typeof onClick === "function") {
+        this.myChart.on("click", params => {
+          onClick(params);
+        });
+      }
     }
 
     return (
