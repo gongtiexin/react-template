@@ -11,8 +11,9 @@ import "./stores/stores";
 import "./styles/main.less";
 import Loadable from "./components/common/Loadable";
 
-const asyncApp = Loadable({
-  loader: () => import(/* webpackChunkName: "root-app" */ "./components/App")
+const LoadableApp = Loadable({
+  loader: () =>
+    import(/* webpackChunkName: "loadable-app" */ "./components/App")
 });
 
 /**
@@ -27,7 +28,7 @@ const renderApp = () => {
     <Provider store={isProduction ? store : hotRehydrate()}>
       <Router>
         <LocaleProvider locale={zhCN}>
-          <Route path="/" component={asyncApp} />
+          <Route path="/" component={LoadableApp} />
         </LocaleProvider>
       </Router>
     </Provider>,

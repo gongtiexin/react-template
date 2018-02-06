@@ -7,21 +7,21 @@ const routes = [
   {
     path: "/test",
     component: Loadable({
-      loader: () => import(/* webpackChunkName: "test" */ "./components/Test")
+      loader: () => import(/* webpackChunkName: "loadable-test" */ "./components/Test")
     })
   },
   {
     path: "/echarts",
     component: Loadable({
       loader: () =>
-        import(/* webpackChunkName: "test-echarts" */ "./components/TestEcharts")
+        import(/* webpackChunkName: "loadable-test-echarts" */ "./components/TestEcharts")
     })
   },
   {
     path: "/test2",
     component: Loadable({
       loader: () =>
-        import(/* webpackChunkName: "test-2" */ "./components/Test2")
+        import(/* webpackChunkName: "loadable-test-2" */ "./components/Test2")
     })
   }
 ];

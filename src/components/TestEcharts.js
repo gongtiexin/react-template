@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
-import ReactEchart from "./echart/ReactEchart";
 import { ECHARTS_DEFULT_OPTION } from "../utils/constants";
+import Loadable from "./common/Loadable";
+
+const LoadableReactEchart = Loadable({
+  loader: () =>
+    import(/* webpackChunkName: "loadable-react-echart" */ "./echart/ReactEchart")
+});
 
 @inject("store")
 @observer
@@ -20,7 +25,7 @@ export default class TestEcharts extends Component {
   render() {
     const { echarts } = this.props.store.demoState;
     return (
-      <ReactEchart
+      <LoadableReactEchart
         option={{
           option: ECHARTS_DEFULT_OPTION,
           data: echarts,
