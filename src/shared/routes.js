@@ -7,7 +7,8 @@ const routes = [
   {
     path: "/test",
     component: Loadable({
-      loader: () => import(/* webpackChunkName: "loadable-test" */ "./components/Test")
+      loader: () =>
+        import(/* webpackChunkName: "loadable-test" */ "./components/Test")
     })
   },
   {

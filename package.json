@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "description": "Front end project template",
   "scripts": {
-    "dev-ssr": "node bin/server.js",
-    "build-ssr": "rimraf ./dist && webpack --progress --config webpack/server/webpack.config.production.js",
-    "dev": "webpack-dev-server --config webpack/client/webpack.config.js",
-    "build": "rimraf ./dist && webpack --progress --config webpack/client/webpack.config.production.js",
-    "loading": "rimraf ./dist/static/html/loading && webpack --config static/html/loading/webpack.config.loading.js",
-    "login": "rimraf ./dist/static/html/login && webpack --config static/html/login/webpack.config.login.js",
+    "ssr": "node bin/server.js",
+    "build-ssr": "rimraf ./dist && webpack --progress --config webpack/server/webpack.server.config.js",
+    "dev": "webpack-dev-server --config webpack/client/webpack.client.config.js",
+    "build": "rimraf ./dist && webpack --progress --config webpack/client/webpack.client.config.production.js",
+    "loading": "rimraf ./dist/static/html/loading && webpack --config static/html/loading/webpack.loading.config.js",
+    "login": "rimraf ./dist/static/html/login && webpack --config static/html/login/webpack.login.config.js",
     "eslint": "eslint \"src/**\" --fix"
   },
   "keywords": [

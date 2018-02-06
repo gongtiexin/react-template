@@ -7,13 +7,14 @@ import { hotRehydrate, rehydrate } from "rfx-core";
 import { Settings } from "luxon";
 import { LocaleProvider } from "antd";
 import zhCN from "antd/lib/locale-provider/zh_CN";
-import { isProduction } from "../utils/constants";
-import "../stores/stores";
-import "../styles/main.less";
-import Loadable from "../components/common/Loadable";
+import { isProduction } from "../shared/utils/constants";
+import "../shared/stores/stores";
+import "../shared/styles/main.less";
+import Loadable from "../shared/components/common/Loadable";
 
-const asyncApp = Loadable({
-  loader: () => import(/* webpackChunkName: "app" */ "../components/App")
+const LoadableApp = Loadable({
+  loader: () =>
+    import(/* webpackChunkName: "loadable-app" */ "../shared/components/App")
 });
 
 /**
@@ -28,7 +29,7 @@ const renderApp = () => {
     <Provider store={isProduction ? store : hotRehydrate()}>
       <Router>
         <LocaleProvider locale={zhCN}>
-          <Route path="/" component={asyncApp} />
+          <Route path="/" component={LoadableApp} />
         </LocaleProvider>
       </Router>
     </Provider>,

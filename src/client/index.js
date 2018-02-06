@@ -6,14 +6,14 @@ import { hotRehydrate, rehydrate } from "rfx-core";
 import { Settings } from "luxon";
 import { LocaleProvider } from "antd";
 import zhCN from "antd/lib/locale-provider/zh_CN";
-import { isProduction } from "./utils/constants";
-import "./stores/stores";
-import "./styles/main.less";
-import Loadable from "./components/common/Loadable";
+import { isProduction } from "../shared/utils/constants";
+import "../shared/stores/stores";
+import "../shared/styles/main.less";
+import Loadable from "../shared/components/common/Loadable";
 
 const LoadableApp = Loadable({
   loader: () =>
-    import(/* webpackChunkName: "loadable-app" */ "./components/App")
+    import(/* webpackChunkName: "loadable-app" */ "../shared/components/App")
 });
 
 /**

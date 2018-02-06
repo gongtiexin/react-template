@@ -9,14 +9,12 @@ import { getBundles } from "react-loadable/webpack";
 import webpack from "webpack";
 import webpackDevMiddleware from "webpack-dev-middleware";
 import webpackHotMiddleware from "webpack-hot-middleware";
-import developConfig from "../../webpack/server/webpack.config";
-import productionConfig from "../../webpack/server/webpack.config.production";
-import { isProduction } from "../utils/constants";
-import App from "../components/App";
-import store from "../stores/stores";
+import config from "../../webpack/server/webpack.server.config";
+import { isProduction } from "../shared/utils/constants";
+import App from "../shared/components/App";
+import store from "../shared/stores/stores";
 import stats from "../../dist/react-loadable.json";
 
-const config = isProduction ? productionConfig : developConfig;
 const compiler = webpack(config);
 const initStore = store.inject();
 

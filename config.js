@@ -8,7 +8,8 @@ module.exports = {
       SERVER: false
     },
     entry: {
-      app: path.resolve(__dirname, "./src/index"),
+      app: path.resolve(__dirname, "./src/client/index"),
+      ssrApp: path.resolve(__dirname, "./src/server/index"),
       vendor: [
         "babel-polyfill",
         "react",
@@ -49,7 +50,8 @@ module.exports = {
       port: 3000
     },
     entry: {
-      app: path.resolve(__dirname, "./src/index"),
+      app: path.resolve(__dirname, "./src/client/index"),
+      ssrApp: path.resolve(__dirname, "./src/server/index"),
       html: path.resolve(__dirname, "./index.html")
     },
     output: {

@@ -22,7 +22,7 @@ module.exports = {
   },
   entry: {
     vendor: config.build.entry.vendor,
-    app: ["babel-polyfill", config.build.entry.app]
+    app: ["babel-polyfill", config.build.entry.ssrApp]
   },
   output: {
     path: config.build.output.path,
