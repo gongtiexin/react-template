@@ -9,6 +9,10 @@ import { PanelBody } from "./common/Panel";
 @withRouter
 @observer
 export default class App extends Component {
+  renderRoute = ({ path, component }) => (
+    <Route key={path} path={path} component={component} exact />
+  );
+
   render() {
     return (
       <div>
@@ -26,9 +30,7 @@ export default class App extends Component {
           </PanelBody>
         </div>
         <DevTools />
-        {routes.map(({ path, component }) => (
-          <Route key={path} path={path} component={component} exact />
-        ))}
+        {routes.map(this.renderRoute)}
       </div>
     );
   }
