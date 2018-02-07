@@ -38,15 +38,7 @@ module.exports = {
         loader: "babel-loader",
         options: {
           babelrc: false,
-          plugins: [
-            "dynamic-import-node",
-            [
-              "import-inspector",
-              {
-                serverSideRequirePath: true
-              }
-            ]
-          ]
+          plugins: []
         }
       },
       {

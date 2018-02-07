@@ -20,16 +20,8 @@ module.exports = {
     historyApiFallback: true,
     disableHostCheck: true,
     proxy: {
-      "/sign": {
-        target: `http://${proxy}:20011`,
-        changeOrigin: true
-      },
       "/api": {
-        target: `http://${proxy}:20011`,
-        changeOrigin: true
-      },
-      "/pubapi": {
-        target: `http://${proxy}:38081`,
+        target: `http://${proxy}:00000`,
         changeOrigin: true
       }
     }
