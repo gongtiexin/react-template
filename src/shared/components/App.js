@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { withRouter, Route } from "react-router-dom";
 import { inject, observer } from "mobx-react";
 import DevTools from "mobx-react-devtools";
@@ -15,14 +15,14 @@ export default class App extends Component {
 
   render() {
     return (
-      <div>
+      <Fragment>
         {/* 建议不写内链样式,这里偷懒 */}
         <div
           style={{
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            height: "350px"
+            height: "350px",
           }}
         >
           <PanelBody id="test" style={{ padding: "24px" }}>
@@ -31,7 +31,7 @@ export default class App extends Component {
         </div>
         <DevTools />
         {routes.map(this.renderRoute)}
-      </div>
+      </Fragment>
     );
   }
 }

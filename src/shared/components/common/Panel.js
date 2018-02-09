@@ -16,7 +16,7 @@ Panel.propTypes = {
   children: PropTypes.element.isRequired,
   className: PropTypes.string,
   id: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
 };
 
 export function PanelHeader({ children, className, id, style }) {
@@ -31,7 +31,7 @@ PanelHeader.propTypes = {
   children: PropTypes.element.isRequired,
   className: PropTypes.string,
   id: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
 };
 
 export function PanelBody({ children, className, id, style }) {
@@ -46,5 +46,5 @@ PanelBody.propTypes = {
   children: PropTypes.element.isRequired,
   className: PropTypes.string,
   id: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
 };

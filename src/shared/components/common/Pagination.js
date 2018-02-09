@@ -15,8 +15,8 @@ export default class Pagination extends Component {
       currentPage: PropTypes.number,
       totalElements: PropTypes.number,
       showSizeChanger: PropTypes.bool,
-      onChange: PropTypes.func
-    })
+      onChange: PropTypes.func,
+    }),
   };
 
   static defaultProps = {
@@ -25,8 +25,8 @@ export default class Pagination extends Component {
       currentPage: 1,
       totalElements: 0,
       showSizeChanger: false,
-      onChange: (_page, _size) => console.log(_page, _size)
-    }
+      onChange: (_page, _size) => console.log(_page, _size),
+    },
   };
 
   onShowSizeChange = (current, pageSize) => {
@@ -44,7 +44,7 @@ export default class Pagination extends Component {
       pageSize,
       currentPage,
       totalElements,
-      showSizeChanger
+      showSizeChanger,
     } = this.props.paginationProps;
 
     return (

@@ -15,7 +15,7 @@
     "react"
   ],
   "rules": {
-    "prettier/prettier": "error",
+    "prettier/prettier": ["error", { "trailingComma": "es5" }],
     "react/jsx-filename-extension": [
       0,
       {

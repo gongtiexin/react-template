@@ -6,7 +6,7 @@
  *   row: 横坐标上的属性(对于data里面的key),
  *   column: 纵坐标上的属性(对于data里面的key),
  *   value: 图上的属性(对于data里面的key),
- *   seriesTempletes: 每个series的配置
+ *   seriesTemplates: 每个series的配置
  *   }
  */
 import React, { Component } from "react";
@@ -22,14 +22,14 @@ export default class ReactEchart extends Component {
     option: PropTypes.object.isRequired,
     style: PropTypes.object,
     action: PropTypes.string,
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
   };
 
   static defaultProps = {
     style: {
       width: "100%",
-      height: "600px"
-    }
+      height: "600px",
+    },
   };
 
   constructor(props) {
@@ -39,7 +39,7 @@ export default class ReactEchart extends Component {
   }
 
   state = {
-    isReset: false
+    isReset: false,
   };
 
   componentDidMount() {

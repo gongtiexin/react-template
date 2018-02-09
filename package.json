@@ -67,7 +67,6 @@
     "echarts": "^4.0.2",
     "enquire.js": "^2.1.6",
     "express": "^4.16.2",
-    "up-utils": "3.0.0",
     "less-plugin-clean-css": "^1.5.1",
     "lodash": "^4.17.5",
     "luxon": "^0.4.0",
@@ -85,6 +84,7 @@
     "react-router-dom": "^4.2.2",
     "rfx-core": "^1.5.3",
     "rxjs": "^5.5.6",
+    "up-utils": "3.1.0",
     "uuid": "^3.2.1",
     "webpack-hot-middleware": "^2.21.0"
   }

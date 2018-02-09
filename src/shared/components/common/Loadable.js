@@ -6,7 +6,7 @@ const Loadable = opts =>
     loading: Loading,
     delay: 300,
     timeout: 10000,
-    ...opts
+    ...opts,
   });
 
 export default Loadable;

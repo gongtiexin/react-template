@@ -13,7 +13,7 @@ import Loadable from "../shared/components/common/Loadable";
 
 const LoadableApp = Loadable({
   loader: () =>
-    import(/* webpackChunkName: "loadable-app" */ "../shared/components/App")
+    import(/* webpackChunkName: "loadable-app" */ "../shared/components/App"),
 });
 
 /**

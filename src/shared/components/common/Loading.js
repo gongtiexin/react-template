@@ -15,7 +15,7 @@ const Loading = props => {
 Loading.propTypes = {
   error: PropTypes.object,
   timedOut: PropTypes.bool,
-  pastDelay: PropTypes.bool
+  pastDelay: PropTypes.bool,
 };
 
 export default Loading;

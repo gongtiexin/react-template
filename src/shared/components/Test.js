@@ -14,7 +14,7 @@ export default class Test extends Component {
             width: 200,
             height: 100,
             backgroundColor: "#F00",
-            transform: "rotateY(60deg)"
+            transform: "rotateY(60deg)",
           }}
         />
         <div
@@ -22,7 +22,7 @@ export default class Test extends Component {
             width: 200,
             height: 100,
             backgroundColor: "#F00",
-            transform: "rotateY(45deg)"
+            transform: "rotateY(45deg)",
           }}
         />
         <div
@@ -30,7 +30,7 @@ export default class Test extends Component {
             width: 200,
             height: 100,
             backgroundColor: "#F00",
-            transform: "rotateY(0deg)"
+            transform: "rotateY(0deg)",
           }}
         />
         <div
@@ -38,7 +38,7 @@ export default class Test extends Component {
             width: 200,
             height: 100,
             backgroundColor: "#F00",
-            transform: "rotateY(-45deg)"
+            transform: "rotateY(-45deg)",
           }}
         />
         <div
@@ -46,7 +46,7 @@ export default class Test extends Component {
             width: 200,
             height: 100,
             backgroundColor: "#F00",
-            transform: "rotateY(-60deg)"
+            transform: "rotateY(-60deg)",
           }}
         />
       </div>

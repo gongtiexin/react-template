@@ -12,7 +12,7 @@ import { breadcrumbNameMap, routes } from "../../routes";
 @observer
 export default class FtBreadcrumb extends Component {
   static propTypes = {
-    location: PropTypes.object.isRequired
+    location: PropTypes.object.isRequired,
   };
 
   render() {
@@ -38,7 +38,7 @@ export default class FtBreadcrumb extends Component {
     const breadcrumbItems = [
       <AntdBreadcrumb.Item key="app">
         <Link to="/">首页</Link>
-      </AntdBreadcrumb.Item>
+      </AntdBreadcrumb.Item>,
     ].concat(extraBreadcrumbItems);
 
     return (

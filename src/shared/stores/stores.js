@@ -7,5 +7,5 @@ import { store } from "rfx-core";
 import DemoState from "./DemoState";
 
 export default store.setup({
-  demoState: DemoState
+  demoState: DemoState,
 });

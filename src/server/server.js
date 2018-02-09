@@ -26,7 +26,7 @@ app.use(
 app.use(
   webpackDevMiddleware(compiler, {
     noInfo: true,
-    publicPath: config.output.publicPath
+    publicPath: config.output.publicPath,
   })
 );
 app.use(webpackHotMiddleware(compiler));
