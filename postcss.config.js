@@ -2,8 +2,8 @@ module.exports = {
   plugins: {
     "postcss-cssnext": {},
     "css-declaration-sorter": {
-      order: "concentric-css"
+      order: "concentric-css",
     },
-    "css-mqpacker": {}
-  }
+    "css-mqpacker": {},
+  },
 };

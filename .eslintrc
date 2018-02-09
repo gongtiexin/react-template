@@ -5,15 +5,13 @@
   },
   "extends": [
     "airbnb",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings"
   ],
   "parser": "babel-eslint",
-  "plugins": [
-    "prettier",
-    "import",
-    "jsx-a11y",
-    "react"
-  ],
   "rules": {
     "prettier/prettier": ["error", { "trailingComma": "es5" }],
     "react/jsx-filename-extension": [
