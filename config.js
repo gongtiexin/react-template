@@ -1,5 +1,14 @@
 const path = require("path");
 
+const entry = path.resolve(__dirname, "./src/client/index");
+const ssrEntry = path.resolve(__dirname, "./src/server/index");
+const indexHtml = path.resolve(__dirname, "./index.html");
+const root = path.resolve(__dirname);
+const srcRoot = path.resolve(__dirname, "./src");
+const distRoot = path.resolve(__dirname, "./dist");
+const staticRoot = path.resolve(__dirname, "./static");
+const distStatic = path.resolve(__dirname, "./dist/static");
+
 module.exports = {
   build: {
     env: {
@@ -8,8 +17,8 @@ module.exports = {
       SERVER: false,
     },
     entry: {
-      app: path.resolve(__dirname, "./src/client/index"),
-      ssrApp: path.resolve(__dirname, "./src/server/index"),
+      app: entry,
+      ssrApp: ssrEntry,
       vendor: [
         "babel-polyfill",
         "react",
@@ -18,20 +27,20 @@ module.exports = {
         "mobx",
         "mobx-react",
       ],
-      html: path.resolve(__dirname, "./index.html"),
-      srcRoot: path.resolve(__dirname, "./src"),
-      staticRoot: path.resolve(__dirname, "./static"),
+      html: indexHtml,
+      srcRoot,
+      staticRoot,
     },
     output: {
-      path: path.resolve(__dirname, "./dist"),
-      staticRoot: path.resolve(__dirname, "./dist/static"),
+      path: distRoot,
+      staticRoot: distStatic,
       publicPath: "/",
     },
     plugins: {
       CopyWebpackPlugin: [
         {
-          from: path.resolve(__dirname, "./static"),
-          to: path.resolve(__dirname, "./dist/static"),
+          from: staticRoot,
+          to: distStatic,
           ignore: ["html/loading/*.*", "html/login/*.*"],
         },
       ],
@@ -50,16 +59,15 @@ module.exports = {
       port: 3000,
     },
     entry: {
-      app: path.resolve(__dirname, "./src/client/index"),
-      ssrApp: path.resolve(__dirname, "./src/server/index"),
-      html: path.resolve(__dirname, "./index.html"),
+      app: entry,
+      html: indexHtml,
     },
     output: {
-      path: path.resolve(__dirname, "./dist"),
+      path: distRoot,
       publicPath: "/",
     },
   },
-  root: path.resolve(__dirname),
+  root,
   modifyVars: {
     "icon-url": "'/static/antdIconfont/iconfont'",
   },

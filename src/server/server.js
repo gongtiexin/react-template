@@ -10,7 +10,7 @@ import webpack from "webpack";
 import webpackDevMiddleware from "webpack-dev-middleware";
 import webpackHotMiddleware from "webpack-hot-middleware";
 import config from "../../webpack/server/webpack.server.config";
-import { isProduction } from "../shared/utils/constants";
+// import { isProduction } from "../shared/utils/constants";
 import App from "../shared/components/App";
 import store from "../shared/stores/stores";
 import stats from "../../dist/react-loadable.json";
@@ -31,26 +31,26 @@ app.use(
 );
 app.use(webpackHotMiddleware(compiler));
 
-const initScript = () => {
-  if (isProduction) {
-    return `
-    <script src="/assets/app.js"></script>
-    <script src="/assets/vendor.js"></script>
-    <script src="/assets/runtime.js"></script>
-    `;
-  }
-  return '<script src="bundle.js"></script>';
-};
-
-const initStylesheet = () => {
-  if (isProduction) {
-    return `
-    <link href="/stylesheets/app-one.css" rel="stylesheet">
-    <link href="/stylesheets/app-two.css" rel="stylesheet">
-    `;
-  }
-  return "";
-};
+// const initScript = () => {
+//   if (isProduction) {
+//     return `
+//     <script src="/assets/app.js"></script>
+//     <script src="/assets/vendor.js"></script>
+//     <script src="/assets/runtime.js"></script>
+//     `;
+//   }
+//   return '<script src="bundle.js"></script>';
+// };
+//
+// const initStylesheet = () => {
+//   if (isProduction) {
+//     return `
+//     <link href="/stylesheets/app-one.css" rel="stylesheet">
+//     <link href="/stylesheets/app-two.css" rel="stylesheet">
+//     `;
+//   }
+//   return "";
+// };
 
 const initHtml = (html, styles, scripts) => `
   <!doctype html>
