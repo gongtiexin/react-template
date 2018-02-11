@@ -8199,9 +8199,9 @@ unzip-response@^1.0.2:
   version "1.0.2"
   resolved "http://registry.npm.taobao.org/unzip-response/download/unzip-response-1.0.2.tgz#b984f0877fc0a89c2c773cc1ef7b5b232b5b06fe"
 
-up-utils@3.1.0:
-  version "3.1.0"
-  resolved "http://registry.npm.taobao.org/up-utils/download/up-utils-3.1.0.tgz#0a137222ec4c7b07b57dbcebf94ef4b9ef458ffb"
+up-utils@3.3.0:
+  version "3.3.0"
+  resolved "http://registry.npm.taobao.org/up-utils/download/up-utils-3.3.0.tgz#52cf3aa2b7912b4c33406dabc848eb7b77334718"
   dependencies:
     babel-runtime "^6.26.0"
     lodash "^4.17.4"
