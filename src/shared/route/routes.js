@@ -1,28 +1,28 @@
 /**
  * 配置路由
  */
-import Loadable from "./components/common/Loadable";
+import Loadable from "../components/common/Loadable";
 
 const routes = [
   {
     path: "/test",
     component: Loadable({
       loader: () =>
-        import(/* webpackChunkName: "loadable-test" */ "./components/Test"),
+        import(/* webpackChunkName: "route-test" */ "../components/test/Test"),
     }),
   },
   {
     path: "/echarts",
     component: Loadable({
       loader: () =>
-        import(/* webpackChunkName: "loadable-test-echarts" */ "./components/TestEcharts"),
+        import(/* webpackChunkName: "route-test-echarts" */ "../components/test/TestEcharts"),
     }),
   },
   {
     path: "/test2",
     component: Loadable({
       loader: () =>
-        import(/* webpackChunkName: "loadable-test-2" */ "./components/Test2"),
+        import(/* webpackChunkName: "route-test-inject" */ "../components/test/TestInject"),
     }),
   },
 ];

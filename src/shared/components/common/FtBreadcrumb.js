@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { inject, observer } from "mobx-react";
 import { Breadcrumb as AntdBreadcrumb } from "antd";
 import PropTypes from "prop-types";
-import { breadcrumbNameMap, routes } from "../../routes";
+import { breadcrumbNameMap, routes } from "../../route/routes";
 
 @inject("store")
 @observer

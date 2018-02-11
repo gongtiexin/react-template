@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
 import lodash from "lodash";
-import highlight from "./common/Highlight";
+import highlight from "../common/Highlight";
 
-@inject("store")
+@inject(({ store }) => ({ demoState: store.demoState }))
 @observer
-export default class Test2 extends Component {
+export default class TestInject extends Component {
   componentDidMount() {}
 
   render() {
