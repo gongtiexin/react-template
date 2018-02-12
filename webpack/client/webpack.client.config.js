@@ -6,15 +6,17 @@ const proxy = process.env.DEV_PROXY || "localhost";
 
 module.exports = {
   entry: [
-    `webpack-dev-server/client?http://0.0.0.0:${config.dev.devServer.port}`,
+    `webpack-dev-server/client?http://0.0.0.0:${
+      config.webpack.dev.devServer.port
+    }`,
     "webpack/hot/only-dev-server",
     "babel-polyfill",
-    config.dev.entry.app,
+    config.path.entry,
   ],
   devServer: {
     hot: true,
     contentBase: config.root,
-    port: config.dev.devServer.port,
+    port: config.webpack.dev.devServer.port,
     host: "0.0.0.0",
     publicPath: "/",
     historyApiFallback: true,
@@ -27,8 +29,8 @@ module.exports = {
     },
   },
   output: {
-    path: config.dev.output.path,
-    publicPath: config.dev.output.publicPath,
+    path: config.path.distPath,
+    publicPath: config.webpack.publicPath,
     filename: "app.[hash].js",
   },
   devtool: "cheap-module-source-map",
@@ -88,12 +90,12 @@ module.exports = {
     // 配置的全局常量
     new webpack.DefinePlugin({
       "process.env": {
-        NODE_ENV: JSON.stringify(config.dev.env.NODE_ENV),
+        NODE_ENV: JSON.stringify(config.webpack.dev.env.NODE_ENV),
       },
     }),
     // 显示模块的相对路径
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({ hash: false, template: config.dev.entry.html }),
+    new HtmlWebpackPlugin({ hash: false, template: config.path.indexHtml }),
   ],
 };

@@ -20,16 +20,16 @@ module.exports = {
     },
   },
   entry: {
-    vendor: config.build.entry.vendor,
-    app: ["babel-polyfill", config.build.entry.ssrApp],
+    vendor: config.webpack.build.vendor,
+    app: ["babel-polyfill", config.path.ssrEntry],
   },
   output: {
-    path: config.build.output.path,
-    publicPath: config.build.output.publicPath,
+    path: config.path.distPath,
+    publicPath: config.webpack.publicPath,
     filename: "assets/[name].[chunkhash].js",
     chunkFilename: "assets/[name].[chunkhash].child.js",
   },
-  context: config.build.entry.srcRoot,
+  context: config.path.srcPath,
   target: "node",
   node: {
     __dirname: false,
@@ -39,7 +39,7 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        include: config.build.entry.srcRoot,
+        include: config.path.srcPath,
         loader: "babel-loader",
       },
       {
@@ -97,9 +97,9 @@ module.exports = {
     new webpack.HashedModuleIdsPlugin(),
     new webpack.DefinePlugin({
       "process.env": {
-        NODE_ENV: JSON.stringify(config.build.env.NODE_ENV),
-        __CLIENT__: JSON.stringify(config.build.env.CLIENT),
-        __SERVER__: JSON.stringify(config.build.env.SERVER),
+        NODE_ENV: JSON.stringify(config.webpack.build.env.NODE_ENV),
+        __CLIENT__: JSON.stringify(config.webpack.build.env.CLIENT),
+        __SERVER__: JSON.stringify(config.webpack.build.env.SERVER),
       },
     }),
     new webpack.optimize.CommonsChunkPlugin({
@@ -144,7 +144,7 @@ module.exports = {
     // }),
     extractCSS,
     extractLESS,
-    // new CopyWebpackPlugin(config.build.plugins.CopyWebpackPlugin),
+    // new CopyWebpackPlugin(config.webpack.build.plugins.CopyWebpackPlugin),
     new webpack.optimize.ModuleConcatenationPlugin(),
     new ReactLoadablePlugin({
       filename: config.build.plugins.ReactLoadablePlugin.filename,

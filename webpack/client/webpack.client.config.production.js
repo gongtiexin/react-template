@@ -21,12 +21,12 @@ module.exports = {
     },
   },
   entry: {
-    vendor: config.build.entry.vendor,
-    app: ["babel-polyfill", config.build.entry.app],
+    vendor: config.webpack.build.vendor,
+    app: ["babel-polyfill", config.path.entry],
   },
   output: {
-    path: config.build.output.path,
-    publicPath: config.build.output.publicPath,
+    path: config.path.distPath,
+    publicPath: config.webpack.publicPath,
     filename: "assets/[name].[chunkhash].js",
     chunkFilename: "assets/[name].[chunkhash].child.js",
   },
@@ -34,7 +34,7 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        include: config.build.entry.srcRoot,
+        include: config.path.srcPath,
         loader: "babel-loader",
       },
       {
@@ -95,7 +95,7 @@ module.exports = {
     // 配置的全局常量
     new webpack.DefinePlugin({
       "process.env": {
-        NODE_ENV: JSON.stringify(config.build.env.NODE_ENV),
+        NODE_ENV: JSON.stringify(config.webpack.build.env.NODE_ENV),
       },
     }),
     new webpack.optimize.CommonsChunkPlugin({
@@ -143,9 +143,9 @@ module.exports = {
     extractLESS,
     new HtmlWebpackPlugin({
       hash: false,
-      template: config.build.entry.html,
+      template: config.path.indexHtml,
     }),
-    new CopyWebpackPlugin(config.build.plugins.CopyWebpackPlugin),
+    new CopyWebpackPlugin(config.webpack.build.plugins.CopyWebpackPlugin),
     // 作用域提升
     new webpack.optimize.ModuleConcatenationPlugin(),
   ],
