@@ -14,6 +14,8 @@ import Loadable from "../shared/components/common/Loadable";
 const LoadableApp = Loadable({
   loader: () =>
     import(/* webpackChunkName: "route-app" */ "../shared/components/App"),
+  // modules: ["../shared/components/App"],
+  // webpack: () => [require.resolveWeak("../shared/components/App")],
 });
 
 /**
@@ -39,7 +41,7 @@ const renderApp = () => {
 function run() {
   renderApp();
   if (module.hot) {
-    module.hot.accept(() => renderApp());
+    module.hot.accept(renderApp);
   }
 }
 

@@ -4,11 +4,11 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const { ReactLoadablePlugin } = require("react-loadable/webpack");
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const extractCSS = new ExtractTextPlugin({
-  filename: "stylesheets/[name].[contenthash]-css.css",
+  filename: "stylesheets/extract-css.css",
   allChunks: true,
 });
 const extractLESS = new ExtractTextPlugin({
-  filename: "stylesheets/[name].[contenthash]-less.css",
+  filename: "stylesheets/extract-less.css",
   allChunks: true,
 });
 const config = require("../../config");
@@ -26,8 +26,14 @@ module.exports = {
   output: {
     path: config.build.output.path,
     publicPath: config.build.output.publicPath,
-    filename: "assets/[name].[chunkhash:4].js",
-    chunkFilename: "assets/[name].[chunkhash:4].child.js",
+    filename: "assets/[name].[chunkhash].js",
+    chunkFilename: "assets/[name].[chunkhash].child.js",
+  },
+  context: config.build.entry.srcRoot,
+  target: "node",
+  node: {
+    __dirname: false,
+    __filename: false,
   },
   module: {
     rules: [
@@ -35,10 +41,6 @@ module.exports = {
         test: /\.js$/,
         include: config.build.entry.srcRoot,
         loader: "babel-loader",
-        options: {
-          babelrc: false,
-          plugins: [],
-        },
       },
       {
         test: /\.css$/,
@@ -92,6 +94,7 @@ module.exports = {
   },
   plugins: [
     // new BundleAnalyzerPlugin(),
+    new webpack.HashedModuleIdsPlugin(),
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: JSON.stringify(config.build.env.NODE_ENV),
@@ -99,8 +102,6 @@ module.exports = {
         __SERVER__: JSON.stringify(config.build.env.SERVER),
       },
     }),
-    new webpack.NamedModulesPlugin(),
-    new webpack.optimize.OccurrenceOrderPlugin(true),
     new webpack.optimize.CommonsChunkPlugin({
       name: ["vendor", "runtime"],
       minChunks: Infinity,
@@ -114,36 +115,36 @@ module.exports = {
     //   // (模块必须被3个入口chunk共享)
     //   minChunks: 3,
     // }),
-    // new webpack.optimize.CommonsChunkPlugin({
-    //   // (选择所有被选chunks的子chunks)
-    //   children: true,
-    //   // (异步加载)
-    //   async: true,
-    //   // (在提取之前需要至少三个子chunk共享这个模块)
-    //   minChunks: 3,
-    // }),
-    new webpack.optimize.UglifyJsPlugin({
-      uglifyOptions: {
-        minimize: true,
-        ie8: false,
-        output: {
-          comments: false,
-          beautify: false,
-        },
-        mangle: {
-          keep_fnames: true,
-        },
-        compress: {
-          warnings: false,
-          drop_console: true,
-          drop_debugger: true,
-          unused: true,
-        },
-      },
+    new webpack.optimize.CommonsChunkPlugin({
+      // (选择所有被选chunks的子chunks)
+      children: true,
+      // (异步加载)
+      async: true,
+      // (在提取之前需要至少三个子chunk共享这个模块)
+      minChunks: 3,
     }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   uglifyOptions: {
+    //     minimize: true,
+    //     ie8: false,
+    //     output: {
+    //       comments: false,
+    //       beautify: false,
+    //     },
+    //     mangle: {
+    //       keep_fnames: true,
+    //     },
+    //     compress: {
+    //       warnings: false,
+    //       drop_console: true,
+    //       drop_debugger: true,
+    //       unused: true,
+    //     },
+    //   },
+    // }),
     extractCSS,
     extractLESS,
-    new CopyWebpackPlugin(config.build.plugins.CopyWebpackPlugin),
+    // new CopyWebpackPlugin(config.build.plugins.CopyWebpackPlugin),
     new webpack.optimize.ModuleConcatenationPlugin(),
     new ReactLoadablePlugin({
       filename: config.build.plugins.ReactLoadablePlugin.filename,

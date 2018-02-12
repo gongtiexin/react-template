@@ -60,6 +60,7 @@ module.exports = {
     },
     entry: {
       app: entry,
+      ssrApp: ssrEntry,
       html: indexHtml,
     },
     output: {

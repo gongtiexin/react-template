@@ -4,7 +4,7 @@ import React from "react";
 import { renderToString } from "react-dom/server";
 import { StaticRouter as Router } from "react-router-dom";
 import { Provider } from "mobx-react";
-import ReactLoadable from "react-loadable";
+import ReactLoadable, { Capture } from "react-loadable";
 import { getBundles } from "react-loadable/webpack";
 import webpack from "webpack";
 import webpackDevMiddleware from "webpack-dev-middleware";
@@ -15,14 +15,29 @@ import App from "../shared/components/App";
 import store from "../shared/stores/stores";
 import stats from "../../dist/react-loadable.json";
 
+// fix TypeError: require.ensure is not a function
+const proto = Object.getPrototypeOf(require);
+!proto.hasOwnProperty("ensure") &&
+  Object.defineProperties(proto, {
+    ensure: {
+      value: function ensure(modules, callback) {
+        callback(this);
+      },
+      writable: false,
+    },
+    include: {
+      value: function include() {},
+      writable: false,
+    },
+  });
+
 const compiler = webpack(config);
 const initStore = store.inject();
 
 const app = express();
-app.use(
-  "/node_modules",
-  express.static(path.join(__dirname, "../node_modules"))
-);
+
+// 托管静态文件到虚拟目录
+app.use("/static", express.static(path.join(__dirname, "../../static")));
 app.use(
   webpackDevMiddleware(compiler, {
     noInfo: true,
@@ -31,26 +46,9 @@ app.use(
 );
 app.use(webpackHotMiddleware(compiler));
 
-// const initScript = () => {
-//   if (isProduction) {
-//     return `
-//     <script src="/assets/app.js"></script>
-//     <script src="/assets/vendor.js"></script>
-//     <script src="/assets/runtime.js"></script>
-//     `;
-//   }
-//   return '<script src="bundle.js"></script>';
-// };
-//
-// const initStylesheet = () => {
-//   if (isProduction) {
-//     return `
-//     <link href="/stylesheets/app-one.css" rel="stylesheet">
-//     <link href="/stylesheets/app-two.css" rel="stylesheet">
-//     `;
-//   }
-//   return "";
-// };
+const mapStyle = ({ file }) => `<link href="/${file}" rel="stylesheet"/>`;
+
+const mapScript = ({ file }) => `<script src="/${file}"></script>`;
 
 const initHtml = (html, styles, scripts) => `
   <!doctype html>
@@ -58,14 +56,13 @@ const initHtml = (html, styles, scripts) => `
   <head>
     <meta charset="utf-8">
     <title>前端项目模板</title>
-    ${styles
-      .map(style => `<link href="/${style.file}" rel="stylesheet"/>`)
-      .join("\n")}
+    ${styles.map(mapStyle).join("\n")}
+    <link href="/stylesheets/extract-less.css" rel="stylesheet">
+    <!--<link href="/stylesheets/extract-css.css" rel="stylesheet">-->
   </head>
   <body>
   <div id="root">${html}</div>
-  ${scripts.map(bundle => `<script src="/${bundle.file}"></script>`).join("\n")}
-  <script>window.main();</script>
+  ${scripts.map(mapScript).join("\n")}
   </body>
   </html>
   `;
@@ -75,9 +72,9 @@ app.get("*", (req, res) => {
   const initView = renderToString(
     <Provider store={initStore}>
       <Router location={req.url} context={{}}>
-        <ReactLoadable.Capture report={moduleName => modules.push(moduleName)}>
+        <Capture report={moduleName => modules.push(moduleName)}>
           <App />
-        </ReactLoadable.Capture>
+        </Capture>
       </Router>
     </Provider>
   );
@@ -101,11 +98,15 @@ process.on("uncaughtException", evt => {
   console.log("uncaughtException: ", evt);
 });
 
-ReactLoadable.preloadAll().then(() => {
-  app.listen(3000, () => {
-    console.log("Listening on port 3000");
+ReactLoadable.preloadAll()
+  .then(() => {
+    app.listen(3000, () => {
+      console.log("Listening on port 3000");
+    });
+  })
+  .catch(err => {
+    console.log(err);
   });
-});
 
 // app.listen(3000, () => {
 //   console.log('Listening on port 3000');

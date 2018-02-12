@@ -9,6 +9,8 @@ const routes = [
     component: Loadable({
       loader: () =>
         import(/* webpackChunkName: "route-test" */ "../components/test/Test"),
+      modules: ["../components/test/Test"],
+      webpack: () => [require.resolveWeak("../components/test/Test")],
     }),
   },
   {
@@ -16,6 +18,8 @@ const routes = [
     component: Loadable({
       loader: () =>
         import(/* webpackChunkName: "route-test-echarts" */ "../components/test/TestEcharts"),
+      modules: ["../components/test/TestEcharts"],
+      webpack: () => [require.resolveWeak("../components/test/TestEcharts")],
     }),
   },
   {
@@ -23,6 +27,8 @@ const routes = [
     component: Loadable({
       loader: () =>
         import(/* webpackChunkName: "route-test-inject" */ "../components/test/TestInject"),
+      modules: ["../components/test/TestInject"],
+      webpack: () => [require.resolveWeak("../components/test/TestInject")],
     }),
   },
 ];

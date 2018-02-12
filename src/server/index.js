@@ -15,6 +15,8 @@ import Loadable from "../shared/components/common/Loadable";
 const LoadableApp = Loadable({
   loader: () =>
     import(/* webpackChunkName: "route-app" */ "../shared/components/App"),
+  modules: ["../shared/components/App"],
+  webpack: () => [require.resolveWeak("../shared/components/App")],
 });
 
 /**
@@ -24,8 +26,8 @@ Settings.defaultLocale = "zh-CN";
 
 const store = rehydrate();
 
-const renderApp = () => {
-  render(
+const renderApp = () =>
+  hydrate(
     <Provider store={isProduction ? store : hotRehydrate()}>
       <Router>
         <LocaleProvider locale={zhCN}>
@@ -35,19 +37,12 @@ const renderApp = () => {
     </Provider>,
     document.getElementById("root")
   );
-};
 
 function run() {
   renderApp();
   if (module.hot) {
-    module.hot.accept(() => renderApp());
+    module.hot.accept(renderApp);
   }
 }
 
-window.main = () => {
-  ReactLoadable.preloadReady().then(() => {
-    hydrate(renderApp(), document.getElementById("root"));
-  });
-};
-
-run();
+ReactLoadable.preloadReady().then(run);
