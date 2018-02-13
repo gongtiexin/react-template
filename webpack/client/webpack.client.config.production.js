@@ -3,6 +3,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 // const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+const MomentLocalesPlugin = require("moment-locales-webpack-plugin");
+const LodashModuleReplacementPlugin = require("lodash-webpack-plugin");
 
 const extractCSS = new ExtractTextPlugin({
   filename: "stylesheets/[name].[contenthash]-css.css",
@@ -90,7 +92,7 @@ module.exports = {
   plugins: [
     // 分析打包的结构
     // new BundleAnalyzerPlugin(),
-    // 根据模块的相对路径生成一个四位数的hash作为模块id
+    // 使得哈希基于模块的相对路径, 生成一个四个字符的字符串作为模块ID
     new webpack.HashedModuleIdsPlugin(),
     // 配置的全局常量
     new webpack.DefinePlugin({
@@ -100,6 +102,7 @@ module.exports = {
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: ["vendor", "runtime"],
+      // 没有应用程序模块将包含在这个块中
       minChunks: Infinity,
     }),
     // 多入口
@@ -119,6 +122,7 @@ module.exports = {
       // (在提取之前需要至少三个子chunk共享这个模块)
       minChunks: 3,
     }),
+    new LodashModuleReplacementPlugin(),
     // 压缩代码
     new webpack.optimize.UglifyJsPlugin({
       uglifyOptions: {
@@ -148,5 +152,9 @@ module.exports = {
     new CopyWebpackPlugin(config.webpack.build.plugins.CopyWebpackPlugin),
     // 作用域提升
     new webpack.optimize.ModuleConcatenationPlugin(),
+    // 去除moment中除“zh-cn”之外的所有语言环境, “en”内置于Moment中，不能删除
+    new MomentLocalesPlugin({
+      localesToKeep: ["zh-cn"],
+    }),
   ],
 };

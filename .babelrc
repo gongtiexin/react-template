@@ -5,15 +5,18 @@
       "env",
       {
         "modules": false,
-        "target": {
-          "uglify": true
-        }
+        "targets": {
+          "browsers": ["last 2 versions", "ie >= 11"]
+        },
+        "forceAllTransforms": true,
+        "useBuiltIns": true
       }
     ],
     "react",
     "stage-2"
   ],
   "plugins": [
+    "lodash",
     "transform-decorators-legacy",
     [
       "import",

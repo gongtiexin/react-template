@@ -3,7 +3,7 @@ import { render } from "react-dom";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Provider } from "mobx-react";
 import { hotRehydrate, rehydrate } from "rfx-core";
-import { Settings } from "luxon";
+import moment from "moment";
 import { LocaleProvider } from "antd";
 import zhCN from "antd/lib/locale-provider/zh_CN";
 import { isProduction } from "../shared/utils/constants";
@@ -19,9 +19,9 @@ const LoadableApp = Loadable({
 });
 
 /**
- * luxon时区设置为中国
+ * moment时区设置为中国
  */
-Settings.defaultLocale = "zh-CN";
+moment.locale("zh-cn");
 
 const store = rehydrate();
 
