@@ -8,7 +8,7 @@ const routes = [
     path: "/test",
     component: Loadable({
       loader: () =>
-        import(/* webpackChunkName: "route-test" */ "../components/test/Test"),
+        import(/* webpackChunkName: "route-test" */ "../components/demo/Test"),
       // modules: ["../components/test/Test"],
       // webpack: () => [require.resolveWeak("../components/test/Test")],
     }),
@@ -17,7 +17,7 @@ const routes = [
     path: "/echarts",
     component: Loadable({
       loader: () =>
-        import(/* webpackChunkName: "route-test-echarts" */ "../components/test/TestEcharts"),
+        import(/* webpackChunkName: "route-test-echarts" */ "../components/demo/TestEcharts"),
       // modules: ["../components/test/TestEcharts"],
       // webpack: () => [require.resolveWeak("../components/test/TestEcharts")],
     }),
@@ -26,7 +26,7 @@ const routes = [
     path: "/test2",
     component: Loadable({
       loader: () =>
-        import(/* webpackChunkName: "route-test-inject" */ "../components/test/TestInject"),
+        import(/* webpackChunkName: "route-test-inject" */ "../components/demo/TestInject"),
       // modules: ["../components/test/TestInject"],
       // webpack: () => [require.resolveWeak("../components/test/TestInject")],
     }),

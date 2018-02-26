@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { withRouter, Route } from "react-router-dom";
 import { inject, observer } from "mobx-react";
 import DevTools from "mobx-react-devtools";
-import { routes } from "../route/routes";
+import { routes } from "../router/routes";
 import { PanelBody } from "./common/Panel";
 
 @inject("store")

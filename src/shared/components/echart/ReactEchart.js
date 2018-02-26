@@ -80,6 +80,10 @@ export default class ReactEchart extends Component {
 
   reset = () => this.setState({ isReset: true });
 
+  initEcharts = node => {
+    this.eCharts = node;
+  };
+
   render() {
     const { option, action, onClick } = this.props;
     if (this.myChart) {
@@ -96,13 +100,6 @@ export default class ReactEchart extends Component {
       }
     }
 
-    return (
-      <div
-        ref={node => {
-          this.eCharts = node;
-        }}
-        style={this.props.style}
-      />
-    );
+    return <div ref={this.initEcharts} style={this.props.style} />;
   }
 }

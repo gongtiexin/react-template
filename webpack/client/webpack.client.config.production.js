@@ -2,7 +2,7 @@ const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-// const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const MomentLocalesPlugin = require("moment-locales-webpack-plugin");
 const LodashModuleReplacementPlugin = require("lodash-webpack-plugin");
 
@@ -41,17 +41,20 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: extractCSS.extract(["css-loader", "postcss-loader"]),
+        use: extractCSS.extract([
+          "css-loader",
+          // 启用css modules
+          // "css-loader?modules&localIdentName=[path][name]---[local]---[hash:base64:5]",
+          "postcss-loader",
+        ]),
       },
       {
         test: /\.less$/i,
         use: extractLESS.extract([
-          {
-            loader: "css-loader",
-          },
-          {
-            loader: "postcss-loader",
-          },
+          "css-loader",
+          // 启用css modules
+          // "css-loader?modules&localIdentName=[path][name]---[local]---[hash:base64:5]",
+          "postcss-loader",
           {
             loader: "less-loader",
             options: {
@@ -91,7 +94,7 @@ module.exports = {
   },
   plugins: [
     // 分析打包的结构
-    // new BundleAnalyzerPlugin(),
+    new BundleAnalyzerPlugin(),
     // 使得哈希基于模块的相对路径, 生成一个四个字符的字符串作为模块ID
     new webpack.HashedModuleIdsPlugin(),
     // 配置的全局常量
