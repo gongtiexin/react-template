@@ -4,11 +4,11 @@ import request from "../utils/axios";
 /* eslint class-methods-use-this: ["error", { "exceptMethods": ["test"] }] */
 
 export default class DemoState {
-  @observable data;
+  @observable data = "hello, world";
+  @observable ajax = [];
   @observable echarts;
 
   constructor() {
-    this.data = "hello, world";
     this.echarts = [{ x: "重庆", y: "2018", value: "666", seriesType: "bar" }];
   }
 
@@ -39,21 +39,21 @@ export default class DemoState {
   //   }
   //   return Promise.reject(data);
   // }
-  //
-  // /**
-  //  * 获取数据
-  //  * */
-  // async test() {
-  //   const { data, status } = await request(
-  //     { method: "GET", url: "/pubapi/org/page" },
-  //     { message: "成功" },
-  //     { message: "失败" }
-  //   );
-  //   if (status === 200 || status === 201) {
-  //     return Promise.resolve(data);
-  //   }
-  //   return Promise.reject(data);
-  // }
+
+  /**
+   * 获取数据
+   * */
+  async getAjax() {
+    const { data, status } = await request(
+      { method: "GET", url: "/inapi/simulation/page" },
+      { message: "成功" },
+      { message: "失败" }
+    );
+    if (status === 200 || status === 201) {
+      this.setAjax(data);
+    }
+    return data;
+  }
 
   /**
    * ******************************action******************************
@@ -67,6 +67,11 @@ export default class DemoState {
   @action
   setEcharts(data = []) {
     this.echarts = data;
+  }
+
+  @action
+  setAjax(data) {
+    this.ajax = data;
   }
 
   /**
