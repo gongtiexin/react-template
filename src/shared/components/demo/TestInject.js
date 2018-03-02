@@ -12,12 +12,9 @@ export default class TestInject extends Component {
   }
 
   render() {
-    const { data, ajax } = this.props.demoState;
+    const { data } = this.props.demoState;
+    console.log("xxx");
 
-    return (
-      <div>
-        {data}
-      </div>
-    );
+    return <div>{data}</div>;
   }
 }

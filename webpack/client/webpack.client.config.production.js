@@ -128,22 +128,13 @@ module.exports = {
     new LodashModuleReplacementPlugin(),
     // 压缩代码
     new webpack.optimize.UglifyJsPlugin({
-      uglifyOptions: {
-        minimize: true,
-        ie8: false,
-        output: {
-          comments: false,
-          beautify: false,
-        },
-        mangle: {
-          keep_fnames: true,
-        },
-        compress: {
-          warnings: false,
-          drop_console: true,
-          drop_debugger: true,
-          unused: true,
-        },
+      minimize: true,
+      compress: {
+        warnings: false,
+        drop_console: true,
+      },
+      output: {
+        comments: false,
       },
     }),
     extractCSS,
