@@ -5,7 +5,7 @@
   "scripts": {
     "ssr": "node bin/server.js",
     "dev":
-      "webpack-dev-server --open --config webpack/client/webpack.client.config.js",
+      "webpack-dev-server --config webpack/client/webpack.client.config.js",
     "build":
       "rimraf ./dist && webpack --progress --config webpack/client/webpack.client.config.production.js",
     "loading":
@@ -86,7 +86,7 @@
     "rfx-core": "^1.5.3",
     "rxjs": "^5.5.6",
     "shortid": "^2.2.8",
-    "up-utils": "3.5.0",
+    "up-utils": "3.6.0",
     "webpack-hot-middleware": "^2.21.0"
   }
 }

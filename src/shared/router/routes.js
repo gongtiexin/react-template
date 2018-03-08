@@ -1,16 +1,16 @@
 /**
  * 配置路由
  */
-import Loadable from "../components/common/Loadable";
+import Loadable from "../components/common/Loadable/Loadable";
 
 const routes = [
   {
     path: "/test",
     component: Loadable({
       loader: () =>
-        import(/* webpackChunkName: "route-test" */ "../components/demo/Test"),
-      // modules: ["../components/test/Test"],
-      // webpack: () => [require.resolveWeak("../components/test/Test")],
+        import(/* webpackChunkName: "route-test-style" */ "../components/demo/TestStyle"),
+      // modules: ["../components/test/TestStyle"],
+      // webpack: () => [require.resolveWeak("../components/test/TestStyle")],
     }),
   },
   {

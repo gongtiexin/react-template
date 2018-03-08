@@ -6,11 +6,11 @@ import { Link } from "react-router-dom";
 import { inject, observer } from "mobx-react";
 import { Breadcrumb as AntdBreadcrumb } from "antd";
 import PropTypes from "prop-types";
-import { breadcrumbNameMap, routes } from "../../router/routes";
+import { breadcrumbNameMap, routes } from "../../../router/routes";
 
 @inject("store")
 @observer
-export default class FtBreadcrumb extends Component {
+export default class Breadcrumb extends Component {
   static propTypes = {
     location: PropTypes.object.isRequired,
   };

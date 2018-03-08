@@ -11,7 +11,7 @@ import webpackDevMiddleware from "webpack-dev-middleware";
 import webpackHotMiddleware from "webpack-hot-middleware";
 import config from "../../webpack/server/webpack.server.config";
 // import { isProduction } from "../shared/utils/constants";
-import App from "../shared/components/App";
+import App from "../shared/components/App/App";
 import store from "../shared/stores/stores";
 import stats from "../../dist/react-loadable.json";
 

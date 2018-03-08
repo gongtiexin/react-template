@@ -1,11 +1,11 @@
 import React, { Fragment } from "react";
 import shortid from "shortid";
 
-export default function highlight(text, keyword) {
+export default function Highlight(text, keyword) {
   const reg = new RegExp(keyword, "gi");
   const match = text.match(reg);
   if (!match) {
-    return null;
+    return <Fragment />;
   }
   return (
     <span>
@@ -13,7 +13,7 @@ export default function highlight(text, keyword) {
         (fragment, i) =>
           i > 0 ? (
             <Fragment key={shortid.generate()}>
-              <em className="highlight">{match[0]}</em>
+              <em className="fe-highlight">{match[0]}</em>
               {fragment}
             </Fragment>
           ) : (

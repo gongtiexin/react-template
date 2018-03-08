@@ -11,14 +11,16 @@
  */
 import React, { Component } from "react";
 import { observer } from "mobx-react";
+import echarts from "echarts";
 // 引入 ECharts 主模块
-import echarts from "echarts/lib/echarts";
+// import echarts from "echarts/lib/echarts";
 // 引入常用图形图和组件
-import "echarts/lib/chart/bar";
-import "echarts/lib/chart/line";
-import "echarts/lib/component/tooltip";
-import "echarts/lib/component/title";
-
+// import "echarts/lib/chart/bar";
+// import "echarts/lib/chart/line";
+// import "echarts/lib/component/tooltip";
+// import "echarts/lib/component/title";
+// import "echarts/lib/component/legend";
+// import "echarts/lib/component/axis";
 import { computedEchartsOption } from "up-utils";
 import lodashIsEqual from "lodash/isEqual";
 import PropTypes from "prop-types";
@@ -58,10 +60,9 @@ export default class ReactEchart extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    const option = this.myChart.getOption();
-    return (
-      option === undefined ||
-      !lodashIsEqual(option.dataset, nextProps.option.dataset)
+    return !lodashIsEqual(
+      this.props.option.data.slice(),
+      nextProps.option.data.slice()
     );
   }
 
@@ -88,7 +89,9 @@ export default class ReactEchart extends Component {
     const { option, action, onClick } = this.props;
     if (this.myChart) {
       if (option) {
-        this.myChart.setOption(computedEchartsOption(option));
+        const echartsOption = computedEchartsOption(option);
+        console.log(echartsOption);
+        this.myChart.setOption(echartsOption);
       }
       if (action) {
         this.myChart.dispatchAction(action);

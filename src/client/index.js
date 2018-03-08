@@ -9,11 +9,11 @@ import zhCN from "antd/lib/locale-provider/zh_CN";
 import { isProduction } from "../shared/utils/constants";
 import "../shared/stores/stores";
 import "../shared/styles/main.less";
-import Loadable from "../shared/components/common/Loadable";
+import Loadable from "../shared/components/common/Loadable/Loadable";
 
 const LoadableApp = Loadable({
   loader: () =>
-    import(/* webpackChunkName: "route-app" */ "../shared/components/App"),
+    import(/* webpackChunkName: "route-app" */ "../shared/components/App/App"),
   // modules: ["../shared/components/App"],
   // webpack: () => [require.resolveWeak("../shared/components/App")],
 });
