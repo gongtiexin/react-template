@@ -18,6 +18,7 @@ const config = require("../../config");
 
 module.exports = {
   resolve: {
+    modules: [config.path.nodeModulesPath],
     alias: {
       proptypes: "proptypes/disabled",
     },
@@ -94,7 +95,7 @@ module.exports = {
   },
   plugins: [
     // 分析打包的结构
-    new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin(),
     // 使得哈希基于模块的相对路径, 生成一个四个字符的字符串作为模块ID
     new webpack.HashedModuleIdsPlugin(),
     // 配置的全局常量
@@ -128,13 +129,20 @@ module.exports = {
     new LodashModuleReplacementPlugin(),
     // 压缩代码
     new webpack.optimize.UglifyJsPlugin({
-      minimize: true,
+      // 最紧凑的输出
+      beautify: false,
+      // 删除所有的注释
+      comments: false,
       compress: {
+        // 在UglifyJs删除没有用到的代码时不输出警告
         warnings: false,
+        // 删除所有的 `console` 语句
+        // 还可以兼容ie浏览器
         drop_console: true,
-      },
-      output: {
-        comments: false,
+        // 内嵌定义了但是只用到一次的变量
+        collapse_vars: true,
+        // 提取出出现多次但是没有定义成变量去引用的静态值
+        reduce_vars: true,
       },
     }),
     extractCSS,

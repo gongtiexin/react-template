@@ -8,6 +8,7 @@ const srcPath = path.resolve(__dirname, "./src");
 const distPath = path.resolve(__dirname, "./dist");
 const staticPath = path.resolve(__dirname, "./static");
 const distStaticPath = path.resolve(__dirname, "./dist/static");
+const nodeModulesPath = path.resolve(__dirname, "./node_modules");
 
 module.exports = {
   webpack: {
@@ -58,6 +59,7 @@ module.exports = {
     distPath,
     staticPath,
     distStaticPath,
+    nodeModulesPath,
   },
   root,
   modifyVars: {

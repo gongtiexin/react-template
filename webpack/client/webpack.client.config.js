@@ -38,6 +38,9 @@ module.exports = {
     filename: "app.[hash].js",
   },
   devtool: "cheap-module-source-map",
+  resolve: {
+    modules: [config.path.nodeModulesPath],
+  },
   module: {
     rules: [
       {
