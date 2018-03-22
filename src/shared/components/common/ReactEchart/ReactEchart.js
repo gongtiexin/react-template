@@ -1,5 +1,8 @@
 /**
- * React Echarts Component
+ * Date              Author           Des
+ *----------------------------------------------
+ * 18-3-22           gongtiexin       React Echarts Component
+ *
  * option: {
  *   option: 基础配置项,
  *   data: 数据源,
@@ -8,7 +11,8 @@
  *   value: 图上的属性(对于data里面的key),
  *   seriesTemplates: 每个series的配置
  *   }
- */
+ * */
+
 import React, { Component } from "react";
 import { observer } from "mobx-react";
 import echarts from "echarts";

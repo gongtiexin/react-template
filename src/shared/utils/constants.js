@@ -1,6 +1,8 @@
 /**
- * 定义系统中的常量,集中在此管理
- */
+ * Date              Author           Des
+ *----------------------------------------------
+ * 18-3-22           gongtiexin       常量
+ * */
 
 const isProduction = process.env.NODE_ENV === "production";
 

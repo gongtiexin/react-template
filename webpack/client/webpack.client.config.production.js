@@ -1,3 +1,9 @@
+/**
+ * Date              Author           Des
+ *----------------------------------------------
+ * 18-3-22           gongtiexin       webpack生产环境配置
+ * */
+
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");

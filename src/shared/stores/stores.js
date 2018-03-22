@@ -1,6 +1,8 @@
 /**
- * state的集合
- */
+ * Date              Author           Des
+ *----------------------------------------------
+ * 18-3-22           gongtiexin       mobx统一注册store
+ * */
 
 import { store } from "rfx-core";
 

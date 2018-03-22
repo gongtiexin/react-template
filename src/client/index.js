@@ -1,3 +1,9 @@
+/**
+ * Date              Author           Des
+ *----------------------------------------------
+ * 18-3-22           gongtiexin       单页应用的入口文件
+ * */
+
 import React from "react";
 import { render } from "react-dom";
 import { BrowserRouter as Router, Route } from "react-router-dom";
@@ -11,6 +17,9 @@ import "../shared/stores/stores";
 import "../shared/styles/main.less";
 import Loadable from "../shared/components/common/Loadable/Loadable";
 
+/**
+ * 代码拆分和按需加载
+ */
 const LoadableApp = Loadable({
   loader: () =>
     import(/* webpackChunkName: "route-app" */ "../shared/components/App/App"),

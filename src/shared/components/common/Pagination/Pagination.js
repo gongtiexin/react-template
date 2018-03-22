@@ -1,6 +1,9 @@
 /**
- * 分页组件
- */
+ * Date              Author           Des
+ *----------------------------------------------
+ * 18-3-22           gongtiexin       分页组件
+ * */
+
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
 import { Pagination as AntdPagination } from "antd";

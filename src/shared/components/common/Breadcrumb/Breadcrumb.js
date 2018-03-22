@@ -1,6 +1,9 @@
 /**
- * 面包屑导航,根据route.js生成
- */
+ * Date              Author           Des
+ *----------------------------------------------
+ * 18-3-22           gongtiexin       面包屑导航,根据route.js生成
+ * */
+
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { inject, observer } from "mobx-react";

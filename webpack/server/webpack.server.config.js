@@ -1,3 +1,9 @@
+/**
+ * Date              Author           Des
+ *----------------------------------------------
+ * 18-3-22           gongtiexin       webpack ssr config
+ * */
+
 const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");

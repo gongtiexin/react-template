@@ -8,7 +8,7 @@
     "build": "rimraf ./dist && webpack --progress --config webpack/client/webpack.client.config.production.js",
     "loading": "rimraf ./dist/static/html/loading && webpack --config static/html/loading/webpack.loading.config.js",
     "login": "rimraf ./dist/static/html/login && webpack --config static/html/login/webpack.login.config.js",
-    "prettier-styles": "prettier --write \"src/shared/styles/**\"",
+    "prettier-styles": "prettier --write \"src/**/*.less\"",
     "eslint": "eslint \"src/**\" --fix"
   },
   "keywords": [

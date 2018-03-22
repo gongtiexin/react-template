@@ -1,3 +1,9 @@
+/**
+ * Date              Author           Des
+ *----------------------------------------------
+ * 18-3-22           gongtiexin       3D旋转词云
+ * */
+
 import React, { Component } from "react";
 import { observer } from "mobx-react";
 import lodashMaxBy from "lodash/maxBy";

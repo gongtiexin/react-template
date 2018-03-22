@@ -1,3 +1,9 @@
+/**
+ * Date              Author           Des
+ *----------------------------------------------
+ * 18-3-22           gongtiexin       星云图
+ * */
+
 import React, { Component } from "react";
 import { observer } from "mobx-react";
 

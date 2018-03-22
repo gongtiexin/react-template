@@ -1,23 +1,21 @@
+/**
+ * Date              Author           Des
+ *----------------------------------------------
+ * 18-3-22           gongtiexin       mxGraph component
+ * */
+
 import React, { Component } from "react";
 import {
-  mxGraph as MxGraph,
-  mxParallelEdgeLayout as MxParallelEdgeLayout,
-  mxConstants,
-  mxEdgeStyle,
-  mxLayoutManager as MxLayoutManager,
-  mxCell,
-  mxGeometry,
-  mxRubberband as MxRubberband,
-  mxDragSource,
-  mxKeyHandler as MxKeyHandler,
-  mxCodec,
+  mxCell as MxCell,
   mxClient,
-  mxConnectionHandler,
+  mxCodec as MxCodec,
+  mxConstants,
+  mxGeometry as MxGeometry,
+  mxGraph as MxGraph,
+  mxKeyHandler as MxKeyHandler,
+  mxRubberband as MxRubberband,
+  mxToolbar as MxToolbar,
   mxUtils,
-  mxToolbar,
-  mxEvent,
-  mxImage,
-  mxFastOrganicLayout,
 } from "mxgraph-js";
 import "./mxgraph-editor.less";
 
@@ -25,126 +23,160 @@ export default class MxGraphEditor extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.divGraph = null;
+    this.graphContainer = null;
+    this.graph = null;
+    this.parent = null;
+    this.toolbar = null;
   }
 
   componentDidMount() {
-    this.main(this.divGraph);
+    this.main(this.graphContainer);
   }
 
   main = container => {
-    // Checks if the browser is supported
+    // 检查浏览器是否受支持
     if (!mxClient.isBrowserSupported()) {
       mxUtils.error("Browser is not supported!", 200, false);
     } else {
-      // Creates the graph inside the given container
-      const graph = new MxGraph(container);
-
-      // 注册图形
-      const style = {};
-      style[mxConstants.STYLE_SHAPE] = mxConstants.SHAPE_RECTANGLE;
-      style[mxConstants.STYLE_OPACITY] = 50;
-      style[mxConstants.STYLE_FILLCOLOR] = "#774400";
-      graph.getStylesheet().putCellStyle("ROUNDED", style);
-
-      console.log(graph.getStylesheet());
+      // 将dom节点实例化为一个graph图
+      this.graph = new MxGraph(container);
 
       // Enables rubberband selection
-      new MxRubberband(graph);
+      new MxRubberband(this.graph);
 
       // Gets the default parent for inserting new cells. This
       // is normally the first child of the root (ie. layer 0).
-      const parent = graph.getDefaultParent();
+      this.parent = this.graph.getDefaultParent();
 
-      // mxGraphModel.beginUpdate() 启动一个新的事务或一个子事务
-      // mxGraphModel.endUpdate() 完成一个事务或一个子事务
-      // mxGraph.addVertex() 将新的顶点添加到指定的父单元格
-      // mxGraph.addEdge() 向指定的父单元格添加一个新边
+      // cell是否可以连线
+      this.graph.setConnectable(true);
+      this.graph.setPanning(true);
 
-      // Adds cells to the model in a single step
+      // 删除选中Cell或者Edge
+      const keyHandler = new MxKeyHandler(this.graph);
+      keyHandler.bindKey(46, () => {
+        if (this.graph.isEnabled()) {
+          this.graph.removeCells();
+        }
+      });
 
-      const vertexs1 = [
+      const toolbarContainer = document.getElementById("graphToolbar");
+      this.toolbar = new MxToolbar(toolbarContainer);
+
+      const toolbars = [
         {
-          parent,
-          value: "Hello, ",
-          x: 20,
-          y: 20,
-          width: 80,
-          height: 30,
+          icon: "/static/images/mxgraph/rectangle.gif",
+          w: 80,
+          h: 40,
+          style: "",
+        },
+        {
+          icon: "/static/images/mxgraph/rounded.gif",
+          w: 80,
+          h: 40,
+          style: "shape=rounded",
+        },
+        {
+          icon: "/static/images/mxgraph/ellipse.gif",
+          w: 40,
+          h: 40,
+          style: "shape=ellipse",
+        },
+        {
+          icon: "/static/images/mxgraph/rhombus.gif",
+          w: 40,
+          h: 40,
+          style: "shape=rhombus",
+        },
+        {
+          icon: "/static/images/mxgraph/triangle.gif",
+          w: 40,
+          h: 40,
+          style: "shape=triangle",
+        },
+        {
+          icon: "/static/images/mxgraph/cylinder.gif",
+          w: 40,
+          h: 40,
+          style: "shape=cylinder",
         },
       ];
 
-      const vertexs2 = [
-        {
-          parent,
-          value: "World, ",
-          x: 200,
-          y: 150,
-          width: 80,
-          height: 30,
-          style: "ROUNDED",
-        },
-      ];
-
-      const edges = [
-        {
-          parent,
-          target: null,
-          source: null,
-        },
-      ];
-
-      this.addCellsToModel({ graph, vertexs: vertexs1 });
-      setTimeout(
-        () => this.addCellsToModel({ graph, vertexs: vertexs2 }),
-        1000
-      );
-      setTimeout(() => this.addCellsToModel({ graph, edges }), 2000);
+      toolbars.forEach(this.addToolbarVertex);
+      this.toolbars.addBreak();
     }
   };
 
-  addCellsToModel = ({ graph, vertexs = [], edges = [] }) => {
-    graph.getModel().beginUpdate();
-    try {
-      const newVertexs = vertexs.map(
-        ({ parent, id, value, x, y, width, height, style }) =>
-          graph.insertVertex(parent, id, value, x, y, width, height, style)
-      );
-      edges.map(({ parent, id, value = "", source, target, style }) =>
-        graph.insertEdge(
-          parent,
-          id,
-          value,
-          newVertexs[source],
-          newVertexs[target],
-          style
-        )
-      );
-      // const v1 = graph.insertVertex(
-      //   parent,
-      //   null,
-      //   "Hello,",
-      //   20,
-      //   20,
-      //   80,
-      //   30,
-      //   "ROUNDED"
-      // );
-      // const v2 = graph.insertVertex(parent, null, "World!", 200, 150, 80, 30);
-      // const e1 = graph.insertEdge(parent, null, "", v1, v2);
-    } finally {
-      // Updates the display
-      graph.getModel().endUpdate();
-    }
+  addToolbarVertex = ({ icon, w, h, style }) => {
+    const vertex = new MxCell(null, new MxGeometry(0, 0, w, h), style);
+    vertex.setVertex(true);
+    this.addToolbarItem(this.graph, this.toolbar, vertex, icon);
+  };
+
+  addToolbarItem = (graph, toolbar, prototype, image) => {
+    // 添加、删除功能
+    const funct = (subGraph, evt, cell) => {
+      subGraph.stopEditing(false);
+
+      const pt = subGraph.getPointForEvent(evt);
+      const vertex = subGraph.getModel().cloneCell(prototype);
+      vertex.geometry.x = pt.x;
+      vertex.geometry.y = pt.y;
+
+      subGraph.addCell(vertex);
+      subGraph.setSelectionCell(vertex);
+    };
+
+    // 创建拖动预览图标
+    const img = toolbar.addMode(null, image, funct);
+    mxUtils.makeDraggable(img, graph, funct);
   };
 
   initContainer = node => {
-    this.divGraph = node;
+    this.graphContainer = node;
+  };
+
+  save = () => {
+    // const enc = new MxCodec();
+    // const node = enc.encode(this.graph.getModel());
+    // console.log(mxUtils.getXml(node));
+    // return mxUtils.getXml(node);
+
+    const parentChildren = this.parent.children;
+    const arrEdge = []; // 连接线
+    const arrVertex = []; // 节点
+    parentChildren.forEach(child => {
+      if (!child.isVisible()) {
+        return;
+      }
+      // 区分连接线、节点
+      if (child.isEdge()) {
+        arrEdge.push({
+          id: child.id,
+          source: child.source.id,
+          target: child.target.id,
+        });
+      } else if (child.isVertex()) {
+        arrVertex.push({
+          type: child.style,
+          id: child.id,
+        });
+      }
+    });
+    console.log(arrEdge, arrVertex);
   };
 
   render() {
     return (
-      <div className="graph-container" ref={this.initContainer} id="divGraph" />
+      <div id="mxGraphEditor">
+        <div className="graph-toolbar" id="graphToolbar" />
+        <div
+          className="graph-container"
+          ref={this.initContainer}
+          id="graphContainer"
+        />
+        <button onClick={this.save}>保存</button>
+      </div>
     );
   }
 }
