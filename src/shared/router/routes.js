@@ -34,15 +34,6 @@ const routes = [
       // webpack: () => [require.resolveWeak("../components/test/TestInject")],
     }),
   },
-  {
-    path: "/graph",
-    component: Loadable({
-      loader: () =>
-        import(/* webpackChunkName: "route-test-inject" */ "../components/common/MxGraph/MxGraphEditor"),
-      // modules: ["../components/test/TestInject"],
-      // webpack: () => [require.resolveWeak("../components/test/TestInject")],
-    }),
-  },
 ];
 
 const breadcrumbNameMap = {
