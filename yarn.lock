@@ -5249,10 +5249,6 @@ mute-stream@0.0.7:
   version "0.0.7"
   resolved "http://registry.npm.taobao.org/mute-stream/download/mute-stream-0.0.7.tgz#3075ce93bc21b8fab43e1bc4da7e8115ed1e7bab"
 
-mxgraph-js@^1.0.1:
-  version "1.0.1"
-  resolved "http://registry.npm.taobao.org/mxgraph-js/download/mxgraph-js-1.0.1.tgz#21779cb4e35166ed2b24075eaa2d9447990675a3"
-
 nan@^2.3.0:
   version "2.8.0"
   resolved "http://registry.npm.taobao.org/nan/download/nan-2.8.0.tgz#ed715f3fe9de02b57a5e6252d90a96675e1f085a"
