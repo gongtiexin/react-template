@@ -63,10 +63,12 @@ export default class ReactEchart extends Component {
     }
   }
 
-  shouldComponentUpdate(nextProps) {
-    return !lodashIsEqual(
-      this.props.option.data.slice(),
-      nextProps.option.data.slice()
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      !lodashIsEqual(
+        this.props.option.data.slice(),
+        nextProps.option.data.slice()
+      ) || nextState.isReset
     );
   }
 

@@ -10,18 +10,19 @@ import request from "../utils/axios";
 /* eslint class-methods-use-this: ["error", { "exceptMethods": ["test"] }] */
 
 export default class DemoState {
+  /**
+   * *************************** observable ***************************
+   * */
+
   @observable data = "hello, world";
   @observable ajax = [];
-  @observable echarts;
+  @observable
+  echarts = [{ x: "重庆", y: "2018", value: "666", seriesType: "bar" }];
 
-  constructor() {
-    this.echarts = [{ x: "重庆", y: "2018", value: "666", seriesType: "bar" }];
-  }
+  /**
+   * ****************************** ajax ******************************
+   * */
 
-  // /**
-  //  * ******************************http request******************************
-  //  * */
-  //
   // /**
   //  * 获取数据
   //  * */
@@ -62,7 +63,7 @@ export default class DemoState {
   }
 
   /**
-   * ******************************action******************************
+   * ***************************** action *****************************
    * */
 
   @action
@@ -81,7 +82,7 @@ export default class DemoState {
   }
 
   /**
-   * ******************************computed******************************
+   * **************************** computed ****************************
    * */
   @computed
   get computedData() {

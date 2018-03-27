@@ -5,6 +5,7 @@
  * */
 
 const path = require("path");
+
 const entry = path.resolve(__dirname, "./src/client/index");
 const ssrEntry = path.resolve(__dirname, "./src/server/index");
 const indexHtml = path.resolve(__dirname, "./index.html");
