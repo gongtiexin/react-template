@@ -96,7 +96,6 @@ export default class ReactEchart extends Component {
     if (this.myChart) {
       if (option) {
         const echartsOption = computedEchartsOption(option);
-        console.log(echartsOption);
         this.myChart.setOption(echartsOption);
       }
       if (action) {
