@@ -68,7 +68,7 @@ export default class ReactEchart extends Component {
       !lodashIsEqual(
         this.props.option.data.slice(),
         nextProps.option.data.slice()
-      ) || nextState.isReset
+      ) || this.state.isReset !== nextState.isReset
     );
   }
 
