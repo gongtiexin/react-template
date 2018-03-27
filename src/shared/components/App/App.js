@@ -16,23 +16,24 @@ export default class App extends Component {
   state = {
     collapsed: false,
   };
+
   onCollapse = collapsed => {
-    console.log(collapsed);
     this.setState({ collapsed });
   };
+
   renderRoute = ({ path, component }) => (
     <Route key={path} path={path} component={component} exact />
   );
 
   render() {
     return (
-      <Layout style={{ minHeight: "100vh" }}>
+      <Layout id="app">
         <Sider
           collapsible
           collapsed={this.state.collapsed}
           onCollapse={this.onCollapse}
         >
-          <div className="logo" />
+          <div className="fe-logo" />
           <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
             <Menu.Item key="1">
               <Icon type="pie-chart" />
@@ -74,31 +75,19 @@ export default class App extends Component {
           </Menu>
         </Sider>
         <Layout>
-          <Header style={{ background: "#fff", padding: 0 }} />
-          <Content
-            style={{
-              margin: "0 16px",
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
-            <Breadcrumb style={{ margin: "16px 0" }}>
+          <Header className="fe-header" />
+          <Content className="fe-content">
+            <Breadcrumb className="fe-breadcrumb">
               <Breadcrumb.Item>User</Breadcrumb.Item>
               <Breadcrumb.Item>Bill</Breadcrumb.Item>
             </Breadcrumb>
-            <div
-              style={{
-                padding: 24,
-                background: "#fff",
-                flex: 1,
-              }}
-            >
+            <div className="fe-content-dev">
               Bill is a cat.
               <DevTools />
               {routes.map(this.renderRoute)}
             </div>
           </Content>
-          <Footer style={{ textAlign: "center" }}>
+          <Footer className="fe-footer">
             Ant Design ©2016 Created by Ant UED
           </Footer>
         </Layout>
