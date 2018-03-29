@@ -6,7 +6,7 @@
 
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const config = require("../../config");
+const config = require("./config");
 
 const proxy = process.env.DEV_PROXY || "dn1";
 

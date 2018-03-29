@@ -1,22 +1,28 @@
+/**
+ * Date              Author           Des
+ *----------------------------------------------
+ * 18-3-22           gongtiexin       单页应用的入口文件
+ * */
+
 import React from "react";
-import { hydrate } from "react-dom";
+import { render } from "react-dom";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Provider } from "mobx-react";
-import ReactLoadable from "react-loadable";
 import { hotRehydrate, rehydrate } from "rfx-core";
 import moment from "moment";
 import { LocaleProvider } from "antd";
 import zhCN from "antd/lib/locale-provider/zh_CN";
-import { isProduction } from "../shared/utils/constants";
-import "../shared/stores/stores";
-import "../shared/styles/main.less";
-import Loadable from "../shared/components/common/Loadable/Loadable";
+import { isProduction } from "./utils/constants";
+import "./stores/stores";
+import "./styles/main.less";
+import Loadable from "./components/common/Loadable/Loadable";
 
+/**
+ * 代码拆分和按需加载
+ */
 const LoadableApp = Loadable({
   loader: () =>
-    import(/* webpackChunkName: "route-app" */ "../shared/components/App/App"),
-  modules: ["../shared/components/App"],
-  webpack: () => [require.resolveWeak("../shared/components/App")],
+    import(/* webpackChunkName: "route-app" */ "./components/App/App"),
 });
 
 /**
@@ -26,8 +32,8 @@ moment.locale("zh-cn");
 
 const store = rehydrate();
 
-const renderApp = () =>
-  hydrate(
+const renderApp = () => {
+  render(
     <Provider store={isProduction ? store : hotRehydrate()}>
       <Router>
         <LocaleProvider locale={zhCN}>
@@ -37,6 +43,7 @@ const renderApp = () =>
     </Provider>,
     document.getElementById("root")
   );
+};
 
 function run() {
   renderApp();
@@ -45,4 +52,4 @@ function run() {
   }
 }
 
-ReactLoadable.preloadReady().then(run);
+run();

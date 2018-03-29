@@ -6,8 +6,7 @@
 
 const path = require("path");
 
-const entry = path.resolve(__dirname, "./src/client/index");
-const ssrEntry = path.resolve(__dirname, "./src/server/index");
+const entry = path.resolve(__dirname, "./src/index");
 const indexHtml = path.resolve(__dirname, "./index.html");
 const root = path.resolve(__dirname);
 const srcPath = path.resolve(__dirname, "./src");
@@ -40,9 +39,6 @@ module.exports = {
             ignore: ["html/loading/*.*", "html/login/*.*"],
           },
         ],
-        ReactLoadablePlugin: {
-          filename: path.resolve(__dirname, "./dist/react-loadable.json"),
-        },
       },
     },
     dev: {
@@ -59,7 +55,6 @@ module.exports = {
   },
   path: {
     entry,
-    ssrEntry,
     indexHtml,
     srcPath,
     distPath,

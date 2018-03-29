@@ -20,7 +20,7 @@ const extractLESS = new ExtractTextPlugin({
   filename: "stylesheets/[name].[contenthash]-less.css",
   allChunks: true,
 });
-const config = require("../../config");
+const config = require("./config");
 
 module.exports = {
   resolve: {

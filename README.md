@@ -56,13 +56,3 @@ server {
 
 ## iconfont
 本模板中有2个字体包:ant-design,material-design,用法参考官网([antd](https://ant.design/components/icon-cn/),[md](https://material.io/icons/))
-
-## Server-Side Rendering
-
-```js
-Loadable({
-  loader: () => import('./Component'),
-  modules: ['./Bar'],
-  webpack: () => [require.resolveWeak('./Bar')],
-});
-```

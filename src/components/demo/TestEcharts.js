@@ -6,8 +6,6 @@ import Loadable from "../common/Loadable/Loadable";
 const LoadableReactEchart = Loadable({
   loader: () =>
     import(/* webpackChunkName: "component-react-echart" */ "../common/ReactEchart/ReactEchart"),
-  // modules: ["../echart/ReactEchart"],
-  // webpack: () => [require.resolveWeak("../echart/ReactEchart")],
 });
 
 @inject("store")

@@ -1,4 +1,3 @@
-//client
 {
   "presets": [
     [
@@ -36,41 +35,4 @@
     ]
   ]
 }
-
-//server
-//{
-//  "presets": [
-//    [
-//      "env",
-//      {
-//        "targets": {
-//          "browsers": ["last 1 version", "ie >= 11"]
-//        }
-//      }
-//    ],
-//    "react",
-//    "stage-2"
-//  ],
-//  "plugins": [
-//    "dynamic-import-webpack",
-//    "syntax-dynamic-import",
-//    "transform-decorators-legacy",
-//    //    [
-//    //      "import",
-//    //      {
-//    //        "libraryName": "antd",
-//    //        "style": true
-//    //      }
-//    //    ],
-//    [
-//      "transform-react-remove-prop-types",
-//      {
-//        "mode": "wrap",
-//        "ignoreFilenames": [
-//          "node_modules"
-//        ]
-//      }
-//    ]
-//  ]
-//}
 
