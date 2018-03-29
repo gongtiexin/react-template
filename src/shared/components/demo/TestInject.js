@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
 
-@inject(({ store }) => ({ demoState: store.demoState }))
+@inject(({ store: { demoState } }) => ({ demoState }))
 @observer
 export default class TestInject extends Component {
   componentDidMount() {
