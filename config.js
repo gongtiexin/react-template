@@ -36,7 +36,7 @@ module.exports = {
         CopyWebpackPlugin: [
           {
             from: staticPath,
-            to: distPath,
+            to: distStaticPath,
             ignore: ["html/loading/*.*", "html/login/*.*"],
           },
         ],
