@@ -11,7 +11,7 @@ const routes = [
     path: "/test",
     component: Loadable({
       loader: () =>
-        import(/* webpackChunkName: "route-test-style" */ "../components/demo/TestStyle"),
+        import(/* webpackChunkName: "route-test-traffic-flow" */ "../components/TrafficFlow/TrafficFlow"),
     }),
   },
   {
