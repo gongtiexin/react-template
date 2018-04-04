@@ -12,6 +12,7 @@ import { hotRehydrate, rehydrate } from "rfx-core";
 import moment from "moment";
 import { LocaleProvider } from "antd";
 import zhCN from "antd/lib/locale-provider/zh_CN";
+import "normalize.css";
 import { isProduction } from "./utils/constants";
 import "./stores/stores";
 import "./styles/main.less";
