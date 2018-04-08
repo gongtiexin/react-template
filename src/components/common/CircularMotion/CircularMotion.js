@@ -115,7 +115,7 @@ export default class SolarSystem extends Component {
       });
     }
 
-    canvas.addEventListener("click", e => draw(this.getEventPosition(e)));
+    canvas.addEventListener("click", e => draw(this.windowToCanvas(e)));
 
     (function drawFrame() {
       window.requestAnimationFrame(drawFrame, canvas);
@@ -126,18 +126,12 @@ export default class SolarSystem extends Component {
 
   componentWillUnmount() {}
 
-  getEventPosition = ({ layerX, layerY, offsetX, offsetY }) => {
-    let x = 0;
-    let y = 0;
-    if (layerX || layerX === 0) {
-      x = layerX;
-      y = layerY;
-    } else if (offsetX || offsetX === 0) {
-      // Opera
-      x = offsetX;
-      y = offsetY;
-    }
-    return { x, y };
+  windowToCanvas = (canvas, x, y) => {
+    const bbox = canvas.getBoundingClientRect();
+    return {
+      x: x - bbox.left * (canvas.width / bbox.width),
+      y: y - bbox.top * (canvas.height / bbox.height),
+    };
   };
 
   render() {

@@ -15,7 +15,7 @@ const arrow = new Arrow();
 @observer
 export default class TrafficFlow extends Component {
   componentDidMount() {
-    const canvas = document.getElementById("canvas");
+    const canvas = document.getElementById("trafficFlowCanvas");
     const context = canvas.getContext("2d");
     const width = canvas.width / 3;
     const height = canvas.height / 3;
@@ -135,7 +135,7 @@ export default class TrafficFlow extends Component {
     return (
       <div id="trafficFlow">
         <canvas
-          id="canvas"
+          id="trafficFlowCanvas"
           width="900px"
           height="900px"
           className="traffic-flow-canvas"
