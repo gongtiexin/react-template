@@ -30,7 +30,11 @@ export default class CompassComponent extends Component {
         e.clientY
       );
       const beveling = compass.getBeveling(middleX, middleY);
-      data.push({ x: middleX / beveling * r1, y: middleY / beveling * r1 });
+      data.push({
+        x: middleX / beveling * r1,
+        y: middleY / beveling * r1,
+        angle: Math.atan(middleY / middleX),
+      });
       arrow.drawArrow(
         context,
         0,

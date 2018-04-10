@@ -8,6 +8,7 @@ import React, { Component } from "react";
 import { observer, inject } from "mobx-react";
 import Arrow from "./Arrow";
 import "./traffic-flow.less";
+import { getPerpendicular, getControlPoint } from "./perpendicular";
 
 const arrow = new Arrow();
 
@@ -17,76 +18,76 @@ export default class TrafficFlow extends Component {
   componentDidMount() {
     const canvas = document.getElementById("trafficFlowCanvas");
     const context = canvas.getContext("2d");
-    const width = canvas.width / 3;
-    const height = canvas.height / 3;
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    context.translate(centerX, centerY);
+    const width = 50;
     const arrowLength = 150;
-    const arrowOffset = 50;
 
-    const arrows = [
+    context.beginPath();
+    context.moveTo(0, 0);
+    context.lineTo(centerX, 0);
+    context.moveTo(0, 0);
+    context.lineTo(0, centerY);
+    context.stroke();
+
+    const list = [
       {
-        x: width * 2,
-        y: height,
+        x1: 0,
+        y1: 0,
+        x2: 110,
+        y2: -150,
+        width,
         color: "#F3A32A",
-        angle: 0,
       },
       {
-        x: width * 2,
-        y: height * 2,
+        x1: 0,
+        y1: 0,
+        x2: 100,
+        y2: 150,
+        width,
         color: "#E94858",
-        angle: Math.PI * 0.5,
       },
       {
-        x: width,
-        y: height * 2,
+        x1: 0,
+        y1: 0,
+        x2: -150,
+        y2: 120,
+        width,
         color: "#3CB4CB",
-        angle: Math.PI,
       },
       {
-        x: width,
-        y: height,
+        x1: 0,
+        y1: 0,
+        x2: 0,
+        y2: -150,
+        width,
         color: "#82BF6E",
-        angle: Math.PI * 1.5,
       },
     ];
 
-    const sources = [
-      {
-        x: width * 2,
-        y: height * 2,
-        color: "#F3A32A",
-        angle: 0,
-        controlPointType: 0,
-      },
-      {
-        x: width,
-        y: height * 2,
-        color: "#E94858",
-        angle: Math.PI * 0.5,
-        controlPointType: 1,
-      },
-      {
-        x: width,
-        y: height,
-        color: "#3CB4CB",
-        angle: Math.PI,
-        controlPointType: 0,
-      },
-      {
-        x: width * 2,
-        y: height,
-        color: "#82BF6E",
-        angle: Math.PI * 1.5,
-        controlPointType: 1,
-      },
-    ];
+    const arrows = [];
+    const sources = [];
 
-    arrows.forEach(({ x, y, color, angle }) =>
+    const a = list.map(({ x1, y1, x2, y2, width: myWidth, color }) => {
+      const [a, b] = getPerpendicular(x1, y1, x2, y2, myWidth, color);
+      if (a.angle <= a.kAngle) {
+        arrows.push(a);
+        sources.push(b);
+      } else {
+        arrows.push(b);
+        sources.push(a);
+      }
+      return [a, b];
+    });
+
+    arrows.forEach(({ x, y, color, kAngle }) =>
       arrow.drawArrow(
         context,
-        x + Math.cos(angle) * arrowOffset,
-        y + Math.sin(angle) * arrowOffset,
-        x + Math.cos(angle) * (arrowLength + arrowOffset),
-        y + Math.sin(angle) * (arrowLength + arrowOffset),
+        x,
+        y,
+        x + Math.cos(kAngle) * arrowLength,
+        y + Math.sin(kAngle) * arrowLength,
         1,
         1,
         Math.PI / 6,
@@ -96,15 +97,13 @@ export default class TrafficFlow extends Component {
       )
     );
 
-    sources.forEach(({ x, y, color, angle, controlPointType }) => {
-      const fromX = x + Math.cos(angle) * arrowOffset;
-      const fromY = y + Math.sin(angle) * arrowOffset;
+    sources.forEach(({ x, y, color, kAngle, k }) => {
       arrow.drawArrow(
         context,
-        fromX,
-        fromY,
-        x + Math.cos(angle) * (arrowLength + arrowOffset),
-        y + Math.sin(angle) * (arrowLength + arrowOffset),
+        x,
+        y,
+        x + Math.cos(kAngle) * arrowLength,
+        y + Math.sin(kAngle) * arrowLength,
         1,
         0,
         Math.PI / 6,
@@ -113,19 +112,11 @@ export default class TrafficFlow extends Component {
         30
       );
       arrows
-        .filter(item => item.angle !== angle)
-        .forEach(({ x: x$, y: y$, angle: angle$ }) =>
-          arrow.drawCurve(
-            context,
-            fromX,
-            fromY,
-            x$ + Math.cos(angle$) * arrowOffset,
-            y$ + Math.sin(angle$) * arrowOffset,
-            controlPointType,
-            color,
-            10
-          )
-        );
+        .filter(item => item.kAngle !== kAngle)
+        .forEach(({ x: x$, y: y$, k: k$ }) => {
+          const { x: cpx, y: cpy } = getControlPoint(x, y, k, x$, y$, k$);
+          arrow.drawCurve(context, x, y, x$, y$, cpx, cpy, color, 10);
+        });
     });
   }
 

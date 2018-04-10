@@ -184,7 +184,8 @@ export default class Arrow {
    * @param    {number}     y1        起始点y坐标
    * @param    {number}     x2        终点x坐标
    * @param    {number}     y2        终点x坐标
-   * @param    {bool}     type      控制点类型
+   * @param    {number}     x3        控制点x坐标
+   * @param    {number}     y3        控制点x坐标
    * @param    {string}     color     线颜色
    * @param    {number}     width     线宽度
    * @return   void
@@ -192,14 +193,10 @@ export default class Arrow {
    * @date     18-4-3
    * @author   gongtiexin
    */
-  drawCurve = (ctx, x1, y1, x2, y2, type, color = "#000", width = 5) => {
+  drawCurve = (ctx, x1, y1, x2, y2, x3, y3, color = "#000", width = 5) => {
     ctx.beginPath();
     ctx.moveTo(x1, y1);
-    if (type) {
-      ctx.quadraticCurveTo(x1, y2, x2, y2);
-    } else {
-      ctx.quadraticCurveTo(x2, y1, x2, y2);
-    }
+    ctx.quadraticCurveTo(x3, y3, x2, y2);
     ctx.strokeStyle = color;
     ctx.lineWidth = width;
     ctx.stroke();

@@ -22,10 +22,10 @@ const routes = [
     }),
   },
   {
-    path: "/test2",
+    path: "/test1",
     component: Loadable({
       loader: () =>
-        import(/* webpackChunkName: "route-test-inject" */ "../components/demo/TestInject"),
+        import(/* webpackChunkName: "route-test-inject" */ "../components/TrafficFlow/TrafficFlow"),
     }),
   },
 ];
