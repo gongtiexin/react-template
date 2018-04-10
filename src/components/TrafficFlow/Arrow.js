@@ -125,7 +125,8 @@ export default class Arrow {
   ) => {
     const toDrawHead = typeof style !== "function" ? this.drawHead : style;
     const dist = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
-    const ratio = (dist - d / 3) / dist;
+    // const ratio = (dist - d / 3) / dist;
+    const ratio = (dist - d) / dist;
     let tox = 0;
     let toy = 0;
     let fromY = 0;

@@ -22,14 +22,10 @@ export default class TrafficFlow extends Component {
     const centerY = canvas.height / 2;
     context.translate(centerX, centerY);
     const width = 50;
-    const arrowLength = 150;
-
-    context.beginPath();
-    context.moveTo(0, 0);
-    context.lineTo(centerX, 0);
-    context.moveTo(0, 0);
-    context.lineTo(0, centerY);
-    context.stroke();
+    const arrowAngle = Math.PI / 6;
+    const arrowLineWidth = 20;
+    const arrowHeadLength = 30;
+    const arrowLength = 100;
 
     const list = [
       {
@@ -90,10 +86,10 @@ export default class TrafficFlow extends Component {
         y + Math.sin(kAngle) * arrowLength,
         1,
         1,
-        Math.PI / 6,
-        75,
+        arrowAngle,
+        arrowHeadLength,
         color,
-        30
+        arrowLineWidth
       )
     );
 
@@ -106,10 +102,10 @@ export default class TrafficFlow extends Component {
         y + Math.sin(kAngle) * arrowLength,
         1,
         0,
-        Math.PI / 6,
-        75,
+        arrowAngle,
+        arrowHeadLength,
         color,
-        30
+        arrowLineWidth
       );
       arrows
         .filter(item => item.kAngle !== kAngle)
