@@ -8,7 +8,12 @@ import React, { Component } from "react";
 import { observer, inject } from "mobx-react";
 import Arrow from "./Arrow";
 import "./traffic-flow.less";
-import { getPerpendicular, getControlPoint } from "./perpendicular";
+import {
+  getPerpendicular,
+  getControlPoint,
+  getLinesAngle,
+  getOffsetPoint,
+} from "./perpendicular";
 
 const arrow = new Arrow();
 
@@ -22,50 +27,96 @@ export default class TrafficFlow extends Component {
     const centerY = canvas.height / 2;
     context.translate(centerX, centerY);
     const width = 50;
-    const arrowAngle = Math.PI / 6;
-    const arrowLineWidth = 20;
-    const arrowHeadLength = 30;
-    const arrowLength = 100;
+
+    // const list = [
+    //   {
+    //     x1: 0,
+    //     y1: 0,
+    //     x2: 100,
+    //     y2: 0,
+    //     width,
+    //     color: "#F3A32A",
+    //   },
+    //   {
+    //     x1: 0,
+    //     y1: 0,
+    //     x2: 0,
+    //     y2: 100,
+    //     width,
+    //     color: "#E94858",
+    //   },
+    //   {
+    //     x1: 0,
+    //     y1: 0,
+    //     x2: -100,
+    //     y2: 0,
+    //     width,
+    //     color: "#3CB4CB",
+    //   },
+    //   {
+    //     x1: 0,
+    //     y1: 0,
+    //     x2: 0,
+    //     y2: -100,
+    //     width,
+    //     color: "#82BF6E",
+    //   },
+    // ];
 
     const list = [
       {
         x1: 0,
         y1: 0,
-        x2: 110,
-        y2: -150,
+        x2: 200,
+        y2: 100,
         width,
         color: "#F3A32A",
       },
       {
         x1: 0,
         y1: 0,
-        x2: 100,
-        y2: 150,
+        x2: -100,
+        y2: 100,
         width,
         color: "#E94858",
       },
       {
         x1: 0,
         y1: 0,
-        x2: -150,
-        y2: 120,
+        x2: -100,
+        y2: -100,
         width,
         color: "#3CB4CB",
       },
       {
         x1: 0,
         y1: 0,
-        x2: 0,
-        y2: -150,
+        x2: 100,
+        y2: -100,
         width,
         color: "#82BF6E",
       },
     ];
 
+    this.draw(context, list);
+  }
+
+  componentWillUnmount() {}
+
+  getAbsAngle = ({ x: x1, y: y1, kAngle }, { x: x2, y: y2 }) => {
+    const { x, y } = getOffsetPoint(x1, y1, kAngle);
+    return getLinesAngle(x1, y1, x2, y2, x, y);
+  };
+
+  draw = (context, list) => {
+    const arrowAngle = Math.PI / 6;
+    const arrowLineWidth = 20;
+    const arrowHeadLength = 30;
+    const arrowLength = 100;
     const arrows = [];
     const sources = [];
 
-    const a = list.map(({ x1, y1, x2, y2, width: myWidth, color }) => {
+    list.forEach(({ x1, y1, x2, y2, width: myWidth, color }) => {
       const [a, b] = getPerpendicular(x1, y1, x2, y2, myWidth, color);
       if (a.angle <= a.kAngle) {
         arrows.push(a);
@@ -74,7 +125,6 @@ export default class TrafficFlow extends Component {
         arrows.push(b);
         sources.push(a);
       }
-      return [a, b];
     });
 
     arrows.forEach(({ x, y, color, kAngle }) =>
@@ -107,24 +157,51 @@ export default class TrafficFlow extends Component {
         color,
         arrowLineWidth
       );
-      arrows
+      let lastWidth = arrowLineWidth;
+      const lastArrows = arrows
         .filter(item => item.kAngle !== kAngle)
-        .forEach(({ x: x$, y: y$, k: k$ }) => {
-          const { x: cpx, y: cpy } = getControlPoint(x, y, k, x$, y$, k$);
-          arrow.drawCurve(context, x, y, x$, y$, cpx, cpy, color, 10);
-        });
+        .sort(
+          (a, b) =>
+            this.getAbsAngle(a, { x, y }) - this.getAbsAngle(b, { x, y })
+        );
+      const lastArrowsLength = lastArrows.length;
+      lastArrows.forEach(({ x: x$, y: y$, k: k$, kAngle: kAngle$ }) => {
+        const { x1, y1, x2, y2, cpx, cpy } = getControlPoint(
+          x,
+          y,
+          k,
+          kAngle,
+          x$,
+          y$,
+          k$,
+          kAngle$,
+          arrowLineWidth,
+          lastWidth,
+          arrowLineWidth / lastArrowsLength
+        );
+        lastWidth -= arrowLineWidth / lastArrowsLength;
+        arrow.drawCurve(
+          context,
+          x1,
+          y1,
+          x2,
+          y2,
+          cpx,
+          cpy,
+          color,
+          arrowLineWidth / lastArrowsLength
+        );
+      });
     });
-  }
-
-  componentWillUnmount() {}
+  };
 
   render() {
     return (
       <div id="trafficFlow">
         <canvas
           id="trafficFlowCanvas"
-          width="900px"
-          height="900px"
+          width="800px"
+          height="800px"
           className="traffic-flow-canvas"
         />
       </div>
