@@ -29,7 +29,7 @@
     "production": {
       "plugins": [
         ["transform-react-remove-prop-types", {
-          "mode": "wrap",
+          "mode": "remove",
           "ignoreFilenames": ["node_modules"]
         }]
       ]

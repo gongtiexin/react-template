@@ -25,9 +25,6 @@ const config = require("./config");
 module.exports = {
   resolve: {
     modules: [config.path.nodeModulesPath],
-    alias: {
-      proptypes: "proptypes/disabled",
-    },
   },
   entry: {
     vendor: config.webpack.build.vendor,
