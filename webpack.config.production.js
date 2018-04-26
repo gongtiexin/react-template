@@ -8,9 +8,8 @@ const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+// const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const MomentLocalesPlugin = require("moment-locales-webpack-plugin");
-const LodashModuleReplacementPlugin = require("lodash-webpack-plugin");
 
 const extractCSS = new ExtractTextPlugin({
   filename: "stylesheets/[name].[contenthash]-css.css",
@@ -129,7 +128,6 @@ module.exports = {
       // (在提取之前需要至少三个子chunk共享这个模块)
       minChunks: 3,
     }),
-    new LodashModuleReplacementPlugin(),
     // 压缩代码
     new webpack.optimize.UglifyJsPlugin({
       // 最紧凑的输出

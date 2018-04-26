@@ -15,7 +15,6 @@
     "stage-2"
   ],
   "plugins": [
-    "lodash",
     "transform-decorators-legacy",
     [
       "import",
