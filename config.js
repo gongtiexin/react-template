@@ -20,8 +20,6 @@ module.exports = {
     build: {
       env: {
         NODE_ENV: "production",
-        CLIENT: true,
-        SERVER: false,
       },
       vendor: [
         "babel-polyfill",
@@ -44,8 +42,6 @@ module.exports = {
     dev: {
       env: {
         NODE_ENV: "development",
-        CLIENT: true,
-        SERVER: false,
       },
       devServer: {
         port: 3000,
