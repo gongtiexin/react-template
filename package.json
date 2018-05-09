@@ -1,7 +1,7 @@
 {
-  "name": "fe-template",
+  "name": "react-template",
   "version": "1.0.0",
-  "description": "Front end project template",
+  "description": "frontend project template for react",
   "scripts": {
     "dev": "webpack-dev-server --config webpack.config.js",
     "build": "rimraf ./dist && webpack --progress --config webpack.config.production.js",

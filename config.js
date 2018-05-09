@@ -60,6 +60,6 @@ module.exports = {
   },
   root,
   modifyVars: {
-    "icon-url": "'/static/antdIconfont/iconfont'",
+    "icon-url": '"/static/antdIconfont/iconfont"',
   },
 };
