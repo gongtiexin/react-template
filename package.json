@@ -4,25 +4,21 @@
   "description": "frontend project template for react",
   "scripts": {
     "dev": "webpack-dev-server --config webpack.config.js",
-    "build": "rimraf ./dist && webpack --progress --config webpack.config.production.js",
-    "loading": "rimraf ./dist/static/html/loading && webpack --config static/html/loading/webpack.loading.config.js",
-    "login": "rimraf ./dist/static/html/login && webpack --config static/html/login/webpack.login.config.js",
+    "build":
+      "rimraf ./dist && webpack --progress --config webpack.config.production.js",
+    "loading":
+      "rimraf ./dist/static/html/loading && webpack --config static/html/loading/webpack.loading.config.js",
+    "login":
+      "rimraf ./dist/static/html/login && webpack --config static/html/login/webpack.login.config.js",
     "prettier": "prettier --trailing-comma es5  --write \"./**/*.*\"",
     "eslint": "eslint \"./**/*.js\""
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm prettier"
+      "pre-commit": "npm run prettier"
     }
   },
-  "keywords": [
-    "React",
-    "React-Router-v4",
-    "MobX",
-    "Webpack",
-    "ES6",
-    "ES7"
-  ],
+  "keywords": ["React", "React-Router-v4", "MobX", "Webpack", "ES6", "ES7"],
   "author": "gongtiexin",
   "license": "ISC",
   "devDependencies": {
@@ -60,6 +56,7 @@
     "rimraf": "^2.6.2",
     "style-loader": "^0.21.0",
     "url-loader": "^1.0.1",
+    "husky": "^1.0.0-rc.4",
     "webpack": "^3.10.0",
     "webpack-bundle-analyzer": "^2.11.2",
     "webpack-dev-server": "^2.11.1"
@@ -70,7 +67,6 @@
     "babel-polyfill": "^6.26.0",
     "echarts": "^4.1.0",
     "enquire.js": "^2.1.6",
-    "husky": "^1.0.0-rc.4",
     "lodash": "^4.17.5",
     "mobx": "^4.2.1",
     "mobx-react": "^5.1.2",
