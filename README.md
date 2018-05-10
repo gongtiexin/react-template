@@ -13,7 +13,7 @@ npm run dev
 npm run build
 ```
 
-## nginx配置(参考)
+## nginx 配置(参考)
 
 ```
 upstream develop.local {
@@ -48,4 +48,4 @@ server {
 
 ## iconfont
 
-本模板中有2个字体包:ant-design,material-design,用法参考官网([antd](https://ant.design/components/icon-cn/),[md](https://material.io/icons/))
+本模板中有 2 个字体包:ant-design,material-design,用法参考官网([antd](https://ant.design/components/icon-cn/),[md](https://material.io/icons/))

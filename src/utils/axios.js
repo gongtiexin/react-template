@@ -89,7 +89,9 @@ axios.interceptors.response.use(
 const request = (config, success, error) =>
   axios(config).then(
     response => {
-      const { data: { errCode, errMsg = "error" } } = response;
+      const {
+        data: { errCode, errMsg = "error" },
+      } = response;
       if (errCode && errCode !== 0) {
         const newError = new Error();
         newError.errCode = errCode;

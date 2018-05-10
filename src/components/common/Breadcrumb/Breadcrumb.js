@@ -19,7 +19,9 @@ export default class Breadcrumb extends Component {
   };
 
   render() {
-    const { location: { pathname } } = this.props;
+    const {
+      location: { pathname },
+    } = this.props;
     const pathSnippets = pathname.split("/").filter(i => i);
     const extraBreadcrumbItems = pathSnippets.map((_, index) => {
       const url = `/${pathSnippets.slice(0, index + 1).join("/")}`;

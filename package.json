@@ -7,8 +7,13 @@
     "build": "rimraf ./dist && webpack --progress --config webpack.config.production.js",
     "loading": "rimraf ./dist/static/html/loading && webpack --config static/html/loading/webpack.loading.config.js",
     "login": "rimraf ./dist/static/html/login && webpack --config static/html/login/webpack.login.config.js",
-    "prettier-styles": "prettier --write \"src/**/*.less\"",
-    "eslint": "eslint \"src/**\" --fix"
+    "prettier": "prettier --trailing-comma es5  --write \"./**/*.*\"",
+    "eslint": "eslint \"./**/*.js\""
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm prettier"
+    }
   },
   "keywords": [
     "React",
@@ -21,7 +26,7 @@
   "author": "gongtiexin",
   "license": "ISC",
   "devDependencies": {
-    "babel-core": "^6.26.0",
+    "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.2",
     "babel-loader": "^7.1.4",
     "babel-plugin-import": "^1.7.0",
@@ -49,38 +54,39 @@
     "less-loader": "^4.1.0",
     "moment-locales-webpack-plugin": "^1.0.5",
     "postcss-cssnext": "^3.1.0",
-    "postcss-loader": "^2.1.3",
+    "postcss-loader": "^2.1.5",
     "prettier": "^1.11.1",
     "resolve-url-loader": "^2.3.0",
     "rimraf": "^2.6.2",
     "style-loader": "^0.21.0",
     "url-loader": "^1.0.1",
     "webpack": "^3.10.0",
-    "webpack-bundle-analyzer": "^2.11.1",
+    "webpack-bundle-analyzer": "^2.11.2",
     "webpack-dev-server": "^2.11.1"
   },
   "dependencies": {
-    "antd": "^3.4.0",
+    "antd": "^3.5.1",
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
-    "echarts": "^4.0.4",
+    "echarts": "^4.1.0",
     "enquire.js": "^2.1.6",
+    "husky": "^1.0.0-rc.4",
     "lodash": "^4.17.5",
-    "mobx": "^4.1.0",
-    "mobx-react": "^5.0.0",
+    "mobx": "^4.2.1",
+    "mobx-react": "^5.1.2",
     "mobx-react-devtools": "^5.0.1",
     "moment": "^2.22.0",
     "normalize.css": "^8.0.0",
     "number-precision": "^1.2.0",
     "particles.js": "^2.0.0",
     "prop-types": "^15.6.1",
-    "query-string": "^6.0.0",
+    "query-string": "^6.1.0",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
-    "react-loadable": "^5.3.1",
+    "react-loadable": "^5.4.0",
     "react-router-dom": "^4.2.2",
-    "rfx-core": "^1.5.3",
-    "rxjs": "^6.0.0",
+    "rfx-core": "^1.6.0",
+    "rxjs": "^6.1.0",
     "shortid": "^2.2.8",
     "up-utils": "3.6.0"
   }
