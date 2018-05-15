@@ -51,14 +51,12 @@ export default class DemoState {
    * 获取数据
    * */
   async getAjax() {
-    const { data, status } = await request(
+    const { data } = await request(
       { method: "GET", url: "/inapi/simulation/page" },
       { message: "成功" },
       { message: "失败" }
     );
-    if (status === 200 || status === 201) {
-      this.setAjax(data);
-    }
+    this.setAjax(data);
     return data;
   }
 

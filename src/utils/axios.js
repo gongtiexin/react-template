@@ -7,14 +7,23 @@
 import axios from "axios";
 import { notification } from "antd";
 
-axios.defaults.retry = 4;
+axios.defaults.retry = 3;
 axios.defaults.retryDelay = 1000;
 
 /**
  * axios拦截器
  */
 axios.interceptors.response.use(
-  response => Promise.resolve(response),
+  response => {
+    const {
+      data: { errCode },
+    } = response;
+    if (errCode && errCode !== 0) {
+      const error = { response };
+      return Promise.reject(error);
+    }
+    return Promise.resolve(response);
+  },
   error => {
     const { config } = error;
     // If config does not exist or the retry option is not set, reject
@@ -53,27 +62,6 @@ axios.interceptors.response.use(
     return backoff.then(() => axios(config));
   }
 );
-
-// axios.interceptors.response.use(
-//   response => Promise.resolve(response),
-//   error => {
-//     if (error.response) {
-//       switch (error.response.status) {
-//         case 401: {
-//           // TODO
-//           break;
-//         }
-//         case 403: {
-//           notification.warn({ message: "您没有权限这样做!" });
-//           break;
-//         }
-//         default:
-//           break;
-//       }
-//     }
-//     return Promise.reject(error);
-//   }
-// );
 
 /**
  * ajax请求同意封装

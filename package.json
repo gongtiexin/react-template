@@ -10,7 +10,8 @@
       "rimraf ./dist/static/html/loading && webpack --config static/html/loading/webpack.loading.config.js",
     "login":
       "rimraf ./dist/static/html/login && webpack --config static/html/login/webpack.login.config.js",
-    "prettier": "prettier --trailing-comma es5  --write \"./**/*.*\"",
+    "prettier":
+      "prettier --trailing-comma es5  --write \"./**/*.js\" \"./**/*.less\" \"./**/*.json\" \"./**/*.md\"",
     "eslint": "eslint \"./**/*.js\""
   },
   "husky": {

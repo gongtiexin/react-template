@@ -8,7 +8,7 @@ const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const config = require("./config");
 
-const proxy = process.env.DEV_PROXY || "localhost";
+const proxy = process.env.DEV_PROXY || "192.168.32.101";
 
 module.exports = {
   entry: [
@@ -28,8 +28,8 @@ module.exports = {
     historyApiFallback: true,
     disableHostCheck: true,
     proxy: {
-      "/api": {
-        target: `http://${proxy}:00000`,
+      "/inapi": {
+        target: `http://${proxy}:20111`,
         changeOrigin: true,
       },
     },
