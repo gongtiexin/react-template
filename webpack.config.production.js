@@ -45,18 +45,20 @@ module.exports = {
       {
         test: /\.css$/,
         use: extractCSS.extract([
-          "css-loader",
-          // 启用css modules
-          // "css-loader?modules&localIdentName=[path][name]---[local]---[hash:base64:5]",
+          {
+            loader: "css-loader",
+            options: { minimize: true },
+          },
           "postcss-loader",
         ]),
       },
       {
         test: /\.less$/i,
         use: extractLESS.extract([
-          "css-loader",
-          // 启用css modules
-          // "css-loader?modules&localIdentName=[path][name]---[local]---[hash:base64:5]",
+          {
+            loader: "css-loader",
+            options: { minimize: true },
+          },
           "postcss-loader",
           {
             loader: "less-loader",

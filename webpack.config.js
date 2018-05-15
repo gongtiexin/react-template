@@ -11,14 +11,7 @@ const config = require("./config");
 const proxy = process.env.DEV_PROXY || "192.168.32.101";
 
 module.exports = {
-  entry: [
-    `webpack-dev-server/client?http://0.0.0.0:${
-      config.webpack.dev.devServer.port
-    }`,
-    "webpack/hot/only-dev-server",
-    "babel-polyfill",
-    config.path.entry,
-  ],
+  entry: ["babel-polyfill", config.path.entry],
   devServer: {
     hot: true,
     contentBase: config.root,
@@ -39,7 +32,7 @@ module.exports = {
     publicPath: config.webpack.publicPath,
     filename: "app.[hash].js",
   },
-  devtool: "cheap-module-source-map",
+  devtool: "eval-source-map",
   resolve: {
     modules: [config.path.nodeModulesPath],
   },

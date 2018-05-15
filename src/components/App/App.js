@@ -26,6 +26,7 @@ export default class App extends Component {
   );
 
   render() {
+    debugger;
     return (
       <Layout id="app">
         <Sider
