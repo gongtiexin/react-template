@@ -11,14 +11,8 @@ const config = require("./config");
 const proxy = process.env.DEV_PROXY || "192.168.32.101";
 
 module.exports = {
-  entry: [
-    `webpack-dev-server/client?http://0.0.0.0:${
-      config.webpack.dev.devServer.port
-    }`,
-    "webpack/hot/only-dev-server",
-    "babel-polyfill",
-    config.path.entry,
-  ],
+  mode: "development",
+  entry: ["babel-polyfill", config.path.entry],
   devServer: {
     hot: true,
     contentBase: config.root,
@@ -39,7 +33,7 @@ module.exports = {
     publicPath: config.webpack.publicPath,
     filename: "app.[hash].js",
   },
-  devtool: "cheap-module-source-map",
+  devtool: "eval",
   resolve: {
     modules: [config.path.nodeModulesPath],
   },
@@ -96,15 +90,9 @@ module.exports = {
     ],
   },
   plugins: [
-    // 配置的全局常量
-    new webpack.DefinePlugin({
-      "process.env": {
-        NODE_ENV: JSON.stringify(config.webpack.dev.env.NODE_ENV),
-      },
-    }),
-    // 显示模块的相对路径
-    new webpack.NamedModulesPlugin(),
+    // 热更新
     new webpack.HotModuleReplacementPlugin(),
+    // html模板
     new HtmlWebpackPlugin({ hash: false, template: config.path.indexHtml }),
   ],
 };

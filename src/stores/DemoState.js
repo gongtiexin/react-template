@@ -52,7 +52,7 @@ export default class DemoState {
    * */
   async getAjax() {
     const { data } = await request(
-      { method: "GET", url: "/inapi/simulation/page" },
+      { method: "GET", url: "/inapi/simulation/page1" },
       { message: "成功" },
       { message: "失败" }
     );
