@@ -4,9 +4,12 @@
   "description": "frontend project template for react",
   "scripts": {
     "dev": "webpack-dev-server --config webpack.config.js",
-    "build": "rimraf ./dist && webpack --progress --config webpack.config.production.js",
-    "loading": "rimraf ./dist/static/html/loading && webpack --config static/html/loading/webpack.loading.config.js",
-    "prettier": "prettier --trailing-comma es5  --write \"./**/*.js\" \"./**/*.less\" \"./**/*.json\" \"./**/*.md\"",
+    "build":
+      "rimraf ./dist && webpack --progress --config webpack.config.production.js",
+    "loading":
+      "rimraf ./dist/static/html/loading && webpack --config static/html/loading/webpack.loading.config.js",
+    "prettier":
+      "prettier --trailing-comma es5  --write \"./**/*.js\" \"./**/*.less\" \"./**/*.json\" \"./**/*.md\"",
     "eslint": "eslint \"./**/*.js\""
   },
   "husky": {
@@ -14,14 +17,7 @@
       "pre-commit": "npm run prettier"
     }
   },
-  "keywords": [
-    "React",
-    "React-Router-v4",
-    "MobX",
-    "Webpack",
-    "ES6",
-    "ES7"
-  ],
+  "keywords": ["React", "React-Router-v4", "MobX", "Webpack", "ES6", "ES7"],
   "author": "gongtiexin",
   "license": "ISC",
   "devDependencies": {
