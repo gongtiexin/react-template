@@ -110,9 +110,9 @@ function doPosition() {
     // aA[i].style.fontSize=Math.ceil(12*mcList[i].scale/2)+8+'px';
     aA[i].style.fontSize = `${mcList[i].size}px`;
     aA[i].style.color = `rgb(${[
-      Math.round(mcList[i].size / max * 255),
-      Math.round(mcList[i].size / max * 166),
-      Math.round(mcList[i].size / max * 166),
+      Math.round((mcList[i].size / max) * 255),
+      Math.round((mcList[i].size / max) * 166),
+      Math.round((mcList[i].size / max) * 166),
     ].join(",")})`;
 
     aA[i].style.filter = `alpha(opacity=${100 * mcList[i].alpha})`;
@@ -134,8 +134,8 @@ function update() {
   let b;
 
   if (active) {
-    a = -Math.min(Math.max(-mouseY, -size), size) / radius * tspeed;
-    b = Math.min(Math.max(-mouseX, -size), size) / radius * tspeed;
+    a = (-Math.min(Math.max(-mouseY, -size), size) / radius) * tspeed;
+    b = (Math.min(Math.max(-mouseX, -size), size) / radius) * tspeed;
   } else {
     a = lasta * 0.98;
     b = lastb * 0.98;
