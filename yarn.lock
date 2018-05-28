@@ -100,6 +100,12 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
+"@samverschueren/stream-to-observable@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@samverschueren/stream-to-observable/-/stream-to-observable-0.3.0.tgz#ecdf48d532c58ea477acfcab80348424f8d0662f"
+  dependencies:
+    any-observable "^0.3.0"
+
 "@sindresorhus/is@^0.7.0":
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
@@ -358,9 +364,9 @@ ansi-wrap@0.1.0:
   version "0.1.0"
   resolved "http://registry.npm.taobao.org/ansi-wrap/download/ansi-wrap-0.1.0.tgz#a82250ddb0015e9a27ca82e82ea603bbfa45efaf"
 
-antd@^3.5.2:
-  version "3.5.2"
-  resolved "https://registry.yarnpkg.com/antd/-/antd-3.5.2.tgz#f27356289788dbe463103f0ab715345ac7ca8cee"
+antd@^3.5.4:
+  version "3.5.4"
+  resolved "https://registry.yarnpkg.com/antd/-/antd-3.5.4.tgz#045e4226b41716dc215f6255bb121b0fb9e5dc3b"
   dependencies:
     array-tree-filter "^2.0.0"
     babel-runtime "6.x"
@@ -373,6 +379,7 @@ antd@^3.5.2:
     moment "^2.19.3"
     omit.js "^1.0.0"
     prop-types "^15.5.7"
+    raf "^3.4.0"
     rc-animate "^2.4.1"
     rc-calendar "~9.6.0"
     rc-cascader "~0.13.0"
@@ -403,11 +410,11 @@ antd@^3.5.2:
     react-lazy-load "^3.0.12"
     react-slick "~0.23.1"
     shallowequal "^1.0.1"
-    warning "~3.0.0"
+    warning "~4.0.0"
 
-any-observable@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/any-observable/-/any-observable-0.2.0.tgz#c67870058003579009083f54ac0abafb5c33d242"
+any-observable@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/any-observable/-/any-observable-0.3.0.tgz#af933475e5806a67d0d7df090dd5e8bef65d119b"
 
 anymatch@^2.0.0:
   version "2.0.0"
@@ -1872,6 +1879,14 @@ chalk@^2.0.1, chalk@^2.1.0:
     escape-string-regexp "^1.0.5"
     supports-color "^4.0.0"
 
+chalk@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.4.1.tgz#18c49ab16a037b6eb0152cc83e3471338215b66e"
+  dependencies:
+    ansi-styles "^3.2.1"
+    escape-string-regexp "^1.0.5"
+    supports-color "^5.3.0"
+
 chalk@~0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-0.4.0.tgz#5199a3ddcd0c1efe23bc08c1b027b06176e0c64f"
@@ -2527,7 +2542,7 @@ cssesc@^0.1.0:
   version "0.1.0"
   resolved "http://registry.npm.taobao.org/cssesc/download/cssesc-0.1.0.tgz#c814903e45623371a0477b40109aaafbeeaddbb4"
 
-cssnano@^3.10.0, cssnano@^3.4.0:
+cssnano@^3.10.0:
   version "3.10.0"
   resolved "http://registry.npm.taobao.org/cssnano/download/cssnano-3.10.0.tgz#4f38f6cea2b9b17fa01490f23f1dc68ea65c1c38"
   dependencies:
@@ -3098,9 +3113,9 @@ entities@~1.1.1:
   version "1.1.1"
   resolved "http://registry.npm.taobao.org/entities/download/entities-1.1.1.tgz#6e5c2d0a5621b5dadaecef80b90edfb5cd7772f0"
 
-envinfo@^4.4.2:
-  version "4.4.2"
-  resolved "https://registry.yarnpkg.com/envinfo/-/envinfo-4.4.2.tgz#472c49f3a8b9bca73962641ce7cb692bf623cd1c"
+envinfo@^5.7.0:
+  version "5.8.1"
+  resolved "https://registry.yarnpkg.com/envinfo/-/envinfo-5.8.1.tgz#1910c0d1dbd74ff1c6b8ca0974841a5dcf7900ca"
 
 errno@^0.1.1:
   version "0.1.6"
@@ -3208,9 +3223,9 @@ eslint-module-utils@^2.2.0:
     debug "^2.6.8"
     pkg-dir "^1.0.0"
 
-eslint-plugin-import@^2.10.0:
-  version "2.11.0"
-  resolved "http://registry.npm.taobao.org/eslint-plugin-import/download/eslint-plugin-import-2.11.0.tgz#15aeea37a67499d848e8e981806d4627b5503816"
+eslint-plugin-import@^2.12.0:
+  version "2.12.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-import/-/eslint-plugin-import-2.12.0.tgz#dad31781292d6664b25317fd049d2e2b2f02205d"
   dependencies:
     contains-path "^0.1.0"
     debug "^2.6.8"
@@ -4127,7 +4142,7 @@ got@^7.0.0:
     url-parse-lax "^1.0.0"
     url-to-options "^1.0.1"
 
-got@^8.2.0:
+got@^8.3.1:
   version "8.3.1"
   resolved "https://registry.yarnpkg.com/got/-/got-8.3.1.tgz#093324403d4d955f5a16a7a8d39955d055ae10ed"
   dependencies:
@@ -4679,6 +4694,12 @@ ini@^1.3.4, ini@~1.3.0:
   version "1.3.5"
   resolved "http://registry.npm.taobao.org/ini/download/ini-1.3.5.tgz#eee25f56db1c9ec6085e0c22778083f596abf927"
 
+inline-manifest-webpack-plugin@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/inline-manifest-webpack-plugin/-/inline-manifest-webpack-plugin-4.0.0.tgz#f2ae52bf1b6e1241932507bd1f0ab1f12e6329d4"
+  dependencies:
+    source-map-url "0.4.0"
+
 inquirer@^3.0.6:
   version "3.3.0"
   resolved "http://registry.npm.taobao.org/inquirer/download/inquirer-3.3.0.tgz#9dd2f2ad765dcab1ff0443b491442a20ba227dc9"
@@ -4698,7 +4719,7 @@ inquirer@^3.0.6:
     strip-ansi "^4.0.0"
     through "^2.3.6"
 
-inquirer@^5.1.0, inquirer@^5.2.0:
+inquirer@^5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/inquirer/-/inquirer-5.2.0.tgz#db350c2b73daca77ff1243962e9f22f099685726"
   dependencies:
@@ -4722,7 +4743,7 @@ internal-ip@1.2.0:
   dependencies:
     meow "^3.3.0"
 
-interpret@^1.0.0, interpret@^1.0.4:
+interpret@^1.0.0, interpret@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.1.0.tgz#7ed1b1410c6a0e0f78cf95d3b8440c63f78b8614"
 
@@ -4969,11 +4990,11 @@ is-object@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/is-object/-/is-object-1.0.1.tgz#8952688c5ec2ffd6b03ecc85e769e02903083470"
 
-is-observable@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/is-observable/-/is-observable-0.2.0.tgz#b361311d83c6e5d726cabf5e250b0237106f5ae2"
+is-observable@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/is-observable/-/is-observable-1.1.0.tgz#b3e986c8f44de950867cab5403f5a3465005975e"
   dependencies:
-    symbol-observable "^0.2.2"
+    symbol-observable "^1.1.0"
 
 is-odd@^2.0.0:
   version "2.0.0"
@@ -5246,7 +5267,7 @@ json-buffer@3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/json-buffer/-/json-buffer-3.0.0.tgz#5b1f397afc75d677bde8bcfc0e47e1f9a3d9a898"
 
-json-parse-better-errors@^1.0.1:
+json-parse-better-errors@^1.0.1, json-parse-better-errors@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/json-parse-better-errors/-/json-parse-better-errors-1.0.2.tgz#bb867cfb3450e69107c131d1c514bab3dc8bcaa9"
 
@@ -5416,15 +5437,15 @@ listr-verbose-renderer@^0.4.0:
     date-fns "^1.27.2"
     figures "^1.7.0"
 
-listr@^0.13.0:
-  version "0.13.0"
-  resolved "https://registry.yarnpkg.com/listr/-/listr-0.13.0.tgz#20bb0ba30bae660ee84cc0503df4be3d5623887d"
+listr@^0.14.1:
+  version "0.14.1"
+  resolved "https://registry.yarnpkg.com/listr/-/listr-0.14.1.tgz#8a7afa4a7135cee4c921d128e0b7dfc6e522d43d"
   dependencies:
-    chalk "^1.1.3"
+    "@samverschueren/stream-to-observable" "^0.3.0"
     cli-truncate "^0.2.1"
     figures "^1.7.0"
     indent-string "^2.1.0"
-    is-observable "^0.2.0"
+    is-observable "^1.1.0"
     is-promise "^2.1.0"
     is-stream "^1.1.0"
     listr-silent-renderer "^1.1.1"
@@ -5434,8 +5455,7 @@ listr@^0.13.0:
     log-update "^1.0.2"
     ora "^0.2.3"
     p-map "^1.1.1"
-    rxjs "^5.4.2"
-    stream-to-observable "^0.2.0"
+    rxjs "^6.1.0"
     strip-ansi "^3.0.1"
 
 load-json-file@^1.0.0:
@@ -6037,13 +6057,13 @@ mobx-react@^5.1.2:
     hoist-non-react-statics "^2.5.0"
     react-lifecycles-compat "^3.0.2"
 
-mobx@^4.2.1:
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/mobx/-/mobx-4.2.1.tgz#dd4190daf1b43d41a3a228585253f9970b0a27dd"
+mobx@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/mobx/-/mobx-4.3.0.tgz#50a5e63fd0197a83c68166ff83ada45b65c859f8"
 
-moment-locales-webpack-plugin@^1.0.5:
-  version "1.0.5"
-  resolved "http://registry.npm.taobao.org/moment-locales-webpack-plugin/download/moment-locales-webpack-plugin-1.0.5.tgz#ff62f8b3383a89ef3f1feb82e95885a3f119f571"
+moment-locales-webpack-plugin@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/moment-locales-webpack-plugin/-/moment-locales-webpack-plugin-1.0.7.tgz#ce2931b8a25100dae0868adbd9e93972dcb33359"
   dependencies:
     lodash.difference "^4.5.0"
 
@@ -6434,10 +6454,10 @@ opn@^5.1.0:
     is-wsl "^1.1.0"
 
 optimize-css-assets-webpack-plugin@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/optimize-css-assets-webpack-plugin/-/optimize-css-assets-webpack-plugin-4.0.1.tgz#48f016766752c7648b92cc1e795b999732bd87a2"
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/optimize-css-assets-webpack-plugin/-/optimize-css-assets-webpack-plugin-4.0.2.tgz#813d511d20fe5d9a605458441ed97074d79c1122"
   dependencies:
-    cssnano "^3.4.0"
+    cssnano "^3.10.0"
     last-call-webpack-plugin "^3.0.0"
 
 optionator@^0.8.2:
@@ -6636,9 +6656,9 @@ parseurl@~1.3.2:
   version "1.3.2"
   resolved "http://registry.npm.taobao.org/parseurl/download/parseurl-1.3.2.tgz#fc289d4ed8993119460c156253262cdc8de65bf3"
 
-particles.js@^2.0.0:
-  version "2.0.0"
-  resolved "http://registry.npm.taobao.org/particles.js/download/particles.js-2.0.0.tgz#21386c4328d6c7f96780a201e96eedfc09c736f6"
+particlesjs@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/particlesjs/-/particlesjs-2.2.2.tgz#1bc4544ded0ba541fe30ced46b8a18a28c9cab8e"
 
 pascalcase@^0.1.1:
   version "0.1.1"
@@ -6725,6 +6745,10 @@ pend@~1.2.0:
 performance-now@^0.2.0:
   version "0.2.0"
   resolved "http://registry.npm.taobao.org/performance-now/download/performance-now-0.2.0.tgz#33ef30c5c77d4ea21c5a53869d91b56d8f2555e5"
+
+performance-now@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
 
 pify@^2.0.0, pify@^2.3.0:
   version "2.3.0"
@@ -7317,9 +7341,9 @@ preserve@^0.2.0:
   version "0.2.0"
   resolved "http://registry.npm.taobao.org/preserve/download/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
 
-prettier@^1.11.1, prettier@^1.5.3:
-  version "1.12.1"
-  resolved "http://registry.npm.taobao.org/prettier/download/prettier-1.12.1.tgz#c1ad20e803e7749faf905a409d2367e06bbe7325"
+prettier@^1.12.1, prettier@^1.13.0:
+  version "1.13.0"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.13.0.tgz#054de8d5fb1a4405c845d16183f58a2c301f6f16"
 
 pretty-bytes@^4.0.2:
   version "4.0.2"
@@ -7483,6 +7507,12 @@ querystringify@0.0.x:
 querystringify@~1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/querystringify/download/querystringify-1.0.0.tgz#6286242112c5b712fa654e526652bf6a13ff05cb"
+
+raf@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/raf/-/raf-3.4.0.tgz#a28876881b4bc2ca9117d4138163ddb80f781575"
+  dependencies:
+    performance-now "^2.1.0"
 
 randomatic@^1.1.3:
   version "1.1.7"
@@ -7862,9 +7892,9 @@ rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-dom@^16.3.1:
-  version "16.3.2"
-  resolved "http://registry.npm.taobao.org/react-dom/download/react-dom-16.3.2.tgz#cb90f107e09536d683d84ed5d4888e9640e0e4df"
+react-dom@^16.4.0:
+  version "16.4.0"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.4.0.tgz#099f067dd5827ce36a29eaf9a6cdc7cbf6216b1e"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -7923,9 +7953,9 @@ react-slick@~0.23.1:
     lodash.debounce "^4.0.8"
     resize-observer-polyfill "^1.5.0"
 
-react@^16.3.1:
-  version "16.3.2"
-  resolved "http://registry.npm.taobao.org/react/download/react-16.3.2.tgz#fdc8420398533a1e58872f59091b272ce2f91ea9"
+react@^16.4.0:
+  version "16.4.0"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.4.0.tgz#402c2db83335336fba1962c08b98c6272617d585"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -8422,7 +8452,7 @@ rx-lite@*, rx-lite@^4.0.8:
   version "4.0.8"
   resolved "http://registry.npm.taobao.org/rx-lite/download/rx-lite-4.0.8.tgz#0b1e11af8bc44836f04a6407e92da42467b79444"
 
-rxjs@^5.4.2, rxjs@^5.5.2:
+rxjs@^5.5.2:
   version "5.5.10"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.5.10.tgz#fde02d7a614f6c8683d0d1957827f492e09db045"
   dependencies:
@@ -8431,6 +8461,12 @@ rxjs@^5.4.2, rxjs@^5.5.2:
 rxjs@^6.1.0:
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.1.0.tgz#833447de4e4f6427b9cec3e5eb9f56415cd28315"
+  dependencies:
+    tslib "^1.9.0"
+
+rxjs@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.2.0.tgz#e024d0e180b72756a83c2aaea8f25423751ba978"
   dependencies:
     tslib "^1.9.0"
 
@@ -8756,7 +8792,7 @@ source-map-support@^0.4.15:
   dependencies:
     source-map "^0.5.6"
 
-source-map-url@^0.4.0:
+source-map-url@0.4.0, source-map-url@^0.4.0:
   version "0.4.0"
   resolved "http://registry.npm.taobao.org/source-map-url/download/source-map-url-0.4.0.tgz#3e935d7ddd73631b97659956d55128e87b5084a3"
 
@@ -8923,12 +8959,6 @@ stream-shift@^1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/stream-shift/download/stream-shift-1.0.0.tgz#d5c752825e5367e786f78e18e445ea223a155952"
 
-stream-to-observable@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/stream-to-observable/-/stream-to-observable-0.2.0.tgz#59d6ea393d87c2c0ddac10aa0d561bc6ba6f0e10"
-  dependencies:
-    any-observable "^0.2.0"
-
 strict-uri-encode@^1.0.0:
   version "1.1.0"
   resolved "http://registry.npm.taobao.org/strict-uri-encode/download/strict-uri-encode-1.1.0.tgz#279b225df1d582b1f54e65addd4352e18faa0713"
@@ -9086,7 +9116,7 @@ supports-color@^4.0.0:
   dependencies:
     has-flag "^2.0.0"
 
-supports-color@^5.1.0, supports-color@^5.3.0:
+supports-color@^5.1.0, supports-color@^5.3.0, supports-color@^5.4.0:
   version "5.4.0"
   resolved "http://registry.npm.taobao.org/supports-color/download/supports-color-5.4.0.tgz#1c6b337402c2137605efe19f10fec390f6faab54"
   dependencies:
@@ -9127,9 +9157,9 @@ symbol-observable@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.0.1.tgz#8340fc4702c3122df5d22288f88283f513d3fdd4"
 
-symbol-observable@^0.2.2:
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-0.2.4.tgz#95a83db26186d6af7e7a18dbd9760a2f86d08f40"
+symbol-observable@^1.1.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"
 
 table@4.0.2:
   version "4.0.2"
@@ -9611,9 +9641,9 @@ uuid@^3.0.0, uuid@^3.0.1, uuid@^3.1.0:
   version "3.2.1"
   resolved "http://registry.npm.taobao.org/uuid/download/uuid-3.2.1.tgz#12c528bb9d58d0b9265d9a2f6f0fe8be17ff1f14"
 
-v8-compile-cache@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/v8-compile-cache/-/v8-compile-cache-1.1.2.tgz#8d32e4f16974654657e676e0e467a348e89b0dc4"
+v8-compile-cache@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/v8-compile-cache/-/v8-compile-cache-2.0.0.tgz#526492e35fc616864284700b7043e01baee09f0a"
 
 vali-date@^1.0.0:
   version "1.0.0"
@@ -9742,9 +9772,15 @@ warning@2.x:
   dependencies:
     loose-envify "^1.0.0"
 
-warning@^3.0.0, warning@~3.0.0:
+warning@^3.0.0:
   version "3.0.0"
   resolved "http://registry.npm.taobao.org/warning/download/warning-3.0.0.tgz#32e5377cb572de4ab04753bdf8821c01ed605b7c"
+  dependencies:
+    loose-envify "^1.0.0"
+
+warning@~4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/warning/-/warning-4.0.0.tgz#311a464f62c0986f4d2d2f3a46d471b3ba02f782"
   dependencies:
     loose-envify "^1.0.0"
 
@@ -9778,9 +9814,9 @@ webpack-addons@^1.1.5:
   dependencies:
     jscodeshift "^0.4.0"
 
-webpack-bundle-analyzer@^2.11.3:
-  version "2.11.3"
-  resolved "https://registry.yarnpkg.com/webpack-bundle-analyzer/-/webpack-bundle-analyzer-2.11.3.tgz#4b442c9bd23f1853af4c9af3a90e21646f16afc3"
+webpack-bundle-analyzer@^2.13.1:
+  version "2.13.1"
+  resolved "https://registry.yarnpkg.com/webpack-bundle-analyzer/-/webpack-bundle-analyzer-2.13.1.tgz#07d2176c6e86c3cdce4c23e56fae2a7b6b4ad526"
   dependencies:
     acorn "^5.3.0"
     bfj-node4 "^5.2.0"
@@ -9795,36 +9831,36 @@ webpack-bundle-analyzer@^2.11.3:
     opener "^1.4.3"
     ws "^4.0.0"
 
-webpack-cli@^2.1.3:
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/webpack-cli/-/webpack-cli-2.1.3.tgz#65d166851abaa56067ef3f716b02a97ba6bbe84d"
+webpack-cli@^2.1.4:
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/webpack-cli/-/webpack-cli-2.1.4.tgz#cab81e79249127384fb69b2fdfe2055f9c771b76"
   dependencies:
-    chalk "^2.3.2"
+    chalk "^2.4.1"
     cross-spawn "^6.0.5"
     diff "^3.5.0"
     enhanced-resolve "^4.0.0"
-    envinfo "^4.4.2"
+    envinfo "^5.7.0"
     glob-all "^3.1.0"
     global-modules "^1.0.0"
-    got "^8.2.0"
+    got "^8.3.1"
     import-local "^1.0.0"
-    inquirer "^5.1.0"
-    interpret "^1.0.4"
+    inquirer "^5.2.0"
+    interpret "^1.1.0"
     jscodeshift "^0.5.0"
-    listr "^0.13.0"
+    listr "^0.14.1"
     loader-utils "^1.1.0"
-    lodash "^4.17.5"
+    lodash "^4.17.10"
     log-symbols "^2.2.0"
     mkdirp "^0.5.1"
     p-each-series "^1.0.0"
     p-lazy "^1.0.0"
-    prettier "^1.5.3"
-    supports-color "^5.3.0"
-    v8-compile-cache "^1.1.2"
+    prettier "^1.12.1"
+    supports-color "^5.4.0"
+    v8-compile-cache "^2.0.0"
     webpack-addons "^1.1.5"
     yargs "^11.1.0"
-    yeoman-environment "^2.0.0"
-    yeoman-generator "^2.0.4"
+    yeoman-environment "^2.1.1"
+    yeoman-generator "^2.0.5"
 
 webpack-dev-middleware@3.1.3:
   version "3.1.3"
@@ -9887,9 +9923,9 @@ webpack-sources@^1.0.1, webpack-sources@^1.1.0:
     source-list-map "^2.0.0"
     source-map "~0.6.1"
 
-webpack@^4.8.3:
-  version "4.8.3"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.8.3.tgz#957c8e80000f9e5cc03d775e78b472d8954f4eeb"
+webpack@^4.9.1:
+  version "4.9.1"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.9.1.tgz#fa7bd738b17fd7f09f37da461b2f5c16c6565f34"
   dependencies:
     "@webassemblyjs/ast" "1.4.3"
     "@webassemblyjs/wasm-edit" "1.4.3"
@@ -9901,6 +9937,7 @@ webpack@^4.8.3:
     chrome-trace-event "^0.1.1"
     enhanced-resolve "^4.0.0"
     eslint-scope "^3.7.1"
+    json-parse-better-errors "^1.0.2"
     loader-runner "^2.3.0"
     loader-utils "^1.1.0"
     memory-fs "~0.4.1"
@@ -10071,7 +10108,7 @@ yauzl@^2.2.1:
     buffer-crc32 "~0.2.3"
     fd-slicer "~1.0.1"
 
-yeoman-environment@^2.0.0, yeoman-environment@^2.0.5:
+yeoman-environment@^2.0.5, yeoman-environment@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/yeoman-environment/-/yeoman-environment-2.1.1.tgz#10a045f7fc4397873764882eae055a33e56ee1c5"
   dependencies:
@@ -10091,7 +10128,7 @@ yeoman-environment@^2.0.0, yeoman-environment@^2.0.5:
     text-table "^0.2.0"
     untildify "^3.0.2"
 
-yeoman-generator@^2.0.4:
+yeoman-generator@^2.0.5:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/yeoman-generator/-/yeoman-generator-2.0.5.tgz#57b0b3474701293cc9ec965288f3400b00887c81"
   dependencies:

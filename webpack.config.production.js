@@ -6,6 +6,7 @@
 
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const InlineManifestWebpackPlugin = require("inline-manifest-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
@@ -21,7 +22,6 @@ module.exports = {
     modules: [config.path.nodeModulesPath],
   },
   entry: {
-    vendor: config.webpack.build.vendor,
     app: ["babel-polyfill", config.path.entry],
   },
   output: {
@@ -86,36 +86,56 @@ module.exports = {
   },
   optimization: {
     minimizer: [
+      // 自定义js优化配置，将会覆盖默认配置
       new UglifyJsPlugin({
+        exclude: /\.min\.js$/, // 过滤掉以".min.js"结尾的文件，我们认为这个后缀本身就是已经压缩好的代码，没必要进行二次压缩
         cache: true,
-        parallel: true,
-        sourceMap: false, // set to true if you want JS source maps
+        parallel: true, // 开启并行压缩，充分利用cpu
+        sourceMap: false,
+        extractComments: false, // 移除注释
         uglifyOptions: {
-          // 最紧凑的输出
-          beautify: false,
           compress: {
-            // 删除所有的 `console` 语句
+            unused: true,
+            warnings: false,
             drop_console: true,
+          },
+          output: {
+            comments: false,
           },
         },
       }),
-      new OptimizeCSSAssetsPlugin({}),
+      // 用于优化css文件
+      new OptimizeCSSAssetsPlugin({
+        assetNameRegExp: /\.css$/g,
+        cssProcessorOptions: {
+          safe: true,
+          autoprefixer: { disable: true }, // 这里是个大坑，稍后会提到
+          mergeLonghand: false,
+          discardComments: {
+            removeAll: true, // 移除注释
+          },
+        },
+        canPrint: true,
+      }),
     ],
+    runtimeChunk: "single",
     splitChunks: {
       cacheGroups: {
-        vendor: {
-          // 抽离第三方插件
-          test: /node_modules/, // 指定是node_modules下的第三方包
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendors",
+          minSize: 30000,
+          minChunks: 1,
           chunks: "initial",
-          name: "vendor", // 打包后的文件名，任意命名
-          // 设置优先级，防止和自定义的公共代码提取时被覆盖，不进行打包
-          priority: 10,
+          priority: 1, // 该配置项是设置处理的优先级，数值越大越优先处理
         },
-        common: {
-          // 抽离自己写的公共代码
+        commons: {
+          name: "commons",
+          minSize: 30000,
+          minChunks: 3,
           chunks: "initial",
-          name: "common", // 任意命名
-          minSize: 0, // 只要超出0字节就生成一个新包
+          priority: -1,
+          reuseExistingChunk: true, // 这个配置允许我们使用已经存在的代码块
         },
       },
     },
@@ -128,9 +148,17 @@ module.exports = {
     new webpack.HashedModuleIdsPlugin(),
     // html模板
     new HtmlWebpackPlugin({
-      hash: false,
+      title: "fle-cli",
+      filename: "index.html",
       template: config.path.indexHtml,
+      inject: true,
+      chunks: ["runtime", "app"], // 将runtime插入html中
+      chunksSortMode: "dependency",
+      minify: {
+        /* */
+      },
     }),
+    new InlineManifestWebpackPlugin("runtime"),
     // 拷贝静态资源
     new CopyWebpackPlugin(config.webpack.build.plugins.CopyWebpackPlugin),
     // 去除moment中除“zh-cn”之外的所有语言环境, “en”内置于Moment中，不能删除
