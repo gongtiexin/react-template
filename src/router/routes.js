@@ -11,21 +11,7 @@ const routes = [
     path: "/test",
     component: Loadable({
       loader: () =>
-        import(/* webpackChunkName: "route-test-traffic-flow" */ "../components/Compass/CompassComponent"),
-    }),
-  },
-  {
-    path: "/echarts",
-    component: Loadable({
-      loader: () =>
-        import(/* webpackChunkName: "route-test-echarts" */ "../components/demo/TestEcharts"),
-    }),
-  },
-  {
-    path: "/test1",
-    component: Loadable({
-      loader: () =>
-        import(/* webpackChunkName: "route-test-inject" */ "../components/TrafficFlow/TrafficFlow"),
+        import(/* webpackChunkName: "route-test-echarts" */ "../components/demo/TestInject"),
     }),
   },
 ];

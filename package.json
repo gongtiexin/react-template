@@ -8,8 +8,6 @@
       "rimraf ./dist && webpack --progress --config webpack.config.production.js",
     "loading":
       "rimraf ./dist/static/html/loading && webpack --config static/html/loading/webpack.loading.config.js",
-    "login":
-      "rimraf ./dist/static/html/login && webpack --config static/html/login/webpack.login.config.js",
     "prettier":
       "prettier --trailing-comma es5  --write \"./**/*.js\" \"./**/*.less\" \"./**/*.json\" \"./**/*.md\"",
     "eslint": "eslint \"./**/*.js\""
@@ -51,14 +49,12 @@
     "less-loader": "^4.1.0",
     "mini-css-extract-plugin": "^0.4.0",
     "moment-locales-webpack-plugin": "^1.0.5",
-    "optimize-css-assets-webpack-plugin": "^4.0.1",
     "postcss-cssnext": "^3.1.0",
     "postcss-loader": "^2.1.5",
     "prettier": "^1.11.1",
     "resolve-url-loader": "^2.3.0",
     "rimraf": "^2.6.2",
     "style-loader": "^0.21.0",
-    "uglifyjs-webpack-plugin": "^1.2.5",
     "url-loader": "^1.0.1",
     "webpack": "^4.8.3",
     "webpack-bundle-analyzer": "^2.11.3",
@@ -78,7 +74,7 @@
     "moment": "^2.22.0",
     "normalize.css": "^8.0.0",
     "number-precision": "^1.2.0",
-    "particles.js": "^2.0.0",
+    "particlesjs": "^2.2.2",
     "prop-types": "^15.6.1",
     "query-string": "^6.1.0",
     "react": "^16.3.1",

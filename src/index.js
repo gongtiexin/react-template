@@ -6,7 +6,7 @@
 
 import React from "react";
 import { render } from "react-dom";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "mobx-react";
 import { hotRehydrate, rehydrate } from "rfx-core";
 import moment from "moment";
@@ -26,6 +26,11 @@ const LoadableApp = Loadable({
     import(/* webpackChunkName: "route-app" */ "./components/App/App"),
 });
 
+const LoadableLogin = Loadable({
+  loader: () =>
+    import(/* webpackChunkName: "route-app" */ "./components/common/Login/Login"),
+});
+
 /**
  * moment时区设置为中国
  */
@@ -38,7 +43,10 @@ const renderApp = () => {
     <Provider store={isProduction ? store : hotRehydrate()}>
       <Router>
         <LocaleProvider locale={zhCN}>
-          <Route path="/" component={LoadableApp} />
+          <Switch>
+            <Route path="/" component={LoadableApp} exact />
+            <Route path="/login" component={LoadableLogin} exact />
+          </Switch>
         </LocaleProvider>
       </Router>
     </Provider>,
