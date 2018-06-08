@@ -8,6 +8,7 @@ import React, { Component } from "react";
 import { observer } from "mobx-react";
 import { Form, Icon, Input, Button, Checkbox } from "antd";
 import Particles from "particlesjs";
+import enquire from "enquire.js";
 import "./login.less";
 
 const { Item: FormItem, create } = Form;
@@ -16,11 +17,13 @@ const { Item: FormItem, create } = Form;
 @observer
 export default class Login extends Component {
   componentDidMount() {
-    Particles.init({
-      selector: ".particles-background",
-      connectParticles: true,
-      color: "#999999",
-      maxParticles: 150,
+    enquire.register("screen and (min-width:420px)", () => {
+      Particles.init({
+        selector: ".particles-background",
+        connectParticles: true,
+        color: "#999999",
+        maxParticles: 150,
+      });
     });
   }
 
