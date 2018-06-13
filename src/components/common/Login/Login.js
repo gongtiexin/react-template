@@ -9,6 +9,7 @@ import { observer } from "mobx-react";
 import { Form, Icon, Input, Button, Checkbox } from "antd";
 import Particles from "particlesjs";
 import "./login.less";
+import { browserRedirect } from "../../../utils/constants";
 
 const { Item: FormItem, create } = Form;
 
@@ -20,28 +21,7 @@ export default class Login extends Component {
   }
 
   particlesInit = () => {
-    const sUserAgent = navigator.userAgent.toLowerCase();
-    const bIsIpad = sUserAgent.includes("ipad");
-    const bIsIphoneOs = sUserAgent.includes("iphone os");
-    const bIsMidp = sUserAgent.includes("midp");
-    const bIsUc7 = sUserAgent.includes("rv:1.2.3.4");
-    const bIsUc = sUserAgent.includes("ucweb");
-    const bIsAndroid = sUserAgent.includes("android");
-    const bIsCE = sUserAgent.includes("windows ce");
-    const bIsWM = sUserAgent.includes("windows mobile");
-    if (
-      !(
-        bIsIpad ||
-        bIsIphoneOs ||
-        bIsMidp ||
-        bIsUc7 ||
-        bIsUc ||
-        bIsAndroid ||
-        bIsCE ||
-        bIsWM
-      )
-    ) {
-      // pc
+    if (browserRedirect() === "pc") {
       Particles.init({
         selector: ".particles-background",
         connectParticles: true,

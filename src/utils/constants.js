@@ -24,11 +24,10 @@ const browserRedirect = () => {
     bIsWM
   ) {
     // phone
-    console.log("phone");
-  } else {
-    // pc
-    console.log("pc");
+    return "phone";
   }
+  // pc
+  return "pc";
 };
 
 const isProduction = process.env.NODE_ENV === "production";
@@ -68,4 +67,4 @@ const ECHARTS_DEFULT_OPTION = {
   series: [],
 };
 
-export { isProduction, ECHARTS_DEFULT_OPTION };
+export { isProduction, ECHARTS_DEFULT_OPTION, browserRedirect };
