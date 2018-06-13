@@ -156,13 +156,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: "index.html",
       template: config.path.indexHtml,
-      inject: true,
-      // 将runtime插入html中
-      chunks: ["runtime", "vendor", "app"],
-      chunksSortMode: "dependency",
-      minify: {
-        /* */
-      },
     }),
     new InlineManifestWebpackPlugin("runtime"),
     // 拷贝静态资源
