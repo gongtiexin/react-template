@@ -28,7 +28,7 @@ module.exports = {
     path: config.path.distPath,
     publicPath: config.webpack.publicPath,
     filename: "assets/[name].[chunkhash].js",
-    chunkFilename: "assets/[name].[chunkhash].child.js",
+    chunkFilename: "assets/[name].[chunkhash].chunk.js",
   },
   module: {
     rules: [
@@ -88,11 +88,14 @@ module.exports = {
     minimizer: [
       // 自定义js优化配置，将会覆盖默认配置
       new UglifyJsPlugin({
-        exclude: /\.min\.js$/, // 过滤掉以".min.js"结尾的文件，我们认为这个后缀本身就是已经压缩好的代码，没必要进行二次压缩
+        // 过滤掉以".min.js"结尾的文件，我们认为这个后缀本身就是已经压缩好的代码，没必要进行二次压缩
+        exclude: /\.min\.js$/,
         cache: true,
-        parallel: true, // 开启并行压缩，充分利用cpu
+        // 开启并行压缩，充分利用cpu
+        parallel: true,
         sourceMap: false,
-        extractComments: false, // 移除注释
+        // 移除注释
+        extractComments: false,
         uglifyOptions: {
           compress: {
             unused: true,
@@ -109,7 +112,7 @@ module.exports = {
         assetNameRegExp: /\.css$/g,
         cssProcessorOptions: {
           safe: true,
-          autoprefixer: { disable: true }, // 这里是个大坑，稍后会提到
+          autoprefixer: { disable: true },
           mergeLonghand: false,
           discardComments: {
             removeAll: true, // 移除注释
@@ -121,13 +124,14 @@ module.exports = {
     runtimeChunk: "single",
     splitChunks: {
       cacheGroups: {
-        vendors: {
+        vendor: {
           test: /[\\/]node_modules[\\/]/,
-          name: "vendors",
+          name: "vendor",
           minSize: 30000,
           minChunks: 1,
           chunks: "initial",
-          priority: 1, // 该配置项是设置处理的优先级，数值越大越优先处理
+          // 设置处理的优先级，数值越大越优先处理
+          priority: 1,
         },
         commons: {
           name: "commons",
@@ -135,7 +139,8 @@ module.exports = {
           minChunks: 3,
           chunks: "initial",
           priority: -1,
-          reuseExistingChunk: true, // 这个配置允许我们使用已经存在的代码块
+          // 允许我们使用已经存在的代码块
+          reuseExistingChunk: true,
         },
       },
     },
@@ -152,7 +157,8 @@ module.exports = {
       filename: "index.html",
       template: config.path.indexHtml,
       inject: true,
-      chunks: ["runtime", "app"], // 将runtime插入html中
+      // 将runtime插入html中
+      chunks: ["runtime", "vendor", "app"],
       chunksSortMode: "dependency",
       minify: {
         /* */
