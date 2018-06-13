@@ -9,6 +9,7 @@ import { observer } from "mobx-react";
 import { Form, Icon, Input, Button, Checkbox } from "antd";
 import Particles from "particlesjs";
 import "./login.less";
+import { browserRedirect } from "../../../utils/constants";
 
 const { Item: FormItem, create } = Form;
 
@@ -16,13 +17,19 @@ const { Item: FormItem, create } = Form;
 @observer
 export default class Login extends Component {
   componentDidMount() {
-    Particles.init({
-      selector: ".particles-background",
-      connectParticles: true,
-      color: "#999999",
-      maxParticles: 150,
-    });
+    this.particlesInit();
   }
+
+  particlesInit = () => {
+    if (browserRedirect() === "pc") {
+      Particles.init({
+        selector: ".particles-background",
+        connectParticles: true,
+        color: "#999999",
+        maxParticles: 150,
+      });
+    }
+  };
 
   handleSubmit = e => {
     e.preventDefault();
