@@ -115,7 +115,8 @@ module.exports = {
           autoprefixer: { disable: true },
           mergeLonghand: false,
           discardComments: {
-            removeAll: true, // 移除注释
+            // 移除注释
+            removeAll: true,
           },
         },
         canPrint: true,
@@ -153,7 +154,6 @@ module.exports = {
     new webpack.HashedModuleIdsPlugin(),
     // html模板
     new HtmlWebpackPlugin({
-      title: "fle-cli",
       filename: "index.html",
       template: config.path.indexHtml,
       inject: true,
