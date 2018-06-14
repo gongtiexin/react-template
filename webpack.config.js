@@ -5,6 +5,7 @@
  * */
 
 const webpack = require("webpack");
+const HappyPack = require("happypack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const config = require("./config");
 
@@ -42,7 +43,7 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: "babel-loader",
+        use: "happypack/loader?id=babel",
       },
       {
         test: /\.less|css$/,
@@ -90,6 +91,11 @@ module.exports = {
     ],
   },
   plugins: [
+    // 多进程
+    new HappyPack({
+      id: "babel",
+      loaders: ["babel-loader"],
+    }),
     // 热更新
     new webpack.HotModuleReplacementPlugin(),
     // html模板

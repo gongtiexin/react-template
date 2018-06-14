@@ -5,6 +5,7 @@
  * */
 
 const webpack = require("webpack");
+const HappyPack = require("happypack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const InlineManifestWebpackPlugin = require("inline-manifest-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
@@ -35,7 +36,7 @@ module.exports = {
       {
         test: /\.js$/,
         include: config.path.srcPath,
-        loader: "babel-loader",
+        use: "happypack/loader?id=babel",
       },
       {
         test: /\.css$/,
@@ -147,6 +148,11 @@ module.exports = {
     },
   },
   plugins: [
+    // 多进程
+    new HappyPack({
+      id: "babel",
+      loaders: ["babel-loader"],
+    }),
     // 分析打包的结构
     // new BundleAnalyzerPlugin(),
     new MiniCssExtractPlugin({
