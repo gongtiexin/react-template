@@ -28,7 +28,7 @@ const LoadableApp = Loadable({
 
 const LoadableLogin = Loadable({
   loader: () =>
-    import(/* webpackChunkName: "route-app" */ "./components/common/Login/Login"),
+    import(/* webpackChunkName: "route-login" */ "./components/common/Login/Login"),
 });
 
 /**

@@ -149,7 +149,10 @@ module.exports = {
   plugins: [
     // 分析打包的结构
     // new BundleAnalyzerPlugin(),
-    new MiniCssExtractPlugin({ filename: "stylesheets/[name].css" }),
+    new MiniCssExtractPlugin({
+      filename: "stylesheets/[name].css",
+      chunkFilename: "stylesheets/[id].css",
+    }),
     // 使得哈希基于模块的相对路径, 生成一个四个字符的字符串作为模块ID
     new webpack.HashedModuleIdsPlugin(),
     // html模板

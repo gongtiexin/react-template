@@ -11,7 +11,7 @@ const routes = [
     path: "/test",
     component: Loadable({
       loader: () =>
-        import(/* webpackChunkName: "route-test-echarts" */ "../components/demo/TestInject"),
+        import(/* webpackChunkName: "route-test" */ "../components/demo/TestInject"),
     }),
   },
 ];
