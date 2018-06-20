@@ -1,10 +1,16 @@
 import React, { Component } from "react";
-import { withRouter, Route } from "react-router-dom";
+import { withRouter, Route, Switch } from "react-router-dom";
 import { inject, observer } from "mobx-react";
 import DevTools from "mobx-react-devtools";
 import { Layout, Menu, Breadcrumb, Icon } from "antd";
 import "./app.less";
 import { routes } from "../../router/routes";
+import Loadable from "../common/Loadable/Loadable";
+
+const LoadableNoMatch = Loadable({
+  loader: () =>
+    import(/* webpackChunkName: "route-login" */ "../common/NoMatch/NoMatch"),
+});
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -82,9 +88,11 @@ export default class App extends Component {
               <Breadcrumb.Item>Bill</Breadcrumb.Item>
             </Breadcrumb>
             <div className="fe-content-dev">
-              Bill is a cat.
               <DevTools />
-              {routes.map(this.renderRoute)}
+              <Switch>
+                {routes.map(this.renderRoute)}
+                <Route component={LoadableNoMatch} />
+              </Switch>
             </div>
           </Content>
           <Footer className="fe-footer">

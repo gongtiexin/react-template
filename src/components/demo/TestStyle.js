@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
-import { Form, Row, Col, Input, Button, Icon } from "antd";
+import { Button, Col, Form, Icon, Input, Row } from "antd";
 import "./test-style.less";
 
 const { Item: FormItem, create } = Form;
@@ -18,7 +18,7 @@ export default class TestStyle extends Component {
     const count = this.state.expand ? 10 : 6;
     const { getFieldDecorator } = this.props.form;
     const children = [];
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 10; i += 1) {
       children.push(
         <Col span={8} key={i} style={{ display: i < count ? "block" : "none" }}>
           <FormItem label={`Field ${i}`}>
@@ -50,7 +50,7 @@ export default class TestStyle extends Component {
 
   render() {
     return (
-      <Fragment>
+      <div>
         <Form className="ant-advanced-search-form" onSubmit={this.handleSearch}>
           <Row gutter={24}>{this.getFields()}</Row>
           <Row>
@@ -68,7 +68,7 @@ export default class TestStyle extends Component {
           </Row>
         </Form>
         <div className="search-result-list">Search Result List</div>
-      </Fragment>
+      </div>
     );
   }
 }
