@@ -48,7 +48,7 @@ export default class ReactEchart extends Component {
   constructor(props) {
     super(props);
     this.myChart = null;
-    this.eCharts = null;
+    this.eCharts = React.createRef();
   }
 
   state = {
@@ -56,21 +56,21 @@ export default class ReactEchart extends Component {
   };
 
   componentDidMount() {
-    this.myChart = echarts.init(this.eCharts);
+    this.myChart = echarts.init(this.eCharts.current);
     window.addEventListener("resize", this.onWindowResize);
     if (!this.state.isReset) {
       this.reset();
     }
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return (
-      !lodashIsEqual(
-        this.props.option.data.slice(),
-        nextProps.option.data.slice()
-      ) || this.state.isReset !== nextState.isReset
-    );
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return (
+  //     !lodashIsEqual(
+  //       this.props.option.data.slice(),
+  //       nextProps.option.data.slice()
+  //     ) || this.state.isReset !== nextState.isReset
+  //   );
+  // }
 
   componentWillUpdate() {
     this.myChart.clear();
@@ -86,10 +86,6 @@ export default class ReactEchart extends Component {
   };
 
   reset = () => this.setState({ isReset: true });
-
-  initEcharts = node => {
-    this.eCharts = node;
-  };
 
   render() {
     const { option, action, onClick } = this.props;
@@ -108,6 +104,6 @@ export default class ReactEchart extends Component {
       }
     }
 
-    return <div ref={this.initEcharts} style={this.props.style} />;
+    return <div ref={this.eCharts} style={this.props.style} />;
   }
 }

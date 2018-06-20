@@ -18,7 +18,7 @@ export default class TestEcharts extends Component {
           { x: "重庆", y: "2017", value: "555", seriesType: "bar" },
           { x: "重庆", y: "2018", value: "666", seriesType: "bar" },
         ]),
-      5000
+      1000
     );
   }
 
