@@ -5,7 +5,7 @@
  * */
 
 import { action, computed, observable } from "mobx";
-import request from "../utils/axios";
+import request from "../utils/request";
 
 /* eslint class-methods-use-this: ["error", { "exceptMethods": ["test"] }] */
 
@@ -51,11 +51,9 @@ export default class DemoState {
    * 获取数据
    * */
   async getAjax() {
-    const { data } = await request(
-      { method: "GET", url: "/inapi/simulation/page1" },
-      { message: "成功" },
-      { message: "失败" }
-    );
+    const { data } = await request({
+      config: { method: "GET", url: "/inapi/simulation/page1" },
+    });
     this.setAjax(data);
     return data;
   }
