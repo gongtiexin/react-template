@@ -44,8 +44,8 @@ const renderApp = () => {
       <Router>
         <LocaleProvider locale={zhCN}>
           <Switch>
-            <Route path="/" component={LoadableApp} />
             <Route path="/login" component={LoadableLogin} exact />
+            <Route path="/" component={LoadableApp} />
           </Switch>
         </LocaleProvider>
       </Router>

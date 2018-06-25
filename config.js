@@ -34,7 +34,7 @@ module.exports = {
           {
             from: staticPath,
             to: distStaticPath,
-            ignore: ["html/loading/*.*", "html/login/*.*", "mdIconfont/*.*"],
+            ignore: ["html/loading/*.*", "mdIconfont/*.*"],
           },
         ],
       },
