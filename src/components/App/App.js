@@ -5,6 +5,8 @@ import DevTools from "mobx-react-devtools";
 import { Layout, Menu, Breadcrumb, Icon } from "antd";
 import "./app.less";
 import { routes } from "../../router/routes";
+import { isProduction } from "../../utils/constants";
+import If from "../common/If/If";
 import Loadable from "../common/Loadable/Loadable";
 
 const LoadableNoMatch = Loadable({
@@ -88,7 +90,9 @@ export default class App extends Component {
               <Breadcrumb.Item>Bill</Breadcrumb.Item>
             </Breadcrumb>
             <div className="fe-content-dev">
-              <DevTools />
+              <If when={!isProduction}>
+                <DevTools />
+              </If>
               <Switch>
                 {routes.map(this.renderRoute)}
                 <Route component={LoadableNoMatch} />
