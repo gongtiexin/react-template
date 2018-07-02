@@ -21,14 +21,7 @@ module.exports = {
       env: {
         NODE_ENV: "production",
       },
-      vendor: [
-        "babel-polyfill",
-        "react",
-        "react-dom",
-        "react-router-dom",
-        "mobx",
-        "mobx-react",
-      ],
+      vendor: ["babel-polyfill", "react", "react-dom", "react-router-dom", "mobx", "mobx-react"],
       plugins: {
         CopyWebpackPlugin: [
           {

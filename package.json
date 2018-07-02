@@ -6,7 +6,7 @@
     "dev": "webpack-dev-server --config webpack.config.js",
     "build": "rimraf ./dist && webpack --progress --config webpack.config.production.js",
     "loading": "rimraf ./dist/static/html/loading && webpack --config static/html/loading/webpack.loading.config.js",
-    "prettier": "prettier --trailing-comma es5  --write \"./**/*.js\" \"./**/*.less\" \"./**/*.json\" \"./**/*.md\"",
+    "prettier": "prettier --trailing-comma es5  --print-width 100 --write \"./**/*.js\" \"./**/*.less\" \"./**/*.json\" \"./**/*.md\"",
     "eslint": "eslint \"./**/*.js\""
   },
   "husky": {

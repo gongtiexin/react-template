@@ -22,9 +22,7 @@ export default class TestStyle extends Component {
       children.push(
         <Col span={8} key={i} style={{ display: i < count ? "block" : "none" }}>
           <FormItem label={`Field ${i}`}>
-            {getFieldDecorator(`field-${i}`)(
-              <Input placeholder="placeholder" />
-            )}
+            {getFieldDecorator(`field-${i}`)(<Input placeholder="placeholder" />)}
           </FormItem>
         </Col>
       );

@@ -8,10 +8,7 @@ export default class TestInject extends Component {
   componentDidMount() {
     this.props.demoState
       .getAjax()
-      .then(
-        data => console.log("success", data),
-        data => console.log("error", data)
-      );
+      .then(data => console.log("success", data), data => console.log("error", data));
     setTimeout(() => this.props.demoState.setData("data change"), 1000);
   }
 

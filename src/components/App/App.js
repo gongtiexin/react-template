@@ -10,8 +10,7 @@ import If from "../common/If/If";
 import Loadable from "../common/Loadable/Loadable";
 
 const LoadableNoMatch = Loadable({
-  loader: () =>
-    import(/* webpackChunkName: "route-login" */ "../common/NoMatch/NoMatch"),
+  loader: () => import(/* webpackChunkName: "route-login" */ "../common/NoMatch/NoMatch"),
 });
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -36,11 +35,7 @@ export default class App extends Component {
   render() {
     return (
       <Layout id="app">
-        <Sider
-          collapsible
-          collapsed={this.state.collapsed}
-          onCollapse={this.onCollapse}
-        >
+        <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
           <div className="fe-logo" />
           <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
             <Menu.Item key="1">
@@ -99,9 +94,7 @@ export default class App extends Component {
               </Switch>
             </div>
           </Content>
-          <Footer className="fe-footer">
-            Ant Design ©2016 Created by Ant UED
-          </Footer>
+          <Footer className="fe-footer">Ant Design ©2016 Created by Ant UED</Footer>
         </Layout>
       </Layout>
     );

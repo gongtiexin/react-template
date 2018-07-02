@@ -54,9 +54,7 @@ export default class Login extends Component {
                 rules: [{ required: true, message: "请输入您的用户名!" }],
               })(
                 <Input
-                  prefix={
-                    <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
-                  }
+                  prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
                   placeholder="用户名"
                   className="login-form-input"
                 />
@@ -67,9 +65,7 @@ export default class Login extends Component {
                 rules: [{ required: true, message: "请输入您的密码!" }],
               })(
                 <Input
-                  prefix={
-                    <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
-                  }
+                  prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
                   type="password"
                   placeholder="密码"
                   className="login-form-input"
@@ -84,11 +80,7 @@ export default class Login extends Component {
               <a className="login-form-forgot" href="">
                 忘记密码
               </a>
-              <Button
-                type="primary"
-                htmlType="submit"
-                className="login-form-button"
-              >
+              <Button type="primary" htmlType="submit" className="login-form-button">
                 Log in
               </Button>
               或者 <a href="">现在去注册!</a>

@@ -27,11 +27,7 @@ export default class Breadcrumb extends Component {
       const url = `/${pathSnippets.slice(0, index + 1).join("/")}`;
 
       if (!routes.find(({ path }) => path === url)) {
-        return (
-          <AntdBreadcrumb.Item key={url}>
-            {breadcrumbNameMap[url]}
-          </AntdBreadcrumb.Item>
-        );
+        return <AntdBreadcrumb.Item key={url}>{breadcrumbNameMap[url]}</AntdBreadcrumb.Item>;
       }
       return (
         <AntdBreadcrumb.Item key={url}>
@@ -46,10 +42,6 @@ export default class Breadcrumb extends Component {
       </AntdBreadcrumb.Item>,
     ].concat(extraBreadcrumbItems);
 
-    return (
-      <AntdBreadcrumb style={{ margin: "16px 0" }}>
-        {breadcrumbItems}
-      </AntdBreadcrumb>
-    );
+    return <AntdBreadcrumb style={{ margin: "16px 0" }}>{breadcrumbItems}</AntdBreadcrumb>;
   }
 }
