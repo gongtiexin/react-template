@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# 若无法执行 运行命令 chmid +x deploy.sh
+# 若无法执行 运行命令 chmod +x deploy.sh
 
 # 当前时间
 date=`date +%F`
