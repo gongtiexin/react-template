@@ -82,6 +82,7 @@
     "normalize.css": "^8.0.0",
     "number-precision": "^1.2.0",
     "particlesjs": "^2.2.2",
+    "photoswipe": "^4.1.2",
     "prop-types": "^15.6.1",
     "query-string": "^6.1.0",
     "react": "^16.4.0",
