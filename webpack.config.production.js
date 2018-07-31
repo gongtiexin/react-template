@@ -114,7 +114,7 @@ module.exports = {
       new OptimizeCSSAssetsPlugin({
         assetNameRegExp: /\.css$/g,
         cssProcessorOptions: {
-          safe: true,
+          // safe: true,
           autoprefixer: { disable: true },
           mergeLonghand: false,
           discardComments: {

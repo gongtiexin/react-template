@@ -14,9 +14,12 @@ export default class DemoState {
    * *************************** observable ***************************
    * */
 
-  @observable data = "hello, world";
-  @observable ajax = [];
-  @observable echarts = [{ x: "重庆", y: "2018", value: "666", seriesType: "bar" }];
+  @observable
+  data = "hello, world";
+  @observable
+  ajax = [];
+  @observable
+  echarts = [{ x: "重庆", y: "2018", value: "666", seriesType: "bar" }];
 
   /**
    * ****************************** ajax ******************************
