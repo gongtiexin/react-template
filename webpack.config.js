@@ -57,6 +57,9 @@ module.exports = {
           {
             loader: "less-loader",
             options: {
+              // less@3
+              javascriptEnabled: true,
+              // 覆盖antd样式的全局变量
               modifyVars: config.modifyVars,
             },
           },
