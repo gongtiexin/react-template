@@ -15,7 +15,7 @@ export default class DemoState {
    * */
 
   @observable
-  data = "Welcome to Your Vue.js App";
+  msg = "Welcome to Your React.js App";
 
   @observable
   ajax = [];
@@ -67,8 +67,8 @@ export default class DemoState {
    * */
 
   @action
-  setData(data) {
-    this.data = data;
+  setMsg(data) {
+    this.msg = data;
   }
 
   @action
@@ -86,7 +86,7 @@ export default class DemoState {
    * */
   @computed
   get computedData() {
-    if (this.data.length > 0) {
+    if (this.msg.length > 0) {
       return "computed";
     }
     return [];
