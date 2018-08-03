@@ -91,10 +91,10 @@ module.exports = {
     minimizer: [
       // 自定义js优化配置，将会覆盖默认配置
       new UglifyJsPlugin({
-        // 过滤掉以".min.js"结尾的文件，我们认为这个后缀本身就是已经压缩好的代码，没必要进行二次压缩
+        // 过滤掉以".min.js"结尾的文件，默认这个后缀本身就是已经压缩好的代码，没必要进行二次压缩
         exclude: /\.min\.js$/,
         cache: true,
-        // 开启并行压缩，充分利用cpu
+        // 多进程并行运行来提高构建速度
         parallel: true,
         sourceMap: false,
         // 移除注释

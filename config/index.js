@@ -6,14 +6,14 @@
 
 const path = require("path");
 
-const entry = path.resolve(__dirname, "./src/index");
-const indexHtml = path.resolve(__dirname, "./index.html");
-const root = path.resolve(__dirname);
-const srcPath = path.resolve(__dirname, "./src");
-const distPath = path.resolve(__dirname, "./dist");
-const staticPath = path.resolve(__dirname, "./static");
-const distStaticPath = path.resolve(__dirname, "./dist/static");
-const nodeModulesPath = path.resolve(__dirname, "./node_modules");
+const entry = path.resolve(__dirname, "../src/index");
+const indexHtml = path.resolve(__dirname, "../index.html");
+const root = path.resolve(__dirname, "../");
+const srcPath = path.resolve(__dirname, "../src");
+const distPath = path.resolve(__dirname, "../dist");
+const staticPath = path.resolve(__dirname, "../static");
+const distStaticPath = path.resolve(__dirname, "../dist/static");
+const nodeModulesPath = path.resolve(__dirname, "../node_modules");
 
 module.exports = {
   webpack: {

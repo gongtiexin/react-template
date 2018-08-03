@@ -10,14 +10,17 @@ const routes = [
   {
     path: "/",
     component: Loadable({
-      loader: () => import(/* webpackChunkName: "route-home" */ "../components/demo/TestInject"),
+      loader: () => import(/* webpackChunkName: "route-home" */ "../components/demo/HelloWord"),
     }),
+    protect: false,
   },
   {
-    path: "/test",
+    path: "/login",
     component: Loadable({
-      loader: () => import(/* webpackChunkName: "route-test" */ "../components/demo/TestStyle"),
+      loader: () =>
+        import(/* webpackChunkName: "route-login" */ "../components/common/Login/Login"),
     }),
+    protect: false,
   },
 ];
 

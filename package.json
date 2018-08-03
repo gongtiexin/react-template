@@ -1,7 +1,9 @@
 {
   "name": "react-template",
   "version": "1.0.0",
-  "description": "frontend project template for react",
+  "description": "A frontend project template for React.js",
+  "author": "tiexin.gong <tiexin.gong@qq.com>",
+  "private": true,
   "scripts": {
     "dev": "webpack-dev-server --config webpack.config.js",
     "build": "rimraf ./dist && webpack --progress --config webpack.config.production.js",
@@ -22,7 +24,6 @@
     "ES6",
     "ES7"
   ],
-  "author": "gongtiexin",
   "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.26.3",
@@ -58,7 +59,6 @@
     "postcss-cssnext": "^3.1.0",
     "postcss-loader": "^2.1.5",
     "prettier": "^1.14.0",
-    "resolve-url-loader": "^2.3.0",
     "rimraf": "^2.6.2",
     "style-loader": "^0.21.0",
     "uglifyjs-webpack-plugin": "^1.2.5",

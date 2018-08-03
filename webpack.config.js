@@ -34,7 +34,7 @@ module.exports = {
     publicPath: config.webpack.publicPath,
     filename: "app.[hash].js",
   },
-  devtool: "eval",
+  devtool: "cheap-module-eval-source-map",
   resolve: {
     modules: [config.path.nodeModulesPath],
   },

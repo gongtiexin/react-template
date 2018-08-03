@@ -30,6 +30,7 @@
         "specialLink": ["to"]
       }
     ],
-    "no-new": 0
+    "no-new": 0,
+    "react/destructuring-assignment": 0
   }
 }

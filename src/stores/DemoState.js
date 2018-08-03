@@ -15,9 +15,11 @@ export default class DemoState {
    * */
 
   @observable
-  data = "hello, world";
+  data = "Welcome to Your Vue.js App";
+
   @observable
   ajax = [];
+
   @observable
   echarts = [{ x: "重庆", y: "2018", value: "666", seriesType: "bar" }];
 
