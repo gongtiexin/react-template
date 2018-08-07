@@ -15,6 +15,7 @@ export default class HelloWord extends Component {
     //   .getAjax()
     //   .then(data => console.log("success", data), data => console.log("error", data));
     setTimeout(() => this.props.demoState.setMsg("Hello, React"), 1000);
+    debugger;
   }
 
   render() {

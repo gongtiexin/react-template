@@ -5,7 +5,7 @@ import { ECHARTS_DEFULT_OPTION } from "../../../utils/constants";
 import Loadable from "../../common/Loadable/index";
 
 const LoadableReactEchart = Loadable({
-  loader: () => import(/* webpackChunkName: "component-react-echart" */ "../../common/ReactEchart/index"),
+  loader: () => import(/* webpackChunkName: "component-react-echart" */ "../../common/ReactEchart"),
 });
 
 @inject(({ store: { demoState } }) => ({ demoState }))
