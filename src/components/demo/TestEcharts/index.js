@@ -1,20 +1,24 @@
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
-import { ECHARTS_DEFULT_OPTION } from "../../utils/constants";
-import Loadable from "../common/Loadable/Loadable";
+import PropTypes from "prop-types";
+import { ECHARTS_DEFULT_OPTION } from "../../../utils/constants";
+import Loadable from "../../common/Loadable/index";
 
 const LoadableReactEchart = Loadable({
-  loader: () =>
-    import(/* webpackChunkName: "component-react-echart" */ "../common/ReactEchart/ReactEchart"),
+  loader: () => import(/* webpackChunkName: "component-react-echart" */ "../../common/ReactEchart/index"),
 });
 
-@inject("store")
+@inject(({ store: { demoState } }) => ({ demoState }))
 @observer
 export default class TestEcharts extends Component {
+  static propTypes = {
+    demoState: PropTypes.object.isRequired,
+  };
+
   componentDidMount() {
     setTimeout(
       () =>
-        this.props.store.demoState.setEcharts([
+        this.props.demoState.setEcharts([
           { x: "重庆", y: "2017", value: "555", seriesType: "bar" },
           { x: "重庆", y: "2018", value: "666", seriesType: "bar" },
         ]),
@@ -23,7 +27,7 @@ export default class TestEcharts extends Component {
   }
 
   render() {
-    const { echarts } = this.props.store.demoState;
+    const { echarts } = this.props.demoState;
     return (
       <LoadableReactEchart
         option={{

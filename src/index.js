@@ -14,19 +14,19 @@ import { LocaleProvider } from "antd";
 import zhCN from "antd/lib/locale-provider/zh_CN";
 import "normalize.css";
 import { isProduction } from "./utils/constants";
-import "./stores/stores";
+import "./stores";
 import "./styles/main.less";
-import Loadable from "./components/common/Loadable/Loadable";
+import Loadable from "./components/common/Loadable";
 
 /**
  * 代码拆分和按需加载
  */
 const LoadableApp = Loadable({
-  loader: () => import(/* webpackChunkName: "route-app" */ "./components/App/App"),
+  loader: () => import(/* webpackChunkName: "route-app" */ "./components/App"),
 });
 
 const LoadableLogin = Loadable({
-  loader: () => import(/* webpackChunkName: "route-login" */ "./components/common/Login/Login"),
+  loader: () => import(/* webpackChunkName: "route-login" */ "./components/common/Login"),
 });
 
 /**

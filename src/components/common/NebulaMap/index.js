@@ -36,10 +36,15 @@ class Ball {
   };
 
   x = 0;
+
   y = 0;
+
   rotation = 0;
+
   scaleX = 1;
+
   scaleY = 1;
+
   lineWidth = 1;
 }
 
@@ -64,7 +69,7 @@ for (let i = 0; i <= 10; i += 1) {
 }
 
 @observer
-export default class SolarSystem extends Component {
+export default class NebulaMap extends Component {
   componentDidMount() {
     // 椭圆
     CanvasRenderingContext2D.prototype.oval = function(x, y, width, height) {

@@ -6,7 +6,7 @@
 
 import React, { Component } from "react";
 import { observer } from "mobx-react";
-import "./no-math.less";
+import "./index.less";
 
 @observer
 export default class NoMatch extends Component {

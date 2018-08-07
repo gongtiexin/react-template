@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
 import shortid from "shortid";
 import "photoswipe/dist/photoswipe.css";
 import "photoswipe/dist/default-skin/default-skin.css";
-import "./photoswipe.less";
+import "./index.less";
 import initPhotoSwipeFromDOM from "./init";
 
 const dataSize = "1024x1024";

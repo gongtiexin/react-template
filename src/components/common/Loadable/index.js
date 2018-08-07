@@ -7,7 +7,7 @@
 import React from "react";
 import ReactLoadable from "react-loadable";
 import PropTypes from "prop-types";
-import "./loadable.less";
+import "./index.less";
 
 const Loading = props => {
   if (props.error) {
@@ -16,13 +16,15 @@ const Loading = props => {
         <p>Error!</p>
       </div>
     );
-  } else if (props.timedOut) {
+  }
+  if (props.timedOut) {
     return (
       <div className="loadable-box">
         <p>Taking a long time...</p>
       </div>
     );
-  } else if (props.pastDelay) {
+  }
+  if (props.pastDelay) {
     return (
       <div className="loadable-box">
         <p>Loading...</p>

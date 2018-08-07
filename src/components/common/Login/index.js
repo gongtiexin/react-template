@@ -6,9 +6,10 @@
 
 import React, { Component } from "react";
 import { observer } from "mobx-react";
+import PropTypes from "prop-types";
 import { Form, Icon, Input, Button, Checkbox } from "antd";
 import Particles from "particlesjs";
-import "./login.less";
+import "./index.less";
 import { browserRedirect } from "../../../utils/constants";
 
 const { Item: FormItem, create } = Form;
@@ -16,6 +17,10 @@ const { Item: FormItem, create } = Form;
 @create()
 @observer
 export default class Login extends Component {
+  static propTypes = {
+    form: PropTypes.object.isRequired,
+  };
+
   componentDidMount() {
     this.particlesInit();
   }

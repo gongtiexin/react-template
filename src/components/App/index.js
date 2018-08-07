@@ -2,18 +2,18 @@ import React, { Component, Fragment } from "react";
 import { withRouter, Route, Switch } from "react-router-dom";
 import { inject, observer } from "mobx-react";
 import DevTools from "mobx-react-devtools";
-import "./app.less";
-import { routes } from "../../router/routes";
+import "./index.less";
+import { routes } from "../../router";
 import { PrivateRoute } from "../../router/feature";
 import { isProduction } from "../../utils/constants";
-import If from "../common/If/If";
-import Loadable from "../common/Loadable/Loadable";
+import If from "../common/If";
+import Loadable from "../common/Loadable";
 
 const LoadableNoMatch = Loadable({
-  loader: () => import(/* webpackChunkName: "route-login" */ "../common/NoMatch/NoMatch"),
+  loader: () => import(/* webpackChunkName: "route-no-match" */ "../common/NoMatch"),
 });
 
-@inject("store")
+@inject(({ store: { demoState } }) => ({ demoState }))
 @withRouter
 @observer
 export default class App extends Component {
