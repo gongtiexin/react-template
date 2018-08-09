@@ -39,11 +39,7 @@ module.exports = {
         use: "happypack/loader?id=babel",
       },
       {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
-      },
-      {
-        test: /\.less$/i,
+        test: /\.less|css$/,
         use: [
           MiniCssExtractPlugin.loader,
           "css-loader",
