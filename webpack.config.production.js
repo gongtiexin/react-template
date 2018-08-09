@@ -38,6 +38,27 @@ module.exports = {
         include: config.path.srcPath,
         use: "happypack/loader?id=babel",
       },
+      // {
+      //   test: /\.css$/,
+      //   use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
+      // },
+      // {
+      //   test: /\.less$/i,
+      //   use: [
+      //     MiniCssExtractPlugin.loader,
+      //     "css-loader",
+      //     "postcss-loader",
+      //     {
+      //       loader: "less-loader",
+      //       options: {
+      //         // less@3
+      //         javascriptEnabled: true,
+      //         // 覆盖antd样式的全局变量
+      //         modifyVars: config.modifyVars,
+      //       },
+      //     },
+      //   ],
+      // },
       {
         test: /\.less|css$/,
         use: [
