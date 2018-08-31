@@ -9,6 +9,7 @@ import { observer } from "mobx-react";
 import PropTypes from "prop-types";
 import { Button, Col, Divider, Form, Input, Row, Table, Select } from "antd";
 import Pagination from "../Pagination";
+import If from "../If";
 import "./index.less";
 
 const { Item: FormItem, create } = Form;
@@ -91,24 +92,28 @@ export default class SearchTable extends Component {
     });
 
   render() {
-    const { fields, dividerProps, tableProps, paginationProps } = this.props;
+    const { fields = [], dividerProps, tableProps, paginationProps } = this.props;
 
     return (
       <div id="searchTable">
-        <Form className="ant-advanced-search-form" onSubmit={this.handleSearch}>
-          <Row gutter={24}>{this.renderFormItem(fields)}</Row>
-          <Row>
-            <Col span={24} style={{ textAlign: "right" }}>
-              <Button type="primary" htmlType="submit">
-                搜索
-              </Button>
-              <Button style={{ marginLeft: 8 }} onClick={this.handleReset}>
-                重置
-              </Button>
-            </Col>
-          </Row>
-        </Form>
-        <Divider {...dividerProps}>搜索结果</Divider>
+        <If when={fields.length > 0}>
+          <Form className="ant-advanced-search-form" onSubmit={this.handleSearch}>
+            <Row gutter={24}>{this.renderFormItem(fields)}</Row>
+            <Row>
+              <Col span={24} style={{ textAlign: "right" }}>
+                <Button type="primary" htmlType="submit">
+                  搜索
+                </Button>
+                <Button style={{ marginLeft: 8 }} onClick={this.handleReset}>
+                  重置
+                </Button>
+              </Col>
+            </Row>
+          </Form>
+          <Divider orientation="left" {...dividerProps}>
+            搜索结果
+          </Divider>
+        </If>
         <Table size="middle" pagination={false} {...tableProps} />
         <Pagination {...paginationProps} handleChange={this.refreshData} />
       </div>
