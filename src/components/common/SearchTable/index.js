@@ -4,12 +4,11 @@
  * 2018/8/10           gongtiexin       通用搜索表格组件
  * */
 
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { observer } from "mobx-react";
 import PropTypes from "prop-types";
 import { Button, Col, Divider, Form, Input, Row, Table, Select } from "antd";
 import Pagination from "../Pagination";
-import If from "../If";
 import "./index.less";
 
 const { Item: FormItem, create } = Form;
@@ -76,7 +75,10 @@ export default class SearchTable extends Component {
                 {getFieldDecorator(key, options)(
                   <Select {...props}>
                     {items.map(item => (
-                      <SelectOption key={item.key || item.value} value={item.value}>
+                      <SelectOption
+                        key={item.key || item.value}
+                        value={item.value}
+                      >
                         {item.label}
                       </SelectOption>
                     ))}
@@ -92,28 +94,43 @@ export default class SearchTable extends Component {
     });
 
   render() {
-    const { fields = [], dividerProps, tableProps, paginationProps } = this.props;
+    const {
+      fields = [],
+      dividerProps,
+      tableProps,
+      paginationProps,
+    } = this.props;
 
     return (
       <div id="searchTable">
-        <If when={fields.length > 0}>
-          <Form className="ant-advanced-search-form" onSubmit={this.handleSearch}>
-            <Row gutter={24}>{this.renderFormItem(fields)}</Row>
-            <Row>
-              <Col span={24} style={{ textAlign: "right" }}>
-                <Button type="primary" htmlType="submit">
-                  搜索
-                </Button>
-                <Button style={{ marginLeft: 8 }} onClick={this.handleReset}>
-                  重置
-                </Button>
-              </Col>
-            </Row>
-          </Form>
-          <Divider orientation="left" {...dividerProps}>
-            搜索结果
-          </Divider>
-        </If>
+        {do {
+          if (fields.length > 0) {
+            <Fragment>
+              <Form
+                className="ant-advanced-search-form"
+                onSubmit={this.handleSearch}
+              >
+                <Row gutter={24}>{this.renderFormItem(fields)}</Row>
+                <Row>
+                  <Col span={24} style={{ textAlign: "right" }}>
+                    <Button type="primary" htmlType="submit">
+                      搜索
+                    </Button>
+                    <Button
+                      style={{ marginLeft: 8 }}
+                      onClick={this.handleReset}
+                    >
+                      重置
+                    </Button>
+                  </Col>
+                </Row>
+              </Form>
+              <Divider orientation="left" {...dividerProps}>
+                搜索结果
+              </Divider>
+            </Fragment>;
+          }
+        }}
         <Table size="middle" pagination={false} {...tableProps} />
         <Pagination {...paginationProps} handleChange={this.refreshData} />
       </div>

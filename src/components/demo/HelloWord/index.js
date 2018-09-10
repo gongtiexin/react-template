@@ -14,12 +14,14 @@ export default class HelloWord extends Component {
     // this.props.demoState
     //   .getAjax()
     //   .then(data => console.log("success", data), data => console.log("error", data));
-    setTimeout(() => this.props.demoState.setMsg("Hello, React"), 1000);
-    debugger;
+    const { demoState } = this.props;
+    setTimeout(() => demoState.setMsg("Hello, React"), 1000);
   }
 
   render() {
-    const { msg } = this.props.demoState;
+    const {
+      demoState: { msg },
+    } = this.props;
 
     return (
       <div id="helloWord">

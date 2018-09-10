@@ -11,10 +11,15 @@ const isStraight = arr => {
   return length > arr.length ? "no" : "yes";
 };
 
+/**
+ * 双向绑定
+ * */
 // Dep
 class Dep {
   sub = [];
+
   addSub = watcher => this.sub.push(watcher);
+
   notify = () => this.sub.forEach(watcher => watcher.fn());
 }
 
@@ -92,3 +97,62 @@ const observable = obj => {
 
 const point = { x: 1, y: 2, option: { color: "#eee" } };
 observable(point);
+
+/**
+ * 快排
+ * */
+const arr = [1, 4, 5, 2, 6, 3, 9, 8, 0, 7];
+// 原地交换函数，而非用临时数组
+function swap(array, a, b) {
+  [array[a], array[b]] = [array[b], array[a]];
+}
+
+// 比较函数
+function compare(a, b) {
+  if (a === b) {
+    return 0;
+  }
+  return a < b ? -1 : 1;
+}
+
+// 划分操作函数
+function partition(array, left, right) {
+  // 用index取中间值而非splice
+  const pivot = array[Math.floor((right + left) / 2)];
+  let i = left;
+  let j = right;
+
+  while (i <= j) {
+    while (compare(array[i], pivot) === -1) {
+      i += 1;
+    }
+    while (compare(array[j], pivot) === 1) {
+      j -= 1;
+    }
+    if (i <= j) {
+      swap(array, i, j);
+      i += 1;
+      j -= 1;
+    }
+  }
+  return i;
+}
+
+function quick(array, left, right) {
+  let index;
+  if (array.length > 1) {
+    index = partition(array, left, right);
+    if (left < index - 1) {
+      quick(array, left, index - 1);
+    }
+    if (index < right) {
+      quick(array, index, right);
+    }
+  }
+  return array;
+}
+
+function quickSort(array) {
+  return quick(array, 0, array.length - 1);
+}
+console.log(quickSort(arr));

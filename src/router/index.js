@@ -10,7 +10,8 @@ const routes = [
   {
     path: "/",
     component: Loadable({
-      loader: () => import(/* webpackChunkName: "route-home" */ "../components/demo/HelloWord"),
+      loader: () =>
+        import(/* webpackChunkName: "route-home" */ "../components/demo/HelloWord"),
     }),
     protect: false,
   },

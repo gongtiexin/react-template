@@ -55,7 +55,11 @@ export default class PhotoSwipe extends Component {
   render() {
     return (
       <div id="photoSwipe">
-        <div className="my-gallery" itemScope itemType="http://schema.org/ImageGallery">
+        <div
+          className="my-gallery"
+          itemScope
+          itemType="http://schema.org/ImageGallery"
+        >
           {this.renderImageListItem()}
         </div>
         <div className="pswp" tabIndex="-1" role="dialog" aria-hidden="true">
@@ -69,10 +73,22 @@ export default class PhotoSwipe extends Component {
             <div className="pswp__ui pswp__ui--hidden">
               <div className="pswp__top-bar">
                 <div className="pswp__counter" />
-                <button className="pswp__button pswp__button--close" title="Close (Esc)" />
-                <button className="pswp__button pswp__button--share" title="Share" />
-                <button className="pswp__button pswp__button--fs" title="Toggle fullscreen" />
-                <button className="pswp__button pswp__button--zoom" title="Zoom in/out" />
+                <button
+                  className="pswp__button pswp__button--close"
+                  title="Close (Esc)"
+                />
+                <button
+                  className="pswp__button pswp__button--share"
+                  title="Share"
+                />
+                <button
+                  className="pswp__button pswp__button--fs"
+                  title="Toggle fullscreen"
+                />
+                <button
+                  className="pswp__button pswp__button--zoom"
+                  title="Zoom in/out"
+                />
                 <div className="pswp__preloader">
                   <div className="pswp__preloader__icn">
                     <div className="pswp__preloader__cut">

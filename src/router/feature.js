@@ -21,7 +21,12 @@ class RecordRoute extends Component {
   }
 }
 
-const PrivateRoute = ({ component: RouteComponent, loggedIn = true, protect, ...rest }) => (
+const PrivateRoute = ({
+  component: RouteComponent,
+  loggedIn = true,
+  protect,
+  ...rest
+}) => (
   <RecordRoute
     {...rest}
     render={props =>

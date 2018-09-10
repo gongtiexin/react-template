@@ -9,22 +9,22 @@ import ReactLoadable from "react-loadable";
 import PropTypes from "prop-types";
 import "./index.less";
 
-const Loading = props => {
-  if (props.error) {
+const Loading = ({ error, timedOut, pastDelay }) => {
+  if (error) {
     return (
       <div className="loadable-box">
         <p>Error!</p>
       </div>
     );
   }
-  if (props.timedOut) {
+  if (timedOut) {
     return (
       <div className="loadable-box">
         <p>Taking a long time...</p>
       </div>
     );
   }
-  if (props.pastDelay) {
+  if (pastDelay) {
     return (
       <div className="loadable-box">
         <p>Loading...</p>
@@ -35,9 +35,15 @@ const Loading = props => {
 };
 
 Loading.propTypes = {
-  error: PropTypes.object,
+  error: PropTypes.bool,
   timedOut: PropTypes.bool,
   pastDelay: PropTypes.bool,
+};
+
+Loading.defaultProps = {
+  error: false,
+  timedOut: false,
+  pastDelay: false,
 };
 
 const Loadable = opts =>

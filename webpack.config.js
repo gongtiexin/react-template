@@ -13,7 +13,7 @@ const proxy = process.env.DEV_PROXY || "192.168.32.101";
 
 module.exports = {
   mode: "development",
-  entry: ["babel-polyfill", config.path.entry],
+  entry: ["@babel/polyfill", config.path.entry],
   devServer: {
     hot: true,
     contentBase: config.root,

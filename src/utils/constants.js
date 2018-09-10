@@ -13,7 +13,16 @@ const browserRedirect = () => {
   const bIsAndroid = sUserAgent.includes("android");
   const bIsCE = sUserAgent.includes("windows ce");
   const bIsWM = sUserAgent.includes("windows mobile");
-  if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+  if (
+    bIsIpad ||
+    bIsIphoneOs ||
+    bIsMidp ||
+    bIsUc7 ||
+    bIsUc ||
+    bIsAndroid ||
+    bIsCE ||
+    bIsWM
+  ) {
     // phone
     return "phone";
   }

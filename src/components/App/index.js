@@ -6,11 +6,11 @@ import "./index.less";
 import { routes } from "../../router";
 import { PrivateRoute } from "../../router/feature";
 import { isProduction } from "../../utils/constants";
-import If from "../common/If";
 import Loadable from "../common/Loadable";
 
 const LoadableNoMatch = Loadable({
-  loader: () => import(/* webpackChunkName: "route-no-match" */ "../common/NoMatch"),
+  loader: () =>
+    import(/* webpackChunkName: "route-no-match" */ "../common/NoMatch"),
 });
 
 @inject(({ store: { demoState } }) => ({ demoState }))
@@ -26,9 +26,11 @@ export default class App extends Component {
       <div id="app">
         <img src="/static/images/logo.svg" alt="logo" />
         <Fragment>
-          <If when={!isProduction}>
-            <DevTools />
-          </If>
+          {do {
+            if (!isProduction) {
+              <DevTools />;
+            }
+          }}
           <Switch>
             {routes.map(this.renderRoute)}
             <Route component={LoadableNoMatch} />

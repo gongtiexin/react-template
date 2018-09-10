@@ -40,7 +40,12 @@ export default class Pagination extends Component {
   showTotal = total => `共 ${total || 0} 条`;
 
   render() {
-    const { pageSize, currentPage, totalElements, showSizeChanger } = this.props;
+    const {
+      pageSize,
+      currentPage,
+      totalElements,
+      showSizeChanger,
+    } = this.props;
 
     return (
       <AntdPagination

@@ -23,7 +23,7 @@ module.exports = {
     modules: [config.path.nodeModulesPath],
   },
   entry: {
-    app: ["babel-polyfill", config.path.entry],
+    app: ["@babel/polyfill", config.path.entry],
   },
   output: {
     path: config.path.distPath,

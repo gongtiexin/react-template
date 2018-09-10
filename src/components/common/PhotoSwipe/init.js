@@ -125,7 +125,12 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
     return params;
   };
 
-  var openPhotoSwipe = function(index, galleryElement, disableAnimation, fromURL) {
+  var openPhotoSwipe = function(
+    index,
+    galleryElement,
+    disableAnimation,
+    fromURL
+  ) {
     var pswpElement = document.querySelectorAll(".pswp")[0],
       gallery,
       options,
@@ -137,7 +142,12 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
     options = {
       // Share buttons
       shareButtons: [
-        { id: "download", label: "保存图片", url: "{{raw_image_url}}", download: true },
+        {
+          id: "download",
+          label: "保存图片",
+          url: "{{raw_image_url}}",
+          download: true,
+        },
       ],
 
       // disable fullscreen
@@ -149,7 +159,8 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
       getThumbBoundsFn: function(index) {
         // See Options -> getThumbBoundsFn section of documentation for more info
         var thumbnail = items[index].el.getElementsByTagName("img")[0], // find thumbnail
-          pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
+          pageYScroll =
+            window.pageYOffset || document.documentElement.scrollTop,
           rect = thumbnail.getBoundingClientRect();
 
         return { x: rect.left, y: rect.top + pageYScroll, w: rect.width };
