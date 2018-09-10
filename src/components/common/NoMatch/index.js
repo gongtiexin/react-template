@@ -19,7 +19,7 @@ export default class NoMatch extends Component {
       <div id="noMatch">
         <section>
           <span>404</span>
-          <p>The requested path could not be found</p>
+          <p>抱歉，你访问的页面不存在</p>
         </section>
       </div>
     );

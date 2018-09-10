@@ -24,6 +24,13 @@
     "ES6",
     "ES7"
   ],
+  "browserslist": [
+    "last 2 version",
+    "> 1%",
+    "maintained node versions",
+    "not dead",
+    "not ie <= 8"
+  ],
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.0.0",

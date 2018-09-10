@@ -6,6 +6,7 @@
 
 import React, { Component } from "react";
 import { observer } from "mobx-react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Form, Icon, Input, Button, Checkbox } from "antd";
 import Particles from "particlesjs";
@@ -86,9 +87,9 @@ export default class Login extends Component {
                 valuePropName: "checked",
                 initialValue: true,
               })(<Checkbox>记住密码</Checkbox>)}
-              <a className="login-form-forgot" href="">
+              <Link className="login-form-forgot" to="/forgot">
                 忘记密码
-              </a>
+              </Link>
               <Button
                 type="primary"
                 htmlType="submit"
@@ -96,7 +97,8 @@ export default class Login extends Component {
               >
                 Log in
               </Button>
-              或者 <a href="">现在去注册!</a>
+              或者
+              <Link to="/register">现在去注册!</Link>
             </FormItem>
           </Form>
         </div>

@@ -21,13 +21,14 @@ export default class SearchTable extends Component {
     form: PropTypes.object.isRequired,
     fields: PropTypes.array,
     dividerProps: PropTypes.object,
-    tableProps: PropTypes.object,
-    paginationProps: PropTypes.object,
+    tableProps: PropTypes.object.isRequired,
+    paginationProps: PropTypes.object.isRequired,
     callback: PropTypes.func,
   };
 
   static defaultProps = {
     fields: [],
+    dividerProps: { orientation: "left" },
     callback: values => console.log(values),
   };
 
@@ -37,13 +38,19 @@ export default class SearchTable extends Component {
 
   handleSearch = e => {
     e.preventDefault();
-    this.props.form.validateFields(() => {
+    const {
+      form: { validateFields },
+    } = this.props;
+    validateFields(() => {
       this.refreshData();
     });
   };
 
   handleReset = () => {
-    this.props.form.resetFields();
+    const {
+      form: { resetFields },
+    } = this.props;
+    resetFields();
   };
 
   refreshData = params => {
@@ -57,7 +64,9 @@ export default class SearchTable extends Component {
 
   renderFormItem = fields =>
     fields.map(({ type, key, label, items = [], options, props }) => {
-      const { getFieldDecorator } = this.props.form;
+      const {
+        form: { getFieldDecorator },
+      } = this.props;
       switch (type) {
         case "input": {
           return (
@@ -125,9 +134,7 @@ export default class SearchTable extends Component {
                   </Col>
                 </Row>
               </Form>
-              <Divider orientation="left" {...dividerProps}>
-                搜索结果
-              </Divider>
+              <Divider {...dividerProps}>搜索结果</Divider>
             </Fragment>;
           }
         }}

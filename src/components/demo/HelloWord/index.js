@@ -23,9 +23,14 @@ export default class HelloWord extends Component {
       demoState: { msg },
     } = this.props;
 
+    const a = [{ x: 1 }];
+
+    const b = x => console.log(x);
+
     return (
       <div id="helloWord">
         <h1>{msg}</h1>
+        {a.find(({ x }) => x === 6)?.x || 0 |> b}
       </div>
     );
   }

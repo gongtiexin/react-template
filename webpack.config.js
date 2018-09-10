@@ -23,7 +23,7 @@ module.exports = {
     historyApiFallback: true,
     disableHostCheck: true,
     proxy: {
-      "/inapi": {
+      "/api": {
         target: `http://${proxy}:20111`,
         changeOrigin: true,
       },

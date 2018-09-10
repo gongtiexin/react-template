@@ -43,6 +43,8 @@ export default class ReactEchart extends Component {
       width: "100%",
       height: "600px",
     },
+    action: undefined,
+    onClick: undefined,
   };
 
   constructor(props) {
@@ -58,7 +60,8 @@ export default class ReactEchart extends Component {
   componentDidMount() {
     this.myChart = echarts.init(this.eCharts.current);
     window.addEventListener("resize", this.onWindowResize);
-    if (!this.state.isReset) {
+    const { isReset } = this.state;
+    if (!isReset) {
       this.reset();
     }
   }
@@ -88,7 +91,7 @@ export default class ReactEchart extends Component {
   reset = () => this.setState({ isReset: true });
 
   render() {
-    const { option, action, onClick } = this.props;
+    const { option, action, onClick, style } = this.props;
     if (this.myChart) {
       if (option) {
         const echartsOption = computedEchartsOption(option);
@@ -97,13 +100,13 @@ export default class ReactEchart extends Component {
       if (action) {
         this.myChart.dispatchAction(action);
       }
-      if (onClick && typeof onClick === "function") {
+      if (onClick) {
         this.myChart.on("click", params => {
           onClick(params);
         });
       }
     }
 
-    return <div ref={this.eCharts} style={this.props.style} />;
+    return <div ref={this.eCharts} style={style} />;
   }
 }

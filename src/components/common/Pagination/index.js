@@ -14,27 +14,26 @@ import "./index.less";
 @observer
 export default class Pagination extends Component {
   static propTypes = {
+    currentPage: PropTypes.number.isRequired,
+    totalElements: PropTypes.number.isRequired,
+    handleChange: PropTypes.func.isRequired,
     pageSize: PropTypes.number,
-    currentPage: PropTypes.number,
-    totalElements: PropTypes.number,
     showSizeChanger: PropTypes.bool,
-    handleChange: PropTypes.func,
   };
 
   static defaultProps = {
     pageSize: 10,
-    currentPage: 1,
-    totalElements: 0,
     showSizeChanger: false,
-    handleChange: (page, size) => console.log(`page:${page}, size:${size}`),
   };
 
   onShowSizeChange = (current, pageSize) => {
-    this.props.handleChange({ page: current, size: pageSize });
+    const { handleChange } = this.props;
+    handleChange({ page: current, size: pageSize });
   };
 
   onChange = (pageNumber, pageSize) => {
-    this.props.handleChange({ page: pageNumber, size: pageSize });
+    const { handleChange } = this.props;
+    handleChange({ page: pageNumber, size: pageSize });
   };
 
   showTotal = total => `共 ${total || 0} 条`;
