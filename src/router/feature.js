@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { Redirect, Route } from "react-router-dom";
 import PropTypes from "prop-types";
 
-class RecordRoute extends Component {
+class RecordRoute extends PureComponent {
   // static propTypes = {};
 
   // constructor(props) {
@@ -23,7 +23,7 @@ class RecordRoute extends Component {
 
 const PrivateRoute = ({
   component: RouteComponent,
-  loggedIn = true,
+  loggedIn,
   protect,
   ...rest
 }) => (
@@ -44,9 +44,14 @@ const PrivateRoute = ({
 );
 
 PrivateRoute.propTypes = {
-  component: PropTypes.func,
+  component: PropTypes.func.isRequired,
   loggedIn: PropTypes.bool,
   protect: PropTypes.bool,
+};
+
+PrivateRoute.defaultProps = {
+  loggedIn: true,
+  protect: false,
 };
 
 export { PrivateRoute, RecordRoute };

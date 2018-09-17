@@ -7,7 +7,7 @@
 import React, { Fragment } from "react";
 import shortid from "shortid";
 
-export default function Highlight(text, keyword) {
+const Highlight = (text, keyword) => {
   const reg = new RegExp(keyword, "gi");
   const match = text.match(reg);
   if (!match) {
@@ -28,4 +28,6 @@ export default function Highlight(text, keyword) {
       )}
     </span>
   );
-}
+};
+
+export default Highlight;
