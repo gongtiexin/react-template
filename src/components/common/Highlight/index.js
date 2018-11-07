@@ -15,16 +15,15 @@ const Highlight = (text, keyword) => {
   }
   return (
     <span>
-      {text.split(reg).map(
-        (fragment, i) =>
-          i > 0 ? (
-            <Fragment key={shortid.generate()}>
-              <em className="fe-highlight">{match[0]}</em>
-              {fragment}
-            </Fragment>
-          ) : (
-            fragment
-          )
+      {text.split(reg).map((fragment, i) =>
+        i > 0 ? (
+          <Fragment key={shortid.generate()}>
+            <em className="fe-highlight">{match[0]}</em>
+            {fragment}
+          </Fragment>
+        ) : (
+          fragment
+        )
       )}
     </span>
   );
