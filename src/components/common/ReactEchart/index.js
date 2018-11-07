@@ -59,7 +59,7 @@ export default class ReactEchart extends Component {
 
   componentDidMount() {
     this.myChart = echarts.init(this.eCharts.current);
-    window.addEventListener("resize", this.onWindowResize);
+    window.addEventListener("resize", this.handleWindowResize);
     const { isReset } = this.state;
     if (!isReset) {
       this.reset();
@@ -81,10 +81,10 @@ export default class ReactEchart extends Component {
 
   componentWillUnmount() {
     this.myChart.dispose();
-    window.removeEventListener("resize", this.onWindowResize);
+    window.removeEventListener("resize", this.handleWindowResize);
   }
 
-  onWindowResize = () => {
+  handleWindowResize = () => {
     this.myChart.resize();
   };
 

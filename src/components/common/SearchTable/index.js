@@ -42,7 +42,7 @@ export default class SearchTable extends Component {
       form: { validateFields },
     } = this.props;
     validateFields(() => {
-      this.refreshData();
+      this.getDataSource();
     });
   };
 
@@ -53,7 +53,7 @@ export default class SearchTable extends Component {
     resetFields();
   };
 
-  refreshData = params => {
+  getDataSource = params => {
     const {
       callback,
       form: { getFieldsValue },
@@ -139,7 +139,7 @@ export default class SearchTable extends Component {
           }
         }}
         <Table size="middle" pagination={false} {...tableProps} />
-        <Pagination {...paginationProps} handleChange={this.refreshData} />
+        <Pagination {...paginationProps} handleChange={this.getDataSource} />
       </div>
     );
   }

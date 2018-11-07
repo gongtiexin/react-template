@@ -5,7 +5,7 @@
  * */
 
 export default class Event {
-  // 缓存列表，存放订阅者回调函
+  // 缓存列表，存放订阅者回调函数
   list = {};
 
   // 订阅
