@@ -6,6 +6,7 @@
 
 const webpack = require("webpack");
 const HappyPack = require("happypack");
+const postcssPresetEnv = require("postcss-preset-env");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const InlineManifestWebpackPlugin = require("inline-manifest-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
@@ -64,7 +65,13 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           "css-loader",
-          "postcss-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              ident: "postcss",
+              plugins: () => [postcssPresetEnv(/* pluginOptions */)],
+            },
+          },
           {
             loader: "less-loader",
             options: {
