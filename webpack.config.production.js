@@ -20,9 +20,9 @@ const config = require("./config");
 
 module.exports = {
   mode: "production",
-  resolve: {
-    modules: [config.path.nodeModulesPath],
-  },
+  // resolve: {
+  //   modules: [config.path.nodeModulesPath],
+  // },
   entry: {
     app: ["@babel/polyfill", config.path.entry],
   },

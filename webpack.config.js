@@ -36,9 +36,9 @@ module.exports = {
   },
   // devtool: "cheap-eval-source-map",
   devtool: "cheap-module-eval-source-map",
-  resolve: {
-    modules: [config.path.nodeModulesPath],
-  },
+  // resolve: {
+  //   modules: [config.path.nodeModulesPath],
+  // },
   module: {
     rules: [
       {
