@@ -1,41 +1,41 @@
-### var let const的区别
+### var let const 的区别
 
-使用var声明的变量，其作用域为该语句所在的函数内，且存在变量提升现象
+使用 var 声明的变量，其作用域为该语句所在的函数内，且存在变量提升现象
 
-使用let声明的变量，其作用域为该语句所在的代码块内，不存在变量提升
+使用 let 声明的变量，其作用域为该语句所在的代码块内，不存在变量提升
 
-使用const声明的是常量，在后面出现的代码中不能再修改该常量的值
+使用 const 声明的是常量，在后面出现的代码中不能再修改该常量的值
 
-### 简单描述下Promise
+### 简单描述下 Promise
 
 Promise 是异步编程的一种解决方案
 
-所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果
+所谓 Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果
 
 Promise 对象的状态不受外界影响
 
 Promise 一旦状态改变，就不会再变，任何时候都可以得到这个结果
 
-### function和es6箭头函数的this绑定有什么区别
+### function 和 es6 箭头函数的 this 绑定有什么区别
 
 箭头函数的`this`，总是指向定义时所在的对象，而不是运行时所在的对象
 
 ### position
 
-static该关键字指定元素使用正常的布局行为，即元素在文档常规流中当前的布局位置。此时 top, right, bottom, left 和 z-index 属性无效
+static 该关键字指定元素使用正常的布局行为，即元素在文档常规流中当前的布局位置。此时 top, right, bottom, left 和 z-index 属性无效
 
-relative该关键字下，元素先放置在未添加定位时的位置，再在不改变页面布局的前提下调整元素位置（因此会在此元素未添加定位时所在位置留下空白）。position:relative 对 table-*-group, table-row, table-column, table-cell, table-caption 元素无效
+relative 该关键字下，元素先放置在未添加定位时的位置，再在不改变页面布局的前提下调整元素位置（因此会在此元素未添加定位时所在位置留下空白）。position:relative 对 table-\*-group, table-row, table-column, table-cell, table-caption 元素无效
 
-absolute不为元素预留空间，通过指定元素相对于最近的非 static 定位祖先元素的偏移，来确定元素位置。绝对定位的元素可以设置外边距（margins），且不会与其他边距合并
+absolute 不为元素预留空间，通过指定元素相对于最近的非 static 定位祖先元素的偏移，来确定元素位置。绝对定位的元素可以设置外边距（margins），且不会与其他边距合并
 
-fixed不为元素预留空间，而是通过指定元素相对于屏幕视口（viewport）的位置来指定元素位置。元素的位置在屏幕滚动时不会改变。打印时，元素会出现在的每页的固定位置。fixed 属性会创建新的层叠上下文。当元素祖先的 transform  属性非 none 时，容器由视口改为该祖先
+fixed 不为元素预留空间，而是通过指定元素相对于屏幕视口（viewport）的位置来指定元素位置。元素的位置在屏幕滚动时不会改变。打印时，元素会出现在的每页的固定位置。fixed 属性会创建新的层叠上下文。当元素祖先的 transform 属性非 none 时，容器由视口改为该祖先
 
-### 从输入URL到页面加载发生了什么
+### 从输入 URL 到页面加载发生了什么
 
-1. DNS解析
-2. TCP连接
-3. 发送HTTP请求
-4. 服务器处理请求并返回HTTP报文
+1. DNS 解析
+2. TCP 连接
+3. 发送 HTTP 请求
+4. 服务器处理请求并返回 HTTP 报文
 5. 浏览器解析渲染页面
 6. 连接结束
 
@@ -43,31 +43,31 @@ fixed不为元素预留空间，而是通过指定元素相对于屏幕视口（
 
 网络问题
 
-JS阻塞请求，写的js代码出现问题，解析就会花费很长时间，这两个js请求之间会出现一个很大的空隙，就会导致这段时间的资源加载都被阻塞住
+JS 阻塞请求，写的 js 代码出现问题，解析就会花费很长时间，这两个 js 请求之间会出现一个很大的空隙，就会导致这段时间的资源加载都被阻塞住
 
 加载某个资源太慢
 
 请求太多
 
-### null和undefined的区别
+### null 和 undefined 的区别
 
-null表示"没有对象"，即该处不应该有值
+null 表示"没有对象"，即该处不应该有值
 
-undefined表示"缺少值"，就是此处应该有一个值，但是还没有定义
+undefined 表示"缺少值"，就是此处应该有一个值，但是还没有定义
 
-### BOM和DOM的区别
+### BOM 和 DOM 的区别
 
 #### BOM
 
-1. BOM是Browser Object Model的缩写，即浏览器对象模型
-2. BOM没有相关标准
-3. BOM的最根本对象是window
+1. BOM 是 Browser Object Model 的缩写，即浏览器对象模型
+2. BOM 没有相关标准
+3. BOM 的最根本对象是 window
 
 #### DOM
 
-1. DOM是Document Object Model的缩写，即文档对象模型
-2. DOM是W3C的标准
-3. DOM最根本对象是document（实际上是window.document）
+1. DOM 是 Document Object Model 的缩写，即文档对象模型
+2. DOM 是 W3C 的标准
+3. DOM 最根本对象是 document（实际上是 window.document）
 
 ### 浏览器事件
 
@@ -77,7 +77,7 @@ undefined表示"缺少值"，就是此处应该有一个值，但是还没有定
 
 ### 浏览器缓存有哪些
 
-HTTP缓存
+HTTP 缓存
 
 cookie
 
@@ -85,47 +85,48 @@ localstorage
 
 sessionstorage
 
-### TCP协议与UDP协议的区别
+### TCP 协议与 UDP 协议的区别
 
 1. 基于连接与无连接
-2. 对系统资源的要求（TCP较多，UDP少）
-3. UDP程序结构较简单
+2. 对系统资源的要求（TCP 较多，UDP 少）
+3. UDP 程序结构较简单
 4. 流模式与数据报模式
-5. TCP保证数据正确性，UDP可能丢包；
-6. TCP保证数据顺序，UDP不保证
+5. TCP 保证数据正确性，UDP 可能丢包；
+6. TCP 保证数据顺序，UDP 不保证
 
 ### Restfull
+
 API 设计规范，用于 Web 数据接口的设计
 
-### OSI7层模型
+### OSI7 层模型
 
-第7层 应用层
+第 7 层 应用层
 主条目：应用层
-应用层（Application Layer）提供为应用软件而设的接口，以设置与另一应用软件之间的通信。例如: HTTP，HTTPS，FTP，TELNET，SSH，SMTP，POP3等。
+应用层（Application Layer）提供为应用软件而设的接口，以设置与另一应用软件之间的通信。例如: HTTP，HTTPS，FTP，TELNET，SSH，SMTP，POP3 等。
 
-第6层 表达层
+第 6 层 表达层
 主条目：表达层
 表达层（Presentation Layer）把数据转换为能与接收者的系统格式兼容并适合传输的格式。
 
-第5层 会话层
+第 5 层 会话层
 主条目：会话层
 会话层（Session Layer）负责在数据传输中设置和维护计算机网络中两台计算机之间的通信连接。
 
-第4层 传输层
+第 4 层 传输层
 主条目：传输层
 传输层（Transport Layer）把传输表头（TH）加至数据以形成数据包。传输表头包含了所使用的协议等发送信息。例如:传输控制协议（TCP）等。
 
-第3层 网络层
+第 3 层 网络层
 主条目：网络层
 网络层（Network Layer）决定数据的路径选择和转寄，将网络表头（NH）加至数据包，以形成分组。网络表头包含了网络数据。例如:互联网协议（IP）等。
 
-第2层 数据链路层
+第 2 层 数据链路层
 主条目：数据链路层
 数据链路层（Data Link Layer）负责网络寻址、错误侦测和改错。当表头和表尾被加至数据包时，会形成帧。数据链表头（DLH）是包含了物理地址和错误侦测及改错的方法。数据链表尾（DLT）是一串指示数据包末端的字符串。例如以太网、无线局域网（Wi-Fi）和通用分组无线服务（GPRS）等。
 
 分为两个子层：逻辑链路控制（logical link control，LLC）子层和介质访问控制（media access control，MAC）子层。
 
-第1层 物理层
+第 1 层 物理层
 主条目：物理层
 物理层（Physical Layer）在局部局域网上传送数据帧（data frame），它负责管理计算机通信设备和网络媒体之间的互通。包括了针脚、电压、线缆规范、集线器、中继器、网卡、主机适配器等。
 
@@ -143,15 +144,16 @@ API 设计规范，用于 Web 数据接口的设计
 
 字符串快速检索，字符串排序，最长公共前缀，自动匹配前缀显示后缀
 
-1. 保存一本字典，英文字典大约只有50,000个单词，并且Trie还演化出来一种叫做Directed acyclic word graph的东西，它将后缀一样的字符串也进行了压缩，所以空间利用率有了进一步提高。所以Trie在空间利用率上不会比Binary Search Tree差太多。
+1. 保存一本字典，英文字典大约只有 50,000 个单词，并且 Trie 还演化出来一种叫做 Directed acyclic word graph 的东西，它将后缀一样的字符串也进行了压缩，所以空间利用率有了进一步提高。所以 Trie 在空间利用率上不会比 Binary Search Tree 差太多。
 2. 根据保存的字典，可以预测用户输入内容
-3. 断词和拼写查错软件也运用了Trie -- spellings/suggestions/type-ahead-lookup/auto-completion/
+3. 断词和拼写查错软件也运用了 Trie -- spellings/suggestions/type-ahead-lookup/auto-completion/
 
 这些应用场景都有一个特点，就是不是单独地查询一个词，而是获取以有一定字母顺序的一组字符串
 
 ### 排序算法及其时间复杂度
-冒泡排序 O(n * n)
-选择排序 O(n * n)
+
+冒泡排序 O(n _ n)
+选择排序 O(n _ n)
 快速排序 O(nlog2n)
 
 ### 跳跃表
@@ -161,5 +163,3 @@ API 设计规范，用于 Web 数据接口的设计
 ### 黑红树
 
 用于搜索
-
-
