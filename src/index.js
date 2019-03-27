@@ -22,7 +22,7 @@ import Loadable from "./components/common/Loadable";
  * 代码拆分和按需加载
  */
 const LoadableApp = Loadable({
-  loader: () => import(/* webpackChunkName: "route-app" */ "./components/App"),
+  loader: () => import(/* webpackChunkName: "route-root" */ "./components/App"),
 });
 
 const LoadableLogin = Loadable({

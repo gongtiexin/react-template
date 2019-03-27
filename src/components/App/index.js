@@ -8,9 +8,9 @@ import { PrivateRoute } from "../../router/feature";
 import { isProduction } from "../../utils/constants";
 import Loadable from "../common/Loadable";
 
-const LoadableNoMatch = Loadable({
+const LoadableMismatch = Loadable({
   loader: () =>
-    import(/* webpackChunkName: "route-no-match" */ "../common/NoMatch"),
+    import(/* webpackChunkName: "route-mismatch" */ "../common/Mismatch"),
 });
 
 @inject(({ store: { demoState } }) => ({ demoState }))
@@ -33,7 +33,7 @@ export default class App extends Component {
           }}
           <Switch>
             {routes.map(this.renderRoute)}
-            <Route component={LoadableNoMatch} />
+            <Route component={LoadableMismatch} />
           </Switch>
         </Fragment>
       </div>

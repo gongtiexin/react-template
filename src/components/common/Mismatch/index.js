@@ -7,7 +7,7 @@
 import React from "react";
 import "./index.less";
 
-const NoMatch = () => (
+const Mismatch = () => (
   <div id="noMatch">
     <section>
       <span>404</span>
@@ -16,4 +16,4 @@ const NoMatch = () => (
   </div>
 );
 
-export default NoMatch;
+export default Mismatch;
