@@ -15,7 +15,13 @@ const staticPath = path.resolve(__dirname, "../static");
 const distStaticPath = path.resolve(__dirname, "../dist/static");
 const nodeModulesPath = path.resolve(__dirname, "../node_modules");
 
+// alias
+const componentsPath = path.resolve(__dirname, "../src/components");
+const stylesPath = path.resolve(__dirname, "../src/styles");
+const utilsPath = path.resolve(__dirname, "../src/utils");
+
 module.exports = {
+  root,
   webpack: {
     build: {
       env: {
@@ -48,6 +54,14 @@ module.exports = {
       },
     },
     publicPath: "/",
+    alias: {
+      "@components": componentsPath,
+      "@styles": stylesPath,
+      "@utils": utilsPath,
+    },
+    modifyVars: {
+      // "primary-color": "#1890ff",
+    },
   },
   path: {
     entry,
@@ -57,9 +71,5 @@ module.exports = {
     staticPath,
     distStaticPath,
     nodeModulesPath,
-  },
-  root,
-  modifyVars: {
-    "icon-url": '"/static/antdIconfont/iconfont"',
   },
 };

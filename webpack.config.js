@@ -13,6 +13,10 @@ const proxy = process.env.DEV_PROXY || "192.168.32.101";
 
 module.exports = {
   mode: "development",
+  // resolve: {
+  //   alias: config.webpack.alias,
+  //   modules: [config.path.nodeModulesPath],
+  // },
   entry: ["@babel/polyfill", config.path.entry],
   devServer: {
     hot: true,
@@ -36,9 +40,6 @@ module.exports = {
   },
   // devtool: "cheap-eval-source-map",
   devtool: "cheap-module-eval-source-map",
-  // resolve: {
-  //   modules: [config.path.nodeModulesPath],
-  // },
   module: {
     rules: [
       {
@@ -61,7 +62,7 @@ module.exports = {
               // less@3
               javascriptEnabled: true,
               // 覆盖antd样式的全局变量
-              modifyVars: config.modifyVars,
+              modifyVars: config.webpack.modifyVars,
             },
           },
         ],

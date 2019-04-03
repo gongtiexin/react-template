@@ -21,6 +21,7 @@ const config = require("./config");
 module.exports = {
   mode: "production",
   // resolve: {
+  //   alias: config.webpack.alias,
   //   modules: [config.path.nodeModulesPath],
   // },
   entry: {
@@ -55,7 +56,7 @@ module.exports = {
       //         // less@3
       //         javascriptEnabled: true,
       //         // 覆盖antd样式的全局变量
-      //         modifyVars: config.modifyVars,
+      //         modifyVars: config.webpack.modifyVars,
       //       },
       //     },
       //   ],
@@ -78,7 +79,7 @@ module.exports = {
               // less@3
               javascriptEnabled: true,
               // 覆盖antd样式的全局变量
-              modifyVars: config.modifyVars,
+              modifyVars: config.webpack.modifyVars,
             },
           },
         ],

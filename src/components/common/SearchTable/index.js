@@ -24,15 +24,23 @@ export default class SearchTable extends Component {
     tableProps: PropTypes.object.isRequired,
     paginationProps: PropTypes.object.isRequired,
     callback: PropTypes.func,
+    setRef: PropTypes.func,
   };
 
   static defaultProps = {
     fields: [],
     dividerProps: { orientation: "left" },
     callback: values => console.log(values),
+    setRef: () => console.log("ref"),
   };
 
-  componentDidMount() {}
+  state = {
+    loading: false,
+  };
+
+  componentDidMount() {
+    this.props.setRef(this);
+  }
 
   componentWillUnmount() {}
 
@@ -40,9 +48,10 @@ export default class SearchTable extends Component {
     e.preventDefault();
     const {
       form: { validateFields },
+      paginationProps: { pageSize },
     } = this.props;
     validateFields(() => {
-      this.getDataSource();
+      this.refresh({ sliceParams: { pageSize, pageNum: 1 } });
     });
   };
 
@@ -53,13 +62,24 @@ export default class SearchTable extends Component {
     resetFields();
   };
 
-  getDataSource = params => {
+  refresh = params => {
     const {
       callback,
       form: { getFieldsValue },
+      paginationProps: { pageSize, currentPage },
     } = this.props;
-    const search = getFieldsValue();
-    callback({ ...search, ...params });
+    const formValues = getFieldsValue();
+    this.setState({ loading: true });
+    callback(
+      Object.assign(
+        { sliceParams: { pageSize, pageNum: currentPage } },
+        formValues,
+        params
+      )
+    ).then(
+      () => this.setState({ loading: false }),
+      () => this.setState({ loading: false })
+    );
   };
 
   renderFormItem = fields =>
@@ -109,6 +129,7 @@ export default class SearchTable extends Component {
       tableProps,
       paginationProps,
     } = this.props;
+    const { loading } = this.state;
 
     return (
       <div id="searchTable">
@@ -138,7 +159,12 @@ export default class SearchTable extends Component {
             </Fragment>;
           }
         }}
-        <Table size="middle" pagination={false} {...tableProps} />
+        <Table
+          size="middle"
+          loading={loading}
+          pagination={false}
+          {...tableProps}
+        />
         <Pagination {...paginationProps} handleChange={this.getDataSource} />
       </div>
     );
