@@ -51,7 +51,7 @@ export default class SearchTable extends Component {
       paginationProps: { pageSize },
     } = this.props;
     validateFields(() => {
-      this.refresh({ sliceParams: { pageSize, pageNum: 1 } });
+      this.fetchData({ sliceParams: { pageSize, pageNum: 1 } });
     });
   };
 
@@ -62,7 +62,7 @@ export default class SearchTable extends Component {
     resetFields();
   };
 
-  refresh = params => {
+  fetchData = params => {
     const {
       callback,
       form: { getFieldsValue },
