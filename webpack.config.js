@@ -17,7 +17,7 @@ module.exports = {
   //   alias: config.webpack.alias,
   //   modules: [config.path.nodeModulesPath],
   // },
-  entry: ["@babel/polyfill", config.path.entry],
+  entry: config.path.entry,
   devServer: {
     hot: true,
     contentBase: config.root,
@@ -38,7 +38,6 @@ module.exports = {
     publicPath: config.webpack.publicPath,
     filename: "app.[hash].js",
   },
-  // devtool: "cheap-eval-source-map",
   devtool: "cheap-module-eval-source-map",
   module: {
     rules: [
@@ -104,6 +103,10 @@ module.exports = {
     // 热更新
     new webpack.HotModuleReplacementPlugin(),
     // html模板
-    new HtmlWebpackPlugin({ hash: false, template: config.path.indexHtml }),
+    new HtmlWebpackPlugin({
+      hash: false,
+      template: config.path.indexHtml,
+      title: "react-template",
+    }),
   ],
 };

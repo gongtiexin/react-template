@@ -11,8 +11,8 @@ import {
   SubscriptionLike,
   PartialObserver,
 } from "rxjs";
-import { map, filter, scan } from 'rxjs/operators';
-import { ajax } from 'rxjs/ajax';
+import { map, filter, scan } from "rxjs/operators";
+import { ajax } from "rxjs/ajax";
 
 const main = () => {
   const onSubscribe = observer => {
@@ -25,6 +25,13 @@ const main = () => {
     next: item => console.log(item),
   };
   source$.subscribe(observer);
+
+  const a = {};
+  console.log(a.a);
+
+  const next = x => console.log(x);
+  console.log(12 |> next);
+  console.log([1,2,3].map(item => item * 2))
 };
 
 export default main;

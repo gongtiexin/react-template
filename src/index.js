@@ -3,6 +3,8 @@
  *----------------------------------------------
  * 18-3-22           gongtiexin       单页应用的入口文件
  * */
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 
 import React from "react";
 import { render } from "react-dom";

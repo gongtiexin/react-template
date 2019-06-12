@@ -5,6 +5,7 @@ module.exports = function config(api) {
       {
         modules: false,
         useBuiltIns: "entry",
+        corejs: 3,
       },
     ],
     "@babel/react",

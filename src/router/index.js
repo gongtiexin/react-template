@@ -11,9 +11,10 @@ const routes = [
     path: "/",
     component: Loadable({
       loader: () =>
-        import(/* webpackChunkName: "route-home" */ "../components/demo/HelloWorld"),
+        import(
+          /* webpackChunkName: "route-home" */ "../components/demo/HelloWorld"
+        ),
     }),
-    protect: false,
   },
 ];
 

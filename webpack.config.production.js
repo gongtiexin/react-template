@@ -25,7 +25,7 @@ module.exports = {
   //   modules: [config.path.nodeModulesPath],
   // },
   entry: {
-    app: ["@babel/polyfill", config.path.entry],
+    app: config.path.entry,
   },
   output: {
     path: config.path.distPath,
@@ -40,27 +40,6 @@ module.exports = {
         include: config.path.srcPath,
         use: "happypack/loader?id=babel",
       },
-      // {
-      //   test: /\.css$/,
-      //   use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
-      // },
-      // {
-      //   test: /\.less$/i,
-      //   use: [
-      //     MiniCssExtractPlugin.loader,
-      //     "css-loader",
-      //     "postcss-loader",
-      //     {
-      //       loader: "less-loader",
-      //       options: {
-      //         // less@3
-      //         javascriptEnabled: true,
-      //         // 覆盖antd样式的全局变量
-      //         modifyVars: config.webpack.modifyVars,
-      //       },
-      //     },
-      //   ],
-      // },
       {
         test: /\.less|css$/,
         use: [
@@ -127,9 +106,9 @@ module.exports = {
         uglifyOptions: {
           compress: {
             unused: true,
-            warnings: false,
             drop_console: true,
           },
+          warnings: false,
           output: {
             comments: false,
           },
@@ -192,6 +171,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: "index.html",
       template: config.path.indexHtml,
+      title: "react-template",
     }),
     new InlineManifestWebpackPlugin("runtime"),
     // 拷贝静态资源

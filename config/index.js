@@ -27,14 +27,7 @@ module.exports = {
       env: {
         NODE_ENV: "production",
       },
-      vendor: [
-        "@babel/polyfill",
-        "react",
-        "react-dom",
-        "react-router-dom",
-        "mobx",
-        "mobx-react",
-      ],
+      vendor: ["react", "react-dom", "react-router-dom", "mobx", "mobx-react"],
       plugins: {
         CopyWebpackPlugin: [
           {
@@ -50,7 +43,7 @@ module.exports = {
         NODE_ENV: "development",
       },
       devServer: {
-        port: 3000,
+        port: 3001,
       },
     },
     publicPath: "/",

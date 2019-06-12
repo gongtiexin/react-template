@@ -1,7 +1,8 @@
-import React, { Component, Fragment } from "react";
-import { withRouter, Route, Switch } from "react-router-dom";
+import React, { Component } from "react";
+import { Route, Switch, withRouter } from "react-router-dom";
 import { inject, observer } from "mobx-react";
-import DevTools from "mobx-react-devtools";
+// 代升级
+// import DevTools from "mobx-react-devtools";
 import "./index.less";
 import { routes } from "../../router";
 import { PrivateRoute } from "../../router/feature";
@@ -25,17 +26,11 @@ export default class App extends Component {
     return (
       <div id="app">
         <img src="/static/images/logo.svg" alt="logo" />
-        <Fragment>
-          {do {
-            if (!isProduction) {
-              <DevTools />;
-            }
-          }}
-          <Switch>
-            {routes.map(this.renderRoute)}
-            <Route component={LoadableMismatch} />
-          </Switch>
-        </Fragment>
+        {/* {!isProduction && <DevTools />} */}
+        <Switch>
+          {routes.map(this.renderRoute)}
+          <Route component={LoadableMismatch} />
+        </Switch>
       </div>
     );
   }
