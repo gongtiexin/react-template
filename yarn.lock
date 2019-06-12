@@ -7881,6 +7881,13 @@ rxjs@^6.4.0:
   dependencies:
     tslib "^1.9.0"
 
+rxjs@^6.5.2:
+  version "6.5.2"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.5.2.tgz#2e35ce815cd46d84d02a209fb4e5921e051dbec7"
+  integrity sha512-HUb7j3kvb7p7eCUHE3FqjoDsC1xfZQ4AHFWfTKSpZ+sAhhz5X1WX0ZuUqWbzB2QhSLp3DoLUG+hMdEDKqWo2Zg==
+  dependencies:
+    tslib "^1.9.0"
+
 safe-access@0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/safe-access/-/safe-access-0.1.0.tgz#ce46b1190bd316672e1c7d001cab32970c488955"
@@ -8789,9 +8796,10 @@ unset-value@^1.0.0:
     has-value "^0.3.1"
     isobject "^3.0.0"
 
-up-utils@3.6.0:
-  version "3.6.0"
-  resolved "http://registry.npm.taobao.org/up-utils/download/up-utils-3.6.0.tgz#b9dab2719739ef4b8ba6246e03b46ceef439b3be"
+up-utils@3.6.2:
+  version "3.6.2"
+  resolved "https://registry.yarnpkg.com/up-utils/-/up-utils-3.6.2.tgz#f06c5b930f2517358caaefecdd30c63cbc918d86"
+  integrity sha512-ywtihIwlm36dLomzUn+azfkLR6IpRC9XIrXgUMwaxKkKha4iHIKHxCGVyLB/N6yT88S9LmAmgF6l+wfMZQpFEQ==
   dependencies:
     babel-runtime "^6.26.0"
     lodash "^4.17.4"

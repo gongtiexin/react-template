@@ -17,6 +17,7 @@ import { isProduction } from "./utils/constants";
 import "./stores";
 import "./styles/main.less";
 import Loadable from "./components/common/Loadable";
+import main from "./rxjs";
 
 /**
  * 代码拆分和按需加载
@@ -61,3 +62,4 @@ function run() {
 }
 
 run();
+main();

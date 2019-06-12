@@ -109,8 +109,8 @@
     "react-loadable": "^5.4.0",
     "react-router-dom": "^5.0.0",
     "rfx-core": "^1.6.0",
-    "rxjs": "^6.4.0",
+    "rxjs": "^6.5.2",
     "shortid": "^2.2.8",
-    "up-utils": "3.6.0"
+    "up-utils": "3.6.2"
   }
 }
