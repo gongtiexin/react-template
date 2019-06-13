@@ -31,7 +31,7 @@ const main = () => {
 
   const next = x => console.log(x);
   console.log(12 |> next);
-  console.log([1,2,3].map(item => item * 2))
+  console.log([1, 2, 3].map(item => item * 2));
 };
 
 export default main;
