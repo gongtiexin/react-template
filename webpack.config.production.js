@@ -131,8 +131,8 @@ module.exports = {
     ],
     runtimeChunk: "single",
     splitChunks: {
-      chunks: 'all',
-      automaticNameDelimiter: '.',
+      chunks: "all",
+      automaticNameDelimiter: ".",
       name: undefined,
       cacheGroups: {
         default: false,
@@ -142,27 +142,27 @@ module.exports = {
             // 这里通过配置规则只将多个页面引用的打包进 common 中
             if (
               // /src\/common\//.test(module.context) ||
-            // /src\/lib/.test(module.context) ||
+              // /src\/lib/.test(module.context) ||
               /antd/.test(module.context)
             ) {
               return true;
             }
           },
-          chunks: 'all',
-          name: 'common',
+          chunks: "all",
+          name: "common",
           // 这里的minchunks 非常重要，控antd使用的组件被超过几个chunk引用之后才打包进入该common中否则不打包进该js中
           minChunks: 2,
           priority: 20,
         },
         vendor: {
-          chunks: 'all',
+          chunks: "all",
           test: (module, chunks) => {
             // 将node_modules 目录下的依赖统一打包进入vendor中
             if (/node_modules/.test(module.context)) {
               return true;
             }
           },
-          name: 'vendor',
+          name: "vendor",
           minChunks: 2,
           // 配置chunk的打包优先级，这里的数值决定了node_modules下的 antd 不会打包进入 vendor 中
           priority: 10,
