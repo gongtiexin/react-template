@@ -4,9 +4,9 @@
  * 18-3-22           gongtiexin       3D旋转词云
  * */
 
-import React, { Component } from "react";
-import { observer } from "mobx-react";
-import lodashMaxBy from "lodash/maxBy";
+import React, { Component } from 'react';
+import { observer } from 'mobx-react';
+import lodashMaxBy from 'lodash/maxBy';
 
 const radius = 150;
 const dtr = Math.PI / 180;
@@ -102,7 +102,7 @@ function positionAll() {
 function doPosition() {
   const l = oDiv.offsetWidth / 2;
   const t = oDiv.offsetHeight / 2;
-  const max = lodashMaxBy(mcList, "size").size;
+  const max = lodashMaxBy(mcList, 'size').size;
   for (let i = 0; i < mcList.length; i += 1) {
     aA[i].style.left = `${mcList[i].cx + l - mcList[i].offsetWidth / 2}px`;
     aA[i].style.top = `${mcList[i].cy + t - mcList[i].offsetHeight / 2}px`;
@@ -113,7 +113,7 @@ function doPosition() {
       Math.round((mcList[i].size / max) * 255),
       Math.round((mcList[i].size / max) * 166),
       Math.round((mcList[i].size / max) * 166),
-    ].join(",")})`;
+    ].join(',')})`;
 
     aA[i].style.filter = `alpha(opacity=${100 * mcList[i].alpha})`;
     aA[i].style.opacity = mcList[i].alpha;
@@ -182,12 +182,12 @@ function update() {
   depthSort();
 }
 
-function WordCloudInit(id = "wordcloud") {
+function WordCloudInit(id = 'wordcloud') {
   let oTag = null;
 
   oDiv = document.getElementById(id);
 
-  aA = oDiv.getElementsByTagName("a");
+  aA = oDiv.getElementsByTagName('a');
 
   for (let i = 0; i < aA.length; i += 1) {
     oTag = {};
@@ -225,94 +225,94 @@ function WordCloudInit(id = "wordcloud") {
 }
 
 const list = [
-  { label: "美女", value: "30" },
-  { label: "写真", value: "11" },
-  { label: "贴图", value: "12" },
-  { label: "灌水", value: "13" },
-  { label: "小说", value: "10" },
-  { label: "大片", value: "10" },
-  { label: "搞笑", value: "10" },
-  { label: "壁纸", value: "14" },
-  { label: "浪漫", value: "10" },
-  { label: "爆笑", value: "10" },
-  { label: "武侠", value: "10" },
-  { label: "魔幻", value: "15" },
-  { label: "教案", value: "10" },
-  { label: "论文", value: "10" },
-  { label: "科幻", value: "10" },
-  { label: "恐怖", value: "16" },
-  { label: "游戏", value: "10" },
-  { label: "音乐", value: "10" },
-  { label: "幽默", value: "10" },
-  { label: "名校", value: "16" },
-  { label: "赚钱", value: "10" },
-  { label: "云计算机", value: "11" },
-  { label: "美女1", value: "30" },
-  { label: "写真1", value: "11" },
-  { label: "贴图1", value: "12" },
-  { label: "灌水1", value: "13" },
-  { label: "小说1", value: "10" },
-  { label: "大片1", value: "10" },
-  { label: "搞笑1", value: "10" },
-  { label: "壁纸1", value: "14" },
-  { label: "浪漫1", value: "10" },
-  { label: "爆笑1", value: "10" },
-  { label: "武侠1", value: "10" },
-  { label: "魔幻1", value: "15" },
-  { label: "教案1", value: "10" },
-  { label: "论文1", value: "10" },
-  { label: "科幻1", value: "10" },
-  { label: "恐怖1", value: "16" },
-  { label: "游戏1", value: "10" },
-  { label: "音乐1", value: "10" },
-  { label: "幽默1", value: "10" },
-  { label: "名校1", value: "16" },
-  { label: "赚钱1", value: "10" },
-  { label: "云计1算机", value: "11" },
-  { label: "美女2", value: "30" },
-  { label: "写真2", value: "11" },
-  { label: "贴图2", value: "12" },
-  { label: "灌水2", value: "13" },
-  { label: "小说2", value: "10" },
-  { label: "大片2", value: "10" },
-  { label: "搞笑2", value: "10" },
-  { label: "壁纸2", value: "14" },
-  { label: "浪漫2", value: "10" },
-  { label: "爆笑2", value: "10" },
-  { label: "武侠2", value: "10" },
-  { label: "魔幻2", value: "15" },
-  { label: "教案2", value: "10" },
-  { label: "论文2", value: "10" },
-  { label: "科幻2", value: "10" },
-  { label: "恐怖2", value: "16" },
-  { label: "游戏2", value: "10" },
-  { label: "音乐2", value: "10" },
-  { label: "幽默2", value: "10" },
-  { label: "名校2", value: "16" },
-  { label: "赚钱2", value: "10" },
-  { label: "云计2算机", value: "11" },
-  { label: "美女3", value: "30" },
-  { label: "写真3", value: "11" },
-  { label: "贴图3", value: "12" },
-  { label: "灌水3", value: "13" },
-  { label: "小说3", value: "10" },
-  { label: "大片3", value: "10" },
-  { label: "搞笑3", value: "10" },
-  { label: "壁纸3", value: "14" },
-  { label: "浪漫3", value: "10" },
-  { label: "爆笑3", value: "10" },
-  { label: "武侠3", value: "10" },
-  { label: "魔幻3", value: "15" },
-  { label: "教案3", value: "10" },
-  { label: "论文3", value: "10" },
-  { label: "科幻3", value: "10" },
-  { label: "恐怖3", value: "16" },
-  { label: "游戏3", value: "10" },
-  { label: "音乐3", value: "10" },
-  { label: "幽默3", value: "10" },
-  { label: "名校3", value: "16" },
-  { label: "赚钱3", value: "10" },
-  { label: "云计3算机", value: "11" },
+  { label: '美女', value: '30' },
+  { label: '写真', value: '11' },
+  { label: '贴图', value: '12' },
+  { label: '灌水', value: '13' },
+  { label: '小说', value: '10' },
+  { label: '大片', value: '10' },
+  { label: '搞笑', value: '10' },
+  { label: '壁纸', value: '14' },
+  { label: '浪漫', value: '10' },
+  { label: '爆笑', value: '10' },
+  { label: '武侠', value: '10' },
+  { label: '魔幻', value: '15' },
+  { label: '教案', value: '10' },
+  { label: '论文', value: '10' },
+  { label: '科幻', value: '10' },
+  { label: '恐怖', value: '16' },
+  { label: '游戏', value: '10' },
+  { label: '音乐', value: '10' },
+  { label: '幽默', value: '10' },
+  { label: '名校', value: '16' },
+  { label: '赚钱', value: '10' },
+  { label: '云计算机', value: '11' },
+  { label: '美女1', value: '30' },
+  { label: '写真1', value: '11' },
+  { label: '贴图1', value: '12' },
+  { label: '灌水1', value: '13' },
+  { label: '小说1', value: '10' },
+  { label: '大片1', value: '10' },
+  { label: '搞笑1', value: '10' },
+  { label: '壁纸1', value: '14' },
+  { label: '浪漫1', value: '10' },
+  { label: '爆笑1', value: '10' },
+  { label: '武侠1', value: '10' },
+  { label: '魔幻1', value: '15' },
+  { label: '教案1', value: '10' },
+  { label: '论文1', value: '10' },
+  { label: '科幻1', value: '10' },
+  { label: '恐怖1', value: '16' },
+  { label: '游戏1', value: '10' },
+  { label: '音乐1', value: '10' },
+  { label: '幽默1', value: '10' },
+  { label: '名校1', value: '16' },
+  { label: '赚钱1', value: '10' },
+  { label: '云计1算机', value: '11' },
+  { label: '美女2', value: '30' },
+  { label: '写真2', value: '11' },
+  { label: '贴图2', value: '12' },
+  { label: '灌水2', value: '13' },
+  { label: '小说2', value: '10' },
+  { label: '大片2', value: '10' },
+  { label: '搞笑2', value: '10' },
+  { label: '壁纸2', value: '14' },
+  { label: '浪漫2', value: '10' },
+  { label: '爆笑2', value: '10' },
+  { label: '武侠2', value: '10' },
+  { label: '魔幻2', value: '15' },
+  { label: '教案2', value: '10' },
+  { label: '论文2', value: '10' },
+  { label: '科幻2', value: '10' },
+  { label: '恐怖2', value: '16' },
+  { label: '游戏2', value: '10' },
+  { label: '音乐2', value: '10' },
+  { label: '幽默2', value: '10' },
+  { label: '名校2', value: '16' },
+  { label: '赚钱2', value: '10' },
+  { label: '云计2算机', value: '11' },
+  { label: '美女3', value: '30' },
+  { label: '写真3', value: '11' },
+  { label: '贴图3', value: '12' },
+  { label: '灌水3', value: '13' },
+  { label: '小说3', value: '10' },
+  { label: '大片3', value: '10' },
+  { label: '搞笑3', value: '10' },
+  { label: '壁纸3', value: '14' },
+  { label: '浪漫3', value: '10' },
+  { label: '爆笑3', value: '10' },
+  { label: '武侠3', value: '10' },
+  { label: '魔幻3', value: '15' },
+  { label: '教案3', value: '10' },
+  { label: '论文3', value: '10' },
+  { label: '科幻3', value: '10' },
+  { label: '恐怖3', value: '16' },
+  { label: '游戏3', value: '10' },
+  { label: '音乐3', value: '10' },
+  { label: '幽默3', value: '10' },
+  { label: '名校3', value: '16' },
+  { label: '赚钱3', value: '10' },
+  { label: '云计3算机', value: '11' },
 ];
 
 @observer

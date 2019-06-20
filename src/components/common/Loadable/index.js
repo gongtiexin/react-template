@@ -4,10 +4,10 @@
  * 18-3-22           gongtiexin       react-loadable
  * */
 
-import React from "react";
-import ReactLoadable from "react-loadable";
-import PropTypes from "prop-types";
-import "./index.less";
+import React from 'react';
+import ReactLoadable from 'react-loadable';
+import PropTypes from 'prop-types';
+import './index.less';
 
 const Loading = ({ error, timedOut, pastDelay }) => {
   if (error) {

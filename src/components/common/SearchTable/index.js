@@ -4,12 +4,12 @@
  * 2018/8/10           gongtiexin       通用搜索表格组件
  * */
 
-import React, { Component, Fragment } from "react";
-import { observer } from "mobx-react";
-import PropTypes from "prop-types";
-import { Button, Col, Divider, Form, Input, Row, Table, Select } from "antd";
-import Pagination from "../Pagination";
-import "./index.less";
+import React, { Component, Fragment } from 'react';
+import { observer } from 'mobx-react';
+import PropTypes from 'prop-types';
+import { Button, Col, Divider, Form, Input, Row, Table, Select } from 'antd';
+import Pagination from '../Pagination';
+import './index.less';
 
 const { Item: FormItem, create } = Form;
 const { Option: SelectOption } = Select;
@@ -29,9 +29,9 @@ export default class SearchTable extends Component {
 
   static defaultProps = {
     fields: [],
-    dividerProps: { orientation: "left" },
+    dividerProps: { orientation: 'left' },
     callback: values => console.log(values),
-    setRef: () => console.log("ref"),
+    setRef: () => console.log('ref'),
   };
 
   state = {
@@ -71,15 +71,8 @@ export default class SearchTable extends Component {
     const formValues = getFieldsValue();
     this.setState({ loading: true });
     callback(
-      Object.assign(
-        { sliceParams: { pageSize, pageNum: currentPage } },
-        formValues,
-        params
-      )
-    ).then(
-      () => this.setState({ loading: false }),
-      () => this.setState({ loading: false })
-    );
+      Object.assign({ sliceParams: { pageSize, pageNum: currentPage } }, formValues, params),
+    ).then(() => this.setState({ loading: false }), () => this.setState({ loading: false }));
   };
 
   renderFormItem = fields =>
@@ -88,7 +81,7 @@ export default class SearchTable extends Component {
         form: { getFieldDecorator },
       } = this.props;
       switch (type) {
-        case "input": {
+        case 'input': {
           return (
             <Col span={8} key={key}>
               <FormItem label={label}>
@@ -97,21 +90,18 @@ export default class SearchTable extends Component {
             </Col>
           );
         }
-        case "select": {
+        case 'select': {
           return (
             <Col span={8} key={key}>
               <FormItem label={label}>
                 {getFieldDecorator(key, options)(
                   <Select {...props}>
                     {items.map(item => (
-                      <SelectOption
-                        key={item.key || item.value}
-                        value={item.value}
-                      >
+                      <SelectOption key={item.key || item.value} value={item.value}>
                         {item.label}
                       </SelectOption>
                     ))}
-                  </Select>
+                  </Select>,
                 )}
               </FormItem>
             </Col>
@@ -123,12 +113,7 @@ export default class SearchTable extends Component {
     });
 
   render() {
-    const {
-      fields = [],
-      dividerProps,
-      tableProps,
-      paginationProps,
-    } = this.props;
+    const { fields = [], dividerProps, tableProps, paginationProps } = this.props;
     const { loading } = this.state;
 
     return (
@@ -136,20 +121,14 @@ export default class SearchTable extends Component {
         {do {
           if (fields.length > 0) {
             <Fragment>
-              <Form
-                className="ant-advanced-search-form"
-                onSubmit={this.handleSearch}
-              >
+              <Form className="ant-advanced-search-form" onSubmit={this.handleSearch}>
                 <Row gutter={24}>{this.renderFormItem(fields)}</Row>
                 <Row>
-                  <Col span={24} style={{ textAlign: "right" }}>
+                  <Col span={24} style={{ textAlign: 'right' }}>
                     <Button type="primary" htmlType="submit">
                       搜索
                     </Button>
-                    <Button
-                      style={{ marginLeft: 8 }}
-                      onClick={this.handleReset}
-                    >
+                    <Button style={{ marginLeft: 8 }} onClick={this.handleReset}>
                       重置
                     </Button>
                   </Col>
@@ -159,12 +138,7 @@ export default class SearchTable extends Component {
             </Fragment>;
           }
         }}
-        <Table
-          size="middle"
-          loading={loading}
-          pagination={false}
-          {...tableProps}
-        />
+        <Table size="middle" loading={loading} pagination={false} {...tableProps} />
         <Pagination {...paginationProps} handleChange={this.getDataSource} />
       </div>
     );

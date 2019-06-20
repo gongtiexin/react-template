@@ -4,22 +4,19 @@
  * 18-3-22           gongtiexin       配置路由
  * */
 
-import Loadable from "../components/common/Loadable";
+import Loadable from '../components/common/Loadable';
 
 const routes = [
   {
-    path: "/",
+    path: '/',
     component: Loadable({
-      loader: () =>
-        import(
-          /* webpackChunkName: "route-home" */ "../components/demo/HelloWorld"
-        ),
+      loader: () => import(/* webpackChunkName: "route-home" */ '../components/demo/HelloWorld'),
     }),
   },
 ];
 
 const breadcrumbNameMap = {
-  "/route": "label",
+  '/route': 'label',
 };
 
 export { routes, breadcrumbNameMap };

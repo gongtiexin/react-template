@@ -4,8 +4,8 @@
  * 18-3-22           gongtiexin       demoState
  * */
 
-import { action, computed, observable } from "mobx";
-import request from "../utils/request";
+import { action, computed, observable } from 'mobx';
+import request from '../utils/request';
 
 /* eslint class-methods-use-this: ["error", { "exceptMethods": ["test"] }] */
 
@@ -15,13 +15,13 @@ export default class DemoState {
    * */
 
   @observable
-  msg = "Welcome to Your React.js App";
+  msg = 'Welcome to Your React.js App';
 
   @observable
   ajax = [];
 
   @observable
-  echarts = [{ x: "重庆", y: "2018", value: "666", seriesType: "bar" }];
+  echarts = [{ x: '重庆', y: '2018', value: '666', seriesType: 'bar' }];
 
   /**
    * ****************************** ajax ******************************
@@ -56,7 +56,7 @@ export default class DemoState {
    * */
   async getAjax() {
     const { data } = await request({
-      config: { method: "GET", url: "/inapi/simulation/page1" },
+      config: { method: 'GET', url: '/inapi/simulation/page1' },
     });
     this.setAjax(data);
     return data;
@@ -87,7 +87,7 @@ export default class DemoState {
   @computed
   get computedData() {
     if (this.msg.length > 0) {
-      return "computed";
+      return 'computed';
     }
     return [];
   }

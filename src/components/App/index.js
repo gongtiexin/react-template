@@ -1,17 +1,16 @@
-import React, { Component } from "react";
-import { Route, Switch, withRouter } from "react-router-dom";
-import { inject, observer } from "mobx-react";
+import React, { Component } from 'react';
+import { Route, Switch, withRouter } from 'react-router-dom';
+import { inject, observer } from 'mobx-react';
 // 代升级
 // import DevTools from "mobx-react-devtools";
-import "./index.less";
-import { routes } from "../../router";
-import { PrivateRoute } from "../../router/feature";
-import { isProduction } from "../../utils/constants";
-import Loadable from "../common/Loadable";
+import './index.less';
+import { routes } from '../../router';
+import { PrivateRoute } from '../../router/feature';
+import { isProduction } from '../../utils/constants';
+import Loadable from '../common/Loadable';
 
 const LoadableMismatch = Loadable({
-  loader: () =>
-    import(/* webpackChunkName: "route-mismatch" */ "../common/Mismatch"),
+  loader: () => import(/* webpackChunkName: "route-mismatch" */ '../common/Mismatch'),
 });
 
 @inject(({ store: { demoState } }) => ({ demoState }))

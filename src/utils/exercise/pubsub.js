@@ -40,16 +40,16 @@ const messageLogger = msg => {
 
 const pubSub = new PubSub();
 
-const subscription1 = pubSub.subscribe("friend1", messageLogger);
-const subscription2 = pubSub.subscribe("friend2", messageLogger);
+const subscription1 = pubSub.subscribe('friend1', messageLogger);
+const subscription2 = pubSub.subscribe('friend2', messageLogger);
 
-pubSub.publish("friend1", "hello, friend1!");
-pubSub.publish("friend2", "hello, friend2!");
+pubSub.publish('friend1', 'hello, friend1!');
+pubSub.publish('friend2', 'hello, friend2!');
 
 pubSub.unsubscribe(subscription1);
 
-pubSub.publish("friend1", "goodbye, friend1!");
-pubSub.publish("friend2", "goodbye, friend2!");
+pubSub.publish('friend1', 'goodbye, friend1!');
+pubSub.publish('friend2', 'goodbye, friend2!');
 
 // console
 // Logging: hello, friend1!

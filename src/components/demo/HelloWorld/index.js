@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { inject, observer } from "mobx-react";
-import PropTypes from "prop-types";
-import "./index.less";
-import "../../../utils/exercise/pubsub";
+import React, { Component } from 'react';
+import { inject, observer } from 'mobx-react';
+import PropTypes from 'prop-types';
+import './index.less';
+import '../../../utils/exercise/pubsub';
 
 @inject(({ store: { demoState } }) => ({ demoState }))
 @observer

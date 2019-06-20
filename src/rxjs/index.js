@@ -10,9 +10,9 @@ import {
   fromEvent,
   SubscriptionLike,
   PartialObserver,
-} from "rxjs";
-import { map, filter, scan } from "rxjs/operators";
-import { ajax } from "rxjs/ajax";
+} from 'rxjs';
+import { map, filter, scan } from 'rxjs/operators';
+import { ajax } from 'rxjs/ajax';
 
 const main = () => {
   const onSubscribe = observer => {

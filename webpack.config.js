@@ -4,15 +4,15 @@
  * 18-3-22           gongtiexin       webpack开发环境配置
  * */
 
-const webpack = require("webpack");
-const HappyPack = require("happypack");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const config = require("./config");
+const webpack = require('webpack');
+const HappyPack = require('happypack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const config = require('./config');
 
-const proxy = process.env.DEV_PROXY || "192.168.32.101";
+const proxy = process.env.DEV_PROXY || '192.168.32.101';
 
 module.exports = {
-  mode: "development",
+  mode: 'development',
   // resolve: {
   //   alias: config.webpack.alias,
   //   modules: [config.path.nodeModulesPath],
@@ -22,12 +22,12 @@ module.exports = {
     hot: true,
     contentBase: config.root,
     port: config.webpack.dev.devServer.port,
-    host: "0.0.0.0",
-    publicPath: "/",
+    host: '0.0.0.0',
+    publicPath: '/',
     historyApiFallback: true,
     disableHostCheck: true,
     proxy: {
-      "/api": {
+      '/api': {
         target: `http://${proxy}:20111`,
         changeOrigin: true,
       },
@@ -36,27 +36,27 @@ module.exports = {
   output: {
     path: config.path.distPath,
     publicPath: config.webpack.publicPath,
-    filename: "app.[hash].js",
+    filename: 'app.[hash].js',
   },
-  devtool: "cheap-module-eval-source-map",
+  devtool: 'cheap-module-eval-source-map',
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: "happypack/loader?id=babel",
+        use: 'happypack/loader?id=babel',
       },
       {
         test: /\.less|css$/,
         use: [
           {
-            loader: "style-loader",
+            loader: 'style-loader',
           },
           {
-            loader: "css-loader",
+            loader: 'css-loader',
           },
           {
-            loader: "less-loader",
+            loader: 'less-loader',
             options: {
               // less@3
               javascriptEnabled: true,
@@ -69,7 +69,7 @@ module.exports = {
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
         use: [
-          "file-loader?hash=sha512&digest=hex&name=[hash].[ext]",
+          'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
           // {
           //   loader: "image-webpack-loader",
           //   options: {
@@ -86,19 +86,19 @@ module.exports = {
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        use: "url-loader?limit=10000&mimetype=application/font-woff",
+        use: 'url-loader?limit=10000&mimetype=application/font-woff',
       },
       {
         test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        use: "file-loader",
+        use: 'file-loader',
       },
     ],
   },
   plugins: [
     // 多进程
     new HappyPack({
-      id: "babel",
-      loaders: ["babel-loader"],
+      id: 'babel',
+      loaders: ['babel-loader'],
     }),
     // 热更新
     new webpack.HotModuleReplacementPlugin(),
@@ -106,7 +106,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       hash: false,
       template: config.path.indexHtml,
-      title: "react-template",
+      title: 'react-template',
     }),
   ],
 };

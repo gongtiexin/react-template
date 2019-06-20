@@ -13,9 +13,9 @@
  *   }
  * */
 
-import React, { Component } from "react";
-import { observer } from "mobx-react";
-import echarts from "echarts";
+import React, { Component } from 'react';
+import { observer } from 'mobx-react';
+import echarts from 'echarts';
 // 引入 ECharts 主模块
 // import echarts from "echarts/lib/echarts";
 // 引入常用图形图和组件
@@ -25,9 +25,9 @@ import echarts from "echarts";
 // import "echarts/lib/component/title";
 // import "echarts/lib/component/legend";
 // import "echarts/lib/component/axis";
-import { computedEchartsOption } from "up-utils";
-import lodashIsEqual from "lodash/isEqual";
-import PropTypes from "prop-types";
+import { computedEchartsOption } from 'up-utils';
+import lodashIsEqual from 'lodash/isEqual';
+import PropTypes from 'prop-types';
 
 @observer
 export default class ReactEchart extends Component {
@@ -40,8 +40,8 @@ export default class ReactEchart extends Component {
 
   static defaultProps = {
     style: {
-      width: "100%",
-      height: "600px",
+      width: '100%',
+      height: '600px',
     },
     action: undefined,
     onClick: undefined,
@@ -59,7 +59,7 @@ export default class ReactEchart extends Component {
 
   componentDidMount() {
     this.myChart = echarts.init(this.eCharts.current);
-    window.addEventListener("resize", this.handleWindowResize);
+    window.addEventListener('resize', this.handleWindowResize);
     const { isReset } = this.state;
     if (!isReset) {
       this.reset();
@@ -81,7 +81,7 @@ export default class ReactEchart extends Component {
 
   componentWillUnmount() {
     this.myChart.dispose();
-    window.removeEventListener("resize", this.handleWindowResize);
+    window.removeEventListener('resize', this.handleWindowResize);
   }
 
   handleWindowResize = () => {
@@ -101,7 +101,7 @@ export default class ReactEchart extends Component {
         this.myChart.dispatchAction(action);
       }
       if (onClick) {
-        this.myChart.on("click", params => {
+        this.myChart.on('click', params => {
           onClick(params);
         });
       }

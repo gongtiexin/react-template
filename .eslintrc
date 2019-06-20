@@ -3,10 +3,7 @@
     "browser": true,
     "node": true
   },
-  "extends": [
-    "airbnb",
-    "plugin:prettier/recommended"
-  ],
+  "extends": ["airbnb", "plugin:prettier/recommended"],
   "parser": "babel-eslint",
   "parserOptions": {
     "ecmaFeatures": {
@@ -17,8 +14,10 @@
     "prettier/prettier": [
       "error",
       {
-        "trailingComma": "es5",
-        "printWidth": 80
+        "singleQuote": true,
+        "trailingComma": "all",
+        "printWidth": 100,
+        "proseWrap": "never"
       }
     ],
     "react/jsx-filename-extension": [

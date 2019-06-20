@@ -4,14 +4,14 @@
  * 2018/5/18           gongtiexin       登陆组件
  * */
 
-import React, { Component } from "react";
-import { observer } from "mobx-react";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
-import { Form, Icon, Input, Button, Checkbox } from "antd";
-import Particles from "particlesjs";
-import "./index.less";
-import { browserRedirect } from "../../../utils/constants";
+import React, { Component } from 'react';
+import { observer } from 'mobx-react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import Particles from 'particlesjs';
+import './index.less';
+import { browserRedirect } from '../../../utils/constants';
 
 const { Item: FormItem, create } = Form;
 
@@ -27,11 +27,11 @@ export default class Login extends Component {
   }
 
   particlesInit = () => {
-    if (browserRedirect() === "pc") {
+    if (browserRedirect() === 'pc') {
       Particles.init({
-        selector: ".particles-background",
+        selector: '.particles-background',
         connectParticles: true,
-        color: "#999999",
+        color: '#999999',
         maxParticles: 150,
       });
     }
@@ -41,7 +41,7 @@ export default class Login extends Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log("Received values of form: ", values);
+        console.log('Received values of form: ', values);
       }
     });
   };
@@ -56,45 +56,37 @@ export default class Login extends Component {
           <div id="darkbannerwrap" />
           <Form onSubmit={this.handleSubmit} className="login-form">
             <FormItem>
-              {getFieldDecorator("userName", {
-                rules: [{ required: true, message: "请输入您的用户名!" }],
+              {getFieldDecorator('userName', {
+                rules: [{ required: true, message: '请输入您的用户名!' }],
               })(
                 <Input
-                  prefix={
-                    <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
-                  }
+                  prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                   placeholder="用户名"
                   className="login-form-input"
-                />
+                />,
               )}
             </FormItem>
             <FormItem>
-              {getFieldDecorator("password", {
-                rules: [{ required: true, message: "请输入您的密码!" }],
+              {getFieldDecorator('password', {
+                rules: [{ required: true, message: '请输入您的密码!' }],
               })(
                 <Input
-                  prefix={
-                    <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
-                  }
+                  prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                   type="password"
                   placeholder="密码"
                   className="login-form-input"
-                />
+                />,
               )}
             </FormItem>
             <FormItem>
-              {getFieldDecorator("remember", {
-                valuePropName: "checked",
+              {getFieldDecorator('remember', {
+                valuePropName: 'checked',
                 initialValue: true,
               })(<Checkbox>记住密码</Checkbox>)}
               <Link className="login-form-forgot" to="/forgot">
                 忘记密码
               </Link>
-              <Button
-                type="primary"
-                htmlType="submit"
-                className="login-form-button"
-              >
+              <Button type="primary" htmlType="submit" className="login-form-button">
                 Log in
               </Button>
               或者

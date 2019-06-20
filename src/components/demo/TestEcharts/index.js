@@ -1,14 +1,11 @@
-import React, { Component } from "react";
-import { inject, observer } from "mobx-react";
-import PropTypes from "prop-types";
-import { ECHARTS_DEFULT_OPTION } from "../../../utils/constants";
-import Loadable from "../../common/Loadable/index";
+import React, { Component } from 'react';
+import { inject, observer } from 'mobx-react';
+import PropTypes from 'prop-types';
+import { ECHARTS_DEFULT_OPTION } from '../../../utils/constants';
+import Loadable from '../../common/Loadable/index';
 
 const LoadableReactEchart = Loadable({
-  loader: () =>
-    import(
-      /* webpackChunkName: "component-react-echart" */ "../../common/ReactEchart"
-    ),
+  loader: () => import(/* webpackChunkName: "component-react-echart" */ '../../common/ReactEchart'),
 });
 
 @inject(({ store: { demoState } }) => ({ demoState }))
@@ -22,10 +19,10 @@ export default class TestEcharts extends Component {
     setTimeout(
       () =>
         this.props.demoState.setEcharts([
-          { x: "重庆", y: "2017", value: "555", seriesType: "bar" },
-          { x: "重庆", y: "2018", value: "666", seriesType: "bar" },
+          { x: '重庆', y: '2017', value: '555', seriesType: 'bar' },
+          { x: '重庆', y: '2018', value: '666', seriesType: 'bar' },
         ]),
-      1000
+      1000,
     );
   }
 
@@ -36,15 +33,15 @@ export default class TestEcharts extends Component {
         option={{
           option: ECHARTS_DEFULT_OPTION,
           data: echarts,
-          row: "x",
-          column: "y",
-          value: "value",
+          row: 'x',
+          column: 'y',
+          value: 'value',
           seriesTemplates: {
             bar: {
-              type: "bar",
+              type: 'bar',
             },
             line: {
-              type: "line",
+              type: 'line',
               showSymbol: false,
               hoverAnimation: false,
               yAxisIndex: 1,

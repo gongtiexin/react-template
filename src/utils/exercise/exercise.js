@@ -4,9 +4,9 @@ const isStraight = arr => {
   const notGhost = arr.filter(num => num !== 14);
 
   if ([...new Set(notGhost)].length === arr.length) {
-    return "no";
+    return 'no';
   }
 
   const length = notGhost[notGhost.length - 1] - notGhost[0] + 1;
-  return length > arr.length ? "no" : "yes";
+  return length > arr.length ? 'no' : 'yes';
 };

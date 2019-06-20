@@ -46,7 +46,7 @@ class Observer {
           // 存储依赖
           dep.addSub(Dep.target);
         }
-        console.log("get");
+        console.log('get');
         return backup;
       },
       set(newVal) {
@@ -54,7 +54,7 @@ class Observer {
         backup = newVal;
         // 执行依赖
         dep.notify();
-        console.log("set");
+        console.log('set');
       },
     });
   }
@@ -71,19 +71,19 @@ class Watcher {
 }
 
 const observable = obj => {
-  if (Object.prototype.toString.call(obj) === "[object Object]") {
+  if (Object.prototype.toString.call(obj) === '[object Object]') {
     Object.entries(obj).forEach(([key, value]) => {
-      if (Object.prototype.toString.call(value) === "[object Object]") {
+      if (Object.prototype.toString.call(value) === '[object Object]') {
         observable(value);
       }
       new Observer(obj, key, value);
       new Watcher(obj, key, (v, key) => {
-        console.log("你修改了数据");
+        console.log('你修改了数据');
         // document.getElementById('dd').innerHTML=v.key;
       });
     });
   }
 };
 
-const point = { x: 1, y: 2, option: { color: "#eee" } };
+const point = { x: 1, y: 2, option: { color: '#eee' } };
 observable(point);
