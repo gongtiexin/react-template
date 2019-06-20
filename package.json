@@ -21,15 +21,13 @@
     "React-Router-v4",
     "MobX",
     "Webpack",
-    "ES6",
-    "ES7"
+    "ESNEXT"
   ],
   "browserslist": [
-    "last 1 version",
     "> 1%",
-    "node 11",
+    "last 1 version",
     "not dead",
-    "not ie <= 8"
+    "not ie < 11"
   ],
   "license": "ISC",
   "devDependencies": {

@@ -131,24 +131,42 @@ module.exports = {
     ],
     runtimeChunk: "single",
     splitChunks: {
+      chunks: 'all',
+      automaticNameDelimiter: '.',
+      name: undefined,
       cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: "vendor",
-          minSize: 30000,
-          minChunks: 1,
-          chunks: "initial",
-          // 设置处理的优先级，数值越大越优先处理
-          priority: 1,
+        default: false,
+        vendors: false,
+        common: {
+          test(module, chunks) {
+            // 这里通过配置规则只将多个页面引用的打包进 common 中
+            if (
+              // /src\/common\//.test(module.context) ||
+            // /src\/lib/.test(module.context) ||
+              /antd/.test(module.context)
+            ) {
+              return true;
+            }
+          },
+          chunks: 'all',
+          name: 'common',
+          // 这里的minchunks 非常重要，控antd使用的组件被超过几个chunk引用之后才打包进入该common中否则不打包进该js中
+          minChunks: 2,
+          priority: 20,
         },
-        commons: {
-          name: "commons",
-          minSize: 30000,
-          minChunks: 3,
-          chunks: "initial",
-          priority: -1,
-          // 允许我们使用已经存在的代码块
-          reuseExistingChunk: true,
+        vendor: {
+          chunks: 'all',
+          test: (module, chunks) => {
+            // 将node_modules 目录下的依赖统一打包进入vendor中
+            if (/node_modules/.test(module.context)) {
+              return true;
+            }
+          },
+          name: 'vendor',
+          minChunks: 2,
+          // 配置chunk的打包优先级，这里的数值决定了node_modules下的 antd 不会打包进入 vendor 中
+          priority: 10,
+          enforce: true,
         },
       },
     },
