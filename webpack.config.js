@@ -27,8 +27,8 @@ module.exports = {
     historyApiFallback: true,
     disableHostCheck: true,
     proxy: {
-      '/api': {
-        target: `http://${proxy}:20111`,
+      '/v1': {
+        target: `http://api.xfyun.cn`,
         changeOrigin: true,
       },
     },
@@ -54,6 +54,9 @@ module.exports = {
           },
           {
             loader: 'css-loader',
+          },
+          {
+            loader: 'postcss-loader',
           },
           {
             loader: 'less-loader',

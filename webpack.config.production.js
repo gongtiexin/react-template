@@ -45,13 +45,7 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
-          {
-            loader: 'postcss-loader',
-            options: {
-              ident: 'postcss',
-              plugins: () => [postcssPresetEnv(/* pluginOptions */)],
-            },
-          },
+          'postcss-loader',
           {
             loader: 'less-loader',
             options: {

@@ -10,9 +10,32 @@
     <meta name="renderer" content="webkit" />
     <!--    <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">-->
     <meta name="google" content="notranslate" />
+    <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
+    <script>
+      if ('addEventListener' in document) {
+        document.addEventListener(
+          'DOMContentLoaded',
+          function() {
+            FastClick.attach(document.body);
+          },
+          false,
+        );
+      }
+      if (!window.Promise) {
+        document.writeln(
+          '<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"' +
+            '>' +
+            '<' +
+            '/' +
+            'script>',
+        );
+      }
+    </script>
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
-  <body>
+  <body translate="no">
     <div id="root"></div>
+    <!--<script src="//cdn.jsdelivr.net/npm/eruda"></script>-->
+    <!--<script>eruda.init();</script>-->
   </body>
 </html>

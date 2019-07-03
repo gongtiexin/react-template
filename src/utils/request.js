@@ -5,7 +5,6 @@
  * */
 
 import axios from 'axios';
-import { notification } from 'antd';
 
 axios.defaults.retry = 0;
 axios.defaults.retryDelay = 1000;
@@ -110,13 +109,13 @@ const request = ({ config, success, error }) =>
   axios(config).then(
     response => {
       if (success) {
-        notification.success(success);
+        console.log(success);
       }
       return Promise.resolve(response);
     },
     ({ response }) => {
       if (error) {
-        notification.error(error);
+        console.log(error);
       } else {
         checkStatus(response);
       }

@@ -34,7 +34,7 @@ module.exports = function config(api) {
     [
       'import',
       {
-        libraryName: 'antd',
+        libraryName: 'antd-mobile',
         style: true,
       },
     ],
