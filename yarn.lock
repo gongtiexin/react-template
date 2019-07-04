@@ -6280,6 +6280,11 @@ pinkie@^2.0.0:
   resolved "https://registry.yarnpkg.com/pinkie/-/pinkie-2.0.4.tgz#72556b80cfa0d48a974e80e77248e80ed4f7f870"
   integrity sha1-clVrgM+g1IqXToDnckjoDtT3+HA=
 
+pinyin-utils@^1.48.0:
+  version "1.48.0"
+  resolved "https://registry.npm.taobao.org/pinyin-utils/download/pinyin-utils-1.48.0.tgz#347616e37136c53afd36270492d7a14aafd117b6"
+  integrity sha1-NHYW43E2xTr9NicEktehSq/RF7Y=
+
 pkg-dir@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/pkg-dir/-/pkg-dir-2.0.0.tgz#f6d5d1109e19d63edf428e0bd57e12777615334b"
@@ -7519,11 +7524,6 @@ readdirp@^2.0.0, readdirp@^2.2.1:
     graceful-fs "^4.1.11"
     micromatch "^3.1.10"
     readable-stream "^2.0.2"
-
-recorderjs@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.npm.taobao.org/recorderjs/download/recorderjs-1.0.1.tgz#f8211a0f90bdcdcfa2f431a597b6cb94a1b93571"
-  integrity sha1-+CEaD5C9zc+i9DGll7bLlKG5NXE=
 
 regenerate-unicode-properties@^8.0.2:
   version "8.0.2"

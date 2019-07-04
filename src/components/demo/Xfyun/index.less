@@ -28,7 +28,7 @@
 
 body {
   overflow: hidden;
-  background: #F7F7F7;
+  background: #f7f7f7;
 }
 
 body .container {
@@ -67,7 +67,7 @@ body .container #btn + label:after {
   margin: -35px -35px;
   content: '';
   border-radius: 50%;
-  background: #FF645C;
+  background: #ff645c;
   cursor: pointer;
 }
 
@@ -97,10 +97,11 @@ body .container .time {
 
 .audio-box {
   width: 375px;
-  height: 270px;
+  height: 240px;
   margin: 0 auto;
-  position: relative;
-  background:rgba(255,255,255,1);
+  position: fixed;
+  bottom: 0;
+  background: rgba(255, 255, 255, 1);
 }
 
 .xfyun {
@@ -111,13 +112,13 @@ body .container .time {
   //justify-content: space-between;
 
   .xfyun-header {
-    width:375px;
-    height:64px;
-    background:rgba(255,255,255,1);
-    box-shadow:0px -1px 10px 0px rgba(237,237,237,1);
-    font-size:16px;
-    color:rgba(52,52,52,1);
-    line-height:22px;
+    width: 375px;
+    height: 64px;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0px -1px 10px 0px rgba(237, 237, 237, 1);
+    font-size: 16px;
+    color: rgba(52, 52, 52, 1);
+    line-height: 22px;
     margin-bottom: 2px;
 
     display: flex;
@@ -127,7 +128,46 @@ body .container .time {
 
   .xfyun-topic {
     padding: 15px 15px 20px 15px;
-    background:rgba(255,255,255,1);
+    background: rgba(255, 255, 255, 1);
     margin-bottom: 10px;
+  }
+
+  .am-textarea-item {
+    box-sizing: border-box;
+
+
+    width: 375px;
+    margin: 20px 0;
+    padding: 0 15px;
+  }
+
+  .xfyun-header-word-list {
+    width: 375px;
+    padding: 5px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 1);
+    display: flex;
+    align-items: center;
+
+    .xfyun-header-word-list-item {
+      width: 50px;
+      height: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 1px dashed  #676767;
+      margin: 5px;
+      padding: 5px;
+    }
+
+    .xfyun-header-word-list-item-word {
+      margin-top: 5px;
+    }
+
+    .xfyun-header-word-list-item-error {
+      color: #ff645c;
+    }
   }
 }
