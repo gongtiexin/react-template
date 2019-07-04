@@ -6,7 +6,7 @@ import { Toast, TextareaItem } from 'antd-mobile';
 import Recorder from 'js-audio-recorder';
 import shortid from 'shortid';
 import './index.less';
-import pyUutils from 'pinyin-utils';
+import * as pyUutils from './pinyin-utils';
 
 // const DEFALUT_TEXT = '八百标兵奔北坡，北坡炮兵并排跑，炮兵怕把标兵碰，标兵怕碰炮兵炮。';
 const DEFALUT_TEXT = '中少红卡';
@@ -129,7 +129,9 @@ const Xfyun = props => {
               } xfyun-header-word-list-item`}
               key={shortid.generate()}
             >
-              <span className="xfyun-header-word-list-item-pinyin">{pyUutils.numberToMark(wordList[idx].symbol)}</span>
+              <span className="xfyun-header-word-list-item-pinyin">
+                {pyUutils.numberToMark(wordList[idx].symbol)}
+              </span>
               <span className="xfyun-header-word-list-item-word">{item}</span>
             </div>
           ))}
