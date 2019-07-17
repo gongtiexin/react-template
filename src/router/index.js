@@ -7,16 +7,12 @@
 import Loadable from '../components/common/Loadable';
 
 const routes = [
-  {
-    path: '/',
-    component: Loadable({
-      loader: () => import(/* webpackChunkName: "route-home" */ '../components/demo/Xfyun'),
-    }),
-  },
+  // {
+  //   path: '/',
+  //   component: Loadable({
+  //     loader: () => import(/* webpackChunkName: "route-home" */ '../components/demo/Xfyun'),
+  //   }),
+  // },
 ];
 
-const breadcrumbNameMap = {
-  '/route': 'label',
-};
-
-export { routes, breadcrumbNameMap };
+export { routes };
