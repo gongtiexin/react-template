@@ -26,7 +26,7 @@ yarn
 
 👤 **tiexin.gong <tiexin.gong@qq.com>**
 
-* Github: [@gongtiexin](https://github.com/gongtiexin)
+- Github: [@gongtiexin](https://github.com/gongtiexin)
 
 ## 🤝 Contributing
 
@@ -39,7 +39,9 @@ Give a ⭐️ if this project helped you!
 ## 📝 License
 
 Copyright © 2019 [tiexin.gong <tiexin.gong@qq.com>](https://github.com/gongtiexin).<br />
+
 <!-- This project is [ISC](https://github.com/gongtiexin/react-template/blob/master/LICENSE) licensed. -->
 
-***
+---
+
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
