@@ -4,6 +4,14 @@
   "description": "A frontend project template for React.js",
   "author": "tiexin.gong <tiexin.gong@qq.com>",
   "private": true,
+  "homepage": "https://github.com/gongtiexin/react-template#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gongtiexin/react-template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gongtiexin/react-template.git/issues"
+  },
   "scripts": {
     "dev": "webpack-dev-server --config webpack.config.js",
     "build": "rimraf ./dist && webpack --progress --config webpack.config.production.js",

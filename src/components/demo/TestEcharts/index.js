@@ -30,6 +30,7 @@ export default class TestEcharts extends Component {
     const { echarts } = this.props.demoState;
     return (
       <LoadableReactEchart
+        onClick={console.log}
         option={{
           option: ECHARTS_DEFULT_OPTION,
           data: echarts,

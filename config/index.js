@@ -43,7 +43,7 @@ module.exports = {
         NODE_ENV: 'development',
       },
       devServer: {
-        port: 3001,
+        port: 3000,
       },
     },
     publicPath: '/',
