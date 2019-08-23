@@ -1,34 +1,42 @@
 import React, { Component } from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { inject, observer } from 'mobx-react';
-// 代升级
-// import DevTools from "mobx-react-devtools";
+import PropTypes from 'prop-types';
 import './index.less';
 import { routes } from '../../router';
 import { PrivateRoute } from '../../router/feature';
-import { isProduction } from '../../utils/constants';
-import Loadable from '../common/Loadable';
+// import Loadable from '../../components/Loadable';
 
-const LoadableMismatch = Loadable({
-  loader: () => import(/* webpackChunkName: "route-mismatch" */ '../common/Mismatch'),
-});
+// const LoadableMismatch = Loadable({
+//   loader: () => import(/* webpackChunkName: "route-mismatch" */ '../../components/Mismatch'),
+// });
 
-@inject(({ store: { demoState } }) => ({ demoState }))
+@inject(({ store: { globalStore } }) => ({ globalStore }))
 @withRouter
 @observer
 export default class App extends Component {
+  static propTypes = {
+    globalStore: PropTypes.object.isRequired,
+  };
+
+  componentDidMount() {
+    this.props.globalStore.getMsg();
+  }
+
   renderRoute = ({ path, component }) => (
     <PrivateRoute key={path} path={path} component={component} exact />
   );
 
   render() {
+    const {
+      globalStore: { msg },
+    } = this.props;
     return (
       <div id="app">
-        <img src="/static/images/logo.svg" alt="logo" />
-        {/* {!isProduction && <DevTools />} */}
+        <h1>{msg}</h1>
         <Switch>
           {routes.map(this.renderRoute)}
-          <Route component={LoadableMismatch} />
+          {/* <Route component={LoadableMismatch} /> */}
         </Switch>
       </div>
     );

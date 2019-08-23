@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import Particles from 'particlesjs';
 import './index.less';
-import { browserRedirect } from '../../../utils/constants';
+import { browserRedirect } from '../../utils/constants';
 
 const { Item: FormItem, create } = Form;
 
