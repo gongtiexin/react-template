@@ -19,9 +19,15 @@
     "prettier": "prettier -c --write '**/*'",
     "eslint": "eslint \"./**/*.js\""
   },
+  "lint-staged": {
+    "*": [
+      "yarn prettier",
+      "git add"
+    ]
+  },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run prettier"
+      "pre-commit": "lint-staged"
     }
   },
   "keywords": [
@@ -99,6 +105,7 @@
     "core-js": "3",
     "echarts": "^4.2.1",
     "enquire.js": "^2.1.6",
+    "lint-staged": "^9.2.4",
     "lodash": "^4.17.11",
     "mobx": "^5.10.1",
     "mobx-react": "^6.0.3",
