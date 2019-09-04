@@ -118,26 +118,24 @@ export default class SearchTable extends Component {
 
     return (
       <div id="searchTable">
-        {do {
-          if (fields.length > 0) {
-            <Fragment>
-              <Form className="ant-advanced-search-form" onSubmit={this.handleSearch}>
-                <Row gutter={24}>{this.renderFormItem(fields)}</Row>
-                <Row>
-                  <Col span={24} style={{ textAlign: 'right' }}>
-                    <Button type="primary" htmlType="submit">
-                      搜索
-                    </Button>
-                    <Button style={{ marginLeft: 8 }} onClick={this.handleReset}>
-                      重置
-                    </Button>
-                  </Col>
-                </Row>
-              </Form>
-              <Divider {...dividerProps}>搜索结果</Divider>
-            </Fragment>;
-          }
-        }}
+        {fields.length > 0 && (
+          <Fragment>
+            <Form className="ant-advanced-search-form" onSubmit={this.handleSearch}>
+              <Row gutter={24}>{this.renderFormItem(fields)}</Row>
+              <Row>
+                <Col span={24} style={{ textAlign: 'right' }}>
+                  <Button type="primary" htmlType="submit">
+                    搜索
+                  </Button>
+                  <Button style={{ marginLeft: 8 }} onClick={this.handleReset}>
+                    重置
+                  </Button>
+                </Col>
+              </Row>
+            </Form>
+            <Divider {...dividerProps}>搜索结果</Divider>
+          </Fragment>
+        )}
         <Table size="middle" loading={loading} pagination={false} {...tableProps} />
         <Pagination {...paginationProps} handleChange={this.getDataSource} />
       </div>
