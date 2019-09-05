@@ -13,10 +13,10 @@ const proxy = process.env.DEV_PROXY || '192.168.32.101';
 
 module.exports = {
   mode: 'development',
-  // resolve: {
-  //   alias: config.webpack.alias,
-  //   modules: [config.path.nodeModulesPath],
-  // },
+  resolve: {
+    extensions: ['.js'],
+    modules: ['node_modules'],
+  },
   entry: config.path.entry,
   devServer: {
     hot: true,
@@ -43,8 +43,9 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
         use: 'happypack/loader?id=babel',
+        include: config.path.srcPath,
+        exclude: config.path.nodeModulesPath,
       },
       {
         test: /\.less|css$/,

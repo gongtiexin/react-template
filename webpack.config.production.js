@@ -20,10 +20,10 @@ const config = require('./config');
 
 module.exports = {
   mode: 'production',
-  // resolve: {
-  //   alias: config.webpack.alias,
-  //   modules: [config.path.nodeModulesPath],
-  // },
+  resolve: {
+    extensions: ['.js'],
+    modules: ['node_modules'],
+  },
   entry: {
     app: config.path.entry,
   },
@@ -37,8 +37,9 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        include: config.path.srcPath,
         use: 'happypack/loader?id=babel',
+        include: config.path.srcPath,
+        exclude: config.path.nodeModulesPath,
       },
       {
         test: /\.less|css$/,

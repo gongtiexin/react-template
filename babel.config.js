@@ -4,7 +4,7 @@ module.exports = function config(api) {
       '@babel/env',
       {
         modules: false,
-        useBuiltIns: 'entry',
+        useBuiltIns: 'usage',
         corejs: 3,
       },
     ],
