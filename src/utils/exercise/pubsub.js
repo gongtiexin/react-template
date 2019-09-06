@@ -1,58 +1,36 @@
 class PubSub {
   topics = {};
 
-  subUid = -1;
+  subId = -1;
 
   subscribe = (topic, func) => {
-    const token = (this.subUid += 1).toString();
-    // 如果没有订阅过此类消息，创建一个缓存列表
+    const token = (this.subId += 1).toString();
     if (!this.topics[topic]) {
       this.topics[topic] = [];
     }
-    this.topics[topic].push({
-      token,
-      func,
-    });
-    return token;
+    this.topics[topic].push({ token, func });
+    console.log(`subscribe   topic:${topic} subId:${token}`);
+    return { topic, token };
   };
 
-  unsubscribe = token => {
-    Object.values(this.topics).forEach(value => {
-      value.forEach((item, idx) => {
-        if (item.token === token) {
-          value.splice(idx, 1);
-          console.log(`unsubscribe: ${token}`);
-        }
-      });
-    });
+  ubSubscribe = ({ topic, token }) => {
+    const idx = this.topics[topic].findIndex(subscription => subscription.token === token);
+    this.topics[topic].splice(idx, 1);
+    console.log(`ubSubscribe topic:${topic} subId:${token}`);
   };
 
   publish = (topic, ...args) =>
-    this.topics[topic]?.forEach(({ func }) => {
-      func(args);
-    });
+    this.topics[topic]?.forEach(subscription => subscription.func(...args));
 }
 
-// 一个简单的消息记录器，记录通过我们收到的任何主题和数据
-const messageLogger = msg => {
-  console.log(`Logging: ${msg}`);
-};
-
 const pubSub = new PubSub();
+const logHandler = msg => console.log(`log:${msg}`);
 
-const subscription1 = pubSub.subscribe('friend1', messageLogger);
-const subscription2 = pubSub.subscribe('friend2', messageLogger);
+const subscription1 = pubSub.subscribe('topic1', logHandler);
+const subscription2 = pubSub.subscribe('topic2', logHandler);
 
-pubSub.publish('friend1', 'hello, friend1!');
-pubSub.publish('friend2', 'hello, friend2!');
-
-pubSub.unsubscribe(subscription1);
-
-pubSub.publish('friend1', 'goodbye, friend1!');
-pubSub.publish('friend2', 'goodbye, friend2!');
-
-// console
-// Logging: hello, friend1!
-// Logging: hello, friend2!
-// unsubscribe: 0
-// Logging: goodbye, friend2!
+pubSub.publish('topic1', 'hello topic1');
+pubSub.publish('topic2', 'hello topic2');
+pubSub.ubSubscribe(subscription1);
+pubSub.publish('topic1', 'hello topic1');
+pubSub.publish('topic2', 'hello topic2');

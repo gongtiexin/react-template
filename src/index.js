@@ -19,6 +19,7 @@ import { isProduction } from './utils/constants';
 import './stores';
 import './global.less';
 import Loadable from './components/Loadable';
+import './utils/exercise/pubsub.my';
 // import main from './rxjs';
 
 /**
