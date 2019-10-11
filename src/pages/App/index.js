@@ -5,11 +5,11 @@ import PropTypes from 'prop-types';
 import './index.less';
 import { routes } from '../../router';
 import { PrivateRoute } from '../../router/feature';
-// import Loadable from '../../components/Loadable';
+import Loadable from '../../components/Loadable';
 
-// const LoadableMismatch = Loadable({
-//   loader: () => import(/* webpackChunkName: "route-mismatch" */ '../../components/Mismatch'),
-// });
+const LoadableMismatch = Loadable({
+  loader: () => import(/* webpackChunkName: "route-mismatch" */ '../../components/Mismatch'),
+});
 
 @inject(({ store: { globalStore } }) => ({ globalStore }))
 @withRouter
@@ -33,10 +33,9 @@ export default class App extends Component {
     } = this.props;
     return (
       <div id="app">
-        <h1>{msg}</h1>
         <Switch>
           {routes.map(this.renderRoute)}
-          {/* <Route component={LoadableMismatch} /> */}
+          <Route component={LoadableMismatch} />
         </Switch>
       </div>
     );

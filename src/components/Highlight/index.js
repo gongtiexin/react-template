@@ -6,12 +6,13 @@
 
 import React, { Fragment } from 'react';
 import shortid from 'shortid';
+import * as PropTypes from 'prop-types';
 
-const Highlight = (text, keyword) => {
+const Highlight = ({ text, keyword }) => {
   const reg = new RegExp(keyword, 'gi');
   const match = text.match(reg);
   if (!match) {
-    return <Fragment />;
+    return text;
   }
   return (
     <span>
@@ -27,6 +28,11 @@ const Highlight = (text, keyword) => {
       )}
     </span>
   );
+};
+
+Highlight.propTypes = {
+  text: PropTypes.string.isRequired,
+  keyword: PropTypes.string.isRequired,
 };
 
 export default Highlight;
