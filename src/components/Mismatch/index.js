@@ -16,4 +16,4 @@ const Mismatch = () => (
   </div>
 );
 
-export default Mismatch;
+export default React.memo(Mismatch);
