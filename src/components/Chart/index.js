@@ -54,7 +54,7 @@ const Chart = props => {
     console.log('echarts render');
   });
 
-  return <div ref={echartsRef} style={{ ...style }} />;
+  return <div ref={echartsRef} style={style} />;
 };
 
 const areEqual = (prevProps, nextProps) => {
