@@ -166,29 +166,85 @@
 // pubSub.publish('topic1', 'hello topic1');
 // pubSub.publish('topic2', 'hello topic2');
 
-class A {
-  constructor(a) {
-    this.a = a;
-  }
+// class A {
+//   constructor(a) {
+//     this.a = a;
+//   }
+// }
+//
+// class B extends A {
+//   constructor(b) {
+//     super('a');
+//     this.b = b;
+//   }
+// }
+//
+// console.log(new B('b').c);
+// console.log(Object.getPrototypeOf(new B('b')));
+//
+// function C() {}
+//
+// function D() {
+//   C.call(this);
+// }
+// (function() {
+//   const Super = function() {};
+//   Super.prototype = C.prototype;
+//   D.prototype = new Super();
+// })();
+
+// // async/await 实现
+// const run = (gen, ...args) => {
+//   const it = gen(args);
+//   return Promise.resolve().then(function handleNext(value) {
+//     return (function handleResult(next) {
+//       if (next.done) {
+//         return next.value;
+//       }
+//       return Promise.resolve(next.value).then(handleNext, function handleError(err) {
+//         return Promise.resolve(it.throw(err).then(handleResult));
+//       });
+//     })(it.next(value));
+//   });
+// };
+
+// // 原型链继承
+// function A(a) {
+//   this.a = a;
+// }
+//
+// function B(b) {
+//   this.b = b;
+// }
+//
+// B.prototype = new A([]);
+//
+// const b1 = new B('b1');
+// const b2 = new B('b2');
+//
+// // 多个实例对引用类型的操作会被篡改
+// b1.a.push('b1');
+//
+// console.log(b1, b2);
+
+// 构造函数继承
+function A(a) {
+  this.a = a;
 }
 
-class B extends A {
-  constructor(b) {
-    super('a');
-    this.b = b;
-  }
+A.join = function() {
+  console.log(this.a.join(','));
+};
+
+function B(b, a) {
+  this.b = b;
 }
 
-console.log(new B('b').c);
-console.log(Object.getPrototypeOf(new B('b')));
+const prototype = Object.create(A.prototype);
+prototype.constructor = B;
+B.prototype = prototype;
 
-function C() {}
+const b1 = new B('b1', ['b1']);
+const b2 = new B('b2', ['b2']);
 
-function D() {
-  C.call(this);
-}
-(function() {
-  const Super = function() {};
-  Super.prototype = C.prototype;
-  D.prototype = new Super();
-})();
+console.log(b1, b2);

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, withRouter } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { inject, observer } from 'mobx-react';
 import PropTypes from 'prop-types';
 import './index.less';
@@ -12,16 +12,13 @@ const LoadableMismatch = Loadable({
 });
 
 @inject(({ store: { globalStore } }) => ({ globalStore }))
-@withRouter
 @observer
 export default class App extends Component {
   static propTypes = {
     globalStore: PropTypes.object.isRequired,
   };
 
-  componentDidMount() {
-    this.props.globalStore.getMsg();
-  }
+  componentDidMount() {}
 
   renderRoute = ({ path, component }) => (
     <PrivateRoute key={path} path={path} component={component} exact />
@@ -29,8 +26,9 @@ export default class App extends Component {
 
   render() {
     const {
-      globalStore: { msg },
+      globalStore: { list },
     } = this.props;
+
     return (
       <div id="app">
         <Switch>

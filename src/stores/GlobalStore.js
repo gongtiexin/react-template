@@ -13,7 +13,7 @@ export default class GlobalStore {
    * */
 
   @observable
-  msg = '';
+  list = [];
 
   /**
    * ****************************** ajax ******************************
@@ -22,11 +22,11 @@ export default class GlobalStore {
   /**
    * 获取数据
    * */
-  getMsg = async () => {
+  getList = async params => {
     const { data } = await request({
-      config: { method: 'GET', url: '/api/example/list' },
+      config: { method: 'GET', url: '/api/list', params },
     });
-    this.setAjax(data);
+    this.setList(data);
     return data;
   };
 
@@ -35,8 +35,8 @@ export default class GlobalStore {
    * */
 
   @action
-  setMsg(data) {
-    this.msg = data;
+  setList(data = []) {
+    this.list = data;
   }
 
   /**

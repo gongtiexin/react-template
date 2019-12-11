@@ -33,7 +33,7 @@ module.exports = {
           {
             from: staticPath,
             to: distStaticPath,
-            ignore: ['html/loading/*.*', 'mdIconfont/*.*'],
+            ignore: ['assets/*/*.*'],
           },
         ],
       },

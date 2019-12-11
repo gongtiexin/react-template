@@ -5,12 +5,11 @@
  * */
 
 import React, { Component } from 'react';
-import { inject, observer } from 'mobx-react';
+import { observer } from 'mobx-react';
 import { Pagination as AntdPagination } from 'antd';
 import PropTypes from 'prop-types';
 import './index.less';
 
-@inject('store')
 @observer
 export default class Pagination extends Component {
   static propTypes = {
@@ -28,18 +27,18 @@ export default class Pagination extends Component {
 
   onShowSizeChange = (current, pageSize) => {
     const { handleChange } = this.props;
-    handleChange({ page: current, size: pageSize });
+    handleChange({ sliceParams: { currentPage: current, pageSize } });
   };
 
   onChange = (pageNumber, pageSize) => {
     const { handleChange } = this.props;
-    handleChange({ page: pageNumber, size: pageSize });
+    handleChange({ sliceParams: { currentPage: pageNumber, pageSize } });
   };
 
   showTotal = total => `共 ${total || 0} 条`;
 
   render() {
-    const { pageSize, currentPage, totalElements, showSizeChanger } = this.props;
+    const { currentPage, pageSize, totalElements, showSizeChanger } = this.props;
 
     return (
       <AntdPagination
