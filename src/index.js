@@ -19,8 +19,6 @@ import { isProduction } from './utils/constants';
 import './stores';
 import './global.less';
 import Loadable from './components/Loadable';
-import './practice';
-import './utils/exercise/quickSort';
 
 /**
  * 代码拆分和按需加载

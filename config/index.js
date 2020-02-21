@@ -33,7 +33,6 @@ module.exports = {
           {
             from: staticPath,
             to: distStaticPath,
-            ignore: ['assets/*/*.*'],
           },
         ],
       },

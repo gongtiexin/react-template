@@ -18,6 +18,8 @@ const { Item: FormItem, create } = Form;
 @create()
 @observer
 export default class Login extends Component {
+  particles = null;
+
   static propTypes = {
     form: PropTypes.object.isRequired,
   };
@@ -26,9 +28,13 @@ export default class Login extends Component {
     this.particlesInit();
   }
 
+  componentWillUnmount() {
+    this.particles?.destroy();
+  }
+
   particlesInit = () => {
     if (browserRedirect() === 'pc') {
-      Particles.init({
+      this.particles = Particles.init({
         selector: '.particles-background',
         connectParticles: true,
         color: '#999999',

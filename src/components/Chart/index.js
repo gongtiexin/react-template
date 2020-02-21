@@ -19,7 +19,7 @@ import { computedEchartsOption } from 'up-utils';
 import lodashIsEqual from 'lodash/isEqual';
 import * as PropTypes from 'prop-types';
 
-const Chart = props => {
+const EChart = props => {
   const { option, style } = props;
   const echartsRef = useRef(null);
   let echartsInstance;
@@ -61,13 +61,13 @@ const areEqual = (prevProps, nextProps) => {
   return lodashIsEqual(prevProps.option.data, nextProps.option.data);
 };
 
-Chart.propTypes = {
+EChart.propTypes = {
   option: PropTypes.object.isRequired,
   style: PropTypes.object,
 };
 
-Chart.defaultProps = {
+EChart.defaultProps = {
   style: { width: '100%', height: 400 },
 };
 
-export default React.memo(Chart, areEqual);
+export default React.memo(EChart, areEqual);

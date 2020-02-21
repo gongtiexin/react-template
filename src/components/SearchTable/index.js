@@ -13,14 +13,28 @@ import { Button, Col, Form, Input, Row, Table, Select, Cascader, DatePicker, Ico
 import Pagination from '../Pagination';
 import './index.less';
 
-const { Item: FormItem, create } = Form;
+const { Item: FormItem } = Form;
 const { Option: SelectOption } = Select;
 const { RangePicker } = DatePicker;
 
 const formItemLatest = 3;
 
-@withRouter
-@create()
+const RefAndWithRouterAndForm = Wrapped => {
+  const EnhancedForm = Form.create()(Wrapped);
+
+  const WithRouter = withRouter(({ forwardRef, ...otherProps }) => (
+    <EnhancedForm wrappedComponentRef={forwardRef} {...otherProps} />
+  ));
+
+  const WithRouterAndRef = React.forwardRef((props, ref) => (
+    <WithRouter {...props} forwardRef={ref} />
+  ));
+  const name = Wrapped.displayName || Wrapped.name;
+  WithRouterAndRef.displayName = `withRouterAndRef(${name})`;
+  return WithRouterAndRef;
+};
+
+@RefAndWithRouterAndForm
 @observer
 export default class SearchTable extends Component {
   static propTypes = {
