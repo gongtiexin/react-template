@@ -1,8 +1,6 @@
-import _qs from 'qs';
+import qs from 'qs';
 
-const parse = str => _qs.parse(str, { ignoreQueryPrefix: true });
-const stringify = str => _qs.stringify(str, { addQueryPrefix: true });
+const parse = (str, options) => qs.parse(str, { ignoreQueryPrefix: true, ...options });
+const stringify = (str, options) => qs.stringify(str, { addQueryPrefix: true, ...options });
 
-const qs = { parse, stringify };
-
-export default qs;
+export default { parse, stringify };
