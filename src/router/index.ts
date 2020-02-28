@@ -6,7 +6,7 @@
 
 import Loadable from '../components/Loadable';
 
-const routes = [
+const routes: any[] = [
   // {
   //   path: '/',
   //   component: Loadable({

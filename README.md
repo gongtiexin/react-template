@@ -1,47 +1,51 @@
-<h1 align="center">Welcome to react-template 👋</h1>
-<p>
-  <img alt="Version" src="https://img.shields.io/npm/v/react-template.svg">
-  <a href="https://github.com/gongtiexin/react-template#readme">
-    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" target="_blank" />
-  </a>
-  <a href="https://github.com/gongtiexin/react-template/graphs/commit-activity">
-    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" target="_blank" />
-  </a>
-  <a href="https://github.com/gongtiexin/react-template/blob/master/LICENSE">
-    <img alt="License: ISC" src="https://img.shields.io/badge/License-ISC-yellow.svg" target="_blank" />
-  </a>
-</p>
+## 前端项目模板 ![node](https://img.shields.io/badge/node-require-yellow.svg) ![yarn](https://img.shields.io/badge/yarn-require-yellow.svg)
 
-> A frontend project template for React.js
+## 运行
 
-### 🏠 [Homepage](https://github.com/gongtiexin/react-template#readme)
-
-## Install
-
-```sh
-yarn
+```
+npm run dev
+//DEV_PROXY=localhost yarn run dev_recommend-system
 ```
 
-## Author
+## 打包
 
-👤 **tiexin.gong <tiexin.gong@qq.com>**
+```
+npm run build
+```
 
-- Github: [@gongtiexin](https://github.com/gongtiexin)
+## nginx 配置(参考)
 
-## 🤝 Contributing
+```
+upstream develop.local {
+    server 127.0.0.1:00000;
+}
 
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/gongtiexin/react-template/issues).
+server {
+    listen       80;
+    server_name  develop.com www.develop.com;
 
-## Show your support
+    charset  utf-8;
+    gzip on;
+    gzip_types application/javascript text/html text/css;
+    client_max_body_size  250m;
+    #access_log  /var/log/nginx/log/host.access.log  main;
+    #add_header Cache-Control no-cache;
+    #add_header Pragma: no-cache;
+    #add_header Expires: -1;
 
-Give a ⭐️ if this project helped you!
+    root  /home/hldev/hldata/frontend/fe-template/dist;
+    location / {
+        try_files $uri /index.html =404;
+    }
 
-## 📝 License
+    location /api {
+        proxy_pass http://develop.local;
+    }
 
-Copyright © 2019 [tiexin.gong <tiexin.gong@qq.com>](https://github.com/gongtiexin).<br />
+    error_page  404  /static/html/404/404.html;
+}
+```
 
-<!-- This project is [ISC](https://github.com/gongtiexin/react-template/blob/master/LICENSE) licensed. -->
+## iconfont
 
----
-
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
+本模板中有 2 个字体包:ant-design,material-design,用法参考官网([antd](https://ant.design/components/icon-cn/),[md](https://material.io/icons/))

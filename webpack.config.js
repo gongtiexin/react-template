@@ -5,7 +5,6 @@
  * */
 
 const webpack = require('webpack');
-const HappyPack = require('happypack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const config = require('./config');
 
@@ -14,13 +13,14 @@ const proxy = process.env.DEV_PROXY || '192.168.32.101';
 module.exports = {
   mode: 'development',
   resolve: {
-    extensions: ['.js'],
+    alias: config.webpack.alias,
     modules: ['node_modules'],
+    extensions: ['.ts', '.tsx', '.js'],
   },
   entry: config.path.entry,
   devServer: {
     hot: true,
-    contentBase: config.root,
+    contentBase: config.path.root,
     port: config.webpack.dev.devServer.port,
     host: '0.0.0.0',
     publicPath: '/',
@@ -42,10 +42,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
-        use: 'happypack/loader?id=babel',
-        include: config.path.srcPath,
-        exclude: config.path.nodeModulesPath,
+        test: /\.tsx?$/,
+        loader: 'ts-loader',
       },
       {
         test: /\.less|css$/,
@@ -97,18 +95,9 @@ module.exports = {
     ],
   },
   plugins: [
-    // 多进程
-    new HappyPack({
-      id: 'babel',
-      loaders: ['babel-loader'],
-    }),
     // 热更新
     new webpack.HotModuleReplacementPlugin(),
     // html模板
-    new HtmlWebpackPlugin({
-      hash: false,
-      template: config.path.indexHtml,
-      title: 'react-template',
-    }),
+    new HtmlWebpackPlugin({ hash: false, template: config.path.indexHtml }),
   ],
 };

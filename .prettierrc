@@ -11,9 +11,9 @@
       }
     },
     {
-      "files": ".eslintrc",
+      "files": "document.ejs",
       "options": {
-        "parser": "json"
+        "parser": "html"
       }
     }
   ]

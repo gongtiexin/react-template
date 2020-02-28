@@ -1,15 +1,21 @@
 # Created by .ignore support plugin (hsz.mobi)
 
+**/*.svg
+#package.json
+.umi
+.umi-production
 /dist
 /static
-/src/assets
-/scripts
-/.idea
-
+.dockerignore
+.DS_Store
 .eslintignore
+*.png
+*.toml
+docker
+.editorconfig
+Dockerfile*
 .gitignore
 .prettierignore
-.DS_Store
-
+LICENSE
+.idea
 yarn.lock
-deploy.sh

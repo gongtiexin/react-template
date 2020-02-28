@@ -3,7 +3,7 @@
  *----------------------------------------------
  * 18-3-22           gongtiexin       常量
  * */
-const browserRedirect = () => {
+const browserRedirect = (): string => {
   const sUserAgent = navigator.userAgent.toLowerCase();
   const bIsIpad = sUserAgent.includes('ipad');
   const bIsIphoneOs = sUserAgent.includes('iphone os');

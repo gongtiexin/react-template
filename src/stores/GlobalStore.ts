@@ -22,7 +22,7 @@ export default class GlobalStore {
   /**
    * 获取数据
    * */
-  getList = async params => {
+  getList = async (params: any) => {
     const { data } = await request({
       config: { method: 'GET', url: '/api/list', params },
     });

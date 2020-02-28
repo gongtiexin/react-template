@@ -46,6 +46,7 @@ module.exports = {
     },
     publicPath: '/',
     alias: {
+      '@': srcPath,
       '@components': componentsPath,
       '@utils': utilsPath,
     },

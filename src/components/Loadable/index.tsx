@@ -5,11 +5,10 @@
  * */
 
 import React from 'react';
-import ReactLoadable from 'react-loadable';
-import PropTypes from 'prop-types';
+import ReactLoadable, { LoadingComponentProps } from 'react-loadable';
 import './index.less';
 
-const Loading = ({ error, timedOut, pastDelay }) => {
+const Loading = ({ error, timedOut, pastDelay }: LoadingComponentProps) => {
   if (error) {
     return (
       <div className="loadable-box">
@@ -34,19 +33,7 @@ const Loading = ({ error, timedOut, pastDelay }) => {
   return null;
 };
 
-Loading.propTypes = {
-  error: PropTypes.bool,
-  timedOut: PropTypes.bool,
-  pastDelay: PropTypes.bool,
-};
-
-Loading.defaultProps = {
-  error: false,
-  timedOut: false,
-  pastDelay: false,
-};
-
-const Loadable = opts =>
+const Loadable = (opts: { loader: () => Promise<any> | any }) =>
   ReactLoadable({
     loading: Loading,
     delay: 300,

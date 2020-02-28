@@ -3,8 +3,6 @@
  *----------------------------------------------
  * 18-3-22           gongtiexin       单页应用的入口文件
  * */
-import 'core-js/stable';
-import 'regenerator-runtime/runtime';
 
 import React from 'react';
 import { render } from 'react-dom';
@@ -15,7 +13,7 @@ import moment from 'moment';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 import 'normalize.css';
-import { isProduction } from './utils/constants';
+import { isProduction } from '@utils/constants';
 import './stores';
 import './global.less';
 import Loadable from './components/Loadable';
@@ -27,9 +25,9 @@ const LoadableApp = Loadable({
   loader: () => import(/* webpackChunkName: "route-root" */ './pages/App'),
 });
 
-const LoadableLogin = Loadable({
-  loader: () => import(/* webpackChunkName: "route-login" */ './components/Login'),
-});
+// const LoadableLogin = Loadable({
+//   loader: () => import(/* webpackChunkName: "route-login" */ './components/Login'),
+// });
 
 /**
  * moment时区设置为中国
@@ -44,7 +42,7 @@ const renderApp = () => {
       <ConfigProvider locale={zhCN}>
         <Router>
           <Switch>
-            <Route path="/login" component={LoadableLogin} exact />
+            {/*<Route path="/login" component={LoadableLogin} exact />*/}
             <Route path="/" component={LoadableApp} />
           </Switch>
         </Router>

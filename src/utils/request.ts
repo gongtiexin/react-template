@@ -4,12 +4,19 @@
  * 18-3-22           gongtiexin       axios的封装和拦截器
  * */
 
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import { notification } from 'antd';
 import HttpStatus from 'http-status-codes';
+import { ArgsProps } from 'antd/lib/notification';
 
-axios.defaults.retry = 0;
-axios.defaults.retryDelay = 1000;
+interface RetryAxiosRequestConfig extends AxiosRequestConfig {
+  retry: number;
+  retryDelay: number;
+  retryCount: number;
+}
+
+(axios.defaults as RetryAxiosRequestConfig).retry = 0;
+(axios.defaults as RetryAxiosRequestConfig).retryDelay = 1000;
 
 /**
  * axios拦截器
@@ -97,6 +104,12 @@ axios.interceptors.response.use(
 //   });
 // };
 
+interface RequestConfig {
+  config: AxiosRequestConfig;
+  success?: ArgsProps;
+  error?: ArgsProps;
+}
+
 /**
  * ajax请求同意封装
  *
@@ -106,7 +119,7 @@ axios.interceptors.response.use(
  * @date     18-3-22
  * @author   gongtiexin
  */
-const request = ({ config, success, error }) =>
+const request = ({ config, success, error }: RequestConfig) =>
   axios(config).then(
     response => {
       if (success) {

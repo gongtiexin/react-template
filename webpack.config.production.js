@@ -5,7 +5,7 @@
  * */
 
 const webpack = require('webpack');
-const HappyPack = require('happypack');
+const tsImportPluginFactory = require('ts-import-plugin');
 const postcssPresetEnv = require('postcss-preset-env');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin');
@@ -13,7 +13,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-// const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 
 const config = require('./config');
@@ -21,8 +21,9 @@ const config = require('./config');
 module.exports = {
   mode: 'production',
   resolve: {
-    extensions: ['.js'],
+    alias: config.webpack.alias,
     modules: ['node_modules'],
+    extensions: ['.ts', '.tsx', '.js'],
   },
   entry: {
     app: config.path.entry,
@@ -36,10 +37,24 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
-        use: 'happypack/loader?id=babel',
-        include: config.path.srcPath,
-        exclude: config.path.nodeModulesPath,
+        test: /\.(jsx|tsx|js|ts)$/,
+        loader: 'ts-loader',
+        options: {
+          transpileOnly: true,
+          getCustomTransformers: () => ({
+            before: [
+              tsImportPluginFactory({
+                libraryName: 'antd',
+                libraryDirectory: 'lib',
+                style: true,
+              }),
+            ],
+          }),
+          compilerOptions: {
+            module: 'es2015',
+          },
+        },
+        exclude: /node_modules/,
       },
       {
         test: /\.less|css$/,
@@ -118,17 +133,7 @@ module.exports = {
       }),
       // 用于优化css文件
       new OptimizeCSSAssetsPlugin({
-        assetNameRegExp: /\.css$/g,
-        cssProcessorOptions: {
-          // safe: true,
-          autoprefixer: { disable: true },
-          mergeLonghand: false,
-          discardComments: {
-            // 移除注释
-            removeAll: true,
-          },
-        },
-        canPrint: true,
+        assetNameRegExp: /\.css\.*(?!.*map)/g,
       }),
     ],
     runtimeChunk: 'single',
@@ -174,16 +179,11 @@ module.exports = {
     },
   },
   plugins: [
-    // 多进程
-    new HappyPack({
-      id: 'babel',
-      loaders: ['babel-loader'],
-    }),
     // 分析打包的结构
     // new BundleAnalyzerPlugin(),
     new MiniCssExtractPlugin({
-      filename: 'stylesheets/[name].[contenthash].css',
-      chunkFilename: 'stylesheets/[id].[contenthash].css',
+      filename: 'stylesheets/[name].css',
+      chunkFilename: 'stylesheets/[id].css',
     }),
     // 使得哈希基于模块的相对路径, 生成一个四个字符的字符串作为模块ID
     new webpack.HashedModuleIdsPlugin(),
@@ -191,7 +191,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: config.path.indexHtml,
-      title: 'react-template',
     }),
     new InlineManifestWebpackPlugin('runtime'),
     // 拷贝静态资源

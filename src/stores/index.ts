@@ -5,7 +5,7 @@
  * */
 import { store, hotRehydrate, rehydrate } from 'rfx-core';
 import GlobalStore from './GlobalStore';
-import { isProduction } from '../utils/constants';
+import { isProduction } from '@utils/constants';
 
 store.setup({
   globalStore: GlobalStore,
