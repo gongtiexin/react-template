@@ -19,6 +19,9 @@ import { isProduction } from './utils/constants';
 import './stores';
 import './global.less';
 import Loadable from './components/Loadable';
+import qs from './utils/qs';
+
+window.qs = qs;
 
 /**
  * 代码拆分和按需加载

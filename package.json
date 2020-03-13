@@ -76,6 +76,7 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.18.3",
     "file-loader": "^5.1.0",
+    "friendly-errors-webpack-plugin": "^1.7.0",
     "happypack": "^5.0.0",
     "html-webpack-plugin": "^3.2.0",
     "husky": "^4.2.3",
@@ -93,11 +94,13 @@
     "uglifyjs-webpack-plugin": "^2.1.3",
     "url-loader": "^3.0.0",
     "webpack": "^4.41.6",
+    "webpack-api-mocker": "^1.7.6",
     "webpack-bundle-analyzer": "^3.6.0",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
+    "mockjs": "^1.1.0",
     "antd": "^3.26.11",
     "axios": "^0.19.2",
     "core-js": "3.6.4",

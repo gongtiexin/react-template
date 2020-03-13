@@ -3,13 +3,12 @@
  *----------------------------------------------
  * 18-3-22           gongtiexin       webpack开发环境配置
  * */
-
 const webpack = require('webpack');
 const HappyPack = require('happypack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const apiMocker = require('webpack-api-mocker');
 const config = require('./config');
-
-const proxy = process.env.DEV_PROXY || '192.168.32.101';
 
 module.exports = {
   mode: 'development',
@@ -17,15 +16,21 @@ module.exports = {
     extensions: ['.js'],
     modules: ['node_modules'],
   },
-  entry: config.path.entry,
+  entry: config.path.entryPath,
   devServer: {
     hot: true,
-    contentBase: config.root,
+    contentBase: config.path.rootPath,
     port: config.webpack.dev.devServer.port,
     host: '0.0.0.0',
     publicPath: '/',
     historyApiFallback: true,
     disableHostCheck: true,
+    quiet: true,
+    before(app) {
+      apiMocker(app, config.path.mockPath, {
+        changeHost: true,
+      });
+    },
     proxy: {
       '/api': {
         target: `https://unidemo.dcloud.net.cn`,
@@ -35,7 +40,7 @@ module.exports = {
   },
   output: {
     path: config.path.distPath,
-    publicPath: config.webpack.publicPath,
+    publicPath: config.webpack.common.publicPath,
     filename: 'app.[hash].js',
   },
   devtool: 'cheap-module-eval-source-map',
@@ -44,7 +49,6 @@ module.exports = {
       {
         test: /\.js$/,
         use: 'happypack/loader?id=babel',
-        include: config.path.srcPath,
         exclude: config.path.nodeModulesPath,
       },
       {
@@ -62,7 +66,7 @@ module.exports = {
               // less@3
               javascriptEnabled: true,
               // 覆盖antd样式的全局变量
-              modifyVars: config.webpack.modifyVars,
+              modifyVars: config.webpack.common.modifyVars,
             },
           },
         ],
@@ -97,6 +101,8 @@ module.exports = {
     ],
   },
   plugins: [
+    // 清理webpack编译时输出的无用信息
+    new FriendlyErrorsWebpackPlugin(),
     // 多进程
     new HappyPack({
       id: 'babel',
@@ -105,10 +111,6 @@ module.exports = {
     // 热更新
     new webpack.HotModuleReplacementPlugin(),
     // html模板
-    new HtmlWebpackPlugin({
-      hash: false,
-      template: config.path.indexHtml,
-      title: 'react-template',
-    }),
+    new HtmlWebpackPlugin(config.webpack.common.plugins.HtmlWebpackPlugin),
   ],
 };

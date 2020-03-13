@@ -25,11 +25,11 @@ module.exports = {
     modules: ['node_modules'],
   },
   entry: {
-    app: config.path.entry,
+    app: config.path.entryPath,
   },
   output: {
     path: config.path.distPath,
-    publicPath: config.webpack.publicPath,
+    publicPath: config.webpack.common.publicPath,
     filename: 'assets/[name].[chunkhash].js',
     chunkFilename: 'assets/[name].[chunkhash].chunk.js',
   },
@@ -38,8 +38,7 @@ module.exports = {
       {
         test: /\.js$/,
         use: 'happypack/loader?id=babel',
-        include: config.path.srcPath,
-        exclude: config.path.nodeModulesPath,
+        include: config.webpack.common.esModulesPaths.concat(config.path.srcPath),
       },
       {
         test: /\.less|css$/,
@@ -59,7 +58,7 @@ module.exports = {
               // less@3
               javascriptEnabled: true,
               // 覆盖antd样式的全局变量
-              modifyVars: config.webpack.modifyVars,
+              modifyVars: config.webpack.common.modifyVars,
             },
           },
         ],
@@ -188,11 +187,7 @@ module.exports = {
     // 使得哈希基于模块的相对路径, 生成一个四个字符的字符串作为模块ID
     new webpack.HashedModuleIdsPlugin(),
     // html模板
-    new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: config.path.indexHtml,
-      title: 'react-template',
-    }),
+    new HtmlWebpackPlugin(config.webpack.common.plugins.HtmlWebpackPlugin),
     new InlineManifestWebpackPlugin('runtime'),
     // 拷贝静态资源
     new CopyWebpackPlugin(config.webpack.build.plugins.CopyWebpackPlugin),
