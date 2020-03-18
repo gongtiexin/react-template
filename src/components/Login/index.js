@@ -10,8 +10,8 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import Particles from 'particlesjs';
+import { browserRedirect } from '@utils/constants';
 import './index.less';
-import { browserRedirect } from '../../utils/constants';
 
 const { Item: FormItem, create } = Form;
 

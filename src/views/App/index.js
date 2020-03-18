@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { inject, observer } from 'mobx-react';
 import PropTypes from 'prop-types';
+import { routes } from '@routes';
+import { PrivateRoute } from '@routes/feature';
+import Loadable from '@components/Loadable';
 import './index.less';
-import { routes } from '../../router';
-import { PrivateRoute } from '../../router/feature';
-import Loadable from '../../components/Loadable';
 
 const LoadableMismatch = Loadable({
   loader: () => import(/* webpackChunkName: "route-mismatch" */ '../../components/Mismatch'),

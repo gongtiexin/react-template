@@ -1,4 +1,5 @@
 const Mock = require('mockjs');
+const config = require('../config');
 
 const delay = function(proxy, timer = 0) {
   const mockApi = {};
@@ -29,7 +30,6 @@ const delay = function(proxy, timer = 0) {
   return mockApi;
 };
 const API_BASE_URL = '/hs-api';
-const ENABLE_MOCK = false;
 
 const proxy = {
   [`GET ${API_BASE_URL}/redpeak/visual/project/page`]: (req, res) => {
@@ -51,4 +51,4 @@ const proxy = {
     );
   },
 };
-module.exports = ENABLE_MOCK ? delay(proxy, 1000) : {};
+module.exports = config.mock ? delay(proxy, 1000) : {};

@@ -4,7 +4,6 @@
  * 18-3-22           gongtiexin       webpack开发环境配置
  * */
 const webpack = require('webpack');
-const HappyPack = require('happypack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const apiMocker = require('webpack-api-mocker');
@@ -12,10 +11,7 @@ const config = require('./config');
 
 module.exports = {
   mode: 'development',
-  resolve: {
-    extensions: ['.js'],
-    modules: ['node_modules'],
-  },
+  resolve: config.webpack.common.resolve,
   entry: config.path.entryPath,
   devServer: {
     hot: true,
@@ -48,8 +44,8 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        use: 'happypack/loader?id=babel',
-        exclude: config.path.nodeModulesPath,
+        use: ['thread-loader', 'babel-loader'],
+        include: config.path.srcPath,
       },
       {
         test: /\.less|css$/,
@@ -103,11 +99,6 @@ module.exports = {
   plugins: [
     // 清理webpack编译时输出的无用信息
     new FriendlyErrorsWebpackPlugin(),
-    // 多进程
-    new HappyPack({
-      id: 'babel',
-      loaders: ['babel-loader'],
-    }),
     // 热更新
     new webpack.HotModuleReplacementPlugin(),
     // html模板

@@ -5,7 +5,6 @@
  * */
 
 const webpack = require('webpack');
-const HappyPack = require('happypack');
 const postcssPresetEnv = require('postcss-preset-env');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin');
@@ -20,10 +19,7 @@ const config = require('./config');
 
 module.exports = {
   mode: 'production',
-  resolve: {
-    extensions: ['.js'],
-    modules: ['node_modules'],
-  },
+  resolve: config.webpack.common.resolve,
   entry: {
     app: config.path.entryPath,
   },
@@ -37,7 +33,7 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        use: 'happypack/loader?id=babel',
+        use: ['thread-loader', 'babel-loader'],
         include: config.webpack.common.esModulesPaths.concat(config.path.srcPath),
       },
       {
@@ -173,11 +169,6 @@ module.exports = {
     },
   },
   plugins: [
-    // 多进程
-    new HappyPack({
-      id: 'babel',
-      loaders: ['babel-loader'],
-    }),
     // 分析打包的结构
     // new BundleAnalyzerPlugin(),
     new MiniCssExtractPlugin({

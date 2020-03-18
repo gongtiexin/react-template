@@ -18,18 +18,26 @@ const nodeModulesPath = path.resolve(__dirname, '../node_modules');
 
 // alias
 const componentsPath = path.resolve(__dirname, '../src/components');
+const viewsPath = path.resolve(__dirname, '../src/views');
 const utilsPath = path.resolve(__dirname, '../src/utils');
+const assetsPath = path.resolve(__dirname, '../src/assets');
+const storesPath = path.resolve(__dirname, '../src/stores');
+const routesPath = path.resolve(__dirname, '../src/routes');
 
 module.exports = {
   webpack: {
     common: {
       publicPath: '/',
       resolve: {
-        extensions: ['.js', '.vue'],
+        extensions: ['.js'],
         modules: ['node_modules'],
         alias: {
           '@components': componentsPath,
+          '@views': viewsPath,
           '@utils': utilsPath,
+          '@assets': assetsPath,
+          '@stores': storesPath,
+          '@routes': routesPath,
         },
       },
       modifyVars: {
@@ -79,4 +87,5 @@ module.exports = {
     distStaticPath,
     nodeModulesPath,
   },
+  mock: true,
 };

@@ -10,6 +10,20 @@
       "legacyDecorators": true
     }
   },
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [
+          ["@components", "./src/components"],
+          ["@views", "./src/views"],
+          ["@utils", "./src/utils"],
+          ["@assets", "./src/assets"],
+          ["@stores", "./src/stores"],
+          ["@routes", "./src/routes"]
+        ]
+      }
+    }
+  },
   "rules": {
     "prettier/prettier": [
       "error",

@@ -15,19 +15,16 @@ import moment from 'moment';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 import 'normalize.css';
-import { isProduction } from './utils/constants';
+import { isProduction } from '@utils/constants';
 import './stores';
 import './global.less';
-import Loadable from './components/Loadable';
-import qs from './utils/qs';
-
-window.qs = qs;
+import Loadable from '@components/Loadable';
 
 /**
  * 代码拆分和按需加载
  */
 const LoadableApp = Loadable({
-  loader: () => import(/* webpackChunkName: "route-root" */ './pages/App'),
+  loader: () => import(/* webpackChunkName: "route-root" */ './views/App'),
 });
 
 const LoadableLogin = Loadable({
