@@ -12,12 +12,15 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-// const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
-const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
-
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+// const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
 const config = require('./config');
 
-module.exports = {
+// 测量各个插件和loader所花费的时间
+// const smp = new SpeedMeasurePlugin();
+
+const webpackConfig = {
   mode: 'production',
   resolve: config.webpack.common.resolve,
   entry: {
@@ -128,42 +131,23 @@ module.exports = {
     ],
     runtimeChunk: 'single',
     splitChunks: {
-      chunks: 'all',
-      automaticNameDelimiter: '.',
-      name: undefined,
       cacheGroups: {
-        default: false,
-        vendors: false,
-        common: {
-          test(module, chunks) {
-            // 这里通过配置规则只将多个页面引用的打包进 common 中
-            if (
-              // /src\/common\//.test(module.context) ||
-              // /src\/lib/.test(module.context) ||
-              /antd/.test(module.context)
-            ) {
-              return true;
-            }
-          },
-          chunks: 'all',
-          name: 'common',
-          // 这里的minchunks 非常重要，控antd使用的组件被超过几个chunk引用之后才打包进入该common中否则不打包进该js中
-          minChunks: 2,
-          priority: 20,
-        },
         vendor: {
-          chunks: 'all',
-          test: (module, chunks) => {
-            // 将node_modules 目录下的依赖统一打包进入vendor中
-            if (/node_modules/.test(module.context)) {
-              return true;
-            }
-          },
+          // 第三方依赖
+          priority: 1, // 设置优先级，首先抽离第三方模块
           name: 'vendor',
-          minChunks: 2,
-          // 配置chunk的打包优先级，这里的数值决定了node_modules下的 antd 不会打包进入 vendor 中
-          priority: 10,
-          enforce: true,
+          test: /node_modules/,
+          chunks: 'initial',
+          minSize: 0,
+          minChunks: 1, // 最少引入了1次
+        },
+        // 缓存组
+        common: {
+          // 公共模块
+          chunks: 'initial',
+          name: 'common',
+          minSize: 100, // 大小超过100个字节
+          minChunks: 3, // 最少引入了3次
         },
       },
     },
@@ -182,9 +166,11 @@ module.exports = {
     new InlineManifestWebpackPlugin('runtime'),
     // 拷贝静态资源
     new CopyWebpackPlugin(config.webpack.build.plugins.CopyWebpackPlugin),
-    // 去除moment中除“zh-cn”之外的所有语言环境, “en”内置于Moment中，不能删除
-    new MomentLocalesPlugin({
-      localesToKeep: ['zh-cn'],
-    }),
+    new CleanWebpackPlugin(),
+    // 忽略 moment 下的 ./locale 目录
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   ],
 };
+
+// module.exports = smp.wrap(webpackConfig);
+module.exports = webpackConfig;

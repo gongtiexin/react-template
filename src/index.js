@@ -11,14 +11,15 @@ import { render } from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'mobx-react';
 import { hotRehydrate, rehydrate } from 'rfx-core';
-import moment from 'moment';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
-import 'normalize.css';
+import moment from 'moment';
+import 'moment/locale/zh-cn';
 import { isProduction } from '@utils/constants';
-import './stores';
-import './global.less';
 import Loadable from '@components/Loadable';
+import '@stores';
+import 'normalize.css';
+import './global.less';
 
 /**
  * 代码拆分和按需加载
