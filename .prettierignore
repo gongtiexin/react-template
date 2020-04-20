@@ -12,4 +12,4 @@
 .DS_Store
 
 yarn.lock
-deploy.sh
+shell/deploy.sh

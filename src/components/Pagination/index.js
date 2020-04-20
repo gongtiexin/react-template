@@ -4,11 +4,11 @@
  * 18-3-22           gongtiexin       分页组件
  * */
 
-import React, { Component } from 'react';
-import { observer } from 'mobx-react';
-import { Pagination as AntdPagination } from 'antd';
-import PropTypes from 'prop-types';
-import './index.less';
+import React, { Component } from "react";
+import { observer } from "mobx-react";
+import { Pagination as AntdPagination } from "antd";
+import PropTypes from "prop-types";
+import "./index.less";
 
 @observer
 export default class Pagination extends Component {
@@ -17,12 +17,12 @@ export default class Pagination extends Component {
     totalElements: PropTypes.number.isRequired,
     handleChange: PropTypes.func.isRequired,
     pageSize: PropTypes.number,
-    showSizeChanger: PropTypes.bool,
+    showSizeChanger: PropTypes.bool
   };
 
   static defaultProps = {
     pageSize: 10,
-    showSizeChanger: false,
+    showSizeChanger: false
   };
 
   onShowSizeChange = (current, pageSize) => {
@@ -38,7 +38,12 @@ export default class Pagination extends Component {
   showTotal = total => `共 ${total || 0} 条`;
 
   render() {
-    const { currentPage, pageSize, totalElements, showSizeChanger } = this.props;
+    const {
+      currentPage,
+      pageSize,
+      totalElements,
+      showSizeChanger
+    } = this.props;
 
     return (
       <AntdPagination

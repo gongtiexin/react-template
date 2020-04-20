@@ -4,7 +4,7 @@
  * 18-3-22           gongtiexin       配置路由
  * */
 
-import Loadable from '../components/Loadable';
+import Loadable from "../components/Loadable";
 
 const routes = [
   // {
@@ -16,7 +16,7 @@ const routes = [
 ];
 
 const breadcrumbNameMap = {
-  '/route': 'label',
+  "/route": "label"
 };
 
 export { routes, breadcrumbNameMap };

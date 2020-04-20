@@ -4,9 +4,9 @@
  * 18-3-22           gongtiexin       axios的封装和拦截器
  * */
 
-import axios from 'axios';
-import { notification } from 'antd';
-import HttpStatus from 'http-status-codes';
+import axios from "axios";
+import { notification } from "antd";
+import HttpStatus from "http-status-codes";
 
 axios.defaults.retry = 0;
 axios.defaults.retryDelay = 1000;
@@ -17,7 +17,7 @@ axios.defaults.retryDelay = 1000;
 axios.interceptors.response.use(
   response => {
     const {
-      data: { errCode },
+      data: { errCode }
     } = response;
     if (errCode && errCode !== HttpStatus.OK) {
       const error = { response };
@@ -61,7 +61,7 @@ axios.interceptors.response.use(
 
     // Return the promise in which recalls axios to retry the request
     return backOff.then(() => axios(config));
-  },
+  }
 );
 
 // const codeMessage = {
@@ -119,7 +119,7 @@ const request = ({ config, success, error }) =>
         notification.error(error);
       }
       return Promise.reject(response);
-    },
+    }
   );
 
 export default request;

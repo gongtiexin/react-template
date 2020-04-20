@@ -1,6 +1,6 @@
-import React from 'react';
-import { Redirect, Route } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import React from "react";
+import { Redirect, Route } from "react-router-dom";
+import PropTypes from "prop-types";
 
 // class RecordRoute extends PureComponent {
 //   // static propTypes = {};
@@ -50,9 +50,9 @@ const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => {
         ) : (
           <Redirect
             to={{
-              pathname: '/login',
+              pathname: "/login",
               // eslint-disable-next-line react/prop-types
-              state: { from: props.location },
+              state: { from: props.location }
             }}
           />
         )
@@ -63,11 +63,11 @@ const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => {
 
 PrivateRoute.propTypes = {
   component: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool,
+  isAuthenticated: PropTypes.bool
 };
 
 PrivateRoute.defaultProps = {
-  isAuthenticated: true,
+  isAuthenticated: true
 };
 
 export { PrivateRoute };

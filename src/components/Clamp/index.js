@@ -1,19 +1,19 @@
-import React, { useEffect, useState, useRef } from 'react';
-import * as PropTypes from 'prop-types';
-import './index.less';
+import React, { useEffect, useState, useRef } from "react";
+import * as PropTypes from "prop-types";
+import "./index.less";
 
-const DEFAULT_ELLIPSIS = '...';
-const TOGGLE_ON_TEXT = '展开';
-const TOGGLE_OFF_TEXT = '收起';
+const DEFAULT_ELLIPSIS = "...";
+const TOGGLE_ON_TEXT = "展开";
+const TOGGLE_OFF_TEXT = "收起";
 
 const TOGGLE_STATUS = {
   OFF: 0,
-  ON: 1,
+  ON: 1
 };
 
 const TOGGLE_VISIBILITY = {
   HIDDEN: 0,
-  SHOW: 1,
+  SHOW: 1
 };
 
 const Clamp = props => {
@@ -22,7 +22,9 @@ const Clamp = props => {
   const contentRef = useRef(null);
   const textRef = useRef(null);
   const [toggleStatus, setToggleStatus] = useState(TOGGLE_STATUS.OFF);
-  const [toggleVisibility, setToggleVisibility] = useState(TOGGLE_VISIBILITY.SHOW);
+  const [toggleVisibility, setToggleVisibility] = useState(
+    TOGGLE_VISIBILITY.SHOW
+  );
   const [localMaxLines, setLocalMaxLines] = useState(maxLines);
   let offset = null;
 
@@ -128,9 +130,13 @@ const Clamp = props => {
         {toggle && toggleVisibility === TOGGLE_VISIBILITY.SHOW && (
           <button
             onClick={() => {
-              setLocalMaxLines(toggleStatus === TOGGLE_STATUS.OFF ? Infinity : maxLines);
+              setLocalMaxLines(
+                toggleStatus === TOGGLE_STATUS.OFF ? Infinity : maxLines
+              );
               setToggleStatus(
-                toggleStatus === TOGGLE_STATUS.ON ? TOGGLE_STATUS.OFF : TOGGLE_STATUS.ON,
+                toggleStatus === TOGGLE_STATUS.ON
+                  ? TOGGLE_STATUS.OFF
+                  : TOGGLE_STATUS.ON
               );
             }}
             type="button"
@@ -151,17 +157,17 @@ Clamp.propTypes = {
   toggle: PropTypes.bool,
   ellipsis: PropTypes.string,
   onText: PropTypes.string,
-  offText: PropTypes.string,
+  offText: PropTypes.string
 };
 
 Clamp.defaultProps = {
   style: {
-    width: '100%',
+    width: "100%"
   },
   toggle: true,
   ellipsis: DEFAULT_ELLIPSIS,
   onText: TOGGLE_ON_TEXT,
-  offText: TOGGLE_OFF_TEXT,
+  offText: TOGGLE_OFF_TEXT
 };
 
 export default Clamp;

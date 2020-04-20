@@ -4,8 +4,8 @@
  * 18-3-22           gongtiexin       global
  * */
 
-import { action, observable } from 'mobx';
-import request from '../utils/request';
+import { action, observable } from "mobx";
+import request from "../utils/request";
 
 export default class GlobalStore {
   /**
@@ -24,7 +24,7 @@ export default class GlobalStore {
    * */
   getList = async params => {
     const { data } = await request({
-      config: { method: 'GET', url: '/api/list', params },
+      config: { method: "GET", url: "/api/list", params }
     });
     this.setList(data);
     return data;
