@@ -15,14 +15,14 @@ import { breadcrumbNameMap, routes } from "@routes";
 @observer
 export default class Breadcrumb extends Component {
   static propTypes = {
-    location: PropTypes.object.isRequired
+    location: PropTypes.object.isRequired,
   };
 
   render() {
     const {
-      location: { pathname }
+      location: { pathname },
     } = this.props;
-    const pathSnippets = pathname.split("/").filter(i => i);
+    const pathSnippets = pathname.split("/").filter((i) => i);
     const extraBreadcrumbItems = pathSnippets.map((_, index) => {
       const url = `/${pathSnippets.slice(0, index + 1).join("/")}`;
 
@@ -43,7 +43,7 @@ export default class Breadcrumb extends Component {
     const breadcrumbItems = [
       <AntdBreadcrumb.Item key="app">
         <Link to="/">首页</Link>
-      </AntdBreadcrumb.Item>
+      </AntdBreadcrumb.Item>,
     ].concat(extraBreadcrumbItems);
 
     return (

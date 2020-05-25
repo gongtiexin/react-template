@@ -15,9 +15,9 @@ axios.defaults.retryDelay = 1000;
  * axios拦截器
  */
 axios.interceptors.response.use(
-  response => {
+  (response) => {
     const {
-      data: { errCode }
+      data: { errCode },
     } = response;
     if (errCode && errCode !== HttpStatus.OK) {
       const error = { response };
@@ -25,7 +25,7 @@ axios.interceptors.response.use(
     }
     return Promise.resolve(response);
   },
-  error => {
+  (error) => {
     const { config } = error;
     // If config does not exist or the retry option is not set, reject
     if (!config || !config.retry) return Promise.reject(error);
@@ -53,7 +53,7 @@ axios.interceptors.response.use(
     config.retryCount += 1;
 
     // Create new promise to handle exponential backOff
-    const backOff = new Promise(resolve => {
+    const backOff = new Promise((resolve) => {
       setTimeout(() => {
         resolve();
       }, config.retryDelay || 1);
@@ -108,7 +108,7 @@ axios.interceptors.response.use(
  */
 const request = ({ config, success, error }) =>
   axios(config).then(
-    response => {
+    (response) => {
       if (success) {
         notification.success(success);
       }

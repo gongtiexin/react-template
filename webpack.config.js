@@ -13,6 +13,7 @@ const config = require("./config");
 
 module.exports = {
   mode: "development",
+  devtool: "eval-source-map",
   resolve: config.webpack.common.resolve,
   entry: config.path.entryPath,
   devServer: {
@@ -26,48 +27,48 @@ module.exports = {
     quiet: true,
     before(app) {
       apiMocker(app, config.path.mockPath, {
-        changeHost: true
+        changeHost: true,
       });
     },
     proxy: {
       "/api": {
         target: `https://unidemo.dcloud.net.cn`,
-        changeOrigin: true
-      }
-    }
+        changeOrigin: true,
+      },
+    },
   },
   output: {
     path: config.path.distPath,
     publicPath: config.webpack.common.publicPath,
-    filename: "app.[hash].js"
+    filename: "app.[hash].js",
   },
-  devtool: "cheap-module-eval-source-map",
   module: {
     rules: [
       {
         test: /\.js$/,
         use: ["thread-loader", "babel-loader"],
-        include: config.path.srcPath
+        include: config.path.srcPath,
       },
       {
         test: /\.less|css$/,
         use: [
           {
-            loader: "style-loader"
+            loader: "style-loader",
           },
           {
-            loader: "css-loader"
+            loader: "css-loader",
           },
           {
             loader: "less-loader",
             options: {
-              // less@3
-              javascriptEnabled: true,
-              // 覆盖antd样式的全局变量
-              modifyVars: config.webpack.common.modifyVars
-            }
-          }
-        ]
+              lessOptions: {
+                // 覆盖less中的全局变量
+                modifyVars: config.webpack.common.modifyVars,
+                javascriptEnabled: true,
+              },
+            },
+          },
+        ],
       },
       // 处理图片(file-loader来处理也可以，url-loader更适合图片)
       {
@@ -75,8 +76,8 @@ module.exports = {
         loader: "url-loader",
         options: {
           limit: 10000,
-          name: "static/assets/images/[name].[hash:7].[ext]"
-        }
+          name: "static/assets/images/[name].[hash:7].[ext]",
+        },
       },
       // 处理多媒体文件
       {
@@ -84,8 +85,8 @@ module.exports = {
         loader: "url-loader",
         options: {
           limit: 10000,
-          name: "static/assets/media/[name].[hash:7].[ext]"
-        }
+          name: "static/assets/media/[name].[hash:7].[ext]",
+        },
       },
       // 处理字体文件
       {
@@ -93,10 +94,10 @@ module.exports = {
         loader: "url-loader",
         options: {
           limit: 10000,
-          name: "static/assets/fonts/[name].[hash:7].[ext]"
-        }
-      }
-    ]
+          name: "static/assets/fonts/[name].[hash:7].[ext]",
+        },
+      },
+    ],
   },
   plugins: [
     // 清理webpack编译时输出的无用信息
@@ -105,6 +106,6 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     // html模板
     new HtmlWebpackPlugin(config.webpack.common.plugins.HtmlWebpackPlugin),
-    new AntdDayjsWebpackPlugin()
-  ]
+    new AntdDayjsWebpackPlugin(),
+  ],
 };

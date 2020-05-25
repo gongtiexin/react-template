@@ -23,12 +23,12 @@ import "./global.less";
  * 代码拆分和按需加载
  */
 const LoadableApp = Loadable({
-  loader: () => import(/* webpackChunkName: "route-root" */ "./views/App")
+  loader: () => import(/* webpackChunkName: "route-root" */ "./views/App"),
 });
 
 const LoadableLogin = Loadable({
   loader: () =>
-    import(/* webpackChunkName: "route-login" */ "./components/Login")
+    import(/* webpackChunkName: "route-login" */ "./components/Login"),
 });
 
 const store = rehydrate();

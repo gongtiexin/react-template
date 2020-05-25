@@ -34,20 +34,20 @@ const isProduction = process.env.NODE_ENV === "production";
 
 const ECHARTS_DEFULT_OPTION = {
   tooltip: {
-    trigger: "axis"
+    trigger: "axis",
   },
   legend: {},
   xAxis: {
-    type: "category"
+    type: "category",
   },
   yAxis: [
     {
       type: "value",
       name: "数量",
       nameTextStyle: {
-        color: "#000000a6"
+        color: "#000000a6",
       },
-      splitLine: { show: false }
+      splitLine: { show: false },
     },
     {
       type: "value",
@@ -57,14 +57,14 @@ const ECHARTS_DEFULT_OPTION = {
       max: 100,
       interval: 20,
       axisLabel: {
-        formatter: "{value} %"
+        formatter: "{value} %",
       },
       nameTextStyle: {
-        color: "#000000a6"
-      }
-    }
+        color: "#000000a6",
+      },
+    },
   ],
-  series: []
+  series: [],
 };
 
 export { isProduction, ECHARTS_DEFULT_OPTION, browserRedirect };

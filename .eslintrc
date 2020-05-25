@@ -25,7 +25,10 @@
     }
   },
   "rules": {
-    "prettier/prettier": "error",
+    "prettier/prettier": [
+      "error",
+      { "trailingComma": "es5", "arrowParens": "always", "endOfLine": "lf" }
+    ],
     "react/jsx-filename-extension": [
       0,
       {

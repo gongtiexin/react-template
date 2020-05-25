@@ -8,15 +8,15 @@ const TOGGLE_OFF_TEXT = "收起";
 
 const TOGGLE_STATUS = {
   OFF: 0,
-  ON: 1
+  ON: 1,
 };
 
 const TOGGLE_VISIBILITY = {
   HIDDEN: 0,
-  SHOW: 1
+  SHOW: 1,
 };
 
-const Clamp = props => {
+const Clamp = (props) => {
   const { text, style, maxLines, ellipsis, toggle, onText, offText } = props;
   const rootRef = useRef(null);
   const contentRef = useRef(null);
@@ -66,12 +66,12 @@ const Clamp = props => {
     }
   };
 
-  const clampAt = _offset => {
+  const clampAt = (_offset) => {
     offset = _offset;
     applyChange();
   };
 
-  const moveEdge = steps => {
+  const moveEdge = (steps) => {
     clampAt(offset + steps);
   };
 
@@ -157,17 +157,17 @@ Clamp.propTypes = {
   toggle: PropTypes.bool,
   ellipsis: PropTypes.string,
   onText: PropTypes.string,
-  offText: PropTypes.string
+  offText: PropTypes.string,
 };
 
 Clamp.defaultProps = {
   style: {
-    width: "100%"
+    width: "100%",
   },
   toggle: true,
   ellipsis: DEFAULT_ELLIPSIS,
   onText: TOGGLE_ON_TEXT,
-  offText: TOGGLE_OFF_TEXT
+  offText: TOGGLE_OFF_TEXT,
 };
 
 export default Clamp;

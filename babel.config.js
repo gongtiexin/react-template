@@ -5,10 +5,10 @@ module.exports = function config(api) {
       {
         modules: false,
         useBuiltIns: "usage",
-        corejs: 3
-      }
+        corejs: 3,
+      },
     ],
-    "@babel/react"
+    "@babel/react",
   ];
   const plugins = [
     // Stage 1
@@ -34,24 +34,24 @@ module.exports = function config(api) {
       "import",
       {
         libraryName: "antd",
-        style: true
+        style: true,
       },
-      "antd"
+      "antd",
     ],
     [
       "import",
       {
         libraryName: "lodash",
         libraryDirectory: "",
-        camel2DashComponentName: false
+        camel2DashComponentName: false,
       },
-      "lodash"
-    ]
+      "lodash",
+    ],
   ];
 
   api.cache(true);
   return {
     presets,
-    plugins
+    plugins,
   };
 };

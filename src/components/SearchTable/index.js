@@ -19,7 +19,7 @@ import {
   Select,
   Cascader,
   DatePicker,
-  Icon
+  Icon,
 } from "antd";
 import Pagination from "../Pagination";
 import "./index.less";
@@ -30,7 +30,7 @@ const { RangePicker } = DatePicker;
 
 const formItemLatest = 3;
 
-const RefAndWithRouterAndForm = Wrapped => {
+const RefAndWithRouterAndForm = (Wrapped) => {
   const EnhancedForm = Form.create()(Wrapped);
 
   const WithRouter = withRouter(({ forwardRef, ...otherProps }) => (
@@ -55,19 +55,19 @@ export default class SearchTable extends Component {
     callback: PropTypes.func,
     expandChildren: PropTypes.element,
     form: PropTypes.object,
-    history: PropTypes.object
+    history: PropTypes.object,
   };
 
   static defaultProps = {
     fields: [],
-    callback: () => new Promise(resolve => setTimeout(resolve, 1000)),
+    callback: () => new Promise((resolve) => setTimeout(resolve, 1000)),
     expandChildren: null,
     form: {},
-    history: {}
+    history: {},
   };
 
   state = {
-    loading: false
+    loading: false,
   };
 
   componentDidMount() {
@@ -76,10 +76,10 @@ export default class SearchTable extends Component {
 
   componentWillUnmount() {}
 
-  handleSearch = e => {
+  handleSearch = (e) => {
     e.preventDefault();
     const {
-      paginationProps: { pageSize }
+      paginationProps: { pageSize },
     } = this.props;
     this.props.form.validateFields(() => {
       this.fetchData({ sliceParams: { pageSize, pageNum: 1 } });
@@ -92,20 +92,20 @@ export default class SearchTable extends Component {
     this.setState({ loading: true });
 
     const {
-      paginationProps: { pageSize, currentPage }
+      paginationProps: { pageSize, currentPage },
     } = this.props;
     const formValues = this.props.form.getFieldsValue();
     const newParams = upObject.filterNull({
       sliceParams: { pageSize, currentPage }, // 分页参数
       ...formValues, // 搜索条件
-      ...params // 其它参数
+      ...params, // 其它参数
     });
 
     Promise.resolve(this.props.callback(newParams))
       .then(() => {
         const {
           tableProps: { dataSource: nextDataSource },
-          paginationProps: { currentPage: nextCurrentPage }
+          paginationProps: { currentPage: nextCurrentPage },
         } = this.props;
         // 当前页没有数据又有上一页，自动翻到上一页
         if (nextDataSource.length === 0 && nextCurrentPage > 1) {
@@ -115,7 +115,7 @@ export default class SearchTable extends Component {
         }
         this.props.history.replace({
           ...this.props.history.location,
-          state: newParams
+          state: newParams,
         });
       })
       .finally(() => this.setState({ loading: false }));
@@ -123,7 +123,7 @@ export default class SearchTable extends Component {
 
   getFormItemByType = ({ type, key, label, items = [], options, props }) => {
     const {
-      form: { getFieldDecorator }
+      form: { getFieldDecorator },
     } = this.props;
     switch (type) {
       case "input": {
@@ -141,7 +141,7 @@ export default class SearchTable extends Component {
               options
             )(
               <Select {...props}>
-                {items.map(item => (
+                {items.map((item) => (
                   <SelectOption key={item.key || item.value} value={item.value}>
                     {item.label}
                   </SelectOption>
@@ -214,7 +214,7 @@ export default class SearchTable extends Component {
       fields = [],
       tableProps,
       paginationProps,
-      expandChildren
+      expandChildren,
     } = this.props;
     const { loading } = this.state;
 

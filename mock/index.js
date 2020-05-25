@@ -1,9 +1,9 @@
 const Mock = require("mockjs");
 const config = require("../config");
 
-const delay = function(proxy, timer = 0) {
+const delay = function (proxy, timer = 0) {
   const mockApi = {};
-  Object.keys(proxy).forEach(function(key) {
+  Object.keys(proxy).forEach(function (key) {
     const result = proxy[key];
     if (
       (Object.prototype.toString.call(result) === "[object String]" &&
@@ -13,16 +13,16 @@ const delay = function(proxy, timer = 0) {
     ) {
       mockApi[key] = proxy[key];
     } else {
-      mockApi[key] = function(req, res) {
+      mockApi[key] = function (req, res) {
         let foo;
         if (Object.prototype.toString.call(result) === "[object Function]") {
           foo = result;
         } else {
-          foo = function(_req, _res) {
+          foo = function (_req, _res) {
             return _res.json(result);
           };
         }
-        setTimeout(function() {
+        setTimeout(function () {
           foo(req, res);
         }, timer);
       };
@@ -44,12 +44,12 @@ const proxy = {
           "data|10": [
             {
               projectName: "projectName",
-              projectDesc: "projectDesc"
-            }
-          ]
-        }
+              projectDesc: "projectDesc",
+            },
+          ],
+        },
       })
     );
-  }
+  },
 };
 module.exports = config.mock ? delay(proxy, 1000) : {};

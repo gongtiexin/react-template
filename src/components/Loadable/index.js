@@ -37,21 +37,21 @@ const Loading = ({ error, timedOut, pastDelay }) => {
 Loading.propTypes = {
   error: PropTypes.bool,
   timedOut: PropTypes.bool,
-  pastDelay: PropTypes.bool
+  pastDelay: PropTypes.bool,
 };
 
 Loading.defaultProps = {
   error: false,
   timedOut: false,
-  pastDelay: false
+  pastDelay: false,
 };
 
-const Loadable = opts =>
+const Loadable = (opts) =>
   ReactLoadable({
     loading: Loading,
     delay: 300,
     timeout: 10000,
-    ...opts
+    ...opts,
   });
 
 export default Loadable;

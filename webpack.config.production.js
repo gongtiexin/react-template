@@ -26,20 +26,20 @@ const webpackConfig = {
   mode: "production",
   resolve: config.webpack.common.resolve,
   entry: {
-    app: config.path.entryPath
+    app: config.path.entryPath,
   },
   output: {
     path: config.path.distPath,
     publicPath: config.webpack.common.publicPath,
     filename: "assets/[name].[chunkhash].js",
-    chunkFilename: "assets/[name].[chunkhash].chunk.js"
+    chunkFilename: "assets/[name].[chunkhash].chunk.js",
   },
   module: {
     rules: [
       {
         test: /\.js$/,
         use: ["thread-loader", "babel-loader"],
-        include: config.path.srcPath
+        include: config.path.srcPath,
       },
       {
         test: /\.less|css$/,
@@ -50,19 +50,20 @@ const webpackConfig = {
             loader: "postcss-loader",
             options: {
               ident: "postcss",
-              plugins: () => [postcssPresetEnv(/* pluginOptions */)]
-            }
+              plugins: () => [postcssPresetEnv(/* pluginOptions */)],
+            },
           },
           {
             loader: "less-loader",
             options: {
-              // less@3
-              javascriptEnabled: true,
-              // 覆盖antd样式的全局变量
-              modifyVars: config.webpack.common.modifyVars
-            }
-          }
-        ]
+              lessOptions: {
+                // 覆盖less中的全局变量
+                modifyVars: config.webpack.common.modifyVars,
+                javascriptEnabled: true,
+              },
+            },
+          },
+        ],
       },
       // 处理图片(file-loader来处理也可以，url-loader更适合图片)
       {
@@ -70,8 +71,8 @@ const webpackConfig = {
         loader: "url-loader",
         options: {
           limit: 10000,
-          name: "static/assets/images/[name].[hash:7].[ext]"
-        }
+          name: "static/assets/images/[name].[hash:7].[ext]",
+        },
       },
       // 处理多媒体文件
       {
@@ -79,8 +80,8 @@ const webpackConfig = {
         loader: "url-loader",
         options: {
           limit: 10000,
-          name: "static/assets/media/[name].[hash:7].[ext]"
-        }
+          name: "static/assets/media/[name].[hash:7].[ext]",
+        },
       },
       // 处理字体文件
       {
@@ -88,10 +89,10 @@ const webpackConfig = {
         loader: "url-loader",
         options: {
           limit: 10000,
-          name: "static/assets/fonts/[name].[hash:7].[ext]"
-        }
-      }
-    ]
+          name: "static/assets/fonts/[name].[hash:7].[ext]",
+        },
+      },
+    ],
   },
   optimization: {
     minimizer: [
@@ -106,11 +107,11 @@ const webpackConfig = {
           mergeLonghand: false,
           discardComments: {
             // 移除注释
-            removeAll: true
-          }
+            removeAll: true,
+          },
         },
-        canPrint: true
-      })
+        canPrint: true,
+      }),
     ],
     runtimeChunk: "single",
     splitChunks: {
@@ -122,7 +123,7 @@ const webpackConfig = {
           test: /node_modules/,
           chunks: "initial",
           minSize: 0,
-          minChunks: 1 // 最少引入了1次
+          minChunks: 1, // 最少引入了1次
         },
         // 缓存组
         common: {
@@ -130,17 +131,17 @@ const webpackConfig = {
           chunks: "initial",
           name: "common",
           minSize: 100, // 大小超过100个字节
-          minChunks: 3 // 最少引入了3次
-        }
-      }
-    }
+          minChunks: 3, // 最少引入了3次
+        },
+      },
+    },
   },
   plugins: [
     // 分析打包的结构
     // new BundleAnalyzerPlugin(),
     new MiniCssExtractPlugin({
       filename: "stylesheets/[name].[contenthash].css",
-      chunkFilename: "stylesheets/[id].[contenthash].css"
+      chunkFilename: "stylesheets/[id].[contenthash].css",
     }),
     // 使得哈希基于模块的相对路径, 生成一个四个字符的字符串作为模块ID
     new webpack.HashedModuleIdsPlugin(),
@@ -150,8 +151,8 @@ const webpackConfig = {
     // 拷贝静态资源
     new CopyWebpackPlugin(config.webpack.build.plugins.CopyWebpackPlugin),
     new CleanWebpackPlugin(),
-    new AntdDayjsWebpackPlugin()
-  ]
+    new AntdDayjsWebpackPlugin(),
+  ],
 };
 
 // module.exports = smp.wrap(webpackConfig);

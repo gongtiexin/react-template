@@ -16,7 +16,7 @@ const routes = [
 ];
 
 const breadcrumbNameMap = {
-  "/route": "label"
+  "/route": "label",
 };
 
 export { routes, breadcrumbNameMap };

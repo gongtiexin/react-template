@@ -19,11 +19,11 @@ const description = "";
 @observer
 export default class PhotoSwipe extends Component {
   static propTypes = {
-    images: PropTypes.array.isRequired
+    images: PropTypes.array.isRequired,
   };
 
   state = {
-    num: 0
+    num: 0,
   };
 
   componentDidMount() {}
@@ -38,7 +38,7 @@ export default class PhotoSwipe extends Component {
   componentWillUnmount() {}
 
   renderImageListItem = () =>
-    this.props.images.map(url => (
+    this.props.images.map((url) => (
       <figure
         itemProp="associatedMedia"
         itemScope

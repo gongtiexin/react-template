@@ -44,7 +44,7 @@ const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={props =>
+      render={(props) =>
         isAuthenticated ? (
           <Component {...props} />
         ) : (
@@ -52,7 +52,7 @@ const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => {
             to={{
               pathname: "/login",
               // eslint-disable-next-line react/prop-types
-              state: { from: props.location }
+              state: { from: props.location },
             }}
           />
         )
@@ -63,11 +63,11 @@ const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => {
 
 PrivateRoute.propTypes = {
   component: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool
+  isAuthenticated: PropTypes.bool,
 };
 
 PrivateRoute.defaultProps = {
-  isAuthenticated: true
+  isAuthenticated: true,
 };
 
 export { PrivateRoute };

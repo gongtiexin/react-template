@@ -17,12 +17,12 @@ export default class Pagination extends Component {
     totalElements: PropTypes.number.isRequired,
     handleChange: PropTypes.func.isRequired,
     pageSize: PropTypes.number,
-    showSizeChanger: PropTypes.bool
+    showSizeChanger: PropTypes.bool,
   };
 
   static defaultProps = {
     pageSize: 10,
-    showSizeChanger: false
+    showSizeChanger: false,
   };
 
   onShowSizeChange = (current, pageSize) => {
@@ -35,14 +35,14 @@ export default class Pagination extends Component {
     handleChange({ sliceParams: { currentPage: pageNumber, pageSize } });
   };
 
-  showTotal = total => `共 ${total || 0} 条`;
+  showTotal = (total) => `共 ${total || 0} 条`;
 
   render() {
     const {
       currentPage,
       pageSize,
       totalElements,
-      showSizeChanger
+      showSizeChanger,
     } = this.props;
 
     return (

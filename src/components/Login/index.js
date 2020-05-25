@@ -21,7 +21,7 @@ export default class Login extends Component {
   particles = null;
 
   static propTypes = {
-    form: PropTypes.object.isRequired
+    form: PropTypes.object.isRequired,
   };
 
   componentDidMount() {
@@ -38,12 +38,12 @@ export default class Login extends Component {
         selector: ".particles-background",
         connectParticles: true,
         color: "#999999",
-        maxParticles: 150
+        maxParticles: 150,
       });
     }
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
@@ -63,7 +63,7 @@ export default class Login extends Component {
           <Form onSubmit={this.handleSubmit} className="login-form">
             <FormItem>
               {getFieldDecorator("userName", {
-                rules: [{ required: true, message: "请输入您的用户名!" }]
+                rules: [{ required: true, message: "请输入您的用户名!" }],
               })(
                 <Input
                   prefix={
@@ -76,7 +76,7 @@ export default class Login extends Component {
             </FormItem>
             <FormItem>
               {getFieldDecorator("password", {
-                rules: [{ required: true, message: "请输入您的密码!" }]
+                rules: [{ required: true, message: "请输入您的密码!" }],
               })(
                 <Input
                   prefix={
@@ -91,7 +91,7 @@ export default class Login extends Component {
             <FormItem>
               {getFieldDecorator("remember", {
                 valuePropName: "checked",
-                initialValue: true
+                initialValue: true,
               })(<Checkbox>记住密码</Checkbox>)}
               <Link className="login-form-forgot" to="/forgot">
                 忘记密码

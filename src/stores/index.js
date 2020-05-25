@@ -8,7 +8,7 @@ import GlobalStore from "./GlobalStore";
 import { isProduction } from "../utils/constants";
 
 store.setup({
-  globalStore: GlobalStore
+  globalStore: GlobalStore,
 });
 
 // mobx hmr

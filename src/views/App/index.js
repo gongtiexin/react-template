@@ -9,14 +9,16 @@ import "./index.less";
 
 const LoadableMismatch = Loadable({
   loader: () =>
-    import(/* webpackChunkName: "route-mismatch" */ "../../components/Mismatch")
+    import(
+      /* webpackChunkName: "route-mismatch" */ "../../components/Mismatch"
+    ),
 });
 
 @inject(({ store: { globalStore } }) => ({ globalStore }))
 @observer
 export default class App extends Component {
   static propTypes = {
-    globalStore: PropTypes.object.isRequired
+    globalStore: PropTypes.object.isRequired,
   };
 
   componentDidMount() {}
@@ -27,7 +29,7 @@ export default class App extends Component {
 
   render() {
     const {
-      globalStore: { list }
+      globalStore: { list },
     } = this.props;
 
     return (

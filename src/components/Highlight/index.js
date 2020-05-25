@@ -32,7 +32,7 @@ const Highlight = ({ text, keyword }) => {
 
 Highlight.propTypes = {
   text: PropTypes.string.isRequired,
-  keyword: PropTypes.string.isRequired
+  keyword: PropTypes.string.isRequired,
 };
 
 export default Highlight;

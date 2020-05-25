@@ -91,12 +91,12 @@ function positionAll() {
     mcList[i - 1].cy = radius * Math.sin(theta) * Math.sin(phi);
     mcList[i - 1].cz = radius * Math.cos(phi) * 1.5;
 
-    aA[i - 1].style.left = `${mcList[i - 1].cx +
-      oDiv.offsetWidth / 2 -
-      mcList[i - 1].offsetWidth / 2}px`;
-    aA[i - 1].style.top = `${mcList[i - 1].cy +
-      oDiv.offsetHeight / 2 -
-      mcList[i - 1].offsetHeight / 2}px`;
+    aA[i - 1].style.left = `${
+      mcList[i - 1].cx + oDiv.offsetWidth / 2 - mcList[i - 1].offsetWidth / 2
+    }px`;
+    aA[i - 1].style.top = `${
+      mcList[i - 1].cy + oDiv.offsetHeight / 2 - mcList[i - 1].offsetHeight / 2
+    }px`;
   }
 }
 
@@ -113,7 +113,7 @@ function doPosition() {
     aA[i].style.color = `rgb(${[
       Math.round((mcList[i].size / max) * 255),
       Math.round((mcList[i].size / max) * 166),
-      Math.round((mcList[i].size / max) * 166)
+      Math.round((mcList[i].size / max) * 166),
     ].join(",")})`;
 
     aA[i].style.filter = `alpha(opacity=${100 * mcList[i].alpha})`;
@@ -212,7 +212,7 @@ function WordCloudInit(id = "wordcloud") {
     active = false;
   };
 
-  oDiv.onmousemove = ev => {
+  oDiv.onmousemove = (ev) => {
     const oEvent = window.event || ev;
 
     mouseX = oEvent.clientX - (oDiv.offsetLeft + oDiv.offsetWidth / 2);
@@ -313,7 +313,7 @@ const list = [
   { label: "幽默3", value: "10" },
   { label: "名校3", value: "16" },
   { label: "赚钱3", value: "10" },
-  { label: "云计3算机", value: "11" }
+  { label: "云计3算机", value: "11" },
 ];
 
 @observer

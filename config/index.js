@@ -37,8 +37,8 @@ module.exports = {
           "@utils": utilsPath,
           "@assets": assetsPath,
           "@stores": storesPath,
-          "@routes": routesPath
-        }
+          "@routes": routesPath,
+        },
       },
       modifyVars: {
         // "primary-color": "#1890ff",
@@ -47,32 +47,34 @@ module.exports = {
         HtmlWebpackPlugin: {
           filename: "index.html",
           template: indexHtmlPath,
-          title: "react-template"
-        }
-      }
+          title: "react-template",
+        },
+      },
     },
     build: {
       env: {
-        NODE_ENV: "production"
+        NODE_ENV: "production",
       },
       vendor: ["react", "react-dom", "react-router-dom", "mobx", "mobx-react"],
       plugins: {
-        CopyWebpackPlugin: [
-          {
-            from: staticPath,
-            to: distStaticPath
-          }
-        ]
-      }
+        CopyWebpackPlugin: {
+          patterns: [
+            {
+              from: staticPath,
+              to: distStaticPath,
+            },
+          ],
+        },
+      },
     },
     dev: {
       env: {
-        NODE_ENV: "development"
+        NODE_ENV: "development",
       },
       devServer: {
-        port: 3000
-      }
-    }
+        port: 3000,
+      },
+    },
   },
   path: {
     rootPath,
@@ -83,7 +85,7 @@ module.exports = {
     mockPath,
     staticPath,
     distStaticPath,
-    nodeModulesPath
+    nodeModulesPath,
   },
-  mock: true
+  mock: true,
 };

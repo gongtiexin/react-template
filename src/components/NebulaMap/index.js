@@ -49,7 +49,7 @@ class Ball {
 }
 
 // cancelRequestAnimFrame的兼容函数
-window.cancelRequestAnimFrame = (function() {
+window.cancelRequestAnimFrame = (function () {
   return (
     window.cancelAnimationFrame ||
     window.webkitCancelRequestAnimationFrame ||
@@ -64,7 +64,7 @@ const data = [];
 for (let i = 0; i <= 10; i += 1) {
   data.push({
     radiusX: i * 40,
-    radiusY: i * 16
+    radiusY: i * 16,
   });
 }
 
@@ -72,7 +72,7 @@ for (let i = 0; i <= 10; i += 1) {
 export default class NebulaMap extends Component {
   componentDidMount() {
     // 椭圆
-    CanvasRenderingContext2D.prototype.oval = function(x, y, width, height) {
+    CanvasRenderingContext2D.prototype.oval = function (x, y, width, height) {
       const k = 0.5522848;
       const ox = width * k; // 水平控制点偏移量
       const oy = height * k; // 垂直控制点偏移量
@@ -120,7 +120,7 @@ export default class NebulaMap extends Component {
       });
     }
 
-    canvas.addEventListener("click", e => draw(this.windowToCanvas(e)));
+    canvas.addEventListener("click", (e) => draw(this.windowToCanvas(e)));
 
     (function drawFrame() {
       window.requestAnimationFrame(drawFrame, canvas);
@@ -135,7 +135,7 @@ export default class NebulaMap extends Component {
     const bbox = canvas.getBoundingClientRect();
     return {
       x: x - bbox.left * (canvas.width / bbox.width),
-      y: y - bbox.top * (canvas.height / bbox.height)
+      y: y - bbox.top * (canvas.height / bbox.height),
     };
   };
 
