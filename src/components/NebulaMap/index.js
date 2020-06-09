@@ -4,12 +4,12 @@
  * 18-3-22           gongtiexin       星云图
  * */
 
-import React, { Component } from 'react';
-import { observer } from 'mobx-react';
+import React, { Component } from "react";
+import { observer } from "mobx-react";
 
 // 圆球的构造函数
 class Ball {
-  constructor(radius = 40, color = '#ff0000') {
+  constructor(radius = 40, color = "#ff0000") {
     this.radius = radius;
     this.color = color;
   }
@@ -49,7 +49,7 @@ class Ball {
 }
 
 // cancelRequestAnimFrame的兼容函数
-window.cancelRequestAnimFrame = (function() {
+window.cancelRequestAnimFrame = (function () {
   return (
     window.cancelAnimationFrame ||
     window.webkitCancelRequestAnimationFrame ||
@@ -72,7 +72,7 @@ for (let i = 0; i <= 10; i += 1) {
 export default class NebulaMap extends Component {
   componentDidMount() {
     // 椭圆
-    CanvasRenderingContext2D.prototype.oval = function(x, y, width, height) {
+    CanvasRenderingContext2D.prototype.oval = function (x, y, width, height) {
       const k = 0.5522848;
       const ox = width * k; // 水平控制点偏移量
       const oy = height * k; // 垂直控制点偏移量
@@ -89,8 +89,8 @@ export default class NebulaMap extends Component {
       return this;
     };
 
-    const canvas = document.getElementById('canvas');
-    const context = canvas.getContext('2d');
+    const canvas = document.getElementById("canvas");
+    const context = canvas.getContext("2d");
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 2;
     const speed = 0.001;
@@ -120,7 +120,7 @@ export default class NebulaMap extends Component {
       });
     }
 
-    canvas.addEventListener('click', e => draw(this.windowToCanvas(e)));
+    canvas.addEventListener("click", (e) => draw(this.windowToCanvas(e)));
 
     (function drawFrame() {
       window.requestAnimationFrame(drawFrame, canvas);
@@ -142,12 +142,7 @@ export default class NebulaMap extends Component {
   render() {
     return (
       <div id="solar-system">
-        <canvas
-          style={{ display: 'block', margin: '0 auto' }}
-          id="canvas"
-          width="1200"
-          height="400"
-        />
+        <canvas style={{ display: "block", margin: "0 auto" }} id="canvas" width="1200" height="400" />
       </div>
     );
   }

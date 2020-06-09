@@ -4,10 +4,10 @@
  * 18-3-22           gongtiexin       axios的封装和拦截器
  * */
 
-import axios, { AxiosRequestConfig } from 'axios';
-import { notification } from 'antd';
-import HttpStatus from 'http-status-codes';
-import { ArgsProps } from 'antd/lib/notification';
+import axios, { AxiosRequestConfig } from "axios";
+import { notification } from "antd";
+import HttpStatus from "http-status-codes";
+import { ArgsProps } from "antd/lib/notification";
 
 interface RetryAxiosRequestConfig extends AxiosRequestConfig {
   retry: number;
@@ -22,7 +22,7 @@ interface RetryAxiosRequestConfig extends AxiosRequestConfig {
  * axios拦截器
  */
 axios.interceptors.response.use(
-  response => {
+  (response) => {
     const {
       data: { errCode },
     } = response;
@@ -32,7 +32,7 @@ axios.interceptors.response.use(
     }
     return Promise.resolve(response);
   },
-  error => {
+  (error) => {
     const { config } = error;
     // If config does not exist or the retry option is not set, reject
     if (!config || !config.retry) return Promise.reject(error);
@@ -60,7 +60,7 @@ axios.interceptors.response.use(
     config.retryCount += 1;
 
     // Create new promise to handle exponential backOff
-    const backOff = new Promise(resolve => {
+    const backOff = new Promise((resolve) => {
       setTimeout(() => {
         resolve();
       }, config.retryDelay || 1);
@@ -68,7 +68,7 @@ axios.interceptors.response.use(
 
     // Return the promise in which recalls axios to retry the request
     return backOff.then(() => axios(config));
-  },
+  }
 );
 
 // const codeMessage = {
@@ -105,23 +105,22 @@ axios.interceptors.response.use(
 // };
 
 interface RequestConfig {
-  config: AxiosRequestConfig;
-  success?: ArgsProps;
-  error?: ArgsProps;
+  axiosConfig: AxiosRequestConfig;
+  notificationConfig?: {
+    success?: ArgsProps;
+    error?: ArgsProps;
+  };
 }
 
 /**
+ * ------------------------------------------------------------------
  * ajax请求同意封装
- *
- * @param    {{config: object axios请求配置, success: object 请求成功配置, error: object 请求失败配置}}
- * @return   {Promise} response   ajax请求结果
- *
- * @date     18-3-22
- * @author   gongtiexin
+ * ------------------------------------------------------------------
  */
-const request = ({ config, success, error }: RequestConfig) =>
-  axios(config).then(
-    response => {
+const request = ({ axiosConfig, notificationConfig = {} }: RequestConfig) => {
+  const { success, error } = notificationConfig;
+  return axios(axiosConfig).then(
+    (response) => {
       if (success) {
         notification.success(success);
       }
@@ -132,7 +131,8 @@ const request = ({ config, success, error }: RequestConfig) =>
         notification.error(error);
       }
       return Promise.reject(response);
-    },
+    }
   );
+};
 
 export default request;

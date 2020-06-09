@@ -1,5 +1,5 @@
-import React from 'react';
-import { Redirect, Route } from 'react-router-dom';
+import React from "react";
+import { Redirect, Route } from "react-router-dom";
 
 interface PrivateRouteProps {
   key: string;
@@ -13,13 +13,13 @@ const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }: Privat
   return (
     <Route
       {...rest}
-      render={props =>
+      render={(props) =>
         isAuthenticated ? (
           <Component {...props} />
         ) : (
           <Redirect
             to={{
-              pathname: '/login',
+              pathname: "/login",
               // eslint-disable-next-line react/prop-types
               state: { from: props.location },
             }}

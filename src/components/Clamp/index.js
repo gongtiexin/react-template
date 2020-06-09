@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useRef } from 'react';
-import * as PropTypes from 'prop-types';
-import './index.less';
+import React, { useEffect, useState, useRef } from "react";
+import * as PropTypes from "prop-types";
+import "./index.less";
 
-const DEFAULT_ELLIPSIS = '...';
-const TOGGLE_ON_TEXT = '展开';
-const TOGGLE_OFF_TEXT = '收起';
+const DEFAULT_ELLIPSIS = "...";
+const TOGGLE_ON_TEXT = "展开";
+const TOGGLE_OFF_TEXT = "收起";
 
 const TOGGLE_STATUS = {
   OFF: 0,
@@ -16,7 +16,7 @@ const TOGGLE_VISIBILITY = {
   SHOW: 1,
 };
 
-const Clamp = props => {
+const Clamp = (props) => {
   const { text, style, maxLines, ellipsis, toggle, onText, offText } = props;
   const rootRef = useRef(null);
   const contentRef = useRef(null);
@@ -64,12 +64,12 @@ const Clamp = props => {
     }
   };
 
-  const clampAt = _offset => {
+  const clampAt = (_offset) => {
     offset = _offset;
     applyChange();
   };
 
-  const moveEdge = steps => {
+  const moveEdge = (steps) => {
     clampAt(offset + steps);
   };
 
@@ -129,9 +129,7 @@ const Clamp = props => {
           <button
             onClick={() => {
               setLocalMaxLines(toggleStatus === TOGGLE_STATUS.OFF ? Infinity : maxLines);
-              setToggleStatus(
-                toggleStatus === TOGGLE_STATUS.ON ? TOGGLE_STATUS.OFF : TOGGLE_STATUS.ON,
-              );
+              setToggleStatus(toggleStatus === TOGGLE_STATUS.ON ? TOGGLE_STATUS.OFF : TOGGLE_STATUS.ON);
             }}
             type="button"
             className="clamp-container-btn"
@@ -156,7 +154,7 @@ Clamp.propTypes = {
 
 Clamp.defaultProps = {
   style: {
-    width: '100%',
+    width: "100%",
   },
   toggle: true,
   ellipsis: DEFAULT_ELLIPSIS,

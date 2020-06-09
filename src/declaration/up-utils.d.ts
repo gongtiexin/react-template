@@ -1,4 +1,4 @@
-declare module 'up-utils' {
+declare module "up-utils" {
   interface IUpOption {
     option: {};
     data: Array<{ seriesType: string }>;

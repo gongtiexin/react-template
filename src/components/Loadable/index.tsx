@@ -4,9 +4,9 @@
  * 18-3-22           gongtiexin       react-loadable
  * */
 
-import React from 'react';
-import ReactLoadable, { LoadingComponentProps } from 'react-loadable';
-import './index.less';
+import React from "react";
+import ReactLoadable, { LoadingComponentProps } from "react-loadable";
+import "./index.less";
 
 const Loading = ({ error, timedOut, pastDelay }: LoadingComponentProps) => {
   if (error) {

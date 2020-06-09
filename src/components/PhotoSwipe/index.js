@@ -4,17 +4,17 @@
  * 2018/7/24           gongtiexin       响应式图片查看器
  * */
 
-import React, { Component } from 'react';
-import { observer } from 'mobx-react';
-import PropTypes from 'prop-types';
-import shortid from 'shortid';
-import 'photoswipe/dist/photoswipe.css';
-import 'photoswipe/dist/default-skin/default-skin.css';
-import './index.less';
-import initPhotoSwipeFromDOM from './init';
+import React, { Component } from "react";
+import { observer } from "mobx-react";
+import PropTypes from "prop-types";
+import shortid from "shortid";
+import "photoswipe/dist/photoswipe.css";
+import "photoswipe/dist/default-skin/default-skin.css";
+import "./index.less";
+import initPhotoSwipeFromDOM from "./init";
 
-const dataSize = '1024x1024';
-const description = '';
+const dataSize = "1024x1024";
+const description = "";
 
 @observer
 export default class PhotoSwipe extends Component {
@@ -30,7 +30,7 @@ export default class PhotoSwipe extends Component {
 
   componentDidUpdate() {
     if (this.props.images.length !== 0 && this.state.num === 0) {
-      initPhotoSwipeFromDOM('.my-gallery');
+      initPhotoSwipeFromDOM(".my-gallery");
       this.setState({ num: 1 });
     }
   }
@@ -38,13 +38,8 @@ export default class PhotoSwipe extends Component {
   componentWillUnmount() {}
 
   renderImageListItem = () =>
-    this.props.images.map(url => (
-      <figure
-        itemProp="associatedMedia"
-        itemScope
-        itemType="http://schema.org/ImageObject"
-        key={shortid.generate()}
-      >
+    this.props.images.map((url) => (
+      <figure itemProp="associatedMedia" itemScope itemType="http://schema.org/ImageObject" key={shortid.generate()}>
         <a href={url} itemProp="contentUrl" data-size={dataSize}>
           <img src={url} itemProp="thumbnail" alt={description} />
         </a>
@@ -84,14 +79,8 @@ export default class PhotoSwipe extends Component {
               <div className="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
                 <div className="pswp__share-tooltip" />
               </div>
-              <button
-                className="pswp__button pswp__button--arrow--left"
-                title="Previous (arrow left)"
-              />
-              <button
-                className="pswp__button pswp__button--arrow--right"
-                title="Next (arrow right)"
-              />
+              <button className="pswp__button pswp__button--arrow--left" title="Previous (arrow left)" />
+              <button className="pswp__button pswp__button--arrow--right" title="Next (arrow right)" />
               <div className="pswp__caption">
                 <div className="pswp__caption__center" />
               </div>

@@ -4,8 +4,12 @@
  * 18-3-22           gongtiexin       global
  * */
 
-import { action, observable } from 'mobx';
-import request from '../utils/request';
+import { action, observable } from "mobx";
+import request from "../utils/request";
+
+interface ListDTO {
+  id: string;
+}
 
 export default class GlobalStore {
   /**
@@ -13,7 +17,7 @@ export default class GlobalStore {
    * */
 
   @observable
-  list = [];
+  list: Array<ListDTO> = [];
 
   /**
    * ****************************** ajax ******************************
@@ -22,9 +26,9 @@ export default class GlobalStore {
   /**
    * 获取数据
    * */
-  getList = async (params: any) => {
+  getList = async (params: { id: string }): Promise<Array<ListDTO>> => {
     const { data } = await request({
-      config: { method: 'GET', url: '/api/list', params },
+      axiosConfig: { method: "GET", url: "/api/list", params },
     });
     this.setList(data);
     return data;
@@ -35,7 +39,7 @@ export default class GlobalStore {
    * */
 
   @action
-  setList(data = []) {
+  setList(data = []): void {
     this.list = data;
   }
 

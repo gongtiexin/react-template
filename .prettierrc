@@ -1,19 +1,10 @@
 {
-  "singleQuote": true,
-  "trailingComma": "all",
-  "printWidth": 100,
-  "proseWrap": "never",
+  "printWidth": 120,
   "overrides": [
     {
-      "files": ".prettierrc",
+      "files": [".prettierrc", ".eslintrc"],
       "options": {
         "parser": "json"
-      }
-    },
-    {
-      "files": "document.ejs",
-      "options": {
-        "parser": "html"
       }
     }
   ]

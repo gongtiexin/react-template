@@ -4,12 +4,12 @@
  * 18-3-22           gongtiexin       高亮
  * */
 
-import React, { Fragment } from 'react';
-import shortid from 'shortid';
-import * as PropTypes from 'prop-types';
+import React, { Fragment } from "react";
+import shortid from "shortid";
+import * as PropTypes from "prop-types";
 
 const Highlight = ({ text, keyword }) => {
-  const reg = new RegExp(keyword, 'gi');
+  const reg = new RegExp(keyword, "gi");
   const match = text.match(reg);
   if (!match) {
     return text;
@@ -24,7 +24,7 @@ const Highlight = ({ text, keyword }) => {
           </Fragment>
         ) : (
           fragment
-        ),
+        )
       )}
     </span>
   );

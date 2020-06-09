@@ -13,13 +13,13 @@
  *   }
  * */
 
-import React, { useEffect, useRef } from 'react';
-import echarts from 'echarts';
-import { computedEchartsOption } from 'up-utils';
-import lodashIsEqual from 'lodash/isEqual';
-import * as PropTypes from 'prop-types';
+import React, { useEffect, useRef } from "react";
+import echarts from "echarts";
+import { computedEchartsOption } from "up-utils";
+import lodashIsEqual from "lodash/isEqual";
+import * as PropTypes from "prop-types";
 
-const EChart = props => {
+const EChart = (props) => {
   const { option, style } = props;
   const echartsRef = useRef(null);
   let echartsInstance;
@@ -38,20 +38,20 @@ const EChart = props => {
 
   useEffect(() => {
     const handleWindowResize = () => {
-      console.log('echarts resize');
+      console.log("echarts resize");
       echartsInstance.resize();
     };
-    window.addEventListener('resize', handleWindowResize);
+    window.addEventListener("resize", handleWindowResize);
     return () => {
-      window.removeEventListener('resize', handleWindowResize);
+      window.removeEventListener("resize", handleWindowResize);
       echartsInstance.dispose();
-      console.log('echarts dispose');
+      console.log("echarts dispose");
     };
   }, []);
 
   useEffect(() => {
     renderChart();
-    console.log('echarts render');
+    console.log("echarts render");
   });
 
   return <div ref={echartsRef} style={style} />;
@@ -67,7 +67,7 @@ EChart.propTypes = {
 };
 
 EChart.defaultProps = {
-  style: { width: '100%', height: 400 },
+  style: { width: "100%", height: 400 },
 };
 
 export default React.memo(EChart, areEqual);

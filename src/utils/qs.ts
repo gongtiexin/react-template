@@ -1,8 +1,7 @@
-import qs, { IParseOptions, IStringifyOptions } from 'qs';
+import qs, { IParseOptions, IStringifyOptions } from "qs";
 
-const parse = (str: string, options?: IParseOptions) =>
+export const parse = (str: string, options?: IParseOptions): { [key: string]: qs.PoorMansUnknown } =>
   qs.parse(str, { ignoreQueryPrefix: true, ...options });
-const stringify = (str: string, options?: IStringifyOptions) =>
-  qs.stringify(str, { addQueryPrefix: true, ...options });
 
-export default { parse, stringify };
+export const stringify = (str: string, options?: IStringifyOptions): string =>
+  qs.stringify(str, { addQueryPrefix: true, ...options });

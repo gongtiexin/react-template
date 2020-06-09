@@ -4,63 +4,86 @@
  * 18-3-22           gongtiexin       配置参数
  * */
 
-const path = require('path');
+const path = require("path");
 
-const entry = path.resolve(__dirname, '../src/index');
-const indexHtml = path.resolve(__dirname, '../index.html');
-const root = path.resolve(__dirname, '../');
-const srcPath = path.resolve(__dirname, '../src');
-const distPath = path.resolve(__dirname, '../dist');
-const staticPath = path.resolve(__dirname, '../static');
-const distStaticPath = path.resolve(__dirname, '../dist/static');
-const nodeModulesPath = path.resolve(__dirname, '../node_modules');
+const entryPath = path.resolve(__dirname, "../src/index");
+const indexHtmlPath = path.resolve(__dirname, "../index.html");
+const rootPath = path.resolve(__dirname, "../");
+const srcPath = path.resolve(__dirname, "../src");
+const distPath = path.resolve(__dirname, "../dist");
+const staticPath = path.resolve(__dirname, "../static");
+const distStaticPath = path.resolve(__dirname, "../dist/static");
+const nodeModulesPath = path.resolve(__dirname, "../node_modules");
 
 // alias
-const componentsPath = path.resolve(__dirname, '../src/components');
-const utilsPath = path.resolve(__dirname, '../src/utils');
+const componentsPath = path.resolve(__dirname, "../src/components");
+const viewsPath = path.resolve(__dirname, "../src/views");
+const utilsPath = path.resolve(__dirname, "../src/utils");
+const assetsPath = path.resolve(__dirname, "../src/assets");
+const storesPath = path.resolve(__dirname, "../src/stores");
+const routesPath = path.resolve(__dirname, "../src/routes");
 
 module.exports = {
-  root,
   webpack: {
+    common: {
+      publicPath: "/",
+      resolve: {
+        extensions: [".ts", ".tsx", ".js"],
+        modules: ["node_modules"],
+        alias: {
+          "@components": componentsPath,
+          "@views": viewsPath,
+          "@utils": utilsPath,
+          "@assets": assetsPath,
+          "@stores": storesPath,
+          "@routes": routesPath,
+        },
+      },
+      modifyVars: {
+        // "primary-color": "#1890ff",
+      },
+      plugins: {
+        HtmlWebpackPlugin: {
+          filename: "index.html",
+          template: indexHtmlPath,
+          title: "react-template",
+        },
+      },
+    },
     build: {
       env: {
-        NODE_ENV: 'production',
+        NODE_ENV: "production",
       },
-      vendor: ['react', 'react-dom', 'react-router-dom', 'mobx', 'mobx-react'],
+      vendor: ["react", "react-dom", "react-router-dom", "mobx", "mobx-react"],
       plugins: {
-        CopyWebpackPlugin: [
-          {
-            from: staticPath,
-            to: distStaticPath,
-          },
-        ],
+        CopyWebpackPlugin: {
+          patterns: [
+            {
+              from: staticPath,
+              to: distStaticPath,
+            },
+          ],
+        },
       },
     },
     dev: {
       env: {
-        NODE_ENV: 'development',
+        NODE_ENV: "development",
       },
       devServer: {
-        port: 3000,
+        port: 3001,
       },
-    },
-    publicPath: '/',
-    alias: {
-      '@': srcPath,
-      '@components': componentsPath,
-      '@utils': utilsPath,
-    },
-    modifyVars: {
-      // "primary-color": "#1890ff",
     },
   },
   path: {
-    entry,
-    indexHtml,
+    rootPath,
+    entryPath,
+    indexHtmlPath,
     srcPath,
     distPath,
     staticPath,
     distStaticPath,
     nodeModulesPath,
   },
+  mock: true,
 };

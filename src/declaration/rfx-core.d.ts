@@ -1,4 +1,4 @@
-declare module 'rfx-core' {
+declare module "rfx-core" {
   export const store: {
     setup: Function;
   };

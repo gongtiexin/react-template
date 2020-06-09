@@ -1,10 +1,10 @@
-import PhotoSwipe from 'photoswipe';
-import PhotoSwipeUIDefault from 'photoswipe/dist/photoswipe-ui-default';
+import PhotoSwipe from "photoswipe";
+import PhotoSwipeUIDefault from "photoswipe/dist/photoswipe-ui-default";
 
-var initPhotoSwipeFromDOM = function(gallerySelector) {
+var initPhotoSwipeFromDOM = function (gallerySelector) {
   // parse slide data (url, title, size ...) from DOM elements
   // (children of gallerySelector)
-  var parseThumbnailElements = function(el) {
+  var parseThumbnailElements = function (el) {
     var thumbElements = el.childNodes,
       numNodes = thumbElements.length,
       items = [],
@@ -23,11 +23,11 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
 
       linkEl = figureEl.children[0]; // <a> element
 
-      size = linkEl.getAttribute('data-size').split('x');
+      size = linkEl.getAttribute("data-size").split("x");
 
       // create slide object
       item = {
-        src: linkEl.getAttribute('href'),
+        src: linkEl.getAttribute("href"),
         w: parseInt(size[0], 10),
         h: parseInt(size[1], 10),
       };
@@ -39,7 +39,7 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
 
       if (linkEl.children.length > 0) {
         // <img> thumbnail element, retrieving thumbnail url
-        item.msrc = linkEl.children[0].getAttribute('src');
+        item.msrc = linkEl.children[0].getAttribute("src");
       }
 
       item.el = figureEl; // save link to element for getThumbBoundsFn
@@ -55,15 +55,15 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
   };
 
   // triggers when user clicks on thumbnail
-  var onThumbnailsClick = function(e) {
+  var onThumbnailsClick = function (e) {
     e = e || window.event;
     e.preventDefault ? e.preventDefault() : (e.returnValue = false);
 
     var eTarget = e.target || e.srcElement;
 
     // find root element of slide
-    var clickedListItem = closest(eTarget, function(el) {
-      return el.tagName && el.tagName.toUpperCase() === 'FIGURE';
+    var clickedListItem = closest(eTarget, function (el) {
+      return el.tagName && el.tagName.toUpperCase() === "FIGURE";
     });
 
     if (!clickedListItem) {
@@ -98,7 +98,7 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
   };
 
   // parse picture index and gallery index from URL (#&pid=1&gid=2)
-  var photoswipeParseHash = function() {
+  var photoswipeParseHash = function () {
     var hash = window.location.hash.substring(1),
       params = {};
 
@@ -106,12 +106,12 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
       return params;
     }
 
-    var vars = hash.split('&');
+    var vars = hash.split("&");
     for (var i = 0; i < vars.length; i++) {
       if (!vars[i]) {
         continue;
       }
-      var pair = vars[i].split('=');
+      var pair = vars[i].split("=");
       if (pair.length < 2) {
         continue;
       }
@@ -125,8 +125,8 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
     return params;
   };
 
-  var openPhotoSwipe = function(index, galleryElement, disableAnimation, fromURL) {
-    var pswpElement = document.querySelectorAll('.pswp')[0],
+  var openPhotoSwipe = function (index, galleryElement, disableAnimation, fromURL) {
+    var pswpElement = document.querySelectorAll(".pswp")[0],
       gallery,
       options,
       items;
@@ -138,9 +138,9 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
       // Share buttons
       shareButtons: [
         {
-          id: 'download',
-          label: '保存图片',
-          url: '{{raw_image_url}}',
+          id: "download",
+          label: "保存图片",
+          url: "{{raw_image_url}}",
           download: true,
         },
       ],
@@ -149,11 +149,11 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
       fullscreenEl: false,
 
       // define gallery index (for URL)
-      galleryUID: galleryElement.getAttribute('data-pswp-uid'),
+      galleryUID: galleryElement.getAttribute("data-pswp-uid"),
 
-      getThumbBoundsFn: function(index) {
+      getThumbBoundsFn: function (index) {
         // See Options -> getThumbBoundsFn section of documentation for more info
-        var thumbnail = items[index].el.getElementsByTagName('img')[0], // find thumbnail
+        var thumbnail = items[index].el.getElementsByTagName("img")[0], // find thumbnail
           pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
           rect = thumbnail.getBoundingClientRect();
 
@@ -198,7 +198,7 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
   var galleryElements = document.querySelectorAll(gallerySelector);
 
   for (var i = 0, l = galleryElements.length; i < l; i++) {
-    galleryElements[i].setAttribute('data-pswp-uid', i + 1);
+    galleryElements[i].setAttribute("data-pswp-uid", i + 1);
     galleryElements[i].onclick = onThumbnailsClick;
   }
 

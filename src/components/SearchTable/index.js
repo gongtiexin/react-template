@@ -4,14 +4,14 @@
  * 2018/8/10           gongtiexin       通用搜索表格组件
  * */
 
-import React, { Component } from 'react';
-import { observer } from 'mobx-react';
-import { withRouter } from 'react-router-dom';
-import { upObject } from 'up-utils';
-import PropTypes from 'prop-types';
-import { Button, Col, Form, Input, Row, Table, Select, Cascader, DatePicker, Icon } from 'antd';
-import Pagination from '../Pagination';
-import './index.less';
+import React, { Component } from "react";
+import { observer } from "mobx-react";
+import { withRouter } from "react-router-dom";
+import { upObject } from "up-utils";
+import PropTypes from "prop-types";
+import { Button, Col, Form, Input, Row, Table, Select, Cascader, DatePicker, Icon } from "antd";
+import Pagination from "../Pagination";
+import "./index.less";
 
 const { Item: FormItem } = Form;
 const { Option: SelectOption } = Select;
@@ -19,16 +19,14 @@ const { RangePicker } = DatePicker;
 
 const formItemLatest = 3;
 
-const RefAndWithRouterAndForm = Wrapped => {
+const RefAndWithRouterAndForm = (Wrapped) => {
   const EnhancedForm = Form.create()(Wrapped);
 
   const WithRouter = withRouter(({ forwardRef, ...otherProps }) => (
     <EnhancedForm wrappedComponentRef={forwardRef} {...otherProps} />
   ));
 
-  const WithRouterAndRef = React.forwardRef((props, ref) => (
-    <WithRouter {...props} forwardRef={ref} />
-  ));
+  const WithRouterAndRef = React.forwardRef((props, ref) => <WithRouter {...props} forwardRef={ref} />);
   const name = Wrapped.displayName || Wrapped.name;
   WithRouterAndRef.displayName = `withRouterAndRef(${name})`;
   return WithRouterAndRef;
@@ -49,7 +47,7 @@ export default class SearchTable extends Component {
 
   static defaultProps = {
     fields: [],
-    callback: () => new Promise(resolve => setTimeout(resolve, 1000)),
+    callback: () => new Promise((resolve) => setTimeout(resolve, 1000)),
     expandChildren: null,
     form: {},
     history: {},
@@ -65,7 +63,7 @@ export default class SearchTable extends Component {
 
   componentWillUnmount() {}
 
-  handleSearch = e => {
+  handleSearch = (e) => {
     e.preventDefault();
     const {
       paginationProps: { pageSize },
@@ -112,48 +110,42 @@ export default class SearchTable extends Component {
       form: { getFieldDecorator },
     } = this.props;
     switch (type) {
-      case 'input': {
-        return (
-          <FormItem label={label}>{getFieldDecorator(key, options)(<Input {...props} />)}</FormItem>
-        );
+      case "input": {
+        return <FormItem label={label}>{getFieldDecorator(key, options)(<Input {...props} />)}</FormItem>;
       }
-      case 'select': {
+      case "select": {
         return (
           <FormItem label={label}>
             {getFieldDecorator(
               key,
-              options,
+              options
             )(
               <Select {...props}>
-                {items.map(item => (
+                {items.map((item) => (
                   <SelectOption key={item.key || item.value} value={item.value}>
                     {item.label}
                   </SelectOption>
                 ))}
-              </Select>,
+              </Select>
             )}
           </FormItem>
         );
       }
-      case 'datePicker': {
+      case "datePicker": {
         return (
           <FormItem>
             {getFieldDecorator(
               key,
-              options,
-            )(<DatePicker style={{ width: '100%' }} allowClear placeholder={label} {...props} />)}
+              options
+            )(<DatePicker style={{ width: "100%" }} allowClear placeholder={label} {...props} />)}
           </FormItem>
         );
       }
-      case 'rangePicker': {
+      case "rangePicker": {
         return <FormItem>{getFieldDecorator(key, options)(<RangePicker />)}</FormItem>;
       }
-      case 'cascader': {
-        return (
-          <FormItem>
-            {getFieldDecorator(key, options)(<Cascader placeholder={label} {...props} />)}
-          </FormItem>
-        );
+      case "cascader": {
+        return <FormItem>{getFieldDecorator(key, options)(<Cascader placeholder={label} {...props} />)}</FormItem>;
       }
       default:
         return null;
@@ -164,7 +156,7 @@ export default class SearchTable extends Component {
     const { fields } = this.props;
     const count = this.state.expand ? fields.length : formItemLatest;
     return fields.map((field, i) => (
-      <Col span={8} key={field.key} style={{ display: i < count ? 'block' : 'none' }}>
+      <Col span={8} key={field.key} style={{ display: i < count ? "block" : "none" }}>
         {this.getFormItemByType(field)}
       </Col>
     ));
@@ -185,7 +177,7 @@ export default class SearchTable extends Component {
           <Form className="ant-advanced-search-form" onSubmit={this.handleSearch}>
             <Row gutter={24}>{this.renderFormItems()}</Row>
             <Row>
-              <Col span={24} style={{ textAlign: 'right' }}>
+              <Col span={24} style={{ textAlign: "right" }}>
                 <Button type="primary" htmlType="submit">
                   Search
                 </Button>
@@ -193,7 +185,7 @@ export default class SearchTable extends Component {
                   Clear
                 </Button>
                 <a style={{ marginLeft: 8, fontSize: 12 }} onClick={this.toggle}>
-                  展开 <Icon type={this.state.expand ? 'up' : 'down'} />
+                  展开 <Icon type={this.state.expand ? "up" : "down"} />
                 </a>
               </Col>
             </Row>
