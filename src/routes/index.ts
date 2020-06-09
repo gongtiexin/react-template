@@ -7,12 +7,18 @@
 import Loadable from "../components/Loadable";
 
 const routes: any[] = [
-  // {
-  //   path: '/',
-  //   component: Loadable({
-  //     loader: () => import(/* webpackChunkName: "route-root" */ '../pages/App'),
-  //   }),
-  // },
+  {
+    path: "/home",
+    component: Loadable({
+      loader: () => import(/* webpackChunkName: "route-root" */ "@views/Home"),
+    }),
+  },
+  {
+    path: "/document/manage",
+    component: Loadable({
+      loader: () => import(/* webpackChunkName: "route-root" */ "@views/Document"),
+    }),
+  },
 ];
 
 const breadcrumbNameMap = {

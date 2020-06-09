@@ -4,11 +4,11 @@
  * 18-3-22           gongtiexin       mobx统一注册store
  * */
 import { store, hotRehydrate, rehydrate } from "rfx-core";
-import GlobalStore from "./GlobalStore";
+import AuthStore from "./AuthStore";
 import { isProduction } from "@utils/constants";
 
 store.setup({
-  globalStore: GlobalStore,
+  authStore: AuthStore,
 });
 
 // mobx hmr

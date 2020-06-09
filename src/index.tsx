@@ -16,18 +16,18 @@ import Loadable from "@components/Loadable";
 import { isProduction } from "@utils/constants";
 import "@stores";
 import "normalize.css";
-import "./global.less";
+import "@assets/style/global.less";
 
 /**
  * 代码拆分和按需加载
  */
 const LoadableApp = Loadable({
-  loader: () => import(/* webpackChunkName: "route-root" */ "./views/App"),
+  loader: () => import(/* webpackChunkName: "route-root" */ "@views/App"),
 });
 
-// const LoadableLogin = Loadable({
-//   loader: () => import(/* webpackChunkName: "route-login" */ './components/Login'),
-// });
+const LoadableLogin = Loadable({
+  loader: () => import(/* webpackChunkName: "route-login" */ "@components/Login"),
+});
 
 const store = rehydrate();
 
@@ -37,7 +37,7 @@ const renderApp = () => {
       <ConfigProvider locale={zhCN}>
         <Router>
           <Switch>
-            {/*<Route path="/login" component={LoadableLogin} exact />*/}
+            <Route path="/login" component={LoadableLogin} exact />
             <Route path="/" component={LoadableApp} />
           </Switch>
         </Router>

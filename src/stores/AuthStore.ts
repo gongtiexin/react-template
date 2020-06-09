@@ -1,37 +1,32 @@
-/**
- * Date              Author           Des
- *----------------------------------------------
- * 18-3-22           gongtiexin       global
- * */
-
 import { action, observable } from "mobx";
 import request from "../utils/request";
 
-interface ListDTO {
-  id: string;
+interface AuthBO {
+  id?: string;
+  username?: string;
 }
 
-export default class GlobalStore {
+export default class AuthStore {
   /**
    * *************************** observable ***************************
    * */
 
   @observable
-  list: Array<ListDTO> = [];
+  auth: AuthBO = { id: "admin", username: "admin" };
 
   /**
    * ****************************** ajax ******************************
    * */
 
-  /**
-   * 获取数据
-   * */
-  getList = async (params: { id: string }): Promise<Array<ListDTO>> => {
-    const { data } = await request({
-      axiosConfig: { method: "GET", url: "/api/list", params },
-    });
-    this.setList(data);
-    return data;
+  login = async (params: { username: string; password: string }): Promise<AuthBO> => {
+    // const { data } = await request({
+    //   axiosConfig: { method: "GET", url: "/api/list", params },
+    // });
+    // this.setAuth(data);
+    // return data;
+    const auth = { id: "admin", username: "admin" };
+    this.setAuth(auth);
+    return Promise.resolve(auth);
   };
 
   /**
@@ -39,8 +34,8 @@ export default class GlobalStore {
    * */
 
   @action
-  setList(data = []): void {
-    this.list = data;
+  setAuth(data: AuthBO = {}): void {
+    this.auth = data;
   }
 
   /**

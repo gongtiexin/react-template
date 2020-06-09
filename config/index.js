@@ -22,6 +22,7 @@ const utilsPath = path.resolve(__dirname, "../src/utils");
 const assetsPath = path.resolve(__dirname, "../src/assets");
 const storesPath = path.resolve(__dirname, "../src/stores");
 const routesPath = path.resolve(__dirname, "../src/routes");
+const enumsPath = path.resolve(__dirname, "../src/enums");
 
 module.exports = {
   webpack: {
@@ -37,6 +38,7 @@ module.exports = {
           "@assets": assetsPath,
           "@stores": storesPath,
           "@routes": routesPath,
+          "@enums": enumsPath,
         },
       },
       modifyVars: {
@@ -46,7 +48,7 @@ module.exports = {
         HtmlWebpackPlugin: {
           filename: "index.html",
           template: indexHtmlPath,
-          title: "react-template",
+          title: "文档管理系统",
         },
       },
     },

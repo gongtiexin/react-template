@@ -1,19 +1,46 @@
-#app {
-  .a {
-    width: 200px;
-    height: 200px;
-    background-color: #ff0;
-    margin: 20px;
-    padding: 20px;
-    position: relative;
+@import ".././../assets/style/constains";
+.dm-app {
+  width: 100%;
+  height: 100vh;
+  background-color: @BASE_BACKGROUND_COLOR;
+
+  .ant-layout-header {
+    position: fixed;
+    z-index: 99;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background: @CONTENT_COLOR;
+    height: 52px;
+    line-height: 52px;
+
+    .logo {
+      flex: 0 0 120px;
+      height: 31px;
+      margin: 16px 24px 16px 0;
+      color: @BASE_FONT_COLOR;
+      line-height: 31px;
+      font-size: 16px;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .ant-menu {
+      flex: 1 0 auto;
+    }
+
+    .account-name {
+      color: @BASE_FONT_COLOR;
+    }
   }
 
-  .b {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    background-color: #f00;
-    margin: 20px;
-    padding: 20px;
+  .site-layout {
+    margin: 52px 0 0 0;
+    height: 100%;
+    //background: @CONTENT_COLOR;
+  }
+
+  .ant-layout-footer {
+    background-color: @BASE_BACKGROUND_COLOR;
   }
 }
