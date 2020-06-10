@@ -1,44 +1,22 @@
-/**
- * Date              Author           Des
- *----------------------------------------------
- * 18-3-22           gongtiexin       react-loadable
- * */
-
-import React from "react";
-import ReactLoadable, { LoadingComponentProps } from "react-loadable";
+import React, { Suspense, lazy } from "react";
+import ErrorBoundary from "@components/ErrorBoundary";
 import "./index.less";
 
-const Loading = ({ error, timedOut, pastDelay }: LoadingComponentProps) => {
-  if (error) {
-    return (
-      <div className="loadable-box">
-        <p>Error!</p>
-      </div>
-    );
-  }
-  if (timedOut) {
-    return (
-      <div className="loadable-box">
-        <p>Taking a long time...</p>
-      </div>
-    );
-  }
-  if (pastDelay) {
-    return (
-      <div className="loadable-box">
-        <p>Loading...</p>
-      </div>
-    );
-  }
-  return null;
-};
+const Loading = () => (
+  <div className="loadable-box">
+    <p>Loading...</p>
+  </div>
+);
 
-const Loadable = (opts: { loader: () => Promise<any> | any }) =>
-  ReactLoadable({
-    loading: Loading,
-    delay: 300,
-    timeout: 10000,
-    ...opts,
-  });
+const Loadable = (props: { loader: () => Promise<any> | any }) => () => {
+  const LoadableComponent = lazy(props.loader);
+  return (
+    <ErrorBoundary>
+      <Suspense fallback={<Loading />}>
+        <LoadableComponent />
+      </Suspense>
+    </ErrorBoundary>
+  );
+};
 
 export default Loadable;

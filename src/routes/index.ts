@@ -10,13 +10,13 @@ const routes: any[] = [
   {
     path: "/home",
     component: Loadable({
-      loader: () => import(/* webpackChunkName: "route-root" */ "@views/Home"),
+      loader: () => import(/* webpackChunkName: "route-home" */ "@views/Home"),
     }),
   },
   {
     path: "/document/manage",
     component: Loadable({
-      loader: () => import(/* webpackChunkName: "route-root" */ "@views/Document"),
+      loader: () => import(/* webpackChunkName: "route-document-manage" */ "@views/Document"),
     }),
   },
 ];

@@ -23,6 +23,7 @@ const assetsPath = path.resolve(__dirname, "../src/assets");
 const storesPath = path.resolve(__dirname, "../src/stores");
 const routesPath = path.resolve(__dirname, "../src/routes");
 const enumsPath = path.resolve(__dirname, "../src/enums");
+const declarationsPath = path.resolve(__dirname, "../src/declarations");
 
 module.exports = {
   webpack: {
@@ -39,6 +40,7 @@ module.exports = {
           "@stores": storesPath,
           "@routes": routesPath,
           "@enums": enumsPath,
+          "@declarations": declarationsPath,
         },
       },
       modifyVars: {

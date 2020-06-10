@@ -1,20 +1,10 @@
 import React, { useState } from "react";
 import { inject, observer } from "mobx-react";
-import { Input, Col, Row } from "antd";
-import { FileWordOutlined, FileExcelOutlined, FilePdfOutlined, FileImageOutlined } from "@ant-design/icons";
-import { PrivateRoute, PrivateRouteProps } from "@routes/feature";
-import Loadable from "@components/Loadable";
+import { Col, Input, Row } from "antd";
+import { FileExcelOutlined, FileImageOutlined, FilePdfOutlined, FileWordOutlined } from "@ant-design/icons";
 import "./index.less";
 
 const { Search } = Input;
-
-const LoadableMismatch = Loadable({
-  loader: () => import(/* webpackChunkName: "route-mismatch" */ "@components/Mismatch"),
-});
-
-const renderRoute = ({ path, component, isAuthenticated }: PrivateRouteProps) => (
-  <PrivateRoute key={path} path={path} component={component} isAuthenticated={isAuthenticated} exact />
-);
 
 const Home = inject(({ store: { authStore } }) => ({ authStore }))(
   observer((props: any) => {

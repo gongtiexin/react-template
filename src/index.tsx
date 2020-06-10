@@ -8,6 +8,7 @@ import React from "react";
 import { render } from "react-dom";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "mobx-react";
+import "mobx-react-lite/batchingOptOut";
 import { hotRehydrate, rehydrate } from "rfx-core";
 import { ConfigProvider } from "antd";
 import zhCN from "antd/lib/locale-provider/zh_CN";
@@ -22,7 +23,7 @@ import "@assets/style/global.less";
  * 代码拆分和按需加载
  */
 const LoadableApp = Loadable({
-  loader: () => import(/* webpackChunkName: "route-root" */ "@views/App"),
+  loader: () => import(/* webpackChunkName: "route-app" */ "@views/App"),
 });
 
 const LoadableLogin = Loadable({

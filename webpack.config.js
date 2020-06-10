@@ -25,8 +25,8 @@ module.exports = {
     disableHostCheck: true,
     quiet: true,
     proxy: {
-      "/api": {
-        target: `https://unidemo.dcloud.net.cn`,
+      "/redpeak": {
+        target: `http://192.168.1.221:26181/`,
         changeOrigin: true,
       },
     },

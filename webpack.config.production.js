@@ -31,7 +31,7 @@ const webpackConfig = {
   },
   output: {
     path: config.path.distPath,
-    publicPath: config.webpack.publicPath,
+    publicPath: config.webpack.common.publicPath,
     filename: "assets/[name].[chunkhash].js",
     chunkFilename: "assets/[name].[chunkhash].chunk.js",
   },

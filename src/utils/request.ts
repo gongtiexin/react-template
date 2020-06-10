@@ -124,7 +124,7 @@ const request = ({ axiosConfig, notificationConfig = {} }: RequestConfig) => {
       if (success) {
         notification.success(success);
       }
-      return Promise.resolve(response);
+      return Promise.resolve(response.data);
     },
     ({ response }) => {
       if (error) {

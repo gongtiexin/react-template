@@ -5,10 +5,12 @@
  * */
 import { store, hotRehydrate, rehydrate } from "rfx-core";
 import AuthStore from "./AuthStore";
+import DocumentStore from "./DocumentStore";
 import { isProduction } from "@utils/constants";
 
 store.setup({
   authStore: AuthStore,
+  documentStore: DocumentStore,
 });
 
 // mobx hmr

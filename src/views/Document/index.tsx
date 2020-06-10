@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { inject, observer } from "mobx-react";
-import { Tree, Table, Space, Tag, Button, Input, Pagination } from "antd";
+import { Button, Input, Space, Tree } from "antd";
+import CommonTable from "@components/CommonTable";
+import { DocumentStore } from "@declarations/document";
 import "./index.less";
 
 const { DirectoryTree } = Tree;
@@ -35,10 +37,9 @@ const onExpand = () => {
 
 const columns = [
   {
-    title: "Name",
-    dataIndex: "name",
-    key: "name",
-    render: (text: string) => <a>{text}</a>,
+    title: "id",
+    dataIndex: "id",
+    key: "id",
   },
   {
     title: "Age",
@@ -51,59 +52,16 @@ const columns = [
     key: "address",
   },
   {
-    title: "Tags",
-    key: "tags",
-    dataIndex: "tags",
-    render: (tags: Array<string>) => (
-      <>
-        {tags.map((tag) => {
-          let color = tag.length > 5 ? "geekblue" : "green";
-          if (tag === "loser") {
-            color = "volcano";
-          }
-          return (
-            <Tag color={color} key={tag}>
-              {tag.toUpperCase()}
-            </Tag>
-          );
-        })}
-      </>
-    ),
-  },
-  {
     title: "操作",
     key: "action",
   },
 ];
 
-const data = [
-  {
-    key: "1",
-    name: "John Brown",
-    age: 32,
-    address: "New York No. 1 Lake Park",
-    tags: ["nice", "developer"],
-  },
-  {
-    key: "2",
-    name: "Jim Green",
-    age: 42,
-    address: "London No. 1 Lake Park",
-    tags: ["loser"],
-  },
-  {
-    key: "3",
-    name: "Joe Black",
-    age: 32,
-    address: "Sidney No. 1 Lake Park",
-    tags: ["cool", "teacher"],
-  },
-];
+const Home = inject(({ store: { documentStore } }) => ({ documentStore }))(
+  observer((props: { documentStore: DocumentStore }) => {
+    const { documentStore } = props;
+    const [params, setParams] = useState({});
 
-const showTotal = (total: number) => `共 ${total} 条记录`;
-
-const Home = inject(({ store: { authStore } }) => ({ authStore }))(
-  observer((props: any) => {
     return (
       <div className="dm-document-manage">
         <div className="left">
@@ -132,21 +90,23 @@ const Home = inject(({ store: { authStore } }) => ({ authStore }))(
             </div>
             <div>
               <Space>
-                <Button size="small" type="primary">
+                <Button
+                  size="small"
+                  type="primary"
+                  onClick={() => {
+                    setParams({ name: 1 });
+                  }}
+                >
                   新增
                 </Button>
                 <Button size="small">删除</Button>
               </Space>
             </div>
           </div>
-          <Table pagination={false} size="small" columns={columns} dataSource={data} />
-          <Pagination
-            style={{ float: "right", marginTop: 10 }}
-            size="small"
-            total={50}
-            showTotal={showTotal}
-            showSizeChanger
-            showQuickJumper
+          <CommonTable
+            params={params}
+            fetch={documentStore.getDocumentPage}
+            tableProps={{ pagination: false, size: "small", columns }}
           />
         </div>
       </div>
