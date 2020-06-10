@@ -53,20 +53,21 @@ const CommonTable = (props: CommonTable, ref?: React.Ref<CommonTableRef>) => {
   return (
     <div className="common-table">
       <Table rowKey="id" {...tableProps} dataSource={data} />
-      <Pagination
-        style={{ float: "right", marginTop: 10 }}
-        size="small"
-        current={page}
-        pageSize={size}
-        total={total}
-        showTotal={showTotal}
-        showSizeChanger
-        showQuickJumper
-        {...paginationProps}
-        onChange={handlePageSizeChange}
-        onShowSizeChange={handlePageSizeChange}
-        pageSizeOptions={["2"]}
-      />
+      <div className="common-table-footer">
+        <Pagination
+          size="small"
+          current={page}
+          pageSize={size}
+          total={total}
+          showTotal={showTotal}
+          showSizeChanger
+          showQuickJumper
+          {...paginationProps}
+          onChange={handlePageSizeChange}
+          onShowSizeChange={handlePageSizeChange}
+          pageSizeOptions={["2"]}
+        />
+      </div>
     </div>
   );
 };
