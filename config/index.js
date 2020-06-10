@@ -14,6 +14,7 @@ const distPath = path.resolve(__dirname, "../dist");
 const staticPath = path.resolve(__dirname, "../static");
 const distStaticPath = path.resolve(__dirname, "../dist/static");
 const nodeModulesPath = path.resolve(__dirname, "../node_modules");
+const lessVariablesPath = path.resolve(__dirname, "../src/assets/style/variables/*.less");
 
 // alias
 const componentsPath = path.resolve(__dirname, "../src/components");
@@ -88,6 +89,7 @@ module.exports = {
     staticPath,
     distStaticPath,
     nodeModulesPath,
+    lessVariablesPath,
   },
   mock: true,
 };

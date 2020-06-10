@@ -79,6 +79,13 @@ const webpackConfig = {
               },
             },
           },
+          {
+            loader: "style-resources-loader",
+            options: {
+              patterns: config.path.lessVariablesPath,
+              injector: "append",
+            },
+          },
         ],
       },
       // 处理图片(file-loader来处理也可以，url-loader更适合图片)
