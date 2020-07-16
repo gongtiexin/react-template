@@ -109,7 +109,7 @@
     "enquire.js": "^2.1.6",
     "http-status-codes": "^1.4.0",
     "lint-staged": "^10.2.6",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "mobx": "^5.15.4",
     "mobx-react": "^6.2.2",
     "mockjs": "^1.1.0",
