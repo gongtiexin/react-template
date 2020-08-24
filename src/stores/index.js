@@ -1,18 +1,22 @@
-/**
- * Date              Author           Des
- *----------------------------------------------
- * 18-3-22           gongtiexin       mobx统一注册store
- * */
-import { store, hotRehydrate, rehydrate } from "rfx-core";
-import GlobalStore from "./GlobalStore";
-import { isProduction } from "../utils/constants";
+import { useContext } from "react";
+import { MobXProviderContext } from "mobx-react";
+import ExampleStore from "@src/stores/example";
+// import { store, hotRehydrate, rehydrate } from "rfx-core";
+// import { isProduction } from "@src/utils";
 
-store.setup({
-  globalStore: GlobalStore,
-});
+// store.setup({
+//   example: ExampleStore,
+// });
 
 // mobx hmr
-const stores = rehydrate();
-const hmrStores = isProduction ? stores : hotRehydrate();
+// const stores = rehydrate();
+// const hmrStores = isProduction() ? stores : hotRehydrate();
 
-export default hmrStores;
+const stores = {
+  example: new ExampleStore(),
+};
+
+export const useStores = (module) =>
+  useContext(MobXProviderContext).store?.[module] || {};
+
+export default stores;

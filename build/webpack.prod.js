@@ -1,13 +1,6 @@
-/**
- * Date              Author           Des
- *----------------------------------------------
- * 18-3-22           gongtiexin       webpack生产环境配置
- * */
-
 const webpack = require("webpack");
 const postcssPresetEnv = require("postcss-preset-env");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const InlineManifestWebpackPlugin = require("inline-manifest-webpack-plugin");
+// const InlineManifestWebpackPlugin = require("inline-manifest-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
@@ -15,32 +8,18 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 // const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
-const AntdDayjsWebpackPlugin = require("antd-dayjs-webpack-plugin");
+const { merge } = require("webpack-merge");
+const common = require("./webpack.common.js");
+const path = require("./path");
 
-const config = require("./config");
-
-// 测量各个插件和loader所花费的时间
-// const smp = new SpeedMeasurePlugin();
-
-const webpackConfig = {
+module.exports = merge(common, {
   mode: "production",
-  resolve: config.webpack.common.resolve,
-  entry: {
-    app: config.path.entryPath,
-  },
   output: {
-    path: config.path.distPath,
-    publicPath: config.webpack.common.publicPath,
     filename: "assets/[name].[chunkhash].js",
     chunkFilename: "assets/[name].[chunkhash].chunk.js",
   },
   module: {
     rules: [
-      {
-        test: /\.js$/,
-        use: ["thread-loader", "babel-loader"],
-        include: config.path.srcPath,
-      },
       {
         test: /\.less|css$/,
         use: [
@@ -57,40 +36,18 @@ const webpackConfig = {
             loader: "less-loader",
             options: {
               lessOptions: {
-                // 覆盖less中的全局变量
-                modifyVars: config.webpack.common.modifyVars,
                 javascriptEnabled: true,
               },
             },
           },
+          {
+            loader: "style-resources-loader",
+            options: {
+              patterns: path.lessVariables,
+              injector: "append",
+            },
+          },
         ],
-      },
-      // 处理图片(file-loader来处理也可以，url-loader更适合图片)
-      {
-        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        loader: "url-loader",
-        options: {
-          limit: 10000,
-          name: "static/assets/images/[name].[hash:7].[ext]",
-        },
-      },
-      // 处理多媒体文件
-      {
-        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
-        loader: "url-loader",
-        options: {
-          limit: 10000,
-          name: "static/assets/media/[name].[hash:7].[ext]",
-        },
-      },
-      // 处理字体文件
-      {
-        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: "url-loader",
-        options: {
-          limit: 10000,
-          name: "static/assets/fonts/[name].[hash:7].[ext]",
-        },
       },
     ],
   },
@@ -145,15 +102,16 @@ const webpackConfig = {
     }),
     // 使得哈希基于模块的相对路径, 生成一个四个字符的字符串作为模块ID
     new webpack.HashedModuleIdsPlugin(),
-    // html模板
-    new HtmlWebpackPlugin(config.webpack.common.plugins.HtmlWebpackPlugin),
     // new InlineManifestWebpackPlugin("runtime"),
     // 拷贝静态资源
-    new CopyWebpackPlugin(config.webpack.build.plugins.CopyWebpackPlugin),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.staticResources,
+          to: path.outputStaticResources,
+        },
+      ],
+    }),
     new CleanWebpackPlugin(),
-    new AntdDayjsWebpackPlugin(),
   ],
-};
-
-// module.exports = smp.wrap(webpackConfig);
-module.exports = webpackConfig;
+});

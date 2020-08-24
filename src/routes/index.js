@@ -1,22 +1,13 @@
-/**
- * Date              Author           Des
- *----------------------------------------------
- * 18-3-22           gongtiexin       配置路由
- * */
-
-import Loadable from "../components/Loadable";
+import Loadable from "@src/components/Loadable";
 
 const routes = [
-  // {
-  //   path: '/',
-  //   component: Loadable({
-  //     loader: () => import(/* webpackChunkName: "route-root" */ '../pages/App'),
-  //   }),
-  // },
+  {
+    path: "/",
+    component: Loadable({
+      loader: () =>
+        import(/* webpackChunkName: "route-root" */ "../views/Example"),
+    }),
+  },
 ];
 
-const breadcrumbNameMap = {
-  "/route": "label",
-};
-
-export { routes, breadcrumbNameMap };
+export default routes;
