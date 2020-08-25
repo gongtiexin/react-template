@@ -1,6 +1,6 @@
-import { useContext } from "react";
-import { MobXProviderContext } from "mobx-react";
-import ExampleStore from "@src/stores/example";
+import { useContext } from 'react';
+import { MobXProviderContext } from 'mobx-react';
+import ExampleStore from '@src/stores/example';
 // import { store, hotRehydrate, rehydrate } from "rfx-core";
 // import { isProduction } from "@src/utils";
 
@@ -13,10 +13,9 @@ import ExampleStore from "@src/stores/example";
 // const hmrStores = isProduction() ? stores : hotRehydrate();
 
 const stores = {
-  example: new ExampleStore(),
+    example: new ExampleStore()
 };
 
-export const useStores = (module) =>
-  useContext(MobXProviderContext).store?.[module] || {};
+export const useStores = (module) => useContext(MobXProviderContext).store?.[module] || {};
 
 export default stores;

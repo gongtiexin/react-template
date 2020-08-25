@@ -2110,7 +2110,7 @@ axobject-query@^2.1.2:
 
 babel-eslint@^10.1.0:
   version "10.1.0"
-  resolved "https://registry.npm.taobao.org/babel-eslint/download/babel-eslint-10.1.0.tgz?cache=0&sync_timestamp=1582676223200&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fbabel-eslint%2Fdownload%2Fbabel-eslint-10.1.0.tgz#6968e568a910b78fb3779cdd8b6ac2f479943232"
+  resolved "https://registry.npm.taobao.org/babel-eslint/download/babel-eslint-10.1.0.tgz#6968e568a910b78fb3779cdd8b6ac2f479943232"
   integrity sha1-aWjlaKkQt4+zd5zdi2rC9HmUMjI=
   dependencies:
     "@babel/code-frame" "^7.0.0"
@@ -3929,6 +3929,11 @@ eslint-config-airbnb@^18.2.0:
     eslint-config-airbnb-base "^14.2.0"
     object.assign "^4.1.0"
     object.entries "^1.1.2"
+
+eslint-config-alloy@^3.7.4:
+  version "3.7.4"
+  resolved "https://registry.npm.taobao.org/eslint-config-alloy/download/eslint-config-alloy-3.7.4.tgz#bb61fe25c9aa939029a3aa36302d8e22762d2fca"
+  integrity sha1-u2H+Jcmqk5Apo6o2MC2OInYtL8o=
 
 eslint-config-prettier@^6.11.0:
   version "6.11.0"

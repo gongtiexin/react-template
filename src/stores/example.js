@@ -1,11 +1,11 @@
-import { action, observable } from "mobx";
+import { action, observable } from 'mobx';
 
 export default class ExampleStore {
-  @observable
-  msg = "";
+    @observable
+    msg = '';
 
-  @action
-  setMsg(data) {
-    this.msg = data;
-  }
+    @action
+    setMsg(data) {
+        this.msg = data;
+    }
 }

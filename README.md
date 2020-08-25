@@ -26,7 +26,7 @@ yarn
 
 👤 **tiexin.gong <tiexin.gong@qq.com>**
 
-- Github: [@gongtiexin](https://github.com/gongtiexin)
+-   Github: [@gongtiexin](https://github.com/gongtiexin)
 
 ## 🤝 Contributing
 
