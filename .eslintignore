@@ -1,6 +1,6 @@
 # Created by .ignore support plugin (hsz.mobi)
 
-/dist
-/node_modules
-/static
-/src/assets
+dist/
+node_modules/
+static/
+src/assets/

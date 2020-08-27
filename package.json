@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "A frontend project template for React.js",
     "author": "tiexin.gong <tiexin.gong@qq.com>",
-    "private": true,
+    "license": "MIT",
     "homepage": "https://github.com/gongtiexin/react-template#readme",
     "repository": {
         "type": "git",
@@ -11,6 +11,10 @@
     },
     "bugs": {
         "url": "https://github.com/gongtiexin/react-template.git/issues"
+    },
+    "engines": {
+        "npm": ">=6.11.3",
+        "node": ">=12.10.0"
     },
     "scripts": {
         "dev": "webpack-dev-server --config build/webpack.dev.js",
