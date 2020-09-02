@@ -14,6 +14,14 @@ module.exports = function config(api) {
         ['@babel/plugin-proposal-decorators', { legacy: true }],
         ['@babel/plugin-proposal-class-properties', { loose: true }],
         [
+            'react-intl',
+            {
+                idInterpolationPattern: '[sha512:contenthash:base64:6]',
+                extractFromFormatMessageCall: true,
+                ast: true
+            }
+        ],
+        [
             'import',
             {
                 libraryName: 'antd',
