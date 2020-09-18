@@ -22,8 +22,8 @@
 
 ## Prerequisites
 
--   npm >=6.11.3
--   node >=12.10.0
+- npm >=6.11.3
+- node >=12.10.0
 
 ## Install
 
@@ -35,7 +35,7 @@ yarn install
 
 👤 **tiexin.gong <tiexin.gong@qq.com>**
 
--   Github: [@gongtiexin](https://github.com/gongtiexin)
+- Github: [@gongtiexin](https://github.com/gongtiexin)
 
 ## 🤝 Contributing
 

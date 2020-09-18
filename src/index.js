@@ -12,9 +12,10 @@ import IntlProvider from '@src/components/IntlProvider';
 import Loadable from '@src/components/Loadable';
 import 'normalize.css';
 import '@src/assets/styles/global.less';
+import '@src/utils/exercise';
 
 const LoadableApp = Loadable({
-    loader: () => import(/* webpackChunkName: "route-root" */ './views/App')
+  loader: () => import(/* webpackChunkName: "route-root" */ './views/App'),
 });
 
 // const LoadableLogin = Loadable({
@@ -23,28 +24,28 @@ const LoadableApp = Loadable({
 // });
 
 const renderApp = () => {
-    render(
-        <Provider store={store}>
-            <IntlProvider>
-                <ConfigProvider locale={zhCN}>
-                    <Router>
-                        <Switch>
-                            {/*<Route path="/login" component={LoadableLogin} exact />*/}
-                            <Route path="/" component={LoadableApp} />
-                        </Switch>
-                    </Router>
-                </ConfigProvider>
-            </IntlProvider>
-        </Provider>,
-        document.getElementById('root')
-    );
+  render(
+    <Provider store={store}>
+      <IntlProvider>
+        <ConfigProvider locale={zhCN}>
+          <Router>
+            <Switch>
+              {/*<Route path="/login" component={LoadableLogin} exact />*/}
+              <Route path="/" component={LoadableApp} />
+            </Switch>
+          </Router>
+        </ConfigProvider>
+      </IntlProvider>
+    </Provider>,
+    document.getElementById('root')
+  );
 };
 
 function run() {
-    renderApp();
-    if (module.hot) {
-        module.hot.accept(renderApp);
-    }
+  renderApp();
+  if (module.hot) {
+    module.hot.accept(renderApp);
+  }
 }
 
 run();

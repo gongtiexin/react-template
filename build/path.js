@@ -12,14 +12,14 @@ const nodeModules = path.resolve(__dirname, '../node_modules');
 const lessVariables = path.resolve(__dirname, '../src/assets/style/variables.less');
 
 module.exports = {
-    root,
-    entry,
-    output,
-    template,
-    src,
-    mock,
-    staticResources,
-    outputStaticResources,
-    nodeModules,
-    lessVariables
+  root,
+  entry,
+  output,
+  template,
+  src,
+  mock,
+  staticResources,
+  outputStaticResources,
+  nodeModules,
+  lessVariables,
 };

@@ -2,7 +2,7 @@ const exampleProxy = require('./example');
 const delay = require('mocker-api/lib/delay');
 
 const proxy = {
-    ...exampleProxy
+  ...exampleProxy,
 };
 
 const MOCK_ENABLE = true;
