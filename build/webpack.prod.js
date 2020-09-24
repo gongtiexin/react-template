@@ -52,9 +52,14 @@ module.exports = merge(common, {
     ],
   },
   optimization: {
+    minimize: true,
     minimizer: [
       // 用于优化js文件
-      new TerserPlugin(),
+      new TerserPlugin({
+        terserOptions: {
+          compress: { drop_console: true },
+        },
+      }),
       // 用于优化css文件
       new OptimizeCSSAssetsPlugin({
         assetNameRegExp: /\.css$/g,
