@@ -28,8 +28,16 @@ module.exports = merge(common, {
           {
             loader: 'postcss-loader',
             options: {
-              ident: 'postcss',
-              plugins: () => [postcssPresetEnv(/* pluginOptions */)],
+              postcssOptions: {
+                plugins: [
+                  [
+                    'postcss-preset-env',
+                    {
+                      // Options
+                    },
+                  ],
+                ],
+              },
             },
           },
           {
