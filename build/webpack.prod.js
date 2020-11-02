@@ -1,6 +1,4 @@
 const webpack = require('webpack');
-const postcssPresetEnv = require('postcss-preset-env');
-// const InlineManifestWebpackPlugin = require("inline-manifest-webpack-plugin");
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
