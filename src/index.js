@@ -3,13 +3,13 @@ import 'regenerator-runtime/runtime';
 import React from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import StoreProvider from '@src/components/StoreProvider';
 import store from '@src/store';
+import IntlProvider from '@src/components/IntlProvider';
+import Loadable from '@src/components/Loadable';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 import 'dayjs/locale/zh-cn';
-import IntlProvider from '@src/components/IntlProvider';
-import Loadable from '@src/components/Loadable';
 import 'normalize.css';
 import '@src/assets/styles/global.less';
 import '@src/utils/exercise';
@@ -25,7 +25,7 @@ const LoadableApp = Loadable({
 
 const renderApp = () => {
   render(
-    <Provider store={store}>
+    <StoreProvider value={store}>
       <IntlProvider>
         <ConfigProvider locale={zhCN}>
           <Router>
@@ -36,7 +36,7 @@ const renderApp = () => {
           </Router>
         </ConfigProvider>
       </IntlProvider>
-    </Provider>,
+    </StoreProvider>,
     document.getElementById('root')
   );
 };

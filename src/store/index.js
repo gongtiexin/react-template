@@ -1,8 +1,4 @@
-import { init } from '@rematch/core';
-import * as models from './models';
+import langStore from '@src/store/lang';
+import exampleStoreList from '@src/store/example';
 
-const store = init({
-  models,
-});
-
-export default store;
+export default [langStore, ...exampleStoreList];

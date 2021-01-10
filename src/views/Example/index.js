@@ -1,98 +1,72 @@
-// import React, { useEffect, useState, useRef } from 'react';
-// import { connect } from 'react-redux';
-// import { FormattedMessage } from 'react-intl';
-// import { Button, Space } from 'antd';
-// import { LANGE_ENUM } from '@src/constants/lang';
-// import './index.less';
-//
-// const mapState = (state) => {
-//   return {
-//     count: state.count,
-//   };
-// };
-// const mapDispatch = (dispatch) => ({
-//   increment: () => dispatch.count.increment(1),
-//   incrementAsync: () => dispatch.count.incrementAsync(1),
-//   setLang: (lang) => dispatch.lang.setLang(lang),
-// });
-//
-// const Example = (props) => {
-//   const { count, increment, incrementAsync, setLang } = props;
-//   const [count1, setCount] = useState(0);
-//   const timer = useRef(count1);
-//
-//   // useEffect(() => {
-//   //   setInterval(() => {
-//   //     setCount((count) => count + 1);
-//   //   }, 1000);
-//   // }, []);
-//
-//   useEffect(() => {
-//     setInterval(() => {
-//       setCount(timer.current++);
-//     }, 1000);
-//   }, []);
-//
-//   return (
-//     <Space className="example-wrapper">
-//       {count1}
-//       <FormattedMessage id="myMessage" values={{ count }} />
-//       <Button onClick={increment}>increment</Button>
-//       <Button onClick={incrementAsync}>incrementAsync</Button>
-//       <Button onClick={() => setLang(LANGE_ENUM.ZH)}>zh</Button>
-//       <Button onClick={() => setLang(LANGE_ENUM.EN)}>en</Button>
-//     </Space>
-//   );
-// };
-//
-// export default React.memo(connect(mapState, mapDispatch)(Example));
-
-import React, { useCallback, useEffect, useState, memo, useMemo } from 'react';
+import React from 'react';
 import { Button, Space } from 'antd';
+import { FormattedMessage } from 'react-intl';
+import { LANGE_ENUM } from '@src/constants/lang';
+import langStore from '@src/store/lang';
+import exampleCountStore from '@src/store/example/count';
 
-const Child = memo(({ fn }) => {
-  useEffect(() => {
-    console.log('render Child');
-    try {
-      fn();
-    } catch (e) {
-      console.log(e);
-    }
-  });
-
+const SwitchLang = () => {
+  const { setLang } = langStore.useStore((m) => []);
   return (
-    <Space>
-      <h1>Child</h1>
-    </Space>
-  );
-});
-
-const Parent = () => {
-  const [count, setCount] = useState(0);
-  const [count1, setCount1] = useState(0);
-  const fn = useCallback(() => console.log('render'), []);
-
-  useEffect(() => {
-    console.log('render Parent');
-  });
-
-  const badFn = () => {
-    console.log('bad');
-    return count1;
-  };
-
-  let bad = useMemo(() => badFn(), [count1]);
-
-  return (
-    <Space>
-      <h1>
-        Parent {count} {bad}
-      </h1>
-      <Button onClick={() => setCount((preCount) => preCount + 1)}>add</Button>
-      <Button onClick={() => setCount1((preCount) => preCount + 1)}>add1</Button>
-      <Child fn={fn} />
+    <Space className="example-wrapper">
+      <Button onClick={() => setLang(LANGE_ENUM.ZH)}>zh</Button>
+      <Button onClick={() => setLang(LANGE_ENUM.EN)}>en</Button>
     </Space>
   );
 };
 
-export default Parent;
+const Count = () => {
+  const { count } = exampleCountStore.useStore((m) => [m.count]);
+
+  console.log('Count render');
+
+  return <FormattedMessage id="myMessage" values={{ count }} />;
+};
+
+const Btn = () => {
+  const { increment, decrement } = exampleCountStore.useStore((m) => []);
+
+  console.log('Btn render');
+
+  return (
+    <Space>
+      <Button onClick={increment}>increment</Button>
+      <Button onClick={decrement}>decrement</Button>
+    </Space>
+  );
+};
+
+const Count2 = () => {
+  const { count2 } = exampleCountStore.useStore((m) => [m.count2]);
+
+  console.log('Count2 render');
+
+  return <FormattedMessage id="myMessage" values={{ count: count2 }} />;
+};
+
+const Btn2 = () => {
+  const { increment2, decrement2 } = exampleCountStore.useStore((m) => []);
+
+  console.log('Btn2 render');
+
+  return (
+    <Space>
+      <Button onClick={increment2}>increment2</Button>
+      <Button onClick={decrement2}>decrement2</Button>
+    </Space>
+  );
+};
+
+const Example = () => {
+  return (
+    <Space>
+      <Count />
+      <Btn />
+      <Count2 />
+      <Btn2 />
+      <SwitchLang />
+    </Space>
+  );
+};
+
+export default Example;
