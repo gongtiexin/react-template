@@ -28,7 +28,7 @@
 ## Install
 
 ```sh
-yarn install
+yarn
 ```
 
 ## Author
