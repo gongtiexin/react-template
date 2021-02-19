@@ -12,7 +12,7 @@ import zhCN from 'antd/lib/locale-provider/zh_CN';
 import 'dayjs/locale/zh-cn';
 import 'normalize.css';
 import '@src/assets/styles/global.less';
-import '@src/utils/exercise';
+import 'tailwindcss/tailwind.css';
 
 const LoadableApp = Loadable({
   loader: () => import(/* webpackChunkName: "route-root" */ './views/App'),

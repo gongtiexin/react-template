@@ -54,6 +54,9 @@ module.exports = () =>
                       loader: 'css-loader',
                     },
                     {
+                      loader: 'postcss-loader',
+                    },
+                    {
                       loader: 'less-loader',
                       options: {
                         lessOptions: {
